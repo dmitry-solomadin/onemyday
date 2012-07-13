@@ -4,7 +4,17 @@ div#navbar
     div#navbarInner
       a.btn.btn-foxtrot.topPanelButton.web-sc href="#" Explore
       input.imLookingFor type="text" placeholder="one day of freelancer"
-    a.btn.topPanelButton.web-sc.signUp href="#" Sing In
+    a.btn.topPanelButton.web-sc.signUp data-toggle="modal" href="#signInModal" Sing In
+
+div#signInModal.modal.hide.fade
+  button type="button" class="close" data-dismiss="modal" ×
+  div.modal-header.open-sans
+    h3 Sign In with Facebook or Twitter
+  div.modal-body
+    a.social-link.social-facebook
+      div
+    a.social-link.social-twitter
+      div
 
 div#contentWrapper
   div#content
