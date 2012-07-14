@@ -10,6 +10,11 @@ gem 'bootstrap-sass'
 gem 'slim'
 gem 'heroku'
 
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+
+gem 'paperclip'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

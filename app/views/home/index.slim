@@ -1,10 +1,22 @@
 div#navbar
   div#navbarMiddle
     span.logo
-    div#navbarInner
-      a.btn.btn-foxtrot.topPanelButton.web-sc href="#" Explore
+    div.navbarInner
+      a.btn.btn-foxtrot.topPanelButton.open-sans href="#" Explore
       input.imLookingFor type="text" placeholder="one day of freelancer"
-    a.btn.topPanelButton.web-sc.signUp data-toggle="modal" href="#signInModal" Sing In
+
+    div.navbarInner.btn-group.fr
+      - if current_user
+        = image_tag current_user.avatar.url, width: '32', class: 'navbarAvatar'
+        a.dropdown-toggle data-toggle="dropdown" href="#"
+          = current_user.name
+          span.caret
+        ul.dropdown-menu
+          li: a href="#" Edit Profile
+          li
+            = link_to "Sign out", signout_path
+      - else
+        a.btn.topPanelButton.open-sans data-toggle="modal" href="#signInModal" Sing In
 
 div#signInModal.modal.hide.fade
   button type="button" class="close" data-dismiss="modal" ×
@@ -13,11 +25,11 @@ div#signInModal.modal.hide.fade
   div.modal-body
     a.social-link.social-facebook
       div
-    a.social-link.social-twitter
+    a.social-link.social-twitter href="/auth/twitter"
       div
 
 div#contentWrapper
   div#content
     div#createDiv
       span#createText.bw Create your own story
-      = link_to "Create new Story", newstory_path, class: "btn btn-large createButton web-sc"
+      = link_to "Create new Story", newstory_path, class: "btn btn-large createButton open-sans"

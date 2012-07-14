@@ -1,5 +1,8 @@
 Onemyday::Application.routes.draw do
   match '/newstory', to: 'stories#new'
+  match 'auth/:provider/callback', to: 'sessions#create'
+  match 'auth/failure', to: redirect('/')
+  match 'signout', to: 'sessions#destroy', as: 'signout'
 
   root :to => 'home#index'
 

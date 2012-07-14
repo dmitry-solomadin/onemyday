@@ -34,4 +34,7 @@ Onemyday::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  ENV["TWITTER_KEY"] = "3Ot3E3BhpTFV5inPVXOw"
+  ENV["TWITTER_SECRET"] = "mNtee7A5W87WdMDlIBHCRQURv29ECTsKUlWoArY0A"
 end

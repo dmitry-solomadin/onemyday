@@ -9,6 +9,10 @@ body {
   background: url("white_texture.png");
 }
 
+.fr {
+  float:right;
+}
+
 .modal-backdrop {
   background: url("white_texture.png");
 }
@@ -143,11 +147,35 @@ input:-moz-placeholder {
   padding-top: 3px;
 }
 
-#navbarInner {
+.navbarInner {
   vertical-align: top;
   display: inline-block;
   margin-top: 10px;
   margin-left: 60px;
+
+  .navbarAvatar {
+    vertical-align: top;
+    border-radius: 4px;
+  }
+}
+
+.dropdown-toggle .caret {
+  margin-top: 9px;
+  margin-left: 3px;
+}
+
+.dropdown-toggle {
+  margin-top: 5px;
+  display: inline-block;
+  color: #404040;
+  font-size: 18px;
+  text-shadow: #eee 0 1px 1px;
+  box-shadow: none !important;
+
+  &:hover {
+    text-decoration: none;
+    color: #404040;
+  }
 }
 
 .logo {
@@ -181,11 +209,6 @@ input:-moz-placeholder {
   margin-right: 5px;
   letter-spacing: 0;
   font-size: 16px;
-}
-
-.signUp {
-  margin-top: 10px;
-  float: right;
 }
 
 .createButton {
