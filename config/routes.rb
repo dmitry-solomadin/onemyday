@@ -1,4 +1,6 @@
 Onemyday::Application.routes.draw do
+
+  resource :users, path: "registrations", controller: "registrations"
   match '/newstory', to: 'stories#new'
   match 'auth/:provider/callback', to: 'sessions#create'
   match 'auth/failure', to: redirect('/')
