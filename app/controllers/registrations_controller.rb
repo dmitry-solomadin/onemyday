@@ -1,4 +1,6 @@
 class RegistrationsController < ApplicationController
+  before_filter :signed_in_user_filter, only: [:edit]
+
   def new
     @user = User.from_omniauth(session[:omniauth])
   end
@@ -13,5 +15,9 @@ class RegistrationsController < ApplicationController
     else
       render "registrations/new"
     end
+  end
+
+  def edit
+    @user = current_user
   end
 end

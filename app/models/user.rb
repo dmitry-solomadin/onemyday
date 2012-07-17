@@ -24,4 +24,12 @@ class User < ActiveRecord::Base
     self.avatar = open(url)
   end
 
+  def has_facebook
+    authentications.any? { |auth| auth.provider == "facebook" }
+  end
+
+  def has_twitter
+    authentications.any? { |auth| auth.provider == "twitter" }
+  end
+
 end

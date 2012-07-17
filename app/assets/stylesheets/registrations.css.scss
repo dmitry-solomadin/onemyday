@@ -22,3 +22,50 @@
     }
   }
 }
+
+#editUser {
+  form {
+    margin-top: 20px;
+    width: 600px;
+  }
+
+  label {
+    width: auto;
+    font-size: 18px;
+    color: #808080;
+    text-shadow: 0 1px rgba(255, 255, 255, 0.9);
+  }
+
+  .form-horizontal .controls {
+    margin-left: 120px;
+  }
+
+  .control-group {
+    margin-bottom: 0;
+    padding-bottom: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid rgba(34, 25, 25, 0.2);
+  }
+
+  .control-group:first-child {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .control-group.last-child {
+    border-bottom: none;
+  }
+
+  .form-actions {
+    padding-left: 120px;
+  }
+
+  span.info {
+    color: #808080;
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: top;
+    margin-top: 5px;
+  }
+}
