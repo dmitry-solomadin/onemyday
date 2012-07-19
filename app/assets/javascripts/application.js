@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require ioswitch
+//= require jquery-ui-datepicker.min
 //= require_tree .

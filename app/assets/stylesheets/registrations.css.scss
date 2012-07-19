@@ -23,20 +23,18 @@
   }
 }
 
-#editUser {
-  form {
-    margin-top: 20px;
-    width: 600px;
-  }
+.oneHorizontalForm {
+  margin-top: 20px;
+  width: 600px;
 
   label {
-    width: auto;
+    width: auto !important;
     font-size: 18px;
     color: #808080;
     text-shadow: 0 1px rgba(255, 255, 255, 0.9);
   }
 
-  .form-horizontal .controls {
+  .controls {
     margin-left: 120px;
   }
 
@@ -67,5 +65,15 @@
     margin-left: 10px;
     vertical-align: top;
     margin-top: 5px;
+  }
+
+  .facebookAuth {
+    background: url("facebook-auth.png");
+    padding: 24px;
+  }
+
+  .twitterAuth {
+    background: url("twitter_auth.png");
+    padding: 24px;
   }
 }

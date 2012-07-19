@@ -1,3 +1,23 @@
 // Place all the styles related to the stories controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#newStory {
+  margin-top: 0;
+
+  .share {
+    margin-left: 10px;
+  }
+
+  .firstShare {
+    margin-left: 0;
+  }
+
+  .shareDiv {
+    margin-top: 15px;
+    height: 40px;
+  }
+
+  .btn-share {
+    width: 140px;
+  }
+}

@@ -6,6 +6,8 @@ Onemyday::Application.routes.draw do
   match 'auth/:provider/destroy', to: 'sessions#destroy_auth'
   match 'auth/failure', to: redirect('/')
   match 'signout', to: 'sessions#destroy', as: 'signout'
+  get '/moreinfo', to: 'add_more_user_info#show'
+  put '/moreinfo', to: 'add_more_user_info#submit'
 
   root :to => 'home#index'
 
