@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120718153545) do
+ActiveRecord::Schema.define(:version => 20120720115540) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -26,7 +26,26 @@ ActiveRecord::Schema.define(:version => 20120718153545) do
   create_table "stories", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "title"
+    t.string   "type"
+    t.datetime "date"
+    t.integer  "user_id"
   end
+
+  add_index "stories", ["user_id"], :name => "index_stories_on_user_id"
+
+  create_table "story_photos", :force => true do |t|
+    t.integer  "order"
+    t.integer  "story_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
+
+  add_index "story_photos", ["story_id"], :name => "index_story_photos_on_story_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"

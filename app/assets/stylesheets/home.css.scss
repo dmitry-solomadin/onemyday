@@ -137,6 +137,7 @@ input:-moz-placeholder {
   position: fixed;
   right: 0;
   top: 59px;
+  overflow: visible;
   background: url("skin_side_up.png");
 }
 
@@ -144,7 +145,7 @@ input:-moz-placeholder {
   bottom: 0;
   height: 100%;
   margin: 0 auto;
-  overflow: hidden;
+  overflow: visible;
   position: relative;
   top: 0px;
   width: 960px;

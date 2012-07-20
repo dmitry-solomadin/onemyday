@@ -1,17 +1,25 @@
 div#newStory.form-horizontal.oneHorizontalForm
-  h2 Select type of day you want to share:
-  fieldset
-    div.shareDiv
-      input.firstShare.share.btn.btn-foxtrot.f18 type="button" value="My regular day"
-      input.share.btn.btn-foxtrot.f18 type="button" value="My day at work"
-      input.share.btn.btn-foxtrot.f18 type="button" value="My weekend"
-    div.control-group.hide
-      label.control-label for="title" Story Title
-      div.controls
-        input#title.input-xlarge type="text" placeholder="#{current_user.name}'s regular day" value=""
-    div.control-group.hide.last-child
-      label.control-label for="date" Date
-      div.controls
-        input#date.input-small type="text" value="#{Date.today.to_s}"
-    div.form-actions.hide
-      input.btn.btn-share.btn-large.btn-foxtrot.f18 type="submit" value="Start sharing"
+  div.overallInfo
+    h2 Select type of day you want to share:
+    fieldset
+      div.shareDiv
+        input.firstShare.share.btn.btn-foxtrot.f18 type="button" value="My regular day"
+        input.share.btn.btn-foxtrot.f18 type="button" value="My day at work"
+        input.share.btn.btn-foxtrot.f18 type="button" value="My weekend"
+      div.control-group.hide.stepTwo
+        label.control-label for="title" Story Title
+        div.controls
+          input#title.input-xlarge type="text" placeholder="#{current_user.name}'s regular day" value=""
+      div.control-group.hide.stepTwo.last-child
+        label.control-label for="date" Date
+        div.controls
+          input#date.input-small type="text" value="#{Date.today.to_s}"
+      div.form-actions.hide.stepTwo
+        input#goToPhotoUpload.btn.btn-share.btn-large.btn-foxtrot.f18 type="submit" value="Start sharing"
+  div.photoUpload.hide
+    h2 Now upload some photos
+    div#photoUploadDiv
+      div#photoUploadError.alert.alert-error.hide
+      div#customProgressBar.uploadify-progress.hide
+        div.uploadify-progress-bar style="width: 0;"
+      input#photoUploadButton.hide type="file" name="fileBean"

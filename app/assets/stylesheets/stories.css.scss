@@ -21,3 +21,24 @@
     width: 140px;
   }
 }
+
+#photoUploadDiv {
+  margin-top: 10px;
+
+  .uploadify-progress {
+    background-color: #E5E5E5;
+    margin: 10px 0;
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid #CAC8C6;
+  }
+
+  .uploadify-progress-bar {
+    background-color: #0099FF;
+    border-radius: 20px;
+    border-radius: 20px;
+    height: 20px;
+    width: 6px;
+  }
+}
+

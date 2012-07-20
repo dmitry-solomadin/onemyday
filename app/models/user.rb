@@ -2,6 +2,7 @@ require 'open-uri'
 
 class User < ActiveRecord::Base
   has_many :authentications
+  has_many :stories
 
   validates :email, presence: true, uniqueness: true
 
