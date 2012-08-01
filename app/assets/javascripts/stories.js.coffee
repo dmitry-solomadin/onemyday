@@ -1,22 +1,27 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $(->
-  $("#date").datepicker()
+  App.Stories = {}
+  # defining global namespace for stories
+
+  $("#date").datepicker(
+    dateFormat: "dd-mm-yy"
+  )
 
   $(".share").click(->
     all = $(".shareDiv > .share")
     visible = all.filter(":visible")
 
-    all.removeClass("firstShare")
-    all.eq(0).addClass("firstShare")
+    all.removeClass("firstShare").eq(0).addClass("firstShare")
 
-    if visible.length == 1
+    storyTypeSelected = visible.length == 1
+
+    if storyTypeSelected
+      $("#type").val("")
       all.css("position", "static")
-      all.addClass("btn-foxtrot")
-      all.fadeIn()
+        .addClass("btn-foxtrot")
+        .fadeIn()
       stepOne()
     else
+      $("#type").val($(@).data("type"))
       top = $(@).position().top
       left = $(@).position().left
       all.not(@).fadeOut('fast', =>
@@ -24,10 +29,9 @@ $(->
           position: "absolute"
           top: top
           left: left
-        )
-        $(@).addClass("firstShare")
-        $(@).animate({left: 0}, 'fast')
-        $(@).removeClass("btn-foxtrot")
+        ).addClass("firstShare")
+          .animate(left: 0, 'fast', => $(@).css(position: "static"))
+          .removeClass("btn-foxtrot")
       )
       stepTwo()
   )
@@ -38,11 +42,9 @@ $(->
   stepTwo = ->
     $("#newStory .stepTwo").fadeIn()
 
-  $("#goToPhotoUpload").click(->
-    stepPhoto()
-  )
 
-  stepPhoto = ->
+  App.Stories.stepPhoto = (createdStoryId)->
+    $("#createdStoryId").val(createdStoryId)
     $(".overallInfo").css(position: "absolute")
     $(".overallInfo").animate(
       left: -1000
@@ -54,12 +56,6 @@ $(->
 
 class PhotoUploader
   init: ->
-    $("#photoUploadButton").after(
-      "<input type='button' class='btn btn-large btn-foxtrot f18' id='photoUploadStyledButton' value='Upload photo'>")
-    $("#avatarUploadLi").wrap(
-      "<form id='photoUploadForm' enctype='multipart/form-data' method='post'
-       action='/upload_photo")
-
     $("#photoUploadButton").change(=>
       @.doUpload()
     )
@@ -75,13 +71,20 @@ class PhotoUploader
     $("#photoUploadError").hide()
     $("#customProgressBar").hide()
 
-    file = $('#photoUploadButton')[0].files[0]
-    fileSize = (Math.round(file.size * 100 / (1024 * 1024)) / 100).toString()
-    if fileSize > 10
-      $("#photoUploadError").html("Uploaded file should be not bigger than 10 MBs.").show()
-      return
-    else
-      $("#customProgressBar").show()
+    files = $('#photoUploadButton')[0].files
+    error = false
+    $(files).each(->
+      fileSize = (Math.round(this.size * 100 / (1024 * 1024)) / 100).toString()
+      if fileSize > 10
+        $("#photoUploadError").html("Uploaded file should be not bigger than 10 MBs.").show()
+        error = true
+        return false
+      else
+    )
+
+    return if error
+
+    $("#customProgressBar").show()
 
     # event listners
     xhr.upload.addEventListener("progress", (evt) ->
@@ -101,8 +104,10 @@ class PhotoUploader
     , false)
 
     xhr.open("POST", "/upload_photo")
+    header = $('meta[name="csrf-token"]').attr('content')
+    xhr.setRequestHeader("X-CSRF-Token", header)
     xhr.send(fd)
 
-  onUploadSuccess: ->
-    alert "Okay, we have a major success!"
+  onUploadSuccess: (data) ->
+    $("#photoDiv").html(data)
 

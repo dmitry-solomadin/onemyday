@@ -1,7 +1,7 @@
 div#createDiv
   span#createText.bw Create your own story
   - if current_user
-    = link_to "Create new Story", newstory_path, class: "btn btn-large createButton open-sans"
+    = link_to "Create new Story", new_stories_path, class: "btn btn-large createButton open-sans"
   - else
     a.btn.btn-large.createButton.open-sans data-toggle="modal" href="#signInModal" Create new Story
 

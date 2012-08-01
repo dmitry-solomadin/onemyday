@@ -2,8 +2,8 @@ Onemyday::Application.routes.draw do
 
   resource :users, path: "registrations", controller: "registrations"
 
-  match '/newstory', to: 'stories#new'
-  put '/upload_photo', to:'stories#upload_photo'
+  resource :stories
+  post '/upload_photo', to:'stories#upload_photo'
 
   match 'auth/:provider/callback', to: 'sessions#create'
   match 'auth/:provider/destroy', to: 'sessions#destroy_auth'

@@ -6,7 +6,7 @@
 
 body {
   height: 100%;
-  background: url("white_texture.png");
+  background: url("skin_side_up.png");
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
 }
@@ -132,13 +132,8 @@ input:-moz-placeholder {
 /* Content */
 
 #contentWrapper {
-  bottom: 0;
-  left: 0;
-  position: fixed;
-  right: 0;
-  top: 59px;
+  padding-bottom: 20px;
   overflow: visible;
-  background: url("skin_side_up.png");
 }
 
 #content {
@@ -155,6 +150,7 @@ input:-moz-placeholder {
 /* Navigation bar */
 
 #navbar {
+  background: url("white_texture.png");
   box-shadow: #B2B2B2 0 1px 3px;
   height: 57px;
   left: 0;

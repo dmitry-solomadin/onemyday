@@ -1,0 +1,5 @@
+App.formErrors.replace("<%= escape_javascript(render 'shared/error_messages', object: @story) %>");
+
+if (App.formErrors.isEmpty()) {
+    App.Stories.stepPhoto('<%= @story.id %>')
+}
