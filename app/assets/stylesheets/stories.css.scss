@@ -13,12 +13,19 @@
   }
 
   .shareDiv {
-    margin-top: 15px;
     height: 40px;
   }
 
   .btn-share {
     width: 140px;
+  }
+
+  .overallInfo {
+    margin: 0 !important;
+  }
+
+  h2 {
+    margin-bottom: 15px;
   }
 }
 
@@ -39,6 +46,23 @@
     border-radius: 20px;
     height: 20px;
     width: 6px;
+  }
+}
+
+#story .span0 {
+  margin-left: 20px;
+  margin-right: 20px;
+  border: 1px dotted gray;
+}
+
+#story .row {
+  .time {
+    font-size: 22px;
+    margin-bottom: 5px;
+    background-color: rgba(1, 1, 1, 0.1);
+    padding: 5px 5px 7px 6px;
+    display: inline-block;
+    border-radius: 6px;
   }
 }
 

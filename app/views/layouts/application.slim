@@ -48,9 +48,8 @@ html
         a.modal-okay.btn.btn-foxtrot.open-sans.f18 Okay
         a.modal-cancel.btn.open-sans.f18 Cancel
 
-    div#contentWrapper
-      div#content
-        div.flash_container
-          - flash.each do |key, value|
-            = content_tag :div, value, class: "alert alert-#{key} #{}"
-        = yield
+    div.container
+      div.flash_container
+        - flash.each do |key, value|
+          = content_tag :div, value, class: "alert alert-#{key} #{}"
+      = yield

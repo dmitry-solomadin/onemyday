@@ -131,19 +131,7 @@ input:-moz-placeholder {
 
 /* Content */
 
-#contentWrapper {
-  padding-bottom: 20px;
-  overflow: visible;
-}
-
-#content {
-  bottom: 0;
-  height: 100%;
-  margin: 0 auto;
-  overflow: visible;
-  position: relative;
-  top: 0px;
-  width: 960px;
+.container {
   padding-top: 20px;
 }
 

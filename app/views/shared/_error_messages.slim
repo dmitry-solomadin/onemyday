@@ -5,4 +5,5 @@ div#form_errors_div
         ' Please fix following errors:
         ul
           - object.errors.each do |key, msg|
-            li.errorLi data-field-id="#{key}" #{msg}
+            li.errorLi data-field-id="#{key}"
+              = msg

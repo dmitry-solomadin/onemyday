@@ -1,6 +1,11 @@
-div#newStory.form-horizontal.oneHorizontalForm
+div#newStory
   = render 'shared/error_messages'
-  div.overallInfo
+
+  div#lorem.hide
+    = get_lorem
+
+  / Create a story form
+  div.overallInfo.form-horizontal.oneHorizontalForm
     h2 Select type of day you want to share:
     = form_for Story.new, remote:true do |f|
       fieldset
@@ -21,13 +26,34 @@ div#newStory.form-horizontal.oneHorizontalForm
         div.form-actions.hide.stepTwo
           = f.submit id: "goToPhotoUpload", class: "btn btn-share btn-large btn-foxtrot f18", value:"Start sharing",
           'data-loading-text' => "Submitting...", 'data-complete-text' => "Start sharing"
-  div.photoUpload.hide
-    h2 Now upload some photos
-    = form_tag upload_photo_path, id: "photoUploadForm" do
-      input#createdStoryId name="story_id" type="hidden"
-      div#photoUploadError.alert.alert-error.hide
-      div#customProgressBar.uploadify-progress.hide
-        div.uploadify-progress-bar style="width: 0;"
-      input#photoUploadButton.hide type="file" name="file_bean[]" multiple="multiple"
-      input#photoUploadStyledButton.btn.btn-large.btn-foxtrot.f18 type='button' class='' value='Upload photo'
-    div#photoDiv
+
+  / Upload photo form
+  div#photoUploadDiv.row.hide
+    div.span12
+      h2 Now upload some photos
+      = form_tag upload_photo_path, id: "photoUploadForm" do
+        input#createdStoryId name="story_id" type="hidden"
+        div#photoUploadError.alert.alert-error.hide
+        div#customProgressBar.uploadify-progress.hide
+          div.uploadify-progress-bar style="width: 0;"
+        input#photoUploadButton.hide type="file" name="file_bean[]" multiple="multiple"
+        input#photoUploadStyledButton.btn.btn-large.btn-foxtrot.f18 type='button' class='' value='Add photos'
+
+  / Story
+  div#story.hide
+    / Uploaded photos placeholder
+    div#photoDiv.hide
+
+    / Story groups
+    div#leftRightGroup.row.hide
+      div.imagePlace.span6
+      div.span0
+      div.textPlace.span5
+        div.time
+        div.text
+    div#rightLeftGroup.row.hide
+      div.textPlace.span6
+        div.time
+        div.text
+      div.span0
+      div.imagePlace.span5

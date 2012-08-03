@@ -1,6 +1,6 @@
 $(->
-  App.Stories = {}
   # defining global namespace for stories
+  App.Stories = {}
 
   $("#date").datepicker(
     dateFormat: "dd-mm-yy"
@@ -30,7 +30,7 @@ $(->
           top: top
           left: left
         ).addClass("firstShare")
-          .animate(left: 0, 'fast', => $(@).css(position: "static"))
+          .animate(left: $(".container").offset().left, 'fast', => $(@).css(position: "static"))
           .removeClass("btn-foxtrot")
       )
       stepTwo()
@@ -49,7 +49,7 @@ $(->
     $(".overallInfo").animate(
       left: -1000
     )
-    $(".photoUpload").show()
+    $("#photoUploadDiv").show()
 
     new PhotoUploader().init()
 )
@@ -79,7 +79,6 @@ class PhotoUploader
         $("#photoUploadError").html("Uploaded file should be not bigger than 10 MBs.").show()
         error = true
         return false
-      else
     )
 
     return if error
@@ -91,7 +90,7 @@ class PhotoUploader
       if evt.lengthComputable
         percentComplete = Math.round(evt.loaded * 100 / evt.total)
 
-        $("#fancybox-content").find('#customProgressBar .uploadify-progress-bar').css("width", percentComplete.toString() + '%')
+        $('#customProgressBar .uploadify-progress-bar').css("width", percentComplete.toString() + '%')
     , false)
     xhr.addEventListener("load", (evt) =>
       @.onUploadSuccess(evt.target.responseText)
@@ -109,5 +108,35 @@ class PhotoUploader
     xhr.send(fd)
 
   onUploadSuccess: (data) ->
+    $("#story").show()
     $("#photoDiv").html(data)
 
+    dataValid = $("#photoDiv > #uploadedPhotoData").children().length > 0
+    if dataValid
+      $("#customProgressBar").hide()
+
+      storyHelper.addGroup(storyHelper.groupType.left, storyHelper.grabImage(0), "8:10 am", $("#lorem").html())
+      storyHelper.addGroup(storyHelper.groupType.right, storyHelper.grabImage(1), "9:45 am", $("#lorem").html())
+
+class Story
+  groupType: {left: "#leftRightGroup", right: "#rightLeftGroup"}
+
+  addGroup: (type, photo, time, text) ->
+    newGroup = $(type).clone()
+    newGroup[0].id = ""
+    newGroup.find(".imagePlace").append(photo)
+    newGroup.find(".textPlace > .time").html(time)
+    newGroup.find(".textPlace > .text").html(text)
+    $("#story").append newGroup
+
+    newGroup.show()
+
+    newGroup.find(".imagePlace > img").load(=>
+      newGroup.find(".span0").css("height", newGroup.find(".imagePlace").height() + 40)
+    )
+
+  grabImage: (index) ->
+    return "<img src='#{$("#uploadedPhotoData > input").eq(index).val()}'>"
+
+
+storyHelper = new Story

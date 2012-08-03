@@ -1,2 +1,4 @@
-- @story.story_photos.each do |story_photo|
-  = image_tag story_photo.photo.url :thumb
+div#uploadedPhotoData
+  - @story.story_photos.each do |story_photo|
+    = get_image_dims(story_photo.photo.path(:medium))[:height]
+    input type="hidden" value="#{story_photo.photo.url(:medium)}"
