@@ -9,6 +9,7 @@ body {
   background: url("skin_side_up.png");
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
+  padding-top: 80px;
 }
 
 /* Forms */
@@ -129,37 +130,69 @@ input:-moz-placeholder {
   }
 }
 
-/* Content */
-
-.container {
-  padding-top: 20px;
-}
-
 /* Navigation bar */
 
-#navbar {
-  background: url("white_texture.png");
-  box-shadow: #B2B2B2 0 1px 3px;
-  height: 57px;
-  left: 0;
-  top: 0;
-  width: 100%;
-  z-index: 314159265;
-  -webkit-text-stroke: 1px transparent;
+ul.navigation {
+  margin: 0;
+  padding: 0;
+
+  .dropdown-toggle {
+    margin-top: 0;
+  }
+
+  a {
+    color: #404040;
+    font-size: 16px;
+  }
+
+  >li {
+    display: inline;
+    list-style: none;
+
+    a.navLink {
+      color: #404040;
+      font-size: 18px;
+      text-shadow: #EEE 0 1px 1px;
+      padding: 17px 10px 12px 10px;
+      height: 26px;
+      position: relative;
+      display: inline-block;
+      text-decoration: none;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.7);
+      }
+    }
+
+    &.tellNav a {
+      padding: 17px 20px 12px 20px;
+    }
+
+    &.userNav a {
+      padding: 12px 10px 12px 10px;
+      height: auto;
+
+      img {
+        margin-right: 5px;
+      }
+    }
+  }
 }
 
-#navbarMiddle {
-  width: 960px;
-  margin: 0 auto;
-  height: 57px;
-  padding-top: 3px;
+.navbar .btn, .navbar .btn-group {
+  margin-top: 0;
+}
+
+.navbar-inner {
+  background: url("white_texture.png");
+  box-shadow: #B2B2B2 0 1px 3px;
+  -webkit-text-stroke: 1px transparent;
 }
 
 .navbarInner {
   vertical-align: top;
   display: inline-block;
-  margin-top: 10px;
-  margin-left: 60px;
+  margin-top: 12px !important;
 
   .navbarAvatar {
     vertical-align: top;
@@ -168,12 +201,12 @@ input:-moz-placeholder {
 }
 
 .dropdown-toggle .caret {
-  margin-top: 9px;
+  margin-top: 13px;
   margin-left: 3px;
 }
 
 .dropdown-toggle {
-  margin-top: 5px;
+  margin-top: 7px;
   display: inline-block;
   color: #404040;
   font-size: 18px;
@@ -187,6 +220,8 @@ input:-moz-placeholder {
 }
 
 .logo {
+  top: 2px;
+  position: relative;
   margin-right: 10px;
   background: url("onemyday.png");
   display: inline-block;
@@ -195,12 +230,40 @@ input:-moz-placeholder {
   display: inline-block;
 }
 
-.imLookingFor {
+#navbarSearch {
+  float: left;
+  width: 183px;
+  background-color: #eaeaea;
+  border: 1px solid;
+  border-color: #C2C0C0 #CCCACA #D1CFCF;
+  box-shadow: 0 1px white, inset 0 1px rgba(34, 25, 25, 0.05);
+  -moz-box-shadow: 0 1px #fff, inset 0 1px rgba(34, 25, 25, 0.05);
+  -webkit-box-shadow: 0 1px white, inset 0 1px rgba(34, 25, 25, 0.05);
+  font-size: 13px;
+  line-height: 1.3;
   margin-left: 30px;
-  background-image: url(magnifier.png);
-  background-repeat: no-repeat;
-  padding-left: 30px;
-  background-position: 5px 3px;
+  height: 21px;
+}
+
+.imLookingFor:focus {
+  border: 1px solid;
+  border-color: #C2C0C0 #CCCACA #D1CFCF;
+  box-shadow: 0 1px white, inset 0 1px rgba(34, 25, 25, 0.05);
+  -moz-box-shadow: 0 1px #fff, inset 0 1px rgba(34, 25, 25, 0.05);
+  -webkit-box-shadow: 0 1px white, inset 0 1px rgba(34, 25, 25, 0.05);
+}
+
+.magnifier {
+  float: left;
+  margin-left: -1px;
+  padding: 4px 7px 7px 7px;
+  min-height: 17px;
+  border: 1px solid;
+  border-color: #C2C0C0 #CCCACA #D1CFCF;
+  box-shadow: 0 1px rgba(255, 255, 255, 0.9), inset 0 0 2px rgba(255, 255, 255, 0.75);
+  -moz-box-shadow: 0 1px rgba(255, 255, 255, 0.9), inset 0 0 2px rgba(255, 255, 255, 0.75);
+  -webkit-box-shadow: 0 1px rgba(255, 255, 255, 0.9), inset 0 0 2px rgba(255, 255, 255, 0.75);
+  background-color: rgba(245, 242, 242, 0.55);
 }
 
 .topPanelButton {
@@ -233,6 +296,10 @@ input:-moz-placeholder {
 }
 
 /* Misc */
+
+.mr10 {
+  margin-right: 10px;
+}
 
 .bw {
   color: #404040;

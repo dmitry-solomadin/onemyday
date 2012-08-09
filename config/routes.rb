@@ -4,6 +4,7 @@ Onemyday::Application.routes.draw do
 
   resource :stories
   post '/upload_photo', to:'stories#upload_photo'
+  post '/publish', to:'stories#publish'
 
   match 'auth/:provider/callback', to: 'sessions#create'
   match 'auth/:provider/destroy', to: 'sessions#destroy_auth'

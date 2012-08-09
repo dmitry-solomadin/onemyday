@@ -16,4 +16,5 @@
 //= require ioswitch
 //= require jquery-ui-datepicker.min
 //= require general
+//= require jquery.inputmask
 //= require_tree .

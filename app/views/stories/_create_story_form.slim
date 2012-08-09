@@ -1,0 +1,21 @@
+div.overallInfo.form-horizontal.oneHorizontalForm
+  h2 Select type of day you want to share:
+  = form_for Story.new, remote:true do |f|
+    fieldset
+      div.shareDiv
+        input.firstShare.share.btn.btn-foxtrot.f18 type="button" value="My regular day" data-type="#{:regular}"
+        input.share.btn.btn-foxtrot.f18 type="button" value="My day at work" data-type="#{:work}"
+        input.share.btn.btn-foxtrot.f18 type="button" value="My weekend" data-type="#{:weekend}"
+
+        = f.hidden_field :type, id: "type"
+      div.control-group.hide.stepTwo
+        label.control-label for="title" Story Title
+        div.controls
+          = f.text_field :title, id: "title", class: "input-xlarge", placeholer: "#{current_user.name}'s regular day"
+      div.control-group.hide.stepTwo.last-child
+        label.control-label for="date" Date
+        div.controls
+          = f.text_field :date_text, id: "date", class: "input-xlarge", value: "#{Story.date_to_text Date.today}"
+      div.form-actions.hide.stepTwo
+        = f.submit id: "goToPhotoUpload", class: "btn btn-share btn-large btn-foxtrot f18", value:"Start sharing",
+        'data-loading-text' => "Submitting...", 'data-complete-text' => "Start sharing"

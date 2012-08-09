@@ -32,4 +32,8 @@ class StoriesController < ApplicationController
     render 'uploaded_photos', layout: nil
   end
 
+  def publish
+    raise params.inspect
+  end
+
 end

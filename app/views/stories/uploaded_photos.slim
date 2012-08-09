@@ -1,4 +1,7 @@
 div#uploadedPhotoData
   - @story.story_photos.each do |story_photo|
-    = get_image_dims(story_photo.photo.path(:medium))[:height]
-    input type="hidden" value="#{story_photo.photo.url(:medium)}"
+
+    input{ type="hidden" id="#{story_photo.id}" value="#{story_photo.photo.url(:medium)}"
+    data-height="#{get_image_dims(story_photo.photo.path(:medium))[:height]}"
+    data-date="#{get_image_time_taken story_photo.photo.path}" }
+

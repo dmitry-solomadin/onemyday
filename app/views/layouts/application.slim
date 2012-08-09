@@ -4,30 +4,38 @@ html
     title Onemyday
     javascript:
       App = {};
-    = stylesheet_link_tag    "application", :media => "all"
+    = stylesheet_link_tag "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
   body
-    div#navbar
-      div#navbarMiddle
-        a href="/": span.logo
-        div.navbarInner
-          a.btn.btn-foxtrot.topPanelButton.open-sans href="#" Explore
-          input.imLookingFor type="text" placeholder="one day of freelancer"
+    header.navbar.navbar-fixed-top
+      div.navbar-inner
+        div.container
+          a.logo href="/"
 
-        div.navbarInner.btn-group.fr
-          - if current_user
-            = image_tag current_user.avatar.url, width: '32', class: 'navbarAvatar'
-            a.dropdown-toggle data-toggle="dropdown" href="#"
-              = current_user.name
-              span.caret
-            ul.dropdown-menu
-              li
-                = link_to "Edit Profile", edit_users_path
-              li
-                = link_to "Sign out", signout_path
-          - else
-            a.btn.topPanelButton.open-sans data-toggle="modal" href="#signInModal" Sing In
+          div.navbarInner
+            input#navbarSearch.imLookingFor type="text" placeholder="one day of freelancer"
+            a.magnifier href="#": img src="/assets/magnifier.gif" alt=""
+
+          ul.navigation.fr
+            - if current_user
+              li.tellNav
+                = link_to "Tell", new_stories_path, class: "navLink"
+              li.btn-group.userNav
+                a.navLink.dropdown-toggle data-toggle="dropdown" href="#"
+                  = image_tag current_user.avatar.url, width: '32', class: 'navbarAvatar'
+                  = current_user.name
+                  span.caret
+                ul.dropdown-menu
+                  li
+                    a href="#" My stories
+                  li.divider
+                  li
+                    = link_to "Edit Profile", edit_users_path
+                  li
+                    = link_to "Sign out", signout_path
+            - else
+              a.btn.topPanelButton.open-sans data-toggle="modal" href="#signInModal" Sing In
 
     div#signInModal.modal.hide.fade
       button type="button" class="close" data-dismiss="modal" ×

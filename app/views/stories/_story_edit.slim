@@ -1,0 +1,44 @@
+/ Upload photo form
+div#photoUploadDiv.row.hide
+  div.span12
+    input#photoUploadStoryTitle type="text"
+    span.photoUploadAt @
+    input#photoUploadStoryDate type="text"
+    h2 Now upload some photos
+    = form_tag upload_photo_path, id: "photoUploadForm" do
+      input#createdStoryId name="story_id" type="hidden"
+      div#photoUploadError.alert.alert-error.hide
+      div#customProgressBar.progress.progress-striped.active
+        div.bar style="width: 0"
+      /div#.uploadify-progress.hide
+      /  div.uploadify-progress-bar style="width: 0;"
+      input#photoUploadButton.hide type="file" name="file_bean[]" multiple="multiple"
+      input#photoUploadStyledButton.btn.btn-large.btn-foxtrot.f18 type='button' class='' value='Add photos'
+
+/ Story
+div#story.edit.hide
+  / Uploaded photos placeholder
+  div#photoDiv
+
+  / Story groups placeholder and misc.
+  / This part of template is hidden and used only in js
+  div#leftRightGroup.row.hide
+    div.imagePlace.span6
+    div.span0
+    div.textPlace.span5
+      div.time
+      div.text
+  div#rightLeftGroup.row.hide
+    div.textPlace.span6
+      div.time
+      div.text
+    div.span0
+    div.imagePlace.span5
+  div#imageHoverMenuPlaceholder.imageHoverMenu.btn-group.hide data-toggle="buttons-radio"
+    button.leftOrientation.btn Left
+    button.centerOrientation.btn Center
+    button.rightOrientation.btn Right
+
+div#storyPublish.hide
+  = form_tag publish_path do
+    input#storyPublishButton.btn.btn-large.btn-foxtrot.f18 type="submit" value="Publish"

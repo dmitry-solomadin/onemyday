@@ -2,6 +2,13 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $(->
+
+  $("#navbarSearch").focus(->
+    $(@).css(backgroundColor: "#ffffff")
+  ).blur(->
+    $(@).css(backgroundColor: "#eaeaea")
+  )
+
   $.fn.showModal = (settings) ->
     this.find(".modal-header h3").html settings.header
     this.find(".modal-body").html settings.body
