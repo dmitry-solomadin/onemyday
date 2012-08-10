@@ -61,11 +61,11 @@ $(->
 class Story
   groupTypes:
     left:
-      {blockId: "#leftRightGroup", orientationToggleId: ".leftOrientation"}
+      {name: "left", blockId: "#leftRightGroup", orientationToggleId: ".leftOrientation"}
     right:
-      {blockId: "#rightLeftGroup", orientationToggleId: ".rightOrientation"}
+      {name: "right", blockId: "#rightLeftGroup", orientationToggleId: ".rightOrientation"}
     center:
-      {blockId: "#centerGroup", orientationToggleId: ".centerOrientation"}
+      {name: "center", blockId: "#centerGroup", orientationToggleId: ".centerOrientation"}
 
   onPhotoUploadSuccess: (data) =>
     $("#story").show()
@@ -78,14 +78,9 @@ class Story
 
       storyHelper.eachPhoto (index) ->
         evenIndex = index == 0 or index % 2 == 0
-
-        imageData = storyHelper.grabImageData(index)
         groupOrientation = if evenIndex then storyHelper.groupTypes.left else storyHelper.groupTypes.right
-        defaultText = "Tell the story of this photo. Click to edit."
-        time = if imageData.data("date") and imageData.data("date") != "" then imageData.data("date") else "08:10 am"
-        imageId = imageData[0].id
 
-        storyHelper.addGroup(groupOrientation, imageId, storyHelper.grabImage(index), time, defaultText)
+        storyHelper.addGroup(groupOrientation, storyHelper.grabImageData(index))
 
   showPublish: ->
     $("#storyPublish").show()
@@ -105,11 +100,14 @@ class Story
       App.util.post($(@).parents("form:first").attr("action"), postParams)
     )
 
-  createGroup: (type, photoId, photo, time, text) ->
+  createGroup: (type, photoData, time, text) ->
+    text = if text? then text else "Tell the story of this photo. Click to edit."
+    time = if time? then time else if photoData.data("date") and photoData.data("date") != "" then photoData.data("date") else "08:10 am"
+
     newGroup = $(type.blockId).clone()
-    newGroup[0].id = "group#{photoId}"
-    newGroup.addClass("storyGroup")
-    newGroup.data("id", photoId)
+    newGroup[0].id = "group#{photoData[0].id}"
+    newGroup.addClass("storyGroup").addClass(type.name)
+    newGroup.data("id", photoData[0].id)
 
     #init image orientation toggles
     orientationToggles = $("#imageHoverMenuPlaceholder").clone()
@@ -118,10 +116,10 @@ class Story
     orientationToggles.find(type.orientationToggleId).addClass("active")
 
     for own groupName, groupProps of @.groupTypes
-      clickFunc = (groupProps) => => @.changeGroup(groupProps, photoId, photo, time, text)
+      clickFunc = (groupProps) => => @.changeGroup(groupProps, photoData)
       orientationToggles.find(groupProps.orientationToggleId).click(clickFunc(groupProps))
 
-    newGroup.find(".imagePlace").append(photo).mouseenter(->
+    newGroup.find(".imagePlace").append(@grabImage(type, photoData)).mouseenter(->
       $(@).find(".imageHoverMenu").fadeIn("fast")
     ).mouseleave(->
       $(@).find(".imageHoverMenu").fadeOut("fast")
@@ -132,30 +130,56 @@ class Story
 
     newGroup
 
-  changeGroup: (type, photoId, photo, time, text) ->
-    oldGroup = $("#group#{photoId}")
+  changeGroup: (type, photoData) ->
+    oldGroup = $("#group#{photoData[0].id}")
     unless oldGroup[0]?
       return
 
-    group = @.createGroup(type, photoId, photo, time, text)
+    group = @.createGroup(type, photoData)
+    group.find(".textPlace .text").html(oldGroup.find(".textPlace .text").html())
+    group.find(".textPlace .time").html(oldGroup.find(".textPlace .time").html())
+
     oldGroup.fadeOut("fast")
     oldGroup.replaceWith group
-    group.fadeIn("fast")
-    group.find(".span0").css("height", group.find(".imagePlace").height() + 40)
 
-  addGroup: (type, photoId, photo, time, text) ->
-    if $("#group#{photoId}")[0]?
+    group.fadeIn("fast")
+
+    if type.name == "center"
+      #align text and time to image
+      image = group.find(".imagePlace img")
+      imageMarginLeft = (image.parent().width() - image.width()) / 2
+
+      group.find(".imagePlace").css("margin-left", imageMarginLeft)
+      group.find(".textPlace").css("margin-left", imageMarginLeft)
+
+      dottedMarginLeft = group.find(".span0").parent().width() / 2
+
+      group.find(".span0").css(
+        "height": 40
+        "margin-left": dottedMarginLeft + 20
+      )
+    else
+      group.find(".span0").css("height", group.find(".imagePlace").height() + 40)
+
+  addGroup: (type, photoData, time, text) ->
+    if $("#group#{photoData[0].id}")[0]?
       return
 
-    group = @.createGroup(type, photoId, photo, time, text)
+    group = @.createGroup(type, photoData, time, text)
 
     $("#story").append group
     group.show()
     group.find(".span0").css("height", group.find(".imagePlace").height() + 40)
 
-  grabImage: (index) ->
-    imageDataInput = $("#uploadedPhotoData > input").eq(index)
-    "<img src='#{imageDataInput.val()}' style='height:#{imageDataInput.data('height')}px}'>"
+  grabImage: (type, photoData) ->
+    return @grabSmallerImage(photoData) if type.name == "left" or type.name == "right"
+    return @grabLargerImage(photoData) if type.name == "center"
+
+  grabSmallerImage: (photoData) ->
+    "<img src='#{photoData.data("medium-image")}' style='height:#{photoData.data("medium-height")}px; width:#{photoData.data("medium-width")}px'>"
+
+  grabLargerImage: (photoData) ->
+    "<img src='#{photoData.data("large-image")}' style='height:#{photoData.data("large-height")}px; width:#{photoData.data("large-width")}px'>"
 
   grabImageData: (index) ->
     $("#uploadedPhotoData > input").eq(index)

@@ -42,6 +42,9 @@ App.PhotoUploader = class PhotoUploader
       if evt.lengthComputable
         percentComplete = Math.round(evt.loaded * 100 / evt.total)
 
+        if percentComplete == 100
+          $('#customProgressBar .bar').html("Processing images...")
+
         $('#customProgressBar .bar').css("width", percentComplete.toString() + '%')
     , false)
     xhr.addEventListener("load", (evt) ->

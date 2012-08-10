@@ -35,6 +35,10 @@
   #customProgressBar {
     display: none;
     width: 400px;
+
+    .bar {
+      color: black;
+    }
   }
 
   .photoUploadAt {
@@ -94,6 +98,10 @@
   .textEdit {
     width: 365px;
     height: 200px;
+  }
+
+  .row .row {
+    margin-left: 0;
   }
 
   // For 'edit' mode

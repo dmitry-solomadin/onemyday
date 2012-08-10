@@ -184,7 +184,7 @@ ul.navigation {
 }
 
 .navbar-inner {
-  background: url("white_texture.png");
+  background: url("white_texture.png") !important;
   box-shadow: #B2B2B2 0 1px 3px;
   -webkit-text-stroke: 1px transparent;
 }
@@ -299,6 +299,10 @@ ul.navigation {
 
 .mr10 {
   margin-right: 10px;
+}
+
+.mt10 {
+  margin-top: 10px;
 }
 
 .bw {
