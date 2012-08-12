@@ -167,3 +167,25 @@
   }
 }
 
+.smallStory {
+  cursor: pointer;
+  padding: 10px;
+  border: 1px solid #B2B2B2;
+  box-shadow: gray 0 1px 1px;
+  float: left;
+  background: white;
+
+  .text {
+    margin-top: 5px;
+    font-size: 24px;
+    color: #404040
+  }
+
+  .date {
+    margin-top: 10px;
+    color: #606060;
+    font-size: 12px;
+    font-style: italic;
+  }
+}
+

@@ -1,6 +1,6 @@
 div.storyHeaderDiv
   div.storyHeader #{@story.title}
-  div.storySubHeader #{@story.date_nice_text} by someuser
+  div.storySubHeader #{@story.date_nice_text} by #{@story.user.name}
   div.storySubHeaderBorder
 
 div#story

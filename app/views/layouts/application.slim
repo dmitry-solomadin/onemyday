@@ -14,8 +14,9 @@ html
           a.logo href="/"
 
           div.navbarInner
-            input#navbarSearch.imLookingFor type="text" placeholder="one day of freelancer"
-            a.magnifier href="#": img src="/assets/magnifier.gif" alt=""
+            = form_tag search_stories_path, method: "GET" do
+              input#navbarSearch.imLookingFor name="q" type="text" placeholder="one day of freelancer"
+              a.magnifier href="#" data-submitable="true": img src="/assets/magnifier.gif" alt=""
 
           ul.navigation.fr
             - if current_user

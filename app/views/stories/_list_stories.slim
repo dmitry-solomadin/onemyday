@@ -1,0 +1,7 @@
+- @stories.each do |story|
+  div.smallStory data-story-location="#{story_path story}"
+    div.image
+      img src="#{story.story_photos.first.photo.url :thumb}"
+    div.text
+      div.title = story.title
+      div.date @ #{story.date_nice_text}

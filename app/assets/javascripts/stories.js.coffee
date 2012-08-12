@@ -3,6 +3,10 @@ $(->
   App.Stories = {}
 )
 
+$(->
+  $(".smallStory").click(-> window.location = $(@).data("story-location"))
+)
+
 # Show story page
 $(->
   return if not App.util.isPage "stories", "show"
