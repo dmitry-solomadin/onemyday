@@ -1,7 +1,4 @@
-div#createDiv
-  span#createText.bw Create your own story
-  - if current_user
-    = link_to "Create new Story", new_story_path, class: "btn btn-large createButton open-sans"
-  - else
-    a.btn.btn-large.createButton.open-sans data-toggle="modal" href="#signInModal" Create new Story
-
+- unless current_user
+  div#createDiv
+    div#createText.bw Onemyday is a place for sharing your everyday stories.
+    a.btn.btn-large.createButton.open-sans data-toggle="modal" href="#signInModal" Sign Up

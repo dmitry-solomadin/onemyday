@@ -35,7 +35,8 @@ html
                   li
                     = link_to "Sign out", signout_path
             - else
-              a.btn.topPanelButton.open-sans data-toggle="modal" href="#signInModal" Sing In
+              li
+                a.navLink data-toggle="modal" href="#signInModal" Sign In
 
     div#signInModal.modal.hide.fade
       button type="button" class="close" data-dismiss="modal" ×
