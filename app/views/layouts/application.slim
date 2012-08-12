@@ -7,7 +7,7 @@ html
     = stylesheet_link_tag "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
-  body
+  body data-controller="#{params[:controller]}" data-action="#{params[:action]}"
     header.navbar.navbar-fixed-top
       div.navbar-inner
         div.container
@@ -20,7 +20,7 @@ html
           ul.navigation.fr
             - if current_user
               li.tellNav
-                = link_to "Tell", new_stories_path, class: "navLink"
+                = link_to "Tell", new_story_path, class: "navLink"
               li.btn-group.userNav
                 a.navLink.dropdown-toggle data-toggle="dropdown" href="#"
                   = image_tag current_user.avatar.url, width: '32', class: 'navbarAvatar'
@@ -31,7 +31,7 @@ html
                     a href="#" My stories
                   li.divider
                   li
-                    = link_to "Edit Profile", edit_users_path
+                    = link_to "Edit Profile", edit_current_user_path
                   li
                     = link_to "Sign out", signout_path
             - else

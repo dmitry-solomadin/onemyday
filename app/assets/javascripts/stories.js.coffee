@@ -1,6 +1,21 @@
 $(->
   # defining global namespace for stories
   App.Stories = {}
+)
+
+# Show story page
+$(->
+  return if not App.util.isPage "stories", "show"
+
+  $(".storyGroup").each(->
+    storyHelper.initializeGroup $(@)
+  )
+)
+
+
+# New story page
+$(->
+  return if not App.util.isPage "stories", "new"
 
   $("#date").datepicker(
     dateFormat: "dd-mm-yy"
@@ -87,14 +102,15 @@ class Story
     $("#storyPublishButton").click(->
       postParams =
         "authenticity_token": $('meta[name="csrf-token"]').attr('content')
-        "story[id]": ""
+        "story[id]": $("#createdStoryId").val()
         "story[title]": $("#photoUploadStoryTitle").val()
         "story[date]": $("#photoUploadStoryDate").val()
 
       $(".storyGroup").each((index) ->
-        postParams["photos[#{index}][id]"] = $(this).data('id')
-        postParams["photos[#{index}][catpion]"] = $(this).find('.text').html()
-        postParams["photos[#{index}][date]"] = $(this).find('.time').html()
+        postParams["story[story_photos_attributes][#{index}][id]"] = $(this).data('id')
+        postParams["story[story_photos_attributes][#{index}][caption]"] = $(this).find('.text').html()
+        postParams["story[story_photos_attributes][#{index}][date_text]"] = $(this).find('.time').html()
+        postParams["story[story_photos_attributes][#{index}][orientation]"] = $(this).data("orientation")
       )
 
       App.util.post($(@).parents("form:first").attr("action"), postParams)
@@ -106,7 +122,7 @@ class Story
 
     newGroup = $(type.blockId).clone()
     newGroup[0].id = "group#{photoData[0].id}"
-    newGroup.addClass("storyGroup").addClass(type.name)
+    newGroup.addClass("storyGroup").addClass(type.name).data("orientation", type.name)
     newGroup.data("id", photoData[0].id)
 
     #init image orientation toggles
@@ -143,8 +159,20 @@ class Story
     oldGroup.replaceWith group
 
     group.fadeIn("fast")
+    @initializeGroup group
 
-    if type.name == "center"
+  addGroup: (type, photoData, time, text) ->
+    if $("#group#{photoData[0].id}")[0]?
+      return
+
+    group = @.createGroup(type, photoData, time, text)
+
+    $("#story").append group
+    @initializeGroup group
+
+  initializeGroup: (group) ->
+    group.show()
+    if group.data("orientation") == "center"
       #align text and time to image
       image = group.find(".imagePlace img")
       imageMarginLeft = (image.parent().width() - image.width()) / 2
@@ -159,17 +187,7 @@ class Story
         "margin-left": dottedMarginLeft + 20
       )
     else
-      group.find(".span0").css("height", group.find(".imagePlace").height() + 40)
-
-  addGroup: (type, photoData, time, text) ->
-    if $("#group#{photoData[0].id}")[0]?
-      return
-
-    group = @.createGroup(type, photoData, time, text)
-
-    $("#story").append group
-    group.show()
-    group.find(".span0").css("height", group.find(".imagePlace").height() + 40)
+      group.find(".span0").css("height", group.find(".imagePlace img").height() + 40)
 
   grabImage: (type, photoData) ->
     return @grabSmallerImage(photoData) if type.name == "left" or type.name == "right"

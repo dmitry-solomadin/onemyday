@@ -1,8 +1,9 @@
 Onemyday::Application.routes.draw do
 
-  resource :users, path: "registrations", controller: "registrations"
+  resources :users, path: "registrations", controller: "registrations"
+  get '/edit_current_user', to: "registrations#edit_current"
 
-  resource :stories
+  resources :stories
   post '/upload_photo', to:'stories#upload_photo'
   post '/publish', to:'stories#publish'
 

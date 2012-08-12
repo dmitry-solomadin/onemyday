@@ -17,7 +17,8 @@ class RegistrationsController < ApplicationController
     end
   end
 
-  def edit
+  def edit_current
     @user = current_user
+    render 'edit'
   end
 end

@@ -17,3 +17,6 @@ App.util.post = (path, parameters) ->
 
   $(document.body).append form
   form.submit()
+
+App.util.isPage = (controller, action) ->
+  return $("body").data("controller") == controller and $("body").data("action") == action

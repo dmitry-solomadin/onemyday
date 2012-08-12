@@ -1,11 +1,15 @@
 class StoriesController < ApplicationController
 
-  before_filter :signed_in_user_filter
+  before_filter :signed_in_user_filter, except:
 
   def new
     return redirect_to moreinfo_url if current_user.job_title.blank? || current_user.company.blank?
 
     render "new"
+  end
+
+  def show
+    @story = Story.find(params[:id])
   end
 
   layout false, only: :create
@@ -33,7 +37,13 @@ class StoriesController < ApplicationController
   end
 
   def publish
-    raise params.inspect
+    @story = Story.find(params[:story][:id])
+
+    if @story.update_attributes(params[:story])
+      redirect_to @story, action: "new"
+    else
+      render "new"
+    end
   end
 
 end

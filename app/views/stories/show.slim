@@ -1,0 +1,42 @@
+div.storyHeaderDiv
+  div.storyHeader #{@story.title}
+  div.storySubHeader #{@story.date_nice_text} by someuser
+  div.storySubHeaderBorder
+
+div#story
+  - @story.story_photos.each do |story_photo|
+    - side_image_dims = get_image_dims(story_photo.photo.path(:side))
+    - center_image_dims = get_image_dims(story_photo.photo.path(:center))
+    - if story_photo.left?
+      div#leftRightGroup.row.storyGroup
+        div.imagePlace.span6
+          img src="#{story_photo.photo.url(:side)}" style="height: #{side_image_dims[:height]}px"
+        div.span0
+        div.textPlace.span5
+          div.time
+            = story_photo.date_text
+          div.text
+            = story_photo.caption
+    - if story_photo.right?
+      div#rightLeftGroup.row.storyGroup
+        div.textPlace.span6
+          div.time
+            = story_photo.date_text
+          div.text
+            = story_photo.caption
+        div.span0
+        div.imagePlace.span5
+          img src="#{story_photo.photo.url(:side)}" style="height: #{side_image_dims[:height]}px"
+    - if story_photo.center?
+      div#centerGroup.row.storyGroup
+        div.row
+          div.imagePlace.span12
+            img src="#{story_photo.photo.url(:center)}" style="width: #{center_image_dims[:width]}px"
+        div.row.mt10
+          div.textPlace.span12
+            div.time
+              = story_photo.date_text
+            div.text
+              = story_photo.caption
+        div.row.mt10
+          div.span0

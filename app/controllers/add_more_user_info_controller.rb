@@ -9,7 +9,7 @@ class AddMoreUserInfoController < ApplicationController
     current_user.company = params[:user][:company]
     current_user.save
 
-    redirect_to new_stories_url
+    redirect_to new_story_url
   end
 
 end
