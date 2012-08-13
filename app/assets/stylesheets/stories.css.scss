@@ -78,7 +78,7 @@
     color: #606060;
     position: relative;
     z-index: 3;
-    top:0;
+    top: 0;
     background: url("skin_side_up.png");
     display: inline-block;
     padding-left: 8px;
@@ -88,7 +88,7 @@
   .storySubHeaderBorder {
     border-bottom: 2px dotted #b2b2b2;
     position: relative;
-    top:-9px;
+    top: -9px;
     z-index: 1;
   }
 }
@@ -101,7 +101,7 @@
   .time {
     font-size: 22px;
     margin-bottom: 5px;
-    background-color: rgba(1, 1, 1, 0.1);
+    background-color: rgba(50, 18, 5, 0.1);
     padding: 5px 5px 7px 6px;
     display: inline-block;
     border-radius: 6px;
@@ -169,16 +169,17 @@
 
 .smallStory {
   cursor: pointer;
-  padding: 10px;
+  padding: 15px;
   border: 1px solid #B2B2B2;
   box-shadow: gray 0 1px 1px;
   float: left;
   background: white;
+  margin-right: 20px;
 
   .text {
     margin-top: 5px;
-    font-size: 24px;
-    color: #404040
+    font-size: 21px;
+    color: #212121
   }
 
   .date {
@@ -186,6 +187,11 @@
     color: #606060;
     font-size: 12px;
     font-style: italic;
+  }
+
+  .by {
+    color: #606060;
+    font-size: 12px;
   }
 }
 

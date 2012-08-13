@@ -1,9 +1,5 @@
 div#registrationDiv
   h2.open-sans Finish registration process by entering your email
-  - if @user.errors.any?
-    - @user.errors.full_messages.each do |msg|
-      li #{msg}
-
   = form_for @user do |f|
     = f.text_field :email, placeholder: "example@email.com"
     = f.submit "Create my account", class: "btn btn-large open-sans f18"

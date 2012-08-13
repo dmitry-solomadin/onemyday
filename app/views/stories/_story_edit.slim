@@ -5,13 +5,11 @@ div#photoUploadDiv.row.hide
     span.photoUploadAt @
     input#photoUploadStoryDate type="text"
     h2 Now upload some photos
-    = form_tag upload_photo_path, id: "photoUploadForm" do
+    = form_tag upload_story_photo_path, id: "photoUploadForm" do
       input#createdStoryId name="story_id" type="hidden"
-      div#photoUploadError.alert.alert-error.hide
+      div#photoUploadError.uploadError.alert.alert-error.hide
       div#customProgressBar.progress.progress-striped.active
         div.bar style="width: 0"
-      /div#.uploadify-progress.hide
-      /  div.uploadify-progress-bar style="width: 0;"
       input#photoUploadButton.hide type="file" name="file_bean[]" multiple="multiple"
       input#photoUploadStyledButton.btn.btn-large.btn-foxtrot.f18 type='button' class='' value='Add photos'
 

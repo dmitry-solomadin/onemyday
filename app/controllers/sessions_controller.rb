@@ -10,8 +10,8 @@ class SessionsController < ApplicationController
       session[:user_id] = authentication.user.id
       redirect_to root_url
     elsif current_user
-      current_user.authentications.create!(provider: omniauth['provider'], uid: omniauth['uid'])
-      redirect_to root_url
+      current_user.build_auth(omniauth).save!
+      redirect_to edit_current_user_url
     else
       user = User.from_omniauth(omniauth)
       if user.valid?
@@ -19,17 +19,17 @@ class SessionsController < ApplicationController
         redirect_to root_url
       else
         session[:omniauth] = omniauth.except('extra')
-        redirect_to new_users_url
+        redirect_to new_user_url
       end
     end
   end
 
   def destroy_auth
-    return redirect_to edit_users_url, flash: {error: "You must have at least one linked account."} if current_user.authentications.length == 1
+    return redirect_to edit_current_user_url, flash: {error: "You must have at least one linked account."} if current_user.authentications.length == 1
 
     authentication = current_user.authentications.find_by_provider(params[:provider])
     authentication.destroy
-    redirect_to edit_users_url
+    redirect_to edit_current_user_url
   end
 
   def destroy

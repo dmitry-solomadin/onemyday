@@ -50,8 +50,8 @@ class StoriesController < ApplicationController
   def publish
     @story = @current_user.stories.find(params[:story][:id])
 
-    if @story.update_attributes(params[:story])
-      redirect_to @story, action: "new"
+    if @story.has_photos && @story.update_attributes(params[:story])
+      redirect_to @story
     else
       render "new"
     end

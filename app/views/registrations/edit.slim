@@ -1,6 +1,6 @@
 div#editUser
   h1.open-sans Edit your profile
-  = form_for @user, url: users_path, html: {class: "form-horizontal oneHorizontalForm"} do |f|
+  = form_for current_user, html: {class: "form-horizontal oneHorizontalForm"} do |f|
     fieldset
       div.control-group
         label.control-label for="email" Email
@@ -21,16 +21,36 @@ div#editUser
       div.control-group
         label.control-label for="avatar" Avatar
         div.controls
-          = image_tag @user.avatar.url
+          = image_tag current_user.avatar.url
+          a.btn.ml10 href="#uploadAvatarModal" data-toggle="modal" Upload
+          - if current_user.has_facebook?
+            = link_to "Take from facebook", update_avatar_facebook_path, class: "btn ml10"
+          - if current_user.has_twitter?
+            = link_to "Take from twitter", update_avatar_twitter_path, class: "btn ml10"
+
       div.control-group
         label.facebookAuth.control-label for="facebook"
         div.controls
-          div#facebook.switch.switch-danger class="#{@user.has_facebook ? 'active' : ''}" data-toggle="switch" data-on="ON" data-off="OFF" data-checkbox="danger"
+          div#facebook.switch.switch-danger{class="#{'active' if current_user.has_facebook?}"
+          data-toggle="switch" data-on="ON" data-off="OFF" data-checkbox="danger"}
           span.info Login with Facebook
       div.control-group.last-child
         label.twitterAuth.control-label for="twitter"
         div.controls
-          div#twitter.switch.switch-danger class="#{@user.has_twitter ? 'active' : ''}" data-toggle="switch" data-on="ON" data-off="OFF" data-checkbox="danger"
+          div#twitter.switch.switch-danger{class="#{'active' if current_user.has_twitter?}"
+          data-toggle="switch" data-on="ON" data-off="OFF" data-checkbox="danger"}
           span.info Login with Twitter
       div.form-actions
         = f.submit "Apply changes", class: "btn btn-large btn-foxtrot open-sans f18"
+
+div#uploadAvatarModal.modal.hide.fade
+  button type="button" class="close" data-dismiss="modal" ×
+  div.modal-header.open-sans
+    h3 Upload avatar from your computer
+  div.modal-body
+    = form_tag upload_user_avatar_path do
+      div.uploadError.alert.alert-error.hide
+        div.progress.progress-striped.active.hide
+          div.bar style="width: 0"
+      input#avatarUploadButton.hide type="file" name="file_bean" multiple="multiple"
+      input#avatarUploadStyledButton.btn.ml10 type='button' class='' value='Choose'

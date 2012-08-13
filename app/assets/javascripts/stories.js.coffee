@@ -73,7 +73,11 @@ $(->
       $("#photoUploadStoryDate").val($("#date").val())
 
       $("#photoUploadDiv").show()
-      new App.PhotoUploader(storyHelper.onPhotoUploadSuccess)
+
+      new App.PhotoUploader
+        onSuccess: storyHelper.onPhotoUploadSuccess
+        button: $("#photoUploadButton")
+        styledButton: $("#photoUploadStyledButton")
     )
 )
 

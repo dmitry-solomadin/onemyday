@@ -9,6 +9,11 @@ class Story < ActiveRecord::Base
   accepts_nested_attributes_for :story_photos
 
   validates_presence_of :type, :title, :date
+  validates :user, presence: true
+
+  def has_photos
+    self.story_photos.any?
+  end
 
   def date_text
     Story.date_to_text date

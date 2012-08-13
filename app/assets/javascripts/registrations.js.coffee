@@ -42,4 +42,9 @@ $(->
       else
         $("#onealert").modal()
     )
+
+    new App.PhotoUploader
+      onSuccess: -> window.location.reload()
+      button: $("#avatarUploadButton")
+      styledButton: $("#avatarUploadStyledButton")
 )

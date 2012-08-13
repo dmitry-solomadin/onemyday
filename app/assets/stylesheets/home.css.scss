@@ -14,6 +14,15 @@ body {
 
 /* Forms */
 
+form {
+
+  input:focus{
+    border-color: #930;
+    box-shadow: inset 0 1px rgba(34, 25, 25, 0.15), 0 1px rgba(255, 255, 255, 0.8), 0 0 14px rgba(235, 82, 82, 0.35);
+  }
+
+}
+
 input {
   border-radius: 0;
   border: 1px solid #a1a1a1;
@@ -303,6 +312,10 @@ ul.navigation {
 
 .mt10 {
   margin-top: 10px;
+}
+
+.ml10{
+  margin-left: 10px;
 }
 
 .bw {

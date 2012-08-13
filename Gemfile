@@ -17,6 +17,8 @@ gem 'paperclip'
 gem 'simple_enum'
 gem 'mini_magick'
 gem 'faker'
+gem 'koala'
+gem 'twitter'
 
 # Gems used only for assets and not required
 # in production environments by default.
