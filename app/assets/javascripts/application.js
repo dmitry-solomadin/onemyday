@@ -17,4 +17,5 @@
 //= require jquery-ui-datepicker.min
 //= require general
 //= require jquery.inputmask
+//= require jquery.masonry
 //= require_tree .
