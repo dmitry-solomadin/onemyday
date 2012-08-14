@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   validates :email, presence: true, uniqueness: true
 
-  has_attached_file :avatar
+  has_attached_file :avatar, styles: { thumb: "32x32" }
 
   def self.from_omniauth(auth)
     create_from_omniauth(auth)

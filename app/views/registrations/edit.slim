@@ -21,7 +21,7 @@ div#editUser
       div.control-group
         label.control-label for="avatar" Avatar
         div.controls
-          = image_tag current_user.avatar.url
+          = image_tag current_user.avatar.url :thumb
           a.btn.ml10 href="#uploadAvatarModal" data-toggle="modal" Upload
           - if current_user.has_facebook?
             = link_to "Take from facebook", update_avatar_facebook_path, class: "btn ml10"
@@ -53,4 +53,4 @@ div#uploadAvatarModal.modal.hide.fade
         div.progress.progress-striped.active.hide
           div.bar style="width: 0"
       input#avatarUploadButton.hide type="file" name="file_bean" multiple="multiple"
-      input#avatarUploadStyledButton.btn.ml10 type='button' class='' value='Choose'
+      input#avatarUploadStyledButton.btn.btn-large.f18.btn-foxtrot.ml10 type='button' class='' value='Choose'
