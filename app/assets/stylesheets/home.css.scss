@@ -10,6 +10,7 @@ body {
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
   padding-top: 80px;
+  padding-bottom: 20px;
 }
 
 /* Forms */
@@ -17,6 +18,11 @@ body {
 form {
 
   input:focus{
+    border-color: #930;
+    box-shadow: inset 0 1px rgba(34, 25, 25, 0.15), 0 1px rgba(255, 255, 255, 0.8), 0 0 14px rgba(235, 82, 82, 0.35);
+  }
+
+  textarea:focus{
     border-color: #930;
     box-shadow: inset 0 1px rgba(34, 25, 25, 0.15), 0 1px rgba(255, 255, 255, 0.8), 0 0 14px rgba(235, 82, 82, 0.35);
   }
@@ -37,7 +43,7 @@ input::-webkit-input-placeholder {
 }
 
 input:-moz-placeholder {
-  color: #e3e3e3;
+  color: #b2b2b2;
 }
 
 /* Modal windows */
@@ -169,6 +175,7 @@ ul.navigation {
       text-decoration: none;
 
       &:hover {
+        color: #CB2027;
         background-color: rgba(255, 255, 255, 0.7);
       }
     }

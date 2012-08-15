@@ -1,0 +1,6 @@
+anyErrors = <%= @comment.errors.any? %>;
+if (!anyErrors) {
+    $("#commentsContainer").append("<%= escape_javascript(render 'comment', comment: @comment) %>");
+} else {
+    alert("Oh, no :(");
+}

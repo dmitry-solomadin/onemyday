@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120813135129) do
+ActiveRecord::Schema.define(:version => 20120815124748) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -26,13 +26,37 @@ ActiveRecord::Schema.define(:version => 20120813135129) do
 
   add_index "authentications", ["user_id"], :name => "index_authentications_on_user_id"
 
-  create_table "stories", :force => true do |t|
+  create_table "comments", :force => true do |t|
+    t.text     "text"
+    t.integer  "story_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "comment_id"
+    t.integer  "user_id"
+  end
+
+  add_index "comments", ["comment_id"], :name => "index_comments_on_comment_id"
+  add_index "comments", ["story_id"], :name => "index_comments_on_story_id"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+
+  create_table "likes", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "story_id"
+  end
+
+  add_index "likes", ["story_id"], :name => "index_likes_on_story_id"
+  add_index "likes", ["user_id"], :name => "index_likes_on_user_id"
+
+  create_table "stories", :force => true do |t|
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.string   "title"
     t.datetime "date"
     t.integer  "user_id"
     t.integer  "type_cd"
+    t.boolean  "published",  :default => false
   end
 
   add_index "stories", ["user_id"], :name => "index_stories_on_user_id"

@@ -5,6 +5,7 @@ $(->
   $('#storiesContainer').masonry
     itemSelector: '.smallStory'
 
+
   $("#navbarSearch").focus(->
     $(@).css(backgroundColor: "#ffffff")
   ).blur(->
@@ -21,4 +22,21 @@ $(->
       settings.cancel() if settings.cancel
       this.modal("hide")
     this.modal()
+
+  $.fn.textfill = (options) ->
+    fontSize = options.maxFontPixels
+    maxHeight = $(@).parents(options.container).height()
+    maxWidth = $(@).parents(options.container).width()
+    textHeight
+    textWidth
+    loop
+      @.css('font-size', fontSize)
+      textHeight = @.height()
+      textWidth = @.width()
+      fontSize = fontSize - 1
+      break unless (textHeight > maxHeight or textWidth > maxWidth) and fontSize > 3
+    return @
+
+  $(".smallStory").each(-> $(@).width($(@).find("img").width()))
+#  $(".smallStory .title").each( -> $(@).textfill({ maxFontPixels: 24, container: ".text:first"}) );
 )

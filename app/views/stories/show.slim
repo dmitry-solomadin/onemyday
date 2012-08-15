@@ -1,5 +1,5 @@
 div.storyHeaderDiv
-  div.storyHeader #{@story.title}
+  div.storyHeader.lobster #{@story.title}
   div.storySubHeader #{@story.date_nice_text} by #{@story.user.name}
   div.storySubHeaderBorder
 
@@ -40,3 +40,20 @@ div#story
               = story_photo.caption
         div.row.mt10
           div.span0
+
+div.storyEnd
+  div.header.lobster THE END
+  div.subHeader
+
+- if current_user
+  = form_for Comment.new, remote:true, html:{id:"storyComments"} do |f|
+    input type="hidden" name="story_id" value="#{@story.id}"
+    div#commentsContainer
+      - @story.comments.each do |comment|
+        = render "/comments/comment", comment: comment
+    div.add
+      = image_tag current_user.avatar.url :small
+      div.addTextWrapper
+        = f.text_area :text, placeholder: "Add a comment...", class: "addText", id: "addCommentTextarea"
+      = f.submit "Send", class: "btn submit", disabled: "disabled", id: "addCommentSubmit"
+      br clear="both"

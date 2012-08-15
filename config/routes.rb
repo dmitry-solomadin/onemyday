@@ -11,6 +11,8 @@ Onemyday::Application.routes.draw do
   post '/publish', to:'stories#publish'
   get '/search_stories', to: 'stories#search'
 
+  resources :comments
+
   match 'auth/:provider/callback', to: 'sessions#create'
   match 'auth/:provider/destroy', to: 'sessions#destroy_auth'
   match 'auth/failure', to: redirect('/')

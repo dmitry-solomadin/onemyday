@@ -5,10 +5,11 @@ class User < ActiveRecord::Base
 
   has_many :authentications, dependent: :destroy
   has_many :stories
+  has_many :likes, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true
 
-  has_attached_file :avatar, styles: { thumb: "32x32" }
+  has_attached_file :avatar, styles: {small: "50x50", thumb: "32x32"}
 
   def self.from_omniauth(auth)
     create_from_omniauth(auth)

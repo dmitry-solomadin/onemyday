@@ -70,6 +70,7 @@
     font-size: 32px;
     text-shadow: #e3e3e3 0 1px 1px;
     margin-bottom: 15px;
+    color: #451807;
   }
 
   .storySubHeader {
@@ -89,6 +90,30 @@
     border-bottom: 2px dotted #b2b2b2;
     position: relative;
     top: -9px;
+    z-index: 1;
+  }
+}
+
+.storyEnd {
+  margin-top: 25px;
+  clear: both;
+  text-align: center;
+
+  .header {
+    display: inline-block;
+    position: relative;
+    z-index: 3;
+    background: url("skin_side_up.png");
+    font-size: 28px;
+    color: #451807;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .subHeader {
+    border-bottom: 2px dotted #b2b2b2;
+    position: relative;
+    top: -13px;
     z-index: 1;
   }
 }
@@ -163,6 +188,71 @@
       &.onceEdited {
         text-decoration: none !important;
       }
+    }
+  }
+}
+
+#storyComments {
+  margin-top: 20px;
+
+  .add {
+    padding: 10px;
+    background-color: #EEE;
+    border-top: 1px solid #DDD;
+    margin-bottom: 10px;
+    width: 550px;
+
+    img {
+      float: left;
+    }
+  }
+
+  .addTextWrapper {
+    position: relative;
+    margin-left: 59px;
+    margin-right: 10px;
+  }
+
+  .addText {
+    height: 50px;
+    width: 100%;
+  }
+
+  .submit {
+    float: right;
+  }
+
+  .comment {
+    padding: 10px;
+
+    a {
+      text-decoration: none;
+
+      &:hover {
+        color: #CB2027 !important;
+      }
+    }
+
+    p.text {
+      a.author {
+        font-size: 15px;
+        color: #404040;
+        text-decoration: none;
+      }
+
+      margin-left: 55px;
+      margin-bottom: 0;
+      min-height: 50px;
+    }
+
+    .controls {
+      a {
+        margin-right: 5px;
+      }
+    }
+
+    img {
+      float: left;
     }
   }
 }

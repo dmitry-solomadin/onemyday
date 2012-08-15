@@ -14,6 +14,13 @@ $(->
   $(".storyGroup").each(->
     storyHelper.initializeGroup $(@)
   )
+
+  $("#addCommentTextarea").keyup(->
+    if $.trim($(@).val()).length == 0
+      $("#addCommentSubmit").attr("disabled", "disabled")
+    else
+      $("#addCommentSubmit").removeAttr("disabled")
+  )
 )
 
 
@@ -113,6 +120,7 @@ class Story
         "story[id]": $("#createdStoryId").val()
         "story[title]": $("#photoUploadStoryTitle").val()
         "story[date]": $("#photoUploadStoryDate").val()
+        "story[published]": "t"
 
       $(".storyGroup").each((index) ->
         postParams["story[story_photos_attributes][#{index}][id]"] = $(this).data('id')

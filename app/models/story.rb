@@ -1,11 +1,13 @@
 class Story < ActiveRecord::Base
-  attr_accessible :title, :type, :date, :date_text, :story_photos_attributes
+  attr_accessible :title, :type, :date, :published, :date_text, :story_photos_attributes
 
   as_enum :type, regular: 0, work: 1, weekend: 2
 
   belongs_to :user
 
   has_many :story_photos, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
   accepts_nested_attributes_for :story_photos
 
   validates_presence_of :type, :title, :date

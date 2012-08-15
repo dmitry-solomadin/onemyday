@@ -1,0 +1,9 @@
+div.comment
+  = image_tag comment.user.avatar.url :small
+  p.text
+    a.author href="#" #{comment.user.name}
+    br
+    = comment.text
+  div.controls
+    a href="#" reply
+    a href="#" remove

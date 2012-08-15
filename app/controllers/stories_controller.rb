@@ -10,7 +10,7 @@ class StoriesController < ApplicationController
 
   def search
     @query = params[:q]
-    @stories = Story.where("title like '%#@query%'")
+    @stories = Story.where("title like '%#@query%' and published='t' ")
   end
 
   def new
@@ -29,9 +29,7 @@ class StoriesController < ApplicationController
     @story = @current_user.stories.build(params[:story])
     @story.save
 
-    respond_to do |t|
-      t.js
-    end
+    respond_to { |t| t.js }
   end
 
   def upload_photo
