@@ -1,0 +1,16 @@
+- image_dims = get_image_dims(story.story_photos.first.photo.path(:thumb))
+a href="#{story_path story}"
+  div.smallStory
+    div.image
+      img src="#{story.story_photos.first.photo.url :thumb}" style="height:#{image_dims[:height]}px; width: 250px;"
+    div.text
+      div.title = story.title
+      div.social
+        i.icon-eye-open
+        span = story.views.count
+        i.icon-heart
+        span = story.likes.count
+        i.icon-comment
+        span = story.comments.count
+      div.date @ #{story.date_nice_text}
+      div.by by #{story.user.name}

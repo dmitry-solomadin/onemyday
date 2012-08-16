@@ -3,13 +3,15 @@ $(->
   App.Stories = {}
 )
 
-$(->
-  $(".smallStory").click(-> window.location = $(@).data("story-location"))
-)
-
 # Show story page
 $(->
   return if not App.util.isPage "stories", "show"
+
+  $("#storyLike").click ->
+    if $(@).hasClass("btn-foxtrot")
+      $(@).removeClass("btn-foxtrot").find("span").html("Like")
+    else
+      $(@).addClass("btn-foxtrot").find("span").html("Liked!")
 
   $(".storyGroup").each(->
     storyHelper.initializeGroup $(@)

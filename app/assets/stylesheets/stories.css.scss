@@ -192,6 +192,19 @@
   }
 }
 
+.btnLike {
+  i {
+    margin-top: 1px;
+  }
+
+  span {
+    font-size: 16px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    margin-left: 5px;
+  }
+}
+
 #storyComments {
   margin-top: 20px;
 
@@ -270,11 +283,32 @@
   .text {
     margin-top: 5px;
     font-size: 21px;
-    color: #212121
+    color: #212121;
+  }
+
+  .title {
+    line-height: 30px;
+  }
+
+  .social {
+    margin-top: 3px;
+    opacity: 0.5;
+    font-size: 13px;
+    font-style: normal;
+    vertical-align: bottom;
+
+    span {
+      margin-right: 7px;
+    }
+
+    i {
+      margin-right: 2px;
+      margin-top: 2px;
+    }
   }
 
   .date {
-    margin-top: 10px;
+    margin-top: 7px;
     color: #606060;
     font-size: 12px;
     font-style: italic;

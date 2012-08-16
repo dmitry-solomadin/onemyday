@@ -1,10 +1,3 @@
 div#storiesContainer
   - @stories && @stories.each do |story|
-    - image_dims = get_image_dims(story.story_photos.first.photo.path(:thumb))
-    div.smallStory data-story-location="#{story_path story}"
-      div.image
-        img src="#{story.story_photos.first.photo.url :thumb}" style="height:#{image_dims[:height]}px; width: 250px;"
-      div.text
-        span.title = story.title
-        div.date @ #{story.date_nice_text}
-        div.by by #{story.user.name}
+    = render "stories/story", story: story

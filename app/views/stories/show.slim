@@ -46,6 +46,12 @@ div.storyEnd
   div.subHeader
 
 - if current_user
+  - like = @story.likes.find_by_user_id current_user.id
+  = form_tag like ? unlike_path : new_like_path, remote:true do
+    input type="hidden" name="story_id" value="#{@story.id}"
+    a#storyLike.btn.btnLike data-submitable="true" class="#{like ? "btn-foxtrot" : ""}"
+      i.icon-heart
+      span #{like ? "Liked!" : "Like"}
   = form_for Comment.new, remote:true, html:{id:"storyComments"} do |f|
     input type="hidden" name="story_id" value="#{@story.id}"
     div#commentsContainer

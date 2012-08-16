@@ -1,4 +1,4 @@
-class RegistrationsController < ApplicationController
+class UsersController < ApplicationController
   before_filter :signed_in_user_filter, only: [:edit_current, :update, :update_facebook_avatar]
 
   def new
@@ -13,7 +13,7 @@ class RegistrationsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to root_url
     else
-      render "registrations/new"
+      render "users/new"
     end
   end
 
@@ -47,4 +47,5 @@ class RegistrationsController < ApplicationController
     current_user.update_attribute(:avatar, params[:file_bean])
     render :nothing => true
   end
+
 end

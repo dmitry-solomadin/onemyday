@@ -21,6 +21,8 @@ class StoriesController < ApplicationController
 
   def show
     @story = Story.find(params[:id])
+
+    @story.views.build(date: DateTime.now).save!
   end
 
   layout false, only: :create
@@ -53,6 +55,16 @@ class StoriesController < ApplicationController
     else
       render "new"
     end
+  end
+
+  def like
+    Story.find(params[:story_id]).likes.build(user_id: current_user.id).save!
+    render nothing: true
+  end
+
+  def unlike
+    Story.find(params[:story_id]).likes.find_by_user_id(current_user.id).destroy
+    render nothing: true
   end
 
 end

@@ -8,6 +8,7 @@ class Story < ActiveRecord::Base
   has_many :story_photos, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :views, dependent: :destroy
   accepts_nested_attributes_for :story_photos
 
   validates_presence_of :type, :title, :date
