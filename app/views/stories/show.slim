@@ -56,10 +56,11 @@ div.storyEnd
     input type="hidden" name="story_id" value="#{@story.id}"
     div#commentsContainer
       - @story.comments.each do |comment|
-        = render "/comments/comment", comment: comment
-    div.add
-      = image_tag current_user.avatar.url :small
-      div.addTextWrapper
-        = f.text_area :text, placeholder: "Add a comment...", class: "addText", id: "addCommentTextarea"
-      = f.submit "Send", class: "btn submit", disabled: "disabled", id: "addCommentSubmit"
-      br clear="both"
+        = render "/comments/comment", comment: comment, clazz: cycle("odd", "even")
+      div.addWrapper
+        div.add
+          = image_tag current_user.avatar.url :small
+          div.addTextWrapper
+            = f.text_area :text, placeholder: "Add a comment...", class: "addText", id: "addCommentTextarea"
+          = f.submit "Send", class: "btn submit", disabled: "disabled", id: "addCommentSubmit"
+          br clear="both"

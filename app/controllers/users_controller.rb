@@ -27,6 +27,10 @@ class UsersController < ApplicationController
     redirect_to edit_current_user_path
   end
 
+  def show
+
+  end
+
   def update_avatar_facebook
     current_user.picture_from_url current_user.facebook.get_picture("me") if current_user.facebook
     current_user.save!

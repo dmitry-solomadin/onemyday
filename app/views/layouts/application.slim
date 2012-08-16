@@ -23,14 +23,14 @@ html
             - if current_user
               li.tellNav
                 = link_to "Tell", new_story_path, class: "navLink"
-              li.btn-group.userNav
-                a.navLink.dropdown-toggle data-toggle="dropdown" href="#"
+              li#userMenu.btn-group.userNav
+                a.navLink.dropdown-toggle data-toggle="dropdown" href="#{user_path current_user}"
                   = image_tag current_user.avatar.url, width: '32', class: 'navbarAvatar'
                   = current_user.name
                   span.caret
-                ul.dropdown-menu
+                ul#userDropdown.dropdown-menu
                   li
-                    a href="#" My stories
+                    a href="#" Cool menu item
                   li.divider
                   li
                     = link_to "Edit Profile", edit_current_user_path

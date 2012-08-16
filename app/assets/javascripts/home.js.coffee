@@ -2,9 +2,10 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $(->
+  $('#userDropdown').css("width", $("#userMenu").width())
+
   $('#storiesContainer').masonry
     itemSelector: '.smallStory'
-
 
   $("#navbarSearch").focus(->
     $(@).css(backgroundColor: "#ffffff")

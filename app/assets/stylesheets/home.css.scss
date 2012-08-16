@@ -6,7 +6,7 @@
 
 body {
   height: 100%;
-  background: url("skin_side_up.png");
+  background: url("egg_shell.png");
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
   padding-top: 80px;
@@ -17,12 +17,12 @@ body {
 
 form {
 
-  input:focus{
+  input:focus {
     border-color: #930;
     box-shadow: inset 0 1px rgba(34, 25, 25, 0.15), 0 1px rgba(255, 255, 255, 0.8), 0 0 14px rgba(235, 82, 82, 0.35);
   }
 
-  textarea:focus{
+  textarea:focus {
     border-color: #930;
     box-shadow: inset 0 1px rgba(34, 25, 25, 0.15), 0 1px rgba(255, 255, 255, 0.8), 0 0 14px rgba(235, 82, 82, 0.35);
   }
@@ -161,7 +161,7 @@ ul.navigation {
   }
 
   >li {
-    display: inline;
+    display: inline-block;
     list-style: none;
 
     a.navLink {
@@ -184,13 +184,50 @@ ul.navigation {
       padding: 17px 20px 12px 20px;
     }
 
-    &.userNav a {
-      padding: 12px 10px 12px 10px;
-      height: auto;
+    &.userNav {
+      a {
+        padding: 12px 10px 12px 10px;
+        height: auto;
 
-      img {
-        margin-right: 5px;
+        img {
+          margin-right: 5px;
+        }
       }
+
+      &:hover ul.dropdown-menu {
+        display: block;
+      }
+    }
+  }
+
+  ul.dropdown-menu{
+    background: url("white_texture.png") !important;
+    border-radius: 0;
+    margin-top: 0;
+    border: none;
+    padding-top: 0;
+    padding-bottom: 0;
+
+    &::before {
+      display: none;
+    }
+
+    &::after {
+      display: none;
+    }
+
+    li a {
+      padding: 17px 20px 12px 20px;
+      height: 26px;
+    }
+
+    .divider {
+      margin: 1px 1px;
+    }
+
+    a:hover {
+      color: #CB2027;
+      background-color: rgba(255, 255, 255, 0.7);
     }
   }
 }
@@ -321,7 +358,7 @@ ul.navigation {
   margin-top: 10px;
 }
 
-.ml10{
+.ml10 {
   margin-left: 10px;
 }
 

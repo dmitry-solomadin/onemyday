@@ -1,8 +1,9 @@
-div.comment
-  = image_tag comment.user.avatar.url :small
-  p.text
+div.comment class="#{defined?(clazz) ? clazz : ""}"
+  div.commentHeader
+    = image_tag comment.user.avatar.url :thumb
     a.author href="#" #{comment.user.name}
-    br
+    span.time #{comment.created_at_nice}
+  p.text
     = comment.text
   div.controls
     a href="#" reply

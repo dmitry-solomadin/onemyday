@@ -1,6 +1,13 @@
 anyErrors = <%= @comment.errors.any? %>;
 if (!anyErrors) {
-    $("#commentsContainer").append("<%= escape_javascript(render 'comment', comment: @comment) %>");
+    var comment = "<%= escape_javascript(render 'comment', comment: @comment) %>";
+    if ($("#commentsContainer .comment").length == 0) {
+        $("#commentsContainer").prepend(comment);
+    } else {
+        $("#commentsContainer .comment:last").after(comment);
+    }
+
+    $("#commentsContainer textarea").val("");
 } else {
     alert("Oh, no :(");
 }
