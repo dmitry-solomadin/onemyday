@@ -67,4 +67,11 @@ Onemyday::Application.configure do
 
   ENV["TWITTER_CONSUMER_KEY"] = "3Ot3E3BhpTFV5inPVXOw"
   ENV["TWITTER_CONSUMER_SECRET"] = "mNtee7A5W87WdMDlIBHCRQURv29ECTsKUlWoArY0A"
+  ENV["S3_PARAMETERS"] = {
+      :storage        => :s3,
+      :s3_credentials => "#{Rails.root}/config/s3.yml",
+      :path           => ':attachment/:id/:style.:extension',
+      :bucket         => 'onemyday'
+  }
+
 end

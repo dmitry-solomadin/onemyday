@@ -14,6 +14,7 @@ gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 
 gem 'paperclip'
+gem 'aws-sdk', '~> 1.3.4'
 gem 'simple_enum'
 gem 'mini_magick'
 gem 'faker'
