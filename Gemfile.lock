@@ -191,7 +191,7 @@ DEPENDENCIES
   mini_magick
   omniauth-facebook
   omniauth-twitter
-  paperclip
+  paperclip (~> 3.0)
   pg
   rails (= 3.2.3)
   sass-rails (~> 3.2.3)
