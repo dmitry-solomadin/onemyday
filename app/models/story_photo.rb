@@ -8,7 +8,7 @@ class StoryPhoto < ActiveRecord::Base
   paperclip_opts = {
       styles: { center: "x550", side: "450x550>", thumb: "250x" }
   }
-  paperclip_opts.merge! ENV["S3_PARAMETERS"] unless Rails.env.development?
+  paperclip_opts.merge! PAPERCLIP_STORAGE_OPTS unless Rails.env.development?
 
   has_attached_file :photo, paperclip_opts
 
