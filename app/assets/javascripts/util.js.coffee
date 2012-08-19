@@ -20,3 +20,15 @@ App.util.post = (path, parameters) ->
 
 App.util.isPage = (controller, action) ->
   return $("body").data("controller") == controller and $("body").data("action") == action
+
+$ = jQuery
+$.fn.showModal = (settings) ->
+  this.find(".modal-header h3").html settings.header
+  this.find(".modal-body").html settings.body
+  this.find(".modal-footer .modal-okay").click =>
+    settings.okay() if settings.okay
+    this.modal("hide")
+  this.find(".modal-footer .modal-cancel").click =>
+    settings.cancel() if settings.cancel
+    this.modal("hide")
+  this.modal()
