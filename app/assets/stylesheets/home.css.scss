@@ -234,6 +234,15 @@ ul.navigation {
 
 .navbar .btn, .navbar .btn-group {
   margin-top: 0;
+  padding: 0;
+}
+
+.btn {
+  height: auto;
+}
+
+.btn-large {
+  height: auto;
 }
 
 .navbar-inner {
