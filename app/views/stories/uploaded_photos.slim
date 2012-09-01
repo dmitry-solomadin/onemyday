@@ -4,9 +4,9 @@ div#uploadedPhotoData
     input{ type="hidden" id="#{story_photo.id}"
     data-medium-image="#{story_photo.photo.url(:side)}"
     data-large-image="#{story_photo.photo.url(:center)}"
-    data-medium-height="#{get_image_dims(story_photo.photo.path(:side))[:height]}"
-    data-large-height="#{get_image_dims(story_photo.photo.path(:center))[:height]}"
-    data-medium-width="#{get_image_dims(story_photo.photo.path(:side))[:width]}"
-    data-large-width="#{get_image_dims(story_photo.photo.path(:center))[:width]}"
-    data-date="#{get_image_time_taken story_photo.photo.path}" }
+    data-medium-height="#{story_photo.photo_dimensions[:side][:height]}"
+    data-large-height="#{story_photo.photo_dimensions[:center][:height]}"
+    data-medium-width="#{story_photo.photo_dimensions[:side][:width]}"
+    data-large-width="#{story_photo.photo_dimensions[:center][:width]}"
+    data-date="#{story_photo.time_taken}" }
 

@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   paperclip_opts = {
       styles: {small: "50x50", thumb: "32x32"}
   }
-  paperclip_opts.merge! PAPERCLIP_STORAGE_OPTS unless Rails.env.development?
+  paperclip_opts.merge! PAPERCLIP_STORAGE_OPTS
   has_attached_file :avatar, paperclip_opts
 
   def self.from_omniauth(auth)

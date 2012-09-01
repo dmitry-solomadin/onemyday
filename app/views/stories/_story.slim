@@ -1,4 +1,4 @@
-- image_dims = get_image_dims(story.story_photos.first.photo.path(:thumb))
+- image_dims = story.story_photos.first.photo_dimensions[:thumb]
 a href="#{story_path story}"
   div.smallStory
     div.image

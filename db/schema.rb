@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120816121817) do
+ActiveRecord::Schema.define(:version => 20120901104737) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -73,6 +73,8 @@ ActiveRecord::Schema.define(:version => 20120816121817) do
     t.string   "caption"
     t.datetime "date"
     t.integer  "orientation_cd"
+    t.string   "photo_dimensions"
+    t.string   "time_taken"
   end
 
   add_index "story_photos", ["story_id"], :name => "index_story_photos_on_story_id"

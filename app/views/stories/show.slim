@@ -5,8 +5,8 @@ div.storyHeaderDiv
 
 div#story
   - @story.story_photos.each do |story_photo|
-    - side_image_dims = get_image_dims(story_photo.photo.path(:side))
-    - center_image_dims = get_image_dims(story_photo.photo.path(:center))
+    - side_image_dims = story_photo.photo_dimensions[:side]
+    - center_image_dims = story_photo.photo_dimensions[:center]
     - if story_photo.left?
       div#leftRightGroup.row.storyGroup
         div.imagePlace.span6

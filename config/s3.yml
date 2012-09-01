@@ -1,3 +1,6 @@
 production:
   access_key_id: AKIAJ5KJMYPN66K2AAFQ
   secret_access_key: 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
+development:
+  access_key_id: AKIAJ5KJMYPN66K2AAFQ
+  secret_access_key: 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
