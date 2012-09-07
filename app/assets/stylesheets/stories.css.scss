@@ -294,15 +294,16 @@
 
 .smallStory {
   cursor: pointer;
-  padding: 17px;
-  border: 1px solid #B2B2B2;
-  box-shadow: gray 0 1px 1px;
+  box-shadow: #808080 0 1px 5px;
   float: left;
   background: white;
-  margin-right: 22px;
+  margin-right: 10px;
   margin-bottom: 10px;
 
   .text {
+    padding-left:10px;
+    padding-right:10px;
+    padding-bottom:7px;
     margin-top: 5px;
     font-size: 21px;
     color: #212121;
@@ -310,6 +311,8 @@
 
   .title {
     line-height: 30px;
+    font-weight: 300;
+    font-size: 24px;
   }
 
   .social {
@@ -330,15 +333,9 @@
   }
 
   .date {
-    margin-top: 7px;
     color: #606060;
     font-size: 12px;
     font-style: italic;
-  }
-
-  .by {
-    color: #606060;
-    font-size: 12px;
   }
 }
 

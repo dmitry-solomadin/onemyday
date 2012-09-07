@@ -6,7 +6,7 @@ class StoryPhoto < ActiveRecord::Base
   belongs_to :story
 
   @paperclip_opts = {
-      styles: {center: "x550", side: "450x550>", thumb: "250x"}
+      styles: {center: "x550", side: "450x550>", thumb: "350x"}
   }
   @paperclip_opts.merge! PAPERCLIP_STORAGE_OPTS
 

@@ -1,0 +1,12 @@
+div#showUserDiv
+  div.innerContainer
+    div.infoContainer
+      = image_tag @user.avatar.url :small, width: '50', class: 'avatar'
+      div.userinfo
+        div.username = @user.name
+    div.tabsContainer
+      ul.tabs
+        li.selected
+          a href="#":span His
+        li
+          a href="#":span Liked

@@ -77,3 +77,71 @@
     padding: 24px;
   }
 }
+
+#showUserDiv {
+  background: white;
+  position: absolute;
+  width: 100%;
+  margin-top: -25px;
+  left: 0;
+  border-bottom: 1px solid #c3c3c3;
+
+  .innerContainer {
+    width: 940px;
+    margin: 0 auto;
+  }
+
+  .infoContainer {
+    padding-top: 25px;
+
+    .username {
+      font-size: 28px;
+      font-weight: 300;
+    }
+
+    .userinfo {
+      display: inline-block;
+      vertical-align: top;
+      margin-left: 7px;
+    }
+  }
+
+  .tabsContainer {
+    margin-top: 25px;
+
+    ul.tabs {
+      vertical-align: bottom;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        display: inline-block;
+
+        a {
+          text-decoration: none;
+          display: inline-block;
+          padding: 15px 35px 15px 35px;
+          height: 50px;
+          box-sizing: border-box;
+          z-index: 999;
+          position: relative;
+          top: 1px;
+
+          span {
+            font-size: 16px;
+            color: #404040;
+          }
+        }
+
+        &.selected a {
+          background: url("egg_shell.png");
+          box-shadow: inset 0 7px 14px -7px rgba(0, 0, 0, .4);
+        }
+      }
+    }
+  }
+}

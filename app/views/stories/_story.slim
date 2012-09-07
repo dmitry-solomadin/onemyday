@@ -2,7 +2,7 @@
 a href="#{story_path story}"
   div.smallStory
     div.image
-      img src="#{story.story_photos.first.photo.url :thumb}" style="height:#{image_dims[:height]}px; width: 250px;"
+      img src="#{story.story_photos.first.photo.url :thumb}" style="height:#{image_dims[:height]}px; width: 300px;"
     div.text
       div.title = story.title
       div.social
@@ -12,5 +12,4 @@ a href="#{story_path story}"
         span = story.likes.count
         i.icon-comment
         span = story.comments.count
-      div.date @ #{story.date_nice_text}
-      div.by by #{story.user.name}
+      div.date @ #{story.date_nice_text} by #{story.user.name}
