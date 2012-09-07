@@ -45,6 +45,12 @@ div.storyEnd
   div.header.lobster THE END
   div.subHeader
 
+- if @story.likes.any?
+  div.likes
+    i.icon-heart
+    a href="#" = pluralize(@story.likes.size, "person")
+    '&nbsp;likes this
+
 - if current_user
   - like = @story.likes.find_by_user_id current_user.id
   = form_tag like ? unlike_path : new_like_path, remote:true do
