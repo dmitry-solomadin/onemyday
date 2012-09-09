@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :signed_in_user_filter, only: [:edit_current, :update, :update_facebook_avatar]
+  before_filter :signed_in_user_filter, except: [:new, :create, :show]
 
   def new
     @user = User.from_omniauth(session[:omniauth])

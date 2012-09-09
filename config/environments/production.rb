@@ -67,6 +67,10 @@ Onemyday::Application.configure do
 
   ENV["TWITTER_CONSUMER_KEY"] = "3Ot3E3BhpTFV5inPVXOw"
   ENV["TWITTER_CONSUMER_SECRET"] = "mNtee7A5W87WdMDlIBHCRQURv29ECTsKUlWoArY0A"
+
+  ENV["FACEBOOK_APP_ID"] = "390488554357191"
+  ENV["FACEBOOK_APP_SECRET"] = "b4ebceff89b8486225f5cb298a3da196"
+
   PAPERCLIP_STORAGE_OPTS = {
       :storage        => :s3,
       :s3_credentials => "#{Rails.root}/config/s3.yml",
