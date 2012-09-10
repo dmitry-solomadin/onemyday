@@ -1,3 +1,13 @@
+module Sass
+  module Rails
+    class CssCompressor
+      def compress(css)
+        css
+      end
+    end
+  end
+end
+
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
