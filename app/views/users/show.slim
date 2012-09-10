@@ -1,3 +1,4 @@
+- is_current_user = current_user == @user
 div#showUserDiv
   div.innerContainer
     div.infoContainer
@@ -7,6 +8,12 @@ div#showUserDiv
     div.tabsContainer
       ul#userTabs.tabs
         li.selected
-          a href="#":span His
+          = link_to content_tag(:span, "#{is_current_user ? 'Yours': 'His'}"), own_stories_path(@user.id), remote: true
         li
-          a href="#":span Liked
+          = link_to content_tag(:span, "#{is_current_user ? 'Liked by you': 'Liked'}"), liked_stories_path(@user.id), remote: true
+        - if is_current_user && @user.stories.unpublished.any?
+          li
+            = link_to content_tag(:span, "Unfinished (#{@user.stories.unpublished.size})"), unfinished_stories_path(@user.id), remote: true
+
+div#showUserTabContent
+  = render "/stories/list_stories"

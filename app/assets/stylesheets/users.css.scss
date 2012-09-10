@@ -78,6 +78,10 @@
   }
 }
 
+#showUserTabContent {
+  margin-top: 150px;
+}
+
 #showUserDiv {
   background: white;
   position: absolute;
@@ -88,6 +92,7 @@
 
   .innerContainer {
     width: 940px;
+    height: 150px;
     margin: 0 auto;
   }
 
@@ -145,4 +150,8 @@
       }
     }
   }
+}
+
+.noStoriesMessage {
+  font-size: 24px;
 }

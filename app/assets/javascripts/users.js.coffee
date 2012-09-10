@@ -57,4 +57,7 @@ $(->
     $(@).closest("ul").find("li").removeClass("selected")
     $(@).closest("li").addClass("selected")
   )
+
+  $('#storiesContainer').masonry
+    itemSelector: '.smallStory'
 )

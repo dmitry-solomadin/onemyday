@@ -10,7 +10,7 @@ class StoriesController < ApplicationController
 
   def search
     @query = params[:q]
-    @stories = Story.where("title like '%#@query%' and published='t' ")
+    @stories = Story.where("title like '%#@query%'")
   end
 
   def new
@@ -20,7 +20,7 @@ class StoriesController < ApplicationController
   end
 
   def show
-    @story = Story.find(params[:id])
+    @story = Story.unscoped.find(params[:id])
 
     @story.views.build(date: DateTime.now).save!
   end

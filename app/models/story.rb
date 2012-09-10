@@ -14,6 +14,9 @@ class Story < ActiveRecord::Base
   validates_presence_of :type, :title, :date
   validates :user, presence: true
 
+  default_scope where(:published => true)
+  scope :unpublished, where(:published => false)
+
   def has_photos
     self.story_photos.any?
   end

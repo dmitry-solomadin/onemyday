@@ -60,4 +60,8 @@ class User < ActiveRecord::Base
     end
   end
 
+  def liked_stories
+    Story.includes(:likes).where(likes: {user_id: self.id})
+  end
+
 end
