@@ -12,6 +12,4 @@ $(->
   ).blur(->
     $(@).css(backgroundColor: "#eaeaea")
   )
-
-  $(".smallStory").each(-> $(@).width($(@).find("img").width()))
 )

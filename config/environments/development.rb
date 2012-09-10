@@ -41,10 +41,5 @@ Onemyday::Application.configure do
   ENV["FACEBOOK_APP_ID"] = "272763286172620"
   ENV["FACEBOOK_APP_SECRET"] = "e347de77c945e9a8ea95e9548e8a9a31"
 
-  PAPERCLIP_STORAGE_OPTS = {
-      :storage        => :s3,
-      :s3_credentials => "#{Rails.root}/config/s3.yml",
-      :path           => ':attachment/:id/:style.:extension',
-      :bucket         => 'onemyday'
-  }
+  PAPERCLIP_STORAGE_OPTS = {}
 end

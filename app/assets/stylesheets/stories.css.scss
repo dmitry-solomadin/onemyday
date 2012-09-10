@@ -306,7 +306,6 @@
 }
 
 .smallStory {
-  cursor: pointer;
   box-shadow: #808080 0 1px 5px;
   float: left;
   background: white;
@@ -326,6 +325,7 @@
     line-height: 30px;
     font-weight: 300;
     font-size: 24px;
+    color: #404040;
   }
 
   .social {

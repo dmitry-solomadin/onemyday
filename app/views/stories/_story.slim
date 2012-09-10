@@ -1,15 +1,17 @@
 - image_dims = story.story_photos.first.photo_dimensions[:thumb]
-a href="#{story_path story}"
-  div.smallStory
+div.smallStory style="width: #{image_dims[:width]}px;"
+  a href="#{story_path story}"
     div.image
-      img src="#{story.story_photos.first.photo.url :thumb}" style="height:#{image_dims[:height]}px; width: 300px;"
-    div.text
+      img src="#{story.story_photos.first.photo.url :thumb}" style="height:#{image_dims[:height]}px; width: #{image_dims[:width]}px;"
+  div.text
+    a href="#{story_path story}"
       div.title = story.title
-      div.social
-        i.icon-eye-open
-        span = story.views.count
-        i.icon-heart
-        span = story.likes.count
-        i.icon-comment
-        span = story.comments.count
-      div.date @ #{story.date_nice_text} by #{story.user.name}
+    div.social
+      i.icon-eye-open
+      span = story.views.count
+      i.icon-heart
+      span = story.likes.count
+      i.icon-comment
+      span = story.comments.count
+    div.date
+      '@ #{story.date_nice_text} by #{link_to story.user.name, story.user}
