@@ -1,0 +1,12 @@
+$("#unpublished<%= @story_id %>").fadeOut();
+
+if ($("#unpublishedCount")[0]) {
+    var oldCount = parseInt($("#unpublishedCount").html());
+    var newCount = oldCount - 1;
+    if (newCount <= 0 && $("#unpublishedTab")[0]) {
+        $("#unpublishedTab").remove();
+        $("#ownTab a").click();
+    } else {
+        $("#unpublishedCount").html(newCount);
+    }
+}

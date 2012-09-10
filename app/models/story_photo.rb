@@ -14,6 +14,11 @@ class StoryPhoto < ActiveRecord::Base
 
   after_post_process :save_photo_additional_info
   serialize :photo_dimensions
+  after_initialize :init_defaults
+
+  def init_defaults
+    self.orientation ||= :left
+  end
 
   def save_photo_additional_info
     save_photo_dimensions

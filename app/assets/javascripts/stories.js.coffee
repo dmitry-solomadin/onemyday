@@ -90,6 +90,29 @@ $(->
     )
 )
 
+# Edit story page
+$(->
+  return if not App.util.isPage "stories", "edit"
+
+  $("#photoUploadStoryDate").datepicker
+    dateFormat: "dd-mm-yy"
+
+  new App.PhotoUploader
+    onSuccess: storyHelper.onPhotoUploadSuccess
+    button: $("#photoUploadButton")
+    styledButton: $("#photoUploadStyledButton")
+
+  storyHelper.eachPhoto (index) ->
+    groupData = storyHelper.grabImageData(index)
+    stringOrientation = $(groupData).data("orientation");
+    switch stringOrientation
+      when "left" then groupOrientation = storyHelper.groupTypes.left
+
+    storyHelper.addGroup(groupOrientation, groupData)
+
+  storyHelper.showPublish()
+)
+
 class Story
   groupTypes:
     left:

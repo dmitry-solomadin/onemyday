@@ -1,12 +1,13 @@
 / Upload photo form
-div#photoUploadDiv.row.hide
+div#photoUploadDiv class="row #{"hide" unless story}"
   div.span12
-    input#photoUploadStoryTitle type="text"
+    input#photoUploadStoryTitle type="text" value="#{story.title if story}"
     span.photoUploadAt @
-    input#photoUploadStoryDate type="text"
-    h2 Now upload some photos
+    input#photoUploadStoryDate type="text" value="#{story.date_text if story}"
+    - unless story
+      h2 Now upload some photos
     = form_tag upload_story_photo_path, id: "photoUploadForm" do
-      input#createdStoryId name="story_id" type="hidden"
+      input#createdStoryId name="story_id" type="hidden" value="#{story.id if story}"
       div#photoUploadError.uploadError.alert.alert-error.hide
       div#customProgressBar.progress.progress-striped.active
         div.bar style="width: 0"
@@ -14,7 +15,7 @@ div#photoUploadDiv.row.hide
       input#photoUploadStyledButton.btn.btn-large.btn-foxtrot.f18 type='button' class='' value='Add photos'
 
 / Story
-div#story.edit.hide
+div#story class="edit #{"hide" unless story}"
   / Uploaded photos placeholder
   div#photoDiv
 
@@ -46,6 +47,9 @@ div#story.edit.hide
     button.centerOrientation.btn Center
     button.rightOrientation.btn Right
 
-div#storyPublish.hide
+div#storyPublish class="#{"hide" unless story}"
+  - if story
+    - @story_photos = story.story_photos
+    = render file: "stories/uploaded_photos"
   = form_tag publish_path do
-    input#storyPublishButton.btn.btn-large.btn-foxtrot.f18 type="submit" value="Publish"
+    input#storyPublishButton.btn.btn-large.btn-foxtrot.f18 type="submit" value="#{story ? 'Save' : 'Publish'}"

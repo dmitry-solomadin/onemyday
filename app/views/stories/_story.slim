@@ -1,6 +1,6 @@
 - if story.published?
   - image_dims = story.story_photos.first.photo_dimensions[:thumb]
-  div.smallStory style="width: #{image_dims[:width]}px;"
+  div class="smallStory relative #{'own' if defined?(own) && own}" style="width: #{image_dims[:width]}px;"
     a href="#{story_path story}"
       div.image
         img src="#{story.story_photos.first.photo.url :thumb}" style="height:#{image_dims[:height]}px; width: #{image_dims[:width]}px;"
@@ -16,11 +16,17 @@
         span = story.comments.count
       div.date
         '@ #{story.date_nice_text} by #{link_to story.user.name, story.user}
+    div.imageHoverMenu.btn-group.hide
+      = link_to "Edit", edit_story_path(story.id), class: "btn"
+      = link_to "Delete", story_path(story.id), method: "delete", confirm: "Are you sure?", class: "btn", remote: true
 - else
-  div.smallStory
+  div.smallStory.unpublished.relative id="unpublished#{story.id}" style="width: 300px;"
     a href="#{story_path story}"
-      div.image
-        img src="/no_story_image.png" style="height:300px; width: 300px;"
+      div.image style="height:300px; width: 300px;"
+        span No Image
     div.text
       a href="#{story_path story}"
         div.title #{story.title} (unfinished)
+    div.imageHoverMenu.btn-group.hide
+      = link_to "Edit", edit_story_path(story.id), class: "btn"
+      = link_to "Delete", story_path(story.id), method: "delete", confirm: "Are you sure?", class: "btn", remote: true

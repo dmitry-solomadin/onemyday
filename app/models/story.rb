@@ -17,6 +17,11 @@ class Story < ActiveRecord::Base
   default_scope where(:published => true)
   scope :unpublished, where(:published => false)
 
+  def initialize(attributes = nil, options = {})
+    super attributes, options
+    self.published = false
+  end
+
   def has_photos
     self.story_photos.any?
   end

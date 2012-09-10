@@ -1,6 +1,7 @@
 class StoriesController < ApplicationController
 
   before_filter :signed_in_user_filter, except: :show
+  layout false, only: [:create, :destroy]
 
   def index
     @stories = Story.all
@@ -25,8 +26,6 @@ class StoriesController < ApplicationController
     @story.views.build(date: DateTime.now).save!
   end
 
-  layout false, only: :create
-
   def create
     @story = @current_user.stories.build(params[:story])
     @story.save
@@ -38,17 +37,19 @@ class StoriesController < ApplicationController
     # On this step we should already have created story, so here
     # we would just add StoryImage(-s) to this story and display it(them)
     # on the view.
-    @story = @current_user.stories.find(params[:story_id])
+    @story = @current_user.stories.unscoped.find(params[:story_id])
     params[:file_bean].each do |file_bean|
       @story.story_photos.build photo: file_bean
     end
     @story.save
 
+    @story_photos = @story.story_photos
+
     render 'uploaded_photos', layout: nil
   end
 
   def publish
-    @story = @current_user.stories.find(params[:story][:id])
+    @story = @current_user.stories.unscoped.find(params[:story][:id])
 
     if @story.has_photos && @story.update_attributes(params[:story])
       redirect_to @story
@@ -65,6 +66,20 @@ class StoriesController < ApplicationController
   def unlike
     Story.find(params[:story_id]).likes.find_by_user_id(current_user.id).destroy
     render nothing: true
+  end
+
+  def destroy
+    @story_id = params[:id]
+    Story.unscoped.find(@story_id).destroy
+
+    respond_to do |format|
+      format.js
+      format.html { redirect_to current_user }
+    end
+  end
+
+  def edit
+    @story = Story.unscoped.find(params[:id])
   end
 
 end

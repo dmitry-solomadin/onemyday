@@ -1,7 +1,7 @@
 div#uploadedPhotoData
-  - @story.story_photos.each do |story_photo|
-
+  - @story_photos.each do |story_photo|
     input{ type="hidden" id="#{story_photo.id}"
+    data-orientation="#{story_photo.orientation}"
     data-medium-image="#{story_photo.photo.url(:side)}"
     data-large-image="#{story_photo.photo.url(:center)}"
     data-medium-height="#{story_photo.photo_dimensions[:side][:height]}"

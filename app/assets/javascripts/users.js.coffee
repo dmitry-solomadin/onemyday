@@ -60,4 +60,7 @@ $(->
 
   $('#storiesContainer').masonry
     itemSelector: '.smallStory'
+
+  $(document).on("mouseenter", "#storiesContainer > .unpublished, #storiesContainer > .own", -> $(@).find(".imageHoverMenu").fadeIn('fast'))
+  $(document).on("mouseleave", "#storiesContainer > .unpublished, #storiesContainer > .own", -> $(@).find(".imageHoverMenu").fadeOut('fast'))
 )
