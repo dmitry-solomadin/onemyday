@@ -33,8 +33,6 @@ class StoryPhoto < ActiveRecord::Base
       self.photo_dimensions[style][:width] = geo.width
       self.photo_dimensions[style][:height] = geo.height
     end
-
-    puts "#{self.id} #{self.photo_dimensions}"
   end
 
   def save_time_taken
