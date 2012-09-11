@@ -1,0 +1,2 @@
+module StoryPhotosHelper
+end

@@ -1,5 +1,5 @@
 class StoryPhoto < ActiveRecord::Base
-  attr_accessible :order, :caption, :date, :date_text, :photo, :orientation, :photo_dimensions, :time_taken
+  attr_accessible :photo_order, :caption, :date, :date_text, :photo, :orientation, :photo_dimensions, :time_taken
 
   as_enum :orientation, left: 0, center: 1, right: 2
 
@@ -15,6 +15,8 @@ class StoryPhoto < ActiveRecord::Base
   after_post_process :save_photo_additional_info
   serialize :photo_dimensions
   after_initialize :init_defaults
+
+  default_scope :order => 'photo_order ASC'
 
   def init_defaults
     self.orientation ||= :left

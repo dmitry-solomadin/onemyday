@@ -15,6 +15,8 @@ Onemyday::Application.routes.draw do
 
   resources :comments
 
+  resources :story_photos, only: [:destroy]
+
   match 'auth/:provider/callback', to: 'sessions#create'
   match 'auth/:provider/destroy', to: 'sessions#destroy_auth'
   match 'auth/failure', to: redirect('/')

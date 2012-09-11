@@ -42,10 +42,16 @@ div#story class="edit #{"hide" unless story}"
         div.text
     div.row.mt10
       div.span0
-  div#imageHoverMenuPlaceholder.imageHoverMenu.btn-group.hide data-toggle="buttons-radio"
-    button.leftOrientation.btn Left
-    button.centerOrientation.btn Center
-    button.rightOrientation.btn Right
+  div#imageHoverMenuPlaceholder.imageHoverMenu.hide
+    span.btn-group data-toggle="buttons-radio"
+      button.leftOrientation.btn Left
+      button.centerOrientation.btn Center
+      button.rightOrientation.btn Right
+    span.flowControl.btn-group
+      button.moveUp.btn &uarr;
+      button.moveDown.btn &darr;
+    span.remove.btn-group
+      a.removePhoto.btn href="#" data-href="#{story_photo_path(-1)}" data-remote="true" data-method="delete" data-confirm="Are you sure?": i.icon-remove
 
 div#storyPublish class="#{"hide" unless story}"
   - if story

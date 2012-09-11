@@ -102,15 +102,7 @@ $(->
     button: $("#photoUploadButton")
     styledButton: $("#photoUploadStyledButton")
 
-  storyHelper.eachPhoto (index) ->
-    groupData = storyHelper.grabImageData(index)
-    stringOrientation = $(groupData).data("orientation");
-    switch stringOrientation
-      when "left" then groupOrientation = storyHelper.groupTypes.left
-      when "right" then groupOrientation = storyHelper.groupTypes.right
-      when "center" then groupOrientation = storyHelper.groupTypes.center
-
-    storyHelper.addGroup(groupOrientation, groupData)
+  storyHelper.appendPhotos()
 
   storyHelper.showPublish()
 )
@@ -133,11 +125,23 @@ class Story
     if dataValid
       $("#customProgressBar").hide()
 
-      storyHelper.eachPhoto (index) ->
-        evenIndex = index == 0 or index % 2 == 0
-        groupOrientation = if evenIndex then storyHelper.groupTypes.left else storyHelper.groupTypes.right
+      @appendPhotos()
 
-        storyHelper.addGroup(groupOrientation, storyHelper.grabImageData(index))
+  appendPhotos: ->
+    storyHelper.eachPhoto (index) ->
+      groupData = storyHelper.grabImageData(index)
+      evenIndex = index == 0 or index % 2 == 0
+
+      groupOrientation = if evenIndex then storyHelper.groupTypes.left else storyHelper.groupTypes.right
+      stringOrientation = $(groupData).data("orientation")
+      switch stringOrientation
+        when "left" then groupOrientation = storyHelper.groupTypes.left
+        when "right" then groupOrientation = storyHelper.groupTypes.right
+        when "center" then groupOrientation = storyHelper.groupTypes.center
+
+      storyHelper.addGroup(groupOrientation, groupData)
+
+    @refreshFlowControl()
 
   showPublish: ->
     $("#storyPublish").show()
@@ -154,29 +158,36 @@ class Story
         postParams["story[story_photos_attributes][#{index}][caption]"] = $(this).find('.text').html()
         postParams["story[story_photos_attributes][#{index}][date_text]"] = $(this).find('.time').html()
         postParams["story[story_photos_attributes][#{index}][orientation]"] = $(this).data("orientation")
+        postParams["story[story_photos_attributes][#{index}][photo_order]"] = index
       )
 
       App.util.post($(@).parents("form:first").attr("action"), postParams)
     )
 
-  createGroup: (type, photoData, time, text) ->
-    text = if text? then text else "Tell the story of this photo. Click to edit."
-    time = if time? then time else if photoData.data("date") and photoData.data("date") != "" then photoData.data("date") else "08:10 am"
+  createGroup: (type, photoData) ->
+    text = if photoData.data("text") and photoData.data("text") != "" then photoData.data("text") else "Tell the story of this photo. Click to edit."
+    time = if photoData.data("date") and photoData.data("date") != "" then photoData.data("date") else "08:10 am"
 
     newGroup = $(type.blockId).clone()
     newGroup[0].id = "group#{photoData[0].id}"
     newGroup.addClass("storyGroup").addClass(type.name).data("orientation", type.name)
     newGroup.data("id", photoData[0].id)
 
-    #init image orientation toggles
-    orientationToggles = $("#imageHoverMenuPlaceholder").clone()
-    orientationToggles[0].id = ""
-    newGroup.find(".imagePlace").append(orientationToggles)
-    orientationToggles.find(type.orientationToggleId).addClass("active")
+    #init hover menu
+    hoverMenu = $("#imageHoverMenuPlaceholder").clone()
+    hoverMenu[0].id = ""
+    newGroup.find(".imagePlace").append(hoverMenu)
+    hoverMenu.find(type.orientationToggleId).addClass("active")
 
     for own groupName, groupProps of @.groupTypes
       clickFunc = (groupProps) => => @.changeGroup(groupProps, photoData)
-      orientationToggles.find(groupProps.orientationToggleId).click(clickFunc(groupProps))
+      hoverMenu.find(groupProps.orientationToggleId).click(clickFunc(groupProps))
+
+    hoverMenu.find(".moveUp").click(=> @moveUp newGroup)
+    hoverMenu.find(".moveDown").click(=> @moveDown newGroup)
+
+    removePhotoLink = hoverMenu.find(".removePhoto")
+    removePhotoLink.attr("href", removePhotoLink.data("href").replace("-1", photoData[0].id))
 
     newGroup.find(".imagePlace").append(@grabImage(type, photoData)).mouseenter(->
       $(@).find(".imageHoverMenu").fadeIn("fast")
@@ -194,7 +205,7 @@ class Story
     unless oldGroup[0]?
       return
 
-    group = @.createGroup(type, photoData)
+    group = @createGroup(type, photoData)
     group.find(".textPlace .text").html(oldGroup.find(".textPlace .text").html())
     group.find(".textPlace .time").html(oldGroup.find(".textPlace .time").html())
 
@@ -203,12 +214,13 @@ class Story
 
     group.fadeIn("fast")
     @initializeGroup group
+    @refreshFlowControl()
 
-  addGroup: (type, photoData, time, text) ->
+  addGroup: (type, photoData) ->
     if $("#group#{photoData[0].id}")[0]?
       return
 
-    group = @.createGroup(type, photoData, time, text)
+    group = @createGroup(type, photoData)
 
     $("#story").append group
     @initializeGroup group
@@ -242,12 +254,13 @@ class Story
   grabLargerImage: (photoData) ->
     "<img src='#{photoData.data("large-image")}' style='height:#{photoData.data("large-height")}px; width:#{photoData.data("large-width")}px'>"
 
-  grabImageData: (index) ->
-    $("#uploadedPhotoData > input").eq(index)
+  grabImageData: (index) -> $("#uploadedPhotoData > input").eq(index)
 
-  eachPhoto: (callback)->
-    $("#uploadedPhotoData > input").each (index)->
-      callback index
+  eachPhoto: (callback) -> $("#uploadedPhotoData > input").each (index) -> callback index
+
+  eachGroup: (callback) -> $(".storyGroup").each (index) -> callback(@, index)
+
+  photoCount: -> $("#uploadedPhotoData > input").length
 
   editCaption: (textDiv) ->
     $textDiv = $(textDiv)
@@ -289,11 +302,24 @@ class Story
     if timeEditAmPm? then " " + $(timeEditAmPm).find("option:selected").val() else ""
 
   extractAmPmSwitch: (time) ->
-    if time.search(/(am|pm)/) == -1
-      return ""
+    return "" if time.search(/(am|pm)/) == -1
 
     am = time.search(/pm/) == -1
 
     return "<select class='timeEditAmPm'><option value='am' #{'selected=selected' if am}>am</option><option value='pm' #{'selected=selected' if !am}>pm</option></select>"
+
+  moveUp: (group) ->
+    group.prev().before(group)
+    @refreshFlowControl()
+
+  moveDown: (group) ->
+    group.next().after(group)
+    @refreshFlowControl()
+
+  refreshFlowControl: ->
+    $(".moveUp, .moveDown").show()
+    @eachGroup (group, index) =>
+      $(group).find(".moveUp").hide() if index == 0
+      $(group).find(".moveDown").hide() if index == (@photoCount() - 1)
 
 storyHelper = new Story

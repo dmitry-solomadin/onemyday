@@ -45,6 +45,9 @@ div.storyEnd
   div.header.lobster THE END
   div.subHeader
 
+- if is_current_user @story.user
+  a.btn href="#{edit_story_path(@story.id)}" Edit
+
 - if @story.likes.any?
   div.likes
     i.icon-heart
