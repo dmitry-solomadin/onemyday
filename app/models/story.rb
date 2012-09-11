@@ -22,6 +22,10 @@ class Story < ActiveRecord::Base
     self.published = false
   end
 
+  def before_save
+    self.published = false if self.story_photos.blank?
+  end
+
   def has_photos
     self.story_photos.any?
   end

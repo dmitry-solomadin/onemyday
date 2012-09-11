@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_url, notice: "Please sign in." unless signed_in?
   end
 
+  def is_current_user user
+    signed_in? && user == current_user
+  end
+
   private
 
   def current_user

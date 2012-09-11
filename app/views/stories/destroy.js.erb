@@ -1,4 +1,5 @@
-$("#unpublished<%= @story_id %>").fadeOut();
+<% if !@story.published %>
+$("#unpublished<%= @story.id %>").fadeOut();
 
 if ($("#unpublishedCount")[0]) {
     var oldCount = parseInt($("#unpublishedCount").html());
@@ -10,3 +11,6 @@ if ($("#unpublishedCount")[0]) {
         $("#unpublishedCount").html(newCount);
     }
 }
+<% else %>
+$("#story<%= @story.id %>").fadeOut();
+<% end %>

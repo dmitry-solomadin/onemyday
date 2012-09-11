@@ -107,6 +107,8 @@ $(->
     stringOrientation = $(groupData).data("orientation");
     switch stringOrientation
       when "left" then groupOrientation = storyHelper.groupTypes.left
+      when "right" then groupOrientation = storyHelper.groupTypes.right
+      when "center" then groupOrientation = storyHelper.groupTypes.center
 
     storyHelper.addGroup(groupOrientation, groupData)
 

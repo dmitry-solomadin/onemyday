@@ -2,7 +2,7 @@
 div#showUserDiv
   div.innerContainer
     div.infoContainer
-      = image_tag @user.avatar.url :small, width: '50', class: 'avatar'
+      = image_tag @user.avatar.url(:small), width: '50', height: '50', class: 'avatar'
       div.userinfo
         div.username = @user.name
     div.tabsContainer
@@ -16,4 +16,4 @@ div#showUserDiv
             a href="#{unfinished_stories_path(@user.id)}" data-remote="true"
               span Unfinished (<span id='unpublishedCount'>#{@user.stories.unpublished.size}</span>)
 div#showUserTabContent
-  = render "/stories/list_stories", own: true
+  = render "/stories/list_stories", own: is_current_user
