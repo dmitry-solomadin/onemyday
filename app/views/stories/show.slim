@@ -28,7 +28,7 @@ div#story
         div.imagePlace.span5
           img src="#{story_photo.photo.url(:side)}" style="height: #{side_image_dims[:height]}px"
     - if story_photo.center?
-      div#centerGroup.row.storyGroup
+      div#centerGroup.row.storyGroup data-orientation="center"
         div.row
           div.imagePlace.span12
             img src="#{story_photo.photo.url(:center)}" style="width: #{center_image_dims[:width]}px"
