@@ -12,6 +12,8 @@ html
     = meta_tags yield(:meta_tags)
   body data-controller="#{params[:controller]}" data-action="#{params[:action]}"
     div#fb-root
+    input#appHost type="hidden" value="#{ENV['HOST']}"
+    input#facebookAppId type="hidden" value="#{ENV['FACEBOOK_APP_ID']}"
     header.navbar.navbar-fixed-top
       div.navbar-inner
         div.container

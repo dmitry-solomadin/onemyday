@@ -29,6 +29,8 @@ Onemyday::Application.routes.draw do
   get '/:user_id/stories/liked', to: 'user_stories#liked', as: :liked_stories
   get '/:user_id/stories/unfinished', to: 'user_stories#unfinished', as: :unfinished_stories
 
+  get '/channel.html', to: 'static_pages#channel'
+
   root :to => 'home#index'
 
   # The priority is based upon order of creation:

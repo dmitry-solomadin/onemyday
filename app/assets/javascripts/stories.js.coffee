@@ -29,10 +29,20 @@ $(->
     js = $("<script id='twitter-wjs' src='//platform.twitter.com/widgets.js'></script>")
     $("script:first").parent().prepend(js)
 
+  # Initialize facebook like button.
+  window.fbAsyncInit = ->
+    FB.init
+      appId: $("#facebookAppId").val() # App ID
+      channelUrl: "//#{$("#appHost").val()}/channel.html" # Channel File
+      status: true # check login status
+      cookie: true # enable cookies to allow the server to access the session
+      xfbml: true  # parse XFBML
 
   if !$("#facebook-jssdk")[0]
-    js = $("<script id='facebook-jssdk' src='//connect.facebook.net/ru_RU/all.js#xfbml=1&appId=272763286172620'></script>")
+    js = $("<script id='facebook-jssdk' src='//connect.facebook.net/en_US/all.js'></script>")
     $("script:first").parent().prepend(js)
+
+  $(document).on("load", ".fb-like iframe", -> alert("done"))
 )
 
 
