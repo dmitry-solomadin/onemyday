@@ -1,8 +1,8 @@
 module ApplicationHelper
 
-  def facebook_like_meta(url, image)
+  def facebook_like_meta(title, url, image)
     [
-        tag('meta', :property => 'og:title', :content => 'Story'),
+        tag('meta', :property => 'og:title', :content => title),
         tag('meta', :property => 'og:type', :content => 'blog'),
         tag('meta', :property => 'og:image', :content => image),
         tag('meta', :property => 'og:url', :content => url),
