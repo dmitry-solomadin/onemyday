@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    title Singleday
+    title = get_title(yield(:title))
     javascript:
       App = {};
     = stylesheet_link_tag "application", :media => "all"
@@ -9,7 +9,9 @@ html
     link rel="shortcut icon" href="/assets/favicon.ico"
     = javascript_include_tag "application"
     = csrf_meta_tags
+    = meta_tags yield(:meta_tags)
   body data-controller="#{params[:controller]}" data-action="#{params[:action]}"
+    div#fb-root
     header.navbar.navbar-fixed-top
       div.navbar-inner
         div.container

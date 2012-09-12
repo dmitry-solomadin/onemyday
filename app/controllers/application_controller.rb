@@ -9,6 +9,14 @@ class ApplicationController < ActionController::Base
     signed_in? && user == current_user
   end
 
+  def get_title(title)
+    !title.blank? ? title : "Singleday"
+  end
+
+  def meta_tags meta_tags
+    !meta_tags.blank? ? meta_tags : ""
+  end
+
   private
 
   def current_user
@@ -19,6 +27,6 @@ class ApplicationController < ActionController::Base
     !current_user.nil?
   end
 
-  helper_method [:current_user, :is_current_user]
+  helper_method [:current_user, :is_current_user, :get_title, :meta_tags]
 
 end

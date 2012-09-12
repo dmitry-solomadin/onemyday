@@ -1,3 +1,6 @@
+- provide(:title, @story.title)
+- provide(:meta_tags, facebook_like_meta(story_url(@story.id), @story.story_photos.first.photo.url(:side)))
+
 div.storyHeaderDiv
   div.storyHeader.lobster #{@story.title}
   div.storySubHeader #{@story.date_nice_text} by #{@story.user.name}
@@ -45,22 +48,28 @@ div.storyEnd
   div.header.lobster THE END
   div.subHeader
 
-- if is_current_user @story.user
-  a.btn href="#{edit_story_path(@story.id)}" Edit
+div.bottomShareMenu
+  - if is_current_user @story.user
+    a.btn.mr10 href="#{edit_story_path(@story.id)}" Edit story
 
+  a.twitter-share-button href="https://twitter.com/share" data-count="none" data-hashtags="singleday" Tweet
+  div.fb-like data-send="false" data-width="450" data-show-faces="false" data-font="verdana"
+
+div style='clear:both;'
+- if current_user
+  - like = @story.likes.find_by_user_id current_user.id
+  = form_tag like ? unlike_path : new_like_path, remote:true, class: "likeForm" do
+    input type="hidden" name="story_id" value="#{@story.id}"
+    a#storyLike.btn.btnLike data-submitable="true" class="#{like ? "btn-foxtrot" : ""}"
+      span #{like ? "Liked" : "Like"}
 - if @story.likes.any?
   div.likes
     i.icon-heart
     a href="#" = pluralize(@story.likes.size, "person")
     '&nbsp;likes this
 
+div style='clear:both;'
 - if current_user
-  - like = @story.likes.find_by_user_id current_user.id
-  = form_tag like ? unlike_path : new_like_path, remote:true do
-    input type="hidden" name="story_id" value="#{@story.id}"
-    a#storyLike.btn.btnLike data-submitable="true" class="#{like ? "btn-foxtrot" : ""}"
-      i.icon-heart
-      span #{like ? "Liked!" : "Like"}
   = form_for Comment.new, remote:true, html:{id:"storyComments"} do |f|
     input type="hidden" name="story_id" value="#{@story.id}"
     div#commentsContainer

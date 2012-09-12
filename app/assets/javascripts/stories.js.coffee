@@ -23,6 +23,16 @@ $(->
     else
       $("#addCommentSubmit").removeAttr("disabled")
   )
+
+  # Initialize twitter button.
+  if !$("#twitter-wjs")[0]
+    js = $("<script id='twitter-wjs' src='//platform.twitter.com/widgets.js'></script>")
+    $("script:first").parent().prepend(js)
+
+
+  if !$("#facebook-jssdk")[0]
+    js = $("<script id='facebook-jssdk' src='//connect.facebook.net/ru_RU/all.js#xfbml=1&appId=272763286172620'></script>")
+    $("script:first").parent().prepend(js)
 )
 
 

@@ -94,6 +94,10 @@
   }
 }
 
+.bottomShareMenu {
+  margin-bottom: 10px;
+}
+
 .storyEnd {
   margin-top: 25px;
   clear: both;
@@ -217,7 +221,9 @@
 }
 
 .likes {
-  margin-bottom: 10px;
+  float:left;
+  margin-left: 5px;
+  margin-top: 7px;
 
   i {
     margin-top: 2px;
@@ -229,16 +235,14 @@
   }
 }
 
-.btnLike {
-  i {
-    margin-top: 1px;
-  }
+.likeForm {
+  float:left;
+  margin-bottom: 0;
+}
 
+.btnLike {
   span {
-    font-size: 16px;
-    letter-spacing: 1px;
-    font-weight: bold;
-    margin-left: 5px;
+    font-size: 18px;
   }
 }
 
