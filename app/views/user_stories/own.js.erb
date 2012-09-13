@@ -1,2 +1,2 @@
 <% is_current_user = current_user == @user%>
-$("#showUserTabContent").html("<%= escape_javascript(render "/stories/list_stories", own: is_current_user, empty_message: "No stories to display.") %>");
+$("#showUserTabContent").html("<%= escape_javascript(render "/stories/list_stories", stories: @stories, own: is_current_user, empty_message: "No stories to display.") %>");

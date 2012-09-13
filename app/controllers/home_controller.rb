@@ -1,7 +1,8 @@
 class HomeController < ApplicationController
 
   def index
-    @stories = Story.all
+    @top_stories = Story.top 3
+    @recent_stories = Story.recent
   end
 
 end

@@ -1,4 +1,8 @@
-h3 Showing stories matching: "#{@query}"
+- if @stories.any?
+  h3 Showing stories matching: "#{@query}"
+- else
+  h3 No stories matching: "#{@query}"
+
 br clean="both"
 
-= render 'list_stories'
+= render 'list_stories', stories: @stories

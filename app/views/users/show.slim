@@ -16,4 +16,4 @@ div#showUserDiv
             a href="#{unfinished_stories_path(@user.id)}" data-remote="true"
               span Unfinished (<span id='unpublishedCount'>#{@user.stories.unpublished.size}</span>)
 div#showUserTabContent
-  = render "/stories/list_stories", own: is_current_user
+  = render "/stories/list_stories", stories: @stories, own: is_current_user

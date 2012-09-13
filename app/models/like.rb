@@ -2,7 +2,7 @@ class Like < ActiveRecord::Base
   attr_accessible :user_id
 
   belongs_to :user
-  belongs_to :story
+  belongs_to :story, counter_cache: true
 
   validates :user, presence: true
   validates :story, presence: true

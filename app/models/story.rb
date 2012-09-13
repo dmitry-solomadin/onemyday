@@ -16,6 +16,7 @@ class Story < ActiveRecord::Base
 
   default_scope where(:published => true)
   scope :unpublished, where(:published => false)
+  scope :recent, order("created_at DESC")
 
   def initialize(attributes = nil, options = {})
     super attributes, options
@@ -48,6 +49,10 @@ class Story < ActiveRecord::Base
 
   def self.date_to_nice_text time
     time.try(:strftime, "%b %d, %Y")
+  end
+
+  def self.top(lim)
+    Story.all(select: "*, (likes_count * 10) + views_count as count", order: "count DESC", limit: lim)
   end
 
 end

@@ -1,12 +1,12 @@
 class StoriesController < ApplicationController
 
-  before_filter :signed_in_user_filter, except: :show
+  before_filter :signed_in_user_filter, except: [:show, :search]
   layout false, only: [:create, :destroy]
 
   def index
     @stories = Story.all
 
-    render "_list_stories"
+    render "list_stories", stories: @stories
   end
 
   def search
