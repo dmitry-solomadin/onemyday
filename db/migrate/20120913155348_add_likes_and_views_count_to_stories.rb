@@ -4,9 +4,9 @@ class AddLikesAndViewsCountToStories < ActiveRecord::Migration
     add_column :stories, :views_count, :integer, default: 0
 
     Story.reset_column_information
-    Story.all.each do |story|
-      Story.update_counters story.id, likes_count: story.likes.length
-      Story.update_counters story.id, views_count: story.views.length
+    Story.select(:id).find_each do |p|
+      Story.reset_counters p.id, :likes
+      Story.reset_counters p.id, :views
     end
   end
 
