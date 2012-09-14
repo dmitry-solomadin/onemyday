@@ -16,7 +16,7 @@ class Story < ActiveRecord::Base
 
   default_scope where(:published => true)
   scope :unpublished, where(:published => false)
-  scope :recent, order("created_at DESC")
+  scope :recent, ->(type=nil) { where(type && "type_cd = #{type}").order("created_at DESC") }
 
   def initialize(attributes = nil, options = {})
     super attributes, options
@@ -51,8 +51,8 @@ class Story < ActiveRecord::Base
     time.try(:strftime, "%b %d, %Y")
   end
 
-  def self.top(lim)
-    Story.all(select: "*, (likes_count * 10) + views_count as count", order: "count DESC", limit: lim)
+  def self.top(lim=nil, type=nil)
+    Story.select("*, (likes_count * 10) + views_count as count").where(type && "type_cd = #{type}").order("count DESC").limit(lim)
   end
 
 end

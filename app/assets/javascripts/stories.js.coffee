@@ -41,8 +41,6 @@ $(->
       status: false # check login status
       cookie: true # enable cookies to allow the server to access the session
       xfbml: true  # parse XFBML
-
-
 )
 
 # New story page
@@ -107,6 +105,27 @@ $(->
         button: $("#photoUploadButton")
         styledButton: $("#photoUploadStyledButton")
     )
+)
+
+# Explore stories page
+$(->
+  return if not App.util.isPage "stories", "explore"
+
+  filterStories = ->
+    url = $("#advSearch").data("url") + ".js"
+    tag = $("#tags .active").data("type")
+    filterType = $("#filter .active").data("type")
+
+    req = $.ajax
+      url: url
+      method: "GET"
+      cache: false
+      dataType: "html"
+      data:
+        {t: tag, ft: filterType}
+      success: (data) -> $("#exploreStoriesContainer").html(data)
+
+  $(document).on("click", "#tags .btn, #filter .btn", filterStories)
 )
 
 # Edit story page

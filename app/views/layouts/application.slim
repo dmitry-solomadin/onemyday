@@ -19,6 +19,10 @@ html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb=
         div.container
           a.logo href="/"
 
+          ul.navigation.ib.exploreNav
+            li.tellNav
+              = link_to "Explore", explore_path, class: "navLink"
+
           div.navbarInner
             = form_tag search_stories_path, method: "GET" do
               input#navbarSearch.imLookingFor name="q" type="text" placeholder="one day of freelancer"
@@ -34,9 +38,6 @@ html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb=
                   = current_user.name
                   span.caret
                 ul#userDropdown.dropdown-menu
-                  li
-                    a href="#" Cool menu item
-                  li.divider
                   li
                     = link_to "Edit Profile", edit_current_user_path
                   li

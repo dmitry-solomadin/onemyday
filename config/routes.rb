@@ -12,6 +12,7 @@ Onemyday::Application.routes.draw do
   get '/search_stories', to: 'stories#search'
   post '/new_like', to:'stories#like'
   post '/unlike', to:'stories#unlike'
+  get '/explore', to: 'stories#explore'
 
   resources :comments
 

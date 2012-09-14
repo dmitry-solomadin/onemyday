@@ -262,6 +262,11 @@ ul.navigation {
   }
 }
 
+.exploreNav {
+  margin-left: 20px !important;
+  vertical-align: top;
+}
+
 .dropdown-toggle .caret {
   margin-top: 13px;
   margin-left: 3px;
@@ -348,6 +353,11 @@ ul.navigation {
 }
 
 .homeTags {
+  .btn {
+    font-size: 16px;
+    font-weight: 300;
+  }
+
   padding: 15px 10px;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -358,6 +368,10 @@ ul.navigation {
     vertical-align:top;
     margin-left: 25px;
     margin-top: 7px;
+  }
+
+  .sort {
+    margin-top: 12px;
   }
 
   .caption{

@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
 
-  before_filter :signed_in_user_filter, except: [:show, :search]
+  before_filter :signed_in_user_filter, except: [:show, :search, :explore]
   layout false, only: [:create, :destroy]
 
   def index
@@ -12,6 +12,18 @@ class StoriesController < ApplicationController
   def search
     @query = params[:q]
     @stories = Story.where("title like '%#@query%'")
+  end
+
+  def explore
+    filter_type = params[:ft].blank? ? StoriesHelper::EXPLORE_FILTER_RECENT : params[:ft].to_i
+
+    @stories = Story.top(nil, params[:t]) if filter_type == StoriesHelper::EXPLORE_FILTER_POPULAR
+    @stories = Story.recent(params[:t]) if filter_type == StoriesHelper::EXPLORE_FILTER_RECENT
+
+    respond_to do |format|
+      format.js { render layout: false }
+      format.html { render file: 'stories/explore' }
+    end
   end
 
   def new
