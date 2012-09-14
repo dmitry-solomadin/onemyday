@@ -9,9 +9,9 @@
         div.title = story.title
       div.social
         i.icon-eye-open
-        span = story.views.size
+        span = story.views.size.to_s
         i.icon-heart
-        span = story.likes.size
+        span = story.likes.size.to_s
         i.icon-comment
         span = story.comments.count
       div.date
