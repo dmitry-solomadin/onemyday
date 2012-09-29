@@ -14,6 +14,6 @@ div#showUserDiv
         - if is_current_user && @user.stories.unpublished.any?
           li#unpublishedTab
             a href="#{unfinished_stories_path(@user.id)}" data-remote="true"
-              span Unfinished (<span id='unpublishedCount'>#{@user.stories.unpublished.size}</span>)
+              span Drafts (<span id='unpublishedCount'>#{@user.stories.unpublished.size}</span>)
 div#showUserTabContent
   = render "/stories/list_stories", stories: @stories, own: is_current_user

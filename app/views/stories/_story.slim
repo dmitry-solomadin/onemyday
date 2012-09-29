@@ -21,12 +21,17 @@
       = link_to "Delete", story_path(story.id), method: "delete", confirm: "Are you sure?", class: "btn", remote: true
 - else
   div.smallStory.unpublished.relative id="unpublished#{story.id}" style="width: 300px;"
-    a href="#{story_path story}"
-      div.image style="height:300px; width: 300px;"
-        span No Image
+    - if story.story_photos.any?
+      - image_dims = story.story_photos.first.photo_dimensions[:thumb]
+      div.image
+        img src="#{story.story_photos.first.photo.url :thumb}" style="height:#{image_dims[:height]}px; width: #{image_dims[:width]}px;"
+    - else
+      a href="#{story_path story}"
+        div.image style="height:300px; width: 300px;"
+          span No Image
     div.text
       a href="#{story_path story}"
-        div.title #{story.title} (unfinished)
+        div.title #{story.title} (draft)
     div.imageHoverMenu.btn-group.hide
       = link_to "Edit", edit_story_path(story.id), class: "btn"
       = link_to "Delete", story_path(story.id), method: "delete", confirm: "Are you sure?", class: "btn", remote: true

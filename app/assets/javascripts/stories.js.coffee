@@ -156,7 +156,7 @@ class Story
 
   onPhotoUploadSuccess: (data) =>
     $("#story").show()
-    @.showPublish()
+    @showPublish()
     $("#photoDiv").html(data)
 
     dataValid = $("#photoDiv > #uploadedPhotoData").children().length > 0
@@ -183,7 +183,8 @@ class Story
 
   showPublish: ->
     $("#storyPublish").show()
-    $("#storyPublishButton").click(->
+
+    collectPostParams = ->
       postParams =
         "authenticity_token": $('meta[name="csrf-token"]').attr('content')
         "story[id]": $("#createdStoryId").val()
@@ -191,18 +192,28 @@ class Story
         "story[date]": $("#photoUploadStoryDate").val()
         "story[published]": "t"
 
-      $(".storyGroup").each((index) ->
+      $(".storyGroup").each (index) ->
         postParams["story[story_photos_attributes][#{index}][id]"] = $(this).data('id')
         postParams["story[story_photos_attributes][#{index}][caption]"] = $(this).find('.text').html()
         postParams["story[story_photos_attributes][#{index}][date_text]"] = $(this).find('.time').html()
         postParams["story[story_photos_attributes][#{index}][orientation]"] = $(this).data("orientation")
         postParams["story[story_photos_attributes][#{index}][photo_order]"] = index
         postParams["story[story_photos_attributes][#{index}][has_text]"] = if $(this).data("hideText") == "true" then false else true
-        console.log($(this).data("hideText") == "true")
-      )
 
-      App.util.post($(@).parents("form:first").attr("action"), postParams)
-    )
+      postParams
+
+    $("#storyPublishButton").click ->
+      postParams = collectPostParams()
+      postUrl = $(@).parents("form:first").attr("action")
+
+      App.util.post postUrl, postParams
+
+    $("#storyDraftButton").click ->
+      postParams = collectPostParams()
+      postParams["story[published]"] = "f"
+      postUrl = $(@).parents("form:first").attr("action")
+
+      App.util.post postUrl, postParams
 
   createGroup: (type, photoData) ->
     text = if photoData.data("text") and photoData.data("text") != "" then photoData.data("text") else "Tell the story of this photo. Click to edit."
@@ -219,8 +230,8 @@ class Story
     newGroup.find(".imagePlace").append(hoverMenu)
     hoverMenu.find(type.orientationToggleId).addClass("active")
 
-    for own groupName, groupProps of @.groupTypes
-      clickFunc = (groupProps) => => @.changeGroup(groupProps, photoData)
+    for own groupName, groupProps of @groupTypes
+      clickFunc = (groupProps) => => @changeGroup(groupProps, photoData)
       hoverMenu.find(groupProps.orientationToggleId).click(clickFunc(groupProps))
 
     hoverMenu.find(".moveUp").click(=> @moveUp newGroup)
@@ -330,7 +341,7 @@ class Story
   editTime: (timeDiv) ->
     $timeDiv = $(timeDiv)
     time = $.trim($timeDiv.html()).replace(/\s(am|pm)/, "")
-    ampm = @.extractAmPmSwitch $.trim($timeDiv.html())
+    ampm = @extractAmPmSwitch $.trim($timeDiv.html())
 
     $timeDiv.html(
       "<input class='timeEdit' value='#{time}'/>#{ampm}"
@@ -342,7 +353,7 @@ class Story
       if event and ($.contains(timeDiv, event.target) or $(event.target).hasClass("time"))
         return
 
-      $timeDiv.html($timeDiv.find(".timeEdit").val().replace(/_/, "") + @.extractAmPm($timeDiv.find(".timeEditAmPm")[0]))
+      $timeDiv.html($timeDiv.find(".timeEdit").val().replace(/_/, "") + @extractAmPm($timeDiv.find(".timeEditAmPm")[0]))
       $(document).off("click.documentEditTime")
       $timeDiv.on("click.editTime", => storyHelper.editTime(timeDiv))
     )
