@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120916181213) do
+ActiveRecord::Schema.define(:version => 20120918184533) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -67,8 +67,8 @@ ActiveRecord::Schema.define(:version => 20120916181213) do
   create_table "story_photos", :force => true do |t|
     t.integer  "photo_order"
     t.integer  "story_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20120916181213) do
     t.integer  "orientation_cd"
     t.string   "photo_dimensions"
     t.string   "time_taken"
+    t.boolean  "has_text",           :default => true
   end
 
   add_index "story_photos", ["story_id"], :name => "index_story_photos_on_story_id"

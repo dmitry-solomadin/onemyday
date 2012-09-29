@@ -1,12 +1,12 @@
 class StoryPhoto < ActiveRecord::Base
-  attr_accessible :photo_order, :caption, :date, :date_text, :photo, :orientation, :photo_dimensions, :time_taken
+  attr_accessible :photo_order, :caption, :date, :date_text, :photo, :orientation, :photo_dimensions, :time_taken, :has_text
 
   as_enum :orientation, left: 0, center: 1, right: 2
 
   belongs_to :story
 
   @paperclip_opts = {
-      styles: {center: "x550", side: "380x550>", thumb: "300x"}
+      styles: {center: "x550", side: "420x550>", thumb: "300x"}
   }
   @paperclip_opts.merge! PAPERCLIP_STORAGE_OPTS
 

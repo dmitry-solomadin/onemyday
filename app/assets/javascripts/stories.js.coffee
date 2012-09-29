@@ -197,6 +197,8 @@ class Story
         postParams["story[story_photos_attributes][#{index}][date_text]"] = $(this).find('.time').html()
         postParams["story[story_photos_attributes][#{index}][orientation]"] = $(this).data("orientation")
         postParams["story[story_photos_attributes][#{index}][photo_order]"] = index
+        postParams["story[story_photos_attributes][#{index}][has_text]"] = if $(this).data("hideText") == "true" then false else true
+        console.log($(this).data("hideText") == "true")
       )
 
       App.util.post($(@).parents("form:first").attr("action"), postParams)
@@ -224,6 +226,8 @@ class Story
     hoverMenu.find(".moveUp").click(=> @moveUp newGroup)
     hoverMenu.find(".moveDown").click(=> @moveDown newGroup)
 
+    hoverMenu.find(".hasText").click(=> @hideTextClick newGroup)
+
     removePhotoLink = hoverMenu.find(".removePhoto")
     removePhotoLink.attr("href", removePhotoLink.data("href").replace("-1", photoData[0].id))
 
@@ -236,6 +240,8 @@ class Story
     newGroup.find(".textPlace > .time").on("click.editTime",-> storyHelper.editTime(@)).html(time)
     newGroup.find(".textPlace > .text").on("click.editText",-> storyHelper.editCaption(@)).html(text)
 
+    if photoData.data("has-text") == true then @showText newGroup else @hideText newGroup
+
     newGroup
 
   changeGroup: (type, photoData) ->
@@ -244,6 +250,9 @@ class Story
       return
 
     group = @createGroup(type, photoData)
+
+    if oldGroup.data("hideText") == "true" then @hideText group else @showText group
+
     group.find(".textPlace .text").html(oldGroup.find(".textPlace .text").html())
     group.find(".textPlace .time").html(oldGroup.find(".textPlace .time").html())
 
@@ -277,8 +286,10 @@ class Story
 
       group.find(".span0").css(
         "height": 40
-        "margin-left": dottedMarginLeft + 20
+        "margin-left": dottedMarginLeft - 20
       )
+
+      group.find(".text").css(width: group.find(".imagePlace img").width())
     else
       group.find(".span0").css("height", group.find(".imagePlace img").height() + 40)
 
@@ -353,6 +364,27 @@ class Story
   moveDown: (group) ->
     group.next().after(group)
     @refreshFlowControl()
+
+  hideTextClick: (group) ->
+    if group.find(".hasText").hasClass("active") then @hideText(group) else @showText(group)
+
+  hideText: (group) ->
+    group.data("hideText", "true")
+    group.css(float: 'left', clear: 'none')
+    group.find(".textPlace").hide()
+    group.find(".span0").css(border: "none", marginLeft: "10px", marginRight: "10px")
+    group.find(".rightOrientation").hide()
+    group.find(".leftOrientation").html("Side")
+    group.find(".hasText").removeClass("active")
+
+  showText: (group) ->
+    group.data("hideText", "false")
+    group.css(float: 'none', clear: 'both')
+    group.find(".textPlace").show()
+    group.find(".span0").css(border: "1px dotted gray", marginLeft: "20px", marginRight: "20px")
+    group.find(".rightOrientation").show()
+    group.find(".leftOrientation").html("Left")
+    group.find(".hasText").addClass("active")
 
   refreshFlowControl: ->
     $(".moveUp, .moveDown").show()

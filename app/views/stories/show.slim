@@ -11,32 +11,32 @@ div#story
     - side_image_dims = story_photo.photo_dimensions[:side]
     - center_image_dims = story_photo.photo_dimensions[:center]
     - if story_photo.left?
-      div#leftRightGroup.row.storyGroup
-        div.imagePlace.span6
+      div#leftRightGroup class="row storyGroup #{'noText' unless story_photo.has_text}"
+        div.imagePlace.span55
           img src="#{story_photo.photo.url(:side)}" style="height: #{side_image_dims[:height]}px"
-        div.span0
-        div.textPlace.span5
+        div class="span0 #{'span0_hidden' unless story_photo.has_text}"
+        div class="textPlace span55 #{'hide' unless story_photo.has_text}"
           div.time
             = story_photo.date_text
           div.text
             = story_photo.caption
     - if story_photo.right?
-      div#rightLeftGroup.row.storyGroup
-        div.textPlace.span6
+      div#rightLeftGroup class="row storyGroup #{'noText' unless story_photo.has_text}"
+        div class="textPlace span55 #{'hide' unless story_photo.has_text}"
           div.time
             = story_photo.date_text
           div.text
             = story_photo.caption
-        div.span0
-        div.imagePlace.span5
+        div class="span0 #{'span0_hidden' unless story_photo.has_text}"
+        div.imagePlace.span55
           img src="#{story_photo.photo.url(:side)}" style="height: #{side_image_dims[:height]}px"
     - if story_photo.center?
-      div#centerGroup.row.storyGroup data-orientation="center"
+      div#centerGroup class="row storyGroup #{'noText' unless story_photo.has_text}" data-orientation="center"
         div.row
           div.imagePlace.span12
             img src="#{story_photo.photo.url(:center)}" style="width: #{center_image_dims[:width]}px"
         div.row.mt10
-          div.textPlace.span12
+          div class="textPlace span12 #{'hide' unless story_photo.has_text}"
             div.time
               = story_photo.date_text
             div.text

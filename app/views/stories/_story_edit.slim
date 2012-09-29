@@ -22,17 +22,17 @@ div#story class="edit #{"hide" unless story}"
   / Story groups placeholder and misc.
   / This part of template is hidden and used only in js
   div#leftRightGroup.row.hide
-    div.imagePlace.span6
+    div.imagePlace.span55
     div.span0
-    div.textPlace.span5
+    div.textPlace.span55
       div.time
       div.text
   div#rightLeftGroup.row.hide
-    div.textPlace.span6
+    div.textPlace.span55
       div.time
       div.text
     div.span0
-    div.imagePlace.span5
+    div.imagePlace.span55
   div#centerGroup.row.hide
     div.row
       div.imagePlace.span12
@@ -47,6 +47,8 @@ div#story class="edit #{"hide" unless story}"
       button.leftOrientation.btn Left
       button.centerOrientation.btn Center
       button.rightOrientation.btn Right
+    span.textControl.btn-group
+      button.hasText.active.btn Text
     span.flowControl.btn-group
       button.moveUp.btn &uarr;
       button.moveDown.btn &darr;
@@ -57,5 +59,6 @@ div#storyPublish class="#{"hide" unless story}"
   - if story
     - @story_photos = story.story_photos
     = render file: "stories/uploaded_photos"
+  div style="clear:both"
   = form_tag publish_path do
     input#storyPublishButton.btn.btn-large.btn-foxtrot.f18 type="submit" value="#{story ? 'Save' : 'Publish'}"

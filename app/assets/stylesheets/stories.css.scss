@@ -62,6 +62,25 @@
   border: 1px dotted gray;
 }
 
+#story .span0_hidden {
+  margin-left: 10px;
+  margin-right: 10px;
+  border: none;
+}
+
+#story .span55 {
+  width:420px;
+}
+
+.storyGroup.right .imagePlace {
+  margin-left: 0 !important;
+}
+
+.noText {
+  float:left;
+  clear: both;
+}
+
 .storyHeaderDiv {
   margin-bottom: 25px;
   text-align: center;
@@ -120,6 +139,10 @@
     top: -13px;
     z-index: 1;
   }
+}
+
+.row {
+  clear: both;
 }
 
 #story {
@@ -195,8 +218,12 @@
   top: 10px;
   left: 10px;
 
+  .textControl {
+    left:10px;
+  }
+
   .flowControl {
-    left: 10px;
+    left: 20px;
 
     button {
       font-size: 16px;
@@ -205,7 +232,7 @@
   }
 
   .remove {
-    left: 15px;
+    left: 25px;
     margin-left: 10px;
 
     a {
@@ -399,3 +426,4 @@
     font-style: italic;
   }
 }
+
