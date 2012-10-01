@@ -1,3 +1,5 @@
+= render 'shared/error_messages'
+
 / Upload photo form
 div#photoUploadDiv.row
   div.span12
@@ -64,7 +66,5 @@ div#storyPublish class="#{"hide" unless story}"
     - @story_photos = story.story_photos
     = render file: "stories/uploaded_photos"
   div style="clear:both"
-  = form_tag publish_path do
-    input#storyPublishButton.btn.fl.btn-large.btn-foxtrot.f18 type="submit" value="#{story ? (story.published? ? 'Save' : 'Publish') : 'Publish'}"
-  = form_tag publish_path do
-    input#storyDraftButton.btn.fl.ml10.btn-large.btn-foxtrot.f18 type="submit" value="#{story ? (story.published? ? 'Move to Drafts' : 'Save') : 'Save as Draft'}"
+  input#storyPublishButton.btn.fl.btn-large.btn-foxtrot.f18 type="button" data-publish-path="#{publish_path}" value="#{story ? (story.published? ? 'Save' : 'Publish') : 'Publish'}"
+  input#storyDraftButton.btn.fl.ml10.btn-large.btn-foxtrot.f18 type="button" data-publish-path="#{publish_path}"  value="#{story ? (story.published? ? 'Move to Drafts' : 'Save') : 'Save as Draft'}"

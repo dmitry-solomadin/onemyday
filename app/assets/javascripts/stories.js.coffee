@@ -51,6 +51,7 @@ $(->
 
   new App.PhotoUploader
     onSuccess: storyHelper.onPhotoUploadSuccess
+    validate: storyHelper.validate
     button: $("#photoUploadButton")
     styledButton: $("#photoUploadStyledButton")
 )
@@ -85,6 +86,7 @@ $(->
 
   new App.PhotoUploader
     onSuccess: storyHelper.onPhotoUploadSuccess
+    validate: storyHelper.validate
     button: $("#photoUploadButton")
     styledButton: $("#photoUploadStyledButton")
 
@@ -101,6 +103,20 @@ class Story
       {name: "right", blockId: "#rightLeftGroup", orientationToggleId: ".rightOrientation"}
     center:
       {name: "center", blockId: "#centerGroup", orientationToggleId: ".centerOrientation"}
+
+  validate: (callback) =>
+    App.formErrors.clear()
+    valid = true
+
+    if $("#photoUploadStoryTitle").val().length == 0
+      valid = false
+      App.formErrors.add "photoUploadStoryTitle", "Please, enter story title."
+
+    if $("#photoUploadStoryDate").val().length == 0
+      valid = false
+      App.formErrors.add "photoUploadStoryDate","Please, enter story date."
+
+    callback() if valid
 
   onPhotoUploadSuccess: (data) =>
     $("#shouldCreateStory").remove();
@@ -155,17 +171,19 @@ class Story
       postParams
 
     $("#storyPublishButton").click ->
-      postParams = collectPostParams()
-      postUrl = $(@).parents("form:first").attr("action")
+      storyHelper.validate =>
+        postParams = collectPostParams()
+        postUrl = $(@).data("publish-path")
 
-      App.util.post postUrl, postParams
+        App.util.post postUrl, postParams
 
     $("#storyDraftButton").click ->
-      postParams = collectPostParams()
-      postParams["story[published]"] = "f"
-      postUrl = $(@).parents("form:first").attr("action")
+      storyHelper.validate =>
+        postParams = collectPostParams()
+        postParams["story[published]"] = "f"
+        postUrl = $(@).data("publish-path")
 
-      App.util.post postUrl, postParams
+        App.util.post postUrl, postParams
 
   createGroup: (type, photoData) ->
     text = if photoData.data("text") and photoData.data("text") != "" then photoData.data("text") else "Tell the story of this photo. Click to edit."

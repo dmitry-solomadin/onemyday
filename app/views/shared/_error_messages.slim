@@ -1,9 +1,8 @@
 div#form_errors_div
   - if defined?(object) && object && object.errors.any?
-    div#error_explanation
-      div.alert.alert-error
-        ' Please fix following errors:
-        ul
-          - object.errors.each do |key, msg|
-            li.errorLi data-field-id="#{key}"
-              = msg
+    div.alert.alert-error
+      ' Please fix following errors:
+      ul
+        - object.errors.each do |key, msg|
+          li.errorLi data-field-id="#{key}"
+            = msg

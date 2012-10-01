@@ -8,7 +8,9 @@ App.PhotoUploader = class PhotoUploader
     @settings.progressBar = @settings.form.find(".progress")
     @settings.errors = @settings.form.find(".uploadError")
     @settings.button.change(=> @doUpload())
-    @settings.styledButton.click(=> @settings.button.click()) if @settings.styledButton[0]?
+    if @settings.styledButton[0]?
+      @settings.styledButton.click =>
+        if @settings.validate? then @settings.validate(=> @settings.button.click()) else @settings.button.click()
 
   doUpload: ->
     xhr = new XMLHttpRequest()
