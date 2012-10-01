@@ -20,6 +20,9 @@ App.PhotoUploader = class PhotoUploader
     @settings.progressBar.hide()
 
     files = @settings.button[0].files
+
+    return if files.length == 0
+
     error = false
     $(files).each(->
       fileSize = (Math.round(this.size * 100 / (1024 * 1024)) / 100).toString()
