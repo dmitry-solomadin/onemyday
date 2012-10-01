@@ -18,4 +18,5 @@
 //= require general
 //= require jquery.inputmask
 //= require jquery.masonry
+//= require select2
 //= require_tree .

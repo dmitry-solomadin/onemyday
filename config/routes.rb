@@ -14,6 +14,8 @@ Onemyday::Application.routes.draw do
   post '/unlike', to:'stories#unlike'
   get '/explore', to: 'stories#explore'
 
+  get '/tags', to: 'tags#index'
+
   resources :comments
 
   resources :story_photos, only: [:destroy]

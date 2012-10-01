@@ -43,6 +43,32 @@ $(->
       xfbml: true  # parse XFBML
 )
 
+# New or Edit page
+$(->
+  return if not App.util.isPage("stories", "new") and not App.util.isPage("stories", "edit")
+
+
+  $("#photoUploadTags").select2
+    multiple: true
+    initSelection : (element, callback) ->
+      data = [];
+      $(element.val().split(",")).each ->
+        data.push({id: @, text: @});
+      callback(data)
+    tokenSeparators:[',', ' ']
+    ajax:
+      url: "/tags"
+      dataType: 'json'
+      data: (term, page) ->
+        q: term
+      results: (data, page) ->
+        res = {}
+        res.results = []
+        $(data).each(-> res.results.push({id:@, text:@}))
+
+        res
+)
+
 # New story page
 $(->
   return if not App.util.isPage "stories", "new"
