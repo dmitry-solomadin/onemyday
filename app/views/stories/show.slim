@@ -48,6 +48,12 @@ div.storyEnd
   div.header.lobster THE END
   div.subHeader
 
+- if @story.tags.any?
+  div.storyTags
+    ' Tags:
+    - @story.tags.each do |tag|
+      a.mr5 href="#{explore_path}?t=#{tag}" #{tag}
+
 div.bottomShareMenu
   - if is_current_user @story.user
     a.btn.mr10 href="#{edit_story_path(@story.id)}" Edit story
