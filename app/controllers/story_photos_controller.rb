@@ -5,7 +5,9 @@ class StoryPhotosController < ApplicationController
   def destroy
     @story_photo = StoryPhoto.find(params[:id])
 
-    raise AccessDenied unless is_current_user @story_photo.story.user
+    Story.unscoped do
+      raise AccessDenied unless is_current_user @story_photo.story.user
+    end
 
     @story_photo.destroy
 
