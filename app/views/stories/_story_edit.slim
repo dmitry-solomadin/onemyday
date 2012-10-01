@@ -1,21 +1,25 @@
 / Upload photo form
-div#photoUploadDiv class="row #{"hide" unless story}"
+div#photoUploadDiv.row
   div.span12
-    input#photoUploadStoryTitle type="text" value="#{story.title if story}"
-    span.photoUploadAt @
-    input#photoUploadStoryDate type="text" value="#{story.date_text if story}"
-    - unless story
-      h2 Now upload some photos
     = form_tag upload_story_photo_path, id: "photoUploadForm" do
-      input#createdStoryId name="story_id" type="hidden" value="#{story.id if story}"
+      input#photoUploadStoryTitle type="text" name="story[title]" value="#{story.title if story}" placeholder="Story Title"
+      span.photoUploadAt @
+      input#photoUploadStoryDate type="text" name="story[date]" value="#{story.date_text if story}" placeholder="Story Date"
+      br
+      input#photoUploadTags type="text" name="story[tag_list]" value="#{story.tag_list if story}" placeholder="Tag it"
+      span.ml10 try "work" or "weekend"
+      - unless story
+        input#shouldCreateStory name="create_story" type="hidden" value="true"
+      input#storyId name="story_id" type="hidden" value="#{story.id if story}"
       div#photoUploadError.uploadError.alert.alert-error.hide
       div#customProgressBar.progress.progress-striped.active
         div.bar style="width: 0"
       input#photoUploadButton.hide type="file" name="file_bean[]" multiple="multiple"
-      input#photoUploadStyledButton.btn.btn-large.btn-foxtrot.f18 type='button' class='' value='Add photos'
+      div
+        input#photoUploadStyledButton.btn.btn-large.btn-foxtrot.f18 type='button' class='' value='Add photos'
 
 / Story
-div#story class="edit #{"hide" unless story}"
+div#story.edit
   / Uploaded photos placeholder
   div#photoDiv
 

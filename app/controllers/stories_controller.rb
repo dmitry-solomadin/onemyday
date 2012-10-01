@@ -17,8 +17,11 @@ class StoriesController < ApplicationController
   def explore
     filter_type = params[:ft].blank? ? StoriesHelper::EXPLORE_FILTER_RECENT : params[:ft].to_i
 
-    @stories = Story.top(nil, params[:t]) if filter_type == StoriesHelper::EXPLORE_FILTER_POPULAR
-    @stories = Story.recent(params[:t]) if filter_type == StoriesHelper::EXPLORE_FILTER_RECENT
+    if filter_type == StoriesHelper::EXPLORE_FILTER_POPULAR
+      @stories = Story.top(nil, params[:t])
+    elsif filter_type == StoriesHelper::EXPLORE_FILTER_RECENT
+      @stories = Story.recent(params[:t])
+    end
 
     respond_to do |format|
       format.js { render layout: false }
@@ -46,14 +49,16 @@ class StoriesController < ApplicationController
   end
 
   def upload_photo
-    # On this step we should already have created story, so here
-    # we would just add StoryImage(-s) to this story and display it(them)
-    # on the view.
-    @story = @current_user.stories.unscoped.find(params[:story_id])
+    if params[:create_story]
+      @story = @current_user.stories.build(params[:story])
+    else
+      @story = @current_user.stories.unscoped.find(params[:story_id])
+    end
+
     params[:file_bean].each do |file_bean|
       @story.story_photos.build photo: file_bean
     end
-    @story.save
+    @story.save!
 
     @story_photos = @story.story_photos
 

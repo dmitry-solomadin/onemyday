@@ -1,6 +1,7 @@
 div#uploadedPhotoData
+  input#createdStoryId type="hidden" value="#{@story.id}"
   - @story_photos.each do |story_photo|
-    input{ type="hidden" id="#{story_photo.id}"
+    input{ type="hidden" id="#{story_photo.id}" class="photo"
     data-text="#{story_photo.caption}"
     data-orientation="#{story_photo.orientation}"
     data-medium-image="#{story_photo.photo.url(:side)}"

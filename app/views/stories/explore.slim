@@ -4,9 +4,9 @@ div#advSearch.homeTags data-url="#{explore_path}"
     h2.caption &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tags
 
   div#tags.ib.buttons.btn-group data-toggle="buttons-radio"
-    a class="btn #{'active' if params[:t].present? && params[:t].to_i == Story.work}" data-type="#{Story.work}" Work
-    a class="btn #{'active' if params[:t].present? && params[:t].to_i == Story.weekend}" data-type="#{Story.weekend}" Weekend
-    a class="btn #{'active' if params[:t].present? && params[:t].to_i == Story.regular}" data-type="#{Story.regular}" Just a day
+    a class="btn #{'active' if params[:t].present? && params[:t] == "work"}" data-type="work" Work
+    a class="btn #{'active' if params[:t].present? && params[:t] == "regular"}" data-type="regular" Just a day
+    a class="btn #{'active' if params[:t].present? && params[:t] == "weekend"}" data-type="weekend" Weekend
 
   div#filter.ib.fr.buttons.btn-group data-toggle="buttons-radio"
     a{class="btn #{'active' if params[:ft].to_i == StoriesHelper::EXPLORE_FILTER_POPULAR}"

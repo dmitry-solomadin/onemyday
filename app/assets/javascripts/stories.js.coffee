@@ -47,64 +47,12 @@ $(->
 $(->
   return if not App.util.isPage "stories", "new"
 
-  $("#date").datepicker(
-    dateFormat: "dd-mm-yy"
-  )
+  $("#photoUploadStoryDate").datepicker dateFormat: "dd-mm-yy"
 
-  $("#photoUploadStoryDate").datepicker(
-    dateFormat: "dd-mm-yy"
-  )
-
-  $(".share").click(->
-    all = $(".shareDiv > .share")
-    visible = all.filter(":visible")
-
-    all.removeClass("firstShare").eq(0).addClass("firstShare")
-
-    storyTypeSelected = visible.length == 1
-
-    if storyTypeSelected
-      $("#type").val("")
-      all.css("position", "static")
-        .addClass("btn-foxtrot")
-        .fadeIn()
-      stepOne()
-    else
-      $("#type").val($(@).data("type"))
-      top = $(@).position().top
-      left = $(@).position().left
-      all.not(@).fadeOut('fast', =>
-        $(@).css(
-          position: "absolute"
-          top: top
-          left: left
-        ).addClass("firstShare")
-          .animate(left: $(".container").offset().left, 'fast', => $(@).css(position: "static"))
-          .removeClass("btn-foxtrot")
-      )
-      stepTwo()
-  )
-
-  stepOne = ->
-    $("#newStory .stepTwo").fadeOut()
-
-  stepTwo = ->
-    $("#newStory .stepTwo").fadeIn()
-
-
-  App.Stories.stepPhoto = (createdStoryId)->
-    $("#createdStoryId").val(createdStoryId)
-    $(".overallInfo").fadeOut("fast", ->
-      $("#photoUploadStoryTitle").val($("#title").val())
-      $("#photoUploadStoryDate").val($("#date").val())
-
-      $("#photoUploadDiv").show()
-
-      new App.PhotoUploader
-        onSuccess: storyHelper.onPhotoUploadSuccess
-        button: $("#photoUploadButton")
-        styledButton: $("#photoUploadStyledButton")
-    )
+  new App.PhotoUploader
+    onSuccess: storyHelper.onPhotoUploadSuccess
+    button: $("#photoUploadButton")
+    styledButton: $("#photoUploadStyledButton")
 )
 
 # Explore stories page
@@ -155,11 +103,14 @@ class Story
       {name: "center", blockId: "#centerGroup", orientationToggleId: ".centerOrientation"}
 
   onPhotoUploadSuccess: (data) =>
+    $("#shouldCreateStory").remove();
+    $("#storyId").val($("#createdStoryId").val())
+
     $("#story").show()
     @showPublish()
     $("#photoDiv").html(data)
 
-    dataValid = $("#photoDiv > #uploadedPhotoData").children().length > 0
+    dataValid = $("#photoDiv > #uploadedPhotoData").find(".photo").length > 0
     if dataValid
       $("#customProgressBar").hide()
 
@@ -190,6 +141,7 @@ class Story
         "story[id]": $("#createdStoryId").val()
         "story[title]": $("#photoUploadStoryTitle").val()
         "story[date]": $("#photoUploadStoryDate").val()
+        "story[tag_list]": $("#photoUploadTags").val()
         "story[published]": "t"
 
       $(".storyGroup").each (index) ->
@@ -314,13 +266,13 @@ class Story
   grabLargerImage: (photoData) ->
     "<img src='#{photoData.data("large-image")}' style='height:#{photoData.data("large-height")}px; width:#{photoData.data("large-width")}px'>"
 
-  grabImageData: (index) -> $("#uploadedPhotoData > input").eq(index)
+  grabImageData: (index) -> $("#uploadedPhotoData > .photo").eq(index)
 
-  eachPhoto: (callback) -> $("#uploadedPhotoData > input").each (index) -> callback index
+  eachPhoto: (callback) -> $("#uploadedPhotoData > .photo").each (index) -> callback index
 
   eachGroup: (callback) -> $(".storyGroup").each (index) -> callback(@, index)
 
-  photoCount: -> $("#uploadedPhotoData > input").length
+  photoCount: -> $("#uploadedPhotoData > .photo").length
 
   editCaption: (textDiv) ->
     $textDiv = $(textDiv)

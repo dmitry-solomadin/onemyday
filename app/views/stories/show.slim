@@ -1,5 +1,5 @@
 - provide(:title, @story.title)
-- provide(:meta_tags, facebook_like_meta(@story.title, story_url(@story.id), @story.story_photos.first.photo.url(:side)))
+- provide(:meta_tags, facebook_like_meta(@story.title, story_url(@story.id), @story.story_photos.first.photo.url(:side))) if @story.story_photos.any?
 
 div.storyHeaderDiv
   div.storyHeader.lobster #{@story.title}

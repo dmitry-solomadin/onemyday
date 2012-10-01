@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120918184533) do
+ActiveRecord::Schema.define(:version => 20121001105843) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -56,7 +56,6 @@ ActiveRecord::Schema.define(:version => 20120918184533) do
     t.string   "type"
     t.datetime "date"
     t.integer  "user_id"
-    t.integer  "type_cd"
     t.boolean  "published",   :default => false
     t.integer  "likes_count", :default => 0
     t.integer  "views_count", :default => 0
@@ -82,6 +81,23 @@ ActiveRecord::Schema.define(:version => 20120918184533) do
   end
 
   add_index "story_photos", ["story_id"], :name => "index_story_photos_on_story_id"
+
+  create_table "taggings", :force => true do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "context",       :limit => 128
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
+
+  create_table "tags", :force => true do |t|
+    t.string "name"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name"
