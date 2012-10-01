@@ -4,9 +4,10 @@ div#advSearch.homeTags data-url="#{explore_path}"
     h2.caption &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tags
 
   div#tags.ib.buttons.btn-group data-toggle="buttons-radio"
-    a class="btn #{'active' if params[:t].present? && params[:t] == "work"}" data-type="work" Work
-    a class="btn #{'active' if params[:t].present? && params[:t] == "regular"}" data-type="regular" Just a day
-    a class="btn #{'active' if params[:t].present? && params[:t] == "weekend"}" data-type="weekend" Weekend
+    a class="btn #{'active' unless params[:t].present?}" href="#{explore_path}" All
+    - get_popular_tags.each do |tag|
+      a{class="btn #{'active' if params[:t].present? && params[:t] == tag.name}"
+      href="#{explore_path}?t=#{tag.name}" data-type="#{tag.name}"} #{tag.name.capitalize}
 
   div#filter.ib.fr.buttons.btn-group data-toggle="buttons-radio"
     a{class="btn #{'active' if params[:ft].to_i == StoriesHelper::EXPLORE_FILTER_POPULAR}"
