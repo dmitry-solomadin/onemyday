@@ -1,4 +1,5 @@
-div.comment class="#{defined?(clazz) ? clazz : ""}"
+div.comment class="#{defined?(clazz) ? clazz : ""}" id="comment#{comment.id}" data-comment-id="#{comment.id}"
+  input.edit-comment-action type="hidden" value="#{comment_path comment}"
   div.commentHeader
     = image_tag comment.user.avatar.url :thumb
     a.author href="#" #{comment.user.name}
@@ -6,5 +7,9 @@ div.comment class="#{defined?(clazz) ? clazz : ""}"
   p.text
     = comment.text
   div.controls
-    a href="#" reply
-    a href="#" remove
+    - if current_user
+      a href="#" reply
+    - if comment_editable? comment
+      a href="#" onclick="App.comments.edit(this); return false;" edit
+    - if comment_deletable? comment
+      a href="#" remove

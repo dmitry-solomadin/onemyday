@@ -290,11 +290,15 @@
   }
 }
 
-#storyComments {
+#commentsContainer {
   background: #fcfcfc;
   border: 1px solid #e1e1e1;
   margin-top: 20px;
   box-shadow: #b2b2b2 1px 1px 3px;
+
+  form {
+    margin: 0;
+  }
 
   .addWrapper {
     background-color: #EEE;
@@ -321,7 +325,7 @@
   }
 
   .submit {
-    float: right;
+    margin-left: 60px;
   }
 
   .comment {

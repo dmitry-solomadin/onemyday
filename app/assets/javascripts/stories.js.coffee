@@ -17,13 +17,6 @@ $(->
     storyHelper.initializeGroup $(@)
   )
 
-  $("#addCommentTextarea").keyup(->
-    if $.trim($(@).val()).length == 0
-      $("#addCommentSubmit").attr("disabled", "disabled")
-    else
-      $("#addCommentSubmit").removeAttr("disabled")
-  )
-
   # Initialize twitter button.
   if !$("#twitter-wjs")[0]
     js = $("<script id='twitter-wjs' src='//platform.twitter.com/widgets.js'></script>")
@@ -46,7 +39,6 @@ $(->
 # New or Edit page
 $(->
   return if not App.util.isPage("stories", "new") and not App.util.isPage("stories", "edit")
-
 
   $("#photoUploadTags").select2
     multiple: true

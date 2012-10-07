@@ -1,12 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  def signed_in_user_filter
-    redirect_to root_url, notice: "Please sign in." unless signed_in?
-  end
+  include ApplicationHelper
 
-  def is_current_user user
-    signed_in? && user == current_user
+  def signed_in_user_filter
+    redirect_to root_url, notice: "Please sign in." unless current_user
   end
 
   def get_title(title)
@@ -17,16 +15,6 @@ class ApplicationController < ActionController::Base
     !meta_tags.blank? ? meta_tags : ""
   end
 
-  private
-
-  def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
-  end
-
-  def signed_in?
-    !current_user.nil?
-  end
-
-  helper_method [:current_user, :is_current_user, :get_title, :meta_tags]
+  helper_method [:get_title, :meta_tags]
 
 end

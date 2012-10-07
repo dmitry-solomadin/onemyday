@@ -75,16 +75,17 @@ div style='clear:both;'
     '&nbsp;likes this
 
 div style='clear:both;'
-- if current_user
-  = form_for Comment.new, remote:true, html:{id:"storyComments"} do |f|
-    input type="hidden" name="story_id" value="#{@story.id}"
-    div#commentsContainer
-      - @story.comments.each do |comment|
-        = render "/comments/comment", comment: comment, clazz: cycle("odd", "even")
+
+div#commentsContainer
+  - @story.comments.each do |comment|
+    = render "/comments/comment", comment: comment, clazz: cycle("odd", "even")
+  - if current_user
+    = form_for Comment.new, remote:true, html:{id:"addCommentForm"} do |f|
+      input type="hidden" name="story_id" value="#{@story.id}"
       div.addWrapper
         div.add
           = image_tag current_user.avatar.url :small
           div.addTextWrapper
             = f.text_area :text, placeholder: "Add a comment...", class: "addText", id: "addCommentTextarea"
-          = f.submit "Send", class: "btn submit", disabled: "disabled", id: "addCommentSubmit"
+          = f.submit "Send", class: "btn submit fl", disabled: "disabled", id: "addCommentSubmit"
           br clear="both"

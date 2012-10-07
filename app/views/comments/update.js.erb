@@ -1,0 +1,8 @@
+var anyErrors = <%= @comment.errors.any? %>;
+if (!anyErrors) {
+    var comment = "<%= escape_javascript(render 'comment', comment: @comment) %>";
+
+    $("#comment<%= @comment.id %>").replaceWith(comment);
+}
+
+App.comments.revertEdit();

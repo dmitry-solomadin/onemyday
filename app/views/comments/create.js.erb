@@ -1,4 +1,4 @@
-anyErrors = <%= @comment.errors.any? %>;
+var anyErrors = <%= @comment.errors.any? %>;
 if (!anyErrors) {
     var comment = "<%= escape_javascript(render 'comment', comment: @comment) %>";
     if ($("#commentsContainer .comment").length == 0) {

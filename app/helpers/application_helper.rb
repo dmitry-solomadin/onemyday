@@ -11,4 +11,12 @@ module ApplicationHelper
     ].join("\n").html_safe
   end
 
+  def current_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+
+  def is_current_user user
+    current_user && user == current_user
+  end
+
 end
