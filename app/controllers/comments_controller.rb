@@ -2,9 +2,9 @@ class CommentsController < ApplicationController
 
   include CommentsHelper
 
-  before_filter :signed_in_user_filter, only: [:create, :update]
+  before_filter :signed_in_user_filter
 
-  layout false, only: [:create, :update]
+  layout false
 
   def create
     story = Story.find(params[:story_id])
@@ -17,12 +17,20 @@ class CommentsController < ApplicationController
   end
 
   def update
-    story = Story.find(params[:story_id])
-    @comment = story.comments.find(params[:comment][:id])
+    @comment = Comment.find(params[:comment][:id])
 
     if comment_editable? @comment
       @comment.text = params[:comment][:text]
       @comment.save!
+      respond_to { |t| t.js }
+    end
+  end
+
+  def destroy
+    @comment = Comment.find(params[:id])
+
+    if comment_deletable? @comment
+      @comment.destroy
       respond_to { |t| t.js }
     end
   end

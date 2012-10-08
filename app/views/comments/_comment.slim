@@ -12,4 +12,4 @@ div.comment class="#{defined?(clazz) ? clazz : ""}" id="comment#{comment.id}" da
     - if comment_editable? comment
       a href="#" onclick="App.comments.edit(this); return false;" edit
     - if comment_deletable? comment
-      a href="#" remove
+      a data-remote="true" href="#{comment_path comment}" data-method="DELETE" remove
