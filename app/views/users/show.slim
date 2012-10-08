@@ -5,6 +5,12 @@ div#showUserDiv
       = image_tag @user.avatar.url(:small), width: '50', height: '50', class: 'avatar'
       div.userinfo
         div.username = @user.name
+      - if @user.has_facebook?
+        a href="#{@user.facebook.get_object("me")["link"]}"
+          img.ml10.social-ntwk src="/assets/facebook-auth.png" width="24"
+      - if @user.has_twitter?
+        a href="http://twitter.com/#{@user.twitter.user.screen_name}"
+          img.ml5.social-ntwk src="/assets/twitter_auth.png" width="24"
     div.tabsContainer
       ul#userTabs.tabs
         li#ownTab.selected
