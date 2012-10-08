@@ -1,7 +1,6 @@
 class StoriesController < ApplicationController
 
   before_filter :signed_in_user_filter, except: [:show, :search, :explore]
-  layout false, only: [:create, :destroy]
 
   def index
     @stories = Story.all
@@ -18,13 +17,13 @@ class StoriesController < ApplicationController
     filter_type = params[:ft].blank? ? StoriesHelper::EXPLORE_FILTER_RECENT : params[:ft].to_i
 
     if filter_type == StoriesHelper::EXPLORE_FILTER_POPULAR
-      @stories = Story.top(nil, params[:t])
+      @stories = Story.top(nil, params[:t]).paginate(page: params[:page])
     elsif filter_type == StoriesHelper::EXPLORE_FILTER_RECENT
-      @stories = Story.recent(params[:t])
+      @stories = Story.recent(params[:t]).paginate(page: params[:page])
     end
 
     respond_to do |format|
-      format.js { render layout: false }
+      format.js
       format.html { render file: 'stories/explore' }
     end
   end

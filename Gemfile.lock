@@ -38,6 +38,8 @@ GEM
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
     bootstrap-sass (2.0.4.0)
+    bootstrap-will_paginate (0.0.5)
+      will_paginate
     builder (3.0.0)
     cocaine (0.2.1)
     coffee-rails (3.2.2)
@@ -182,6 +184,7 @@ GEM
       execjs (>= 0.3.0)
       multi_json (~> 1.3)
     uuidtools (2.1.3)
+    will_paginate (3.0.3)
 
 PLATFORMS
   ruby
@@ -190,6 +193,7 @@ DEPENDENCIES
   acts-as-taggable-on
   aws-sdk (~> 1.3.4)
   bootstrap-sass
+  bootstrap-will_paginate
   coffee-rails (~> 3.2.1)
   faker
   heroku
@@ -206,3 +210,4 @@ DEPENDENCIES
   slim
   twitter
   uglifier (>= 1.0.3)
+  will_paginate

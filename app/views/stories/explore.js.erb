@@ -1,1 +1,13 @@
-<%= render "stories/list_stories", stories: @stories, empty_message: "No stories found." %>
+<% if params[:page].nil? %>
+    $('#exploreStoriesContainer').html('<%= j render "/stories/list_stories", stories: @stories, empty_message: "No stories found." %>');
+<% else %>
+    $('#exploreStoriesContainer').append('<%= j render "/stories/list_stories", stories: @stories, empty_message: "No stories found." %>');
+<% end %>
+
+<% if @stories.next_page %>
+    $('.pagination').replaceWith('<%= j will_paginate(@recent_stories) %>');
+<% else %>
+    $('.pagination').html("");
+<% end %>
+
+$('#exploreStoriesContainer').masonry({itemSelector: '.smallStory'});

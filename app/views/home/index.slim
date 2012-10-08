@@ -18,4 +18,8 @@ div.homeTags
 
 h2.homeHeader Recent stoires&nbsp;
 a href="#{explore_path}?ft=#{StoriesHelper::EXPLORE_FILTER_RECENT}" (view all &rarr;)
-= render "/stories/list_stories", stories: @recent_stories
+div#recentStories
+  = render "/stories/list_stories", stories: @recent_stories
+
+div style="clear:both;"
+= will_paginate @recent_stories

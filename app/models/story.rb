@@ -14,6 +14,8 @@ class Story < ActiveRecord::Base
   validates_presence_of :title, :date
   validates :user, presence: true
 
+  self.per_page = 10
+
   default_scope where(:published => true)
   scope :unpublished, where(:published => false)
   scope :recent, ->(tags=nil) {

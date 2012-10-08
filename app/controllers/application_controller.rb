@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  layout ->(c) { c.request.xhr? ? false : "application" }
+
   include ApplicationHelper
 
   def signed_in_user_filter

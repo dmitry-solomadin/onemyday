@@ -1,7 +1,5 @@
 class StoryPhotosController < ApplicationController
 
-  layout false, only: [:destroy]
-
   def destroy
     @story_photo = StoryPhoto.find(params[:id])
 

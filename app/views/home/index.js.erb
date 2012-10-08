@@ -1,0 +1,6 @@
+$('#recentStories').append('<%= j render "/stories/list_stories", stories: @recent_stories %>');
+<% if @recent_stories.next_page %>
+    $('.pagination').replaceWith('<%= j will_paginate(@recent_stories) %>');
+<% else %>
+    $('.pagination').html("");
+<% end %>

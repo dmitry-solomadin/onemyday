@@ -4,8 +4,6 @@ class CommentsController < ApplicationController
 
   before_filter :signed_in_user_filter
 
-  layout false
-
   def create
     story = Story.find(params[:story_id])
     @comment = story.comments.build(params[:comment])

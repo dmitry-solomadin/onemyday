@@ -20,3 +20,6 @@ div#advSearch.homeTags data-url="#{explore_path}"
 
 div#exploreStoriesContainer
   = render "stories/list_stories", stories: @stories, empty_message: "No stories found."
+
+div style="clear:both"
+= will_paginate @stories

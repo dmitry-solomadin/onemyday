@@ -1,1 +1,2 @@
 $("#showUserTabContent").html("<%= escape_javascript(render "/stories/list_stories", stories: @stories, empty_message: "No stories to display.") %>");
+$('#storiesContainer').masonry({itemSelector: '.smallStory'});

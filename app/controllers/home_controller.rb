@@ -1,8 +1,13 @@
 class HomeController < ApplicationController
 
   def index
-    @top_stories = Story.top 3
-    @recent_stories = Story.recent
+    respond_to do |format|
+      @recent_stories = Story.recent.paginate(page: params[:page])
+      format.html {
+        @top_stories = Story.top 3
+      }
+      format.js
+    end
   end
 
 end

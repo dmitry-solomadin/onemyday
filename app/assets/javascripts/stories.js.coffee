@@ -79,18 +79,12 @@ $(->
   return if not App.util.isPage "stories", "explore"
 
   filterStories = ->
-    url = $("#advSearch").data("url") + ".js"
+    url = $("#advSearch").data("url")
     tag = $("#tags .active").data("type")
     filterType = $("#filter .active").data("type")
 
-    req = $.ajax
-      url: url
-      method: "GET"
-      cache: false
-      dataType: "html"
-      data:
-        {t: tag, ft: filterType}
-      success: (data) -> $("#exploreStoriesContainer").html(data)
+    # todo we need something better here.
+    if tag? then $.getScript("#{url}?t=#{tag}&ft=#{filterType}") else $.getScript("#{url}?ft=#{filterType}")
 
   $(document).on("click", "#tags .btn, #filter .btn", filterStories)
 )
