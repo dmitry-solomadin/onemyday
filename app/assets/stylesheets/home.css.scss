@@ -30,8 +30,8 @@ form {
 }
 
 input {
-  border-radius: 0;
-  border: 1px solid #a1a1a1;
+  border-radius: 0 !important;
+  border: 1px solid #a1a1a1 !important;
   font-size: 14px;
   height: 24px;
   font-family: "Open Sans", sans-serif;
@@ -302,7 +302,7 @@ ul.navigation {
   width: 183px;
   background-color: #eaeaea;
   border: 1px solid;
-  border-color: #C2C0C0 #CCCACA #D1CFCF;
+  border-color: #C2C0C0 #CCCACA #D1CFCF !important;
   box-shadow: 0 1px white, inset 0 1px rgba(34, 25, 25, 0.05);
   -moz-box-shadow: 0 1px #fff, inset 0 1px rgba(34, 25, 25, 0.05);
   -webkit-box-shadow: 0 1px white, inset 0 1px rgba(34, 25, 25, 0.05);
@@ -314,7 +314,7 @@ ul.navigation {
 
 .imLookingFor:focus {
   border: 1px solid;
-  border-color: #C2C0C0 #CCCACA #D1CFCF;
+  border-color: #C2C0C0 #CCCACA #D1CFCF !important;
   box-shadow: 0 1px white, inset 0 1px rgba(34, 25, 25, 0.05);
   -moz-box-shadow: 0 1px #fff, inset 0 1px rgba(34, 25, 25, 0.05);
   -webkit-box-shadow: 0 1px white, inset 0 1px rgba(34, 25, 25, 0.05);

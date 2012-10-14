@@ -47,9 +47,24 @@
     color: #808080;
   }
 
-  #photoUploadStoryDate {
-    width: 80px;
+  #photoUploadStoryTitle {
+    font-size: 22px;
+    height: 28px;
+    line-height: 30px;
+    width: 300px;
   }
+
+  #photoUploadStoryDate {
+    font-size: 22px;
+    height: 28px;
+    line-height: 30px;
+    width: 130px;
+  }
+}
+
+.storyHeader {
+  font-weight: 300;
+  font-size: 32px;
 }
 
 #story .span0 {
@@ -452,5 +467,9 @@
   font-weight: 300;
   font-size: 24px;
   margin-top: 9px;
+}
+
+.select2-choices input {
+  border: none !important;
 }
 
