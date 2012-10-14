@@ -10,7 +10,24 @@ class StoriesController < ApplicationController
 
   def search
     @query = params[:q]
-    @stories = Story.where("title like '%#@query%'")
+
+    filter_type = params[:ft].blank? ? StoriesHelper::EXPLORE_FILTER_RECENT : params[:ft].to_i
+
+    @tag = @query.slice(1, @query.length) if @query.start_with? "#"
+
+    if filter_type == StoriesHelper::EXPLORE_FILTER_POPULAR
+      @stories = Story.top(nil, @tag)
+    elsif filter_type == StoriesHelper::EXPLORE_FILTER_RECENT
+      @stories = Story.recent(@tag)
+    end
+
+    @stories = @stories.where("title like '%#@query%'") unless @tag
+    @stories = @stories.paginate(page: params[:page])
+
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   def explore

@@ -25,7 +25,7 @@ html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb=
 
           div.navbarInner
             = form_tag search_stories_path, method: "GET" do
-              input#navbarSearch.imLookingFor name="q" type="text" placeholder="one day of freelancer"
+              input#navbarSearch.imLookingFor name="q" type="text" placeholder="use # to search by tags"
               a.magnifier href="#" data-submitable="true": img src="/assets/magnifier.gif" alt=""
 
           ul.navigation.fr

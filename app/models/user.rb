@@ -15,6 +15,17 @@ class User < ActiveRecord::Base
   paperclip_opts.merge! PAPERCLIP_STORAGE_OPTS
   has_attached_file :avatar, paperclip_opts
 
+  before_save :before_save
+
+  def before_save
+    self.facebook_link = self.facebook.get_object("me")["link"] if has_facebook?
+    self.twitter_link = "http://twitter.com/#{self.twitter.user.screen_name}" if has_twitter?
+  rescue Koala::Facebook::APIError => e
+    logger.info e.to_s
+  rescue Faraday::Error::ConnectionFailed => e
+    logger.info e.to_s
+  end
+
   def self.from_omniauth(auth)
     create_from_omniauth(auth)
   end

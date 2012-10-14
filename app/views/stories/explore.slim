@@ -1,25 +1,28 @@
-div#advSearch.homeTags data-url="#{explore_path}"
-  div.ib
-    h2.caption Popular
-    h2.caption &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tags
+div.whiteHeader
+  div.smallInnerContainer
+    div#advSearch.homeTags.exploreTags data-url="#{explore_path}"
+      div.ib
+        h2.headerCaption Popular
+        h2.headerCaption &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tags
 
-  div#tags.ib.buttons.btn-group data-toggle="buttons-radio"
-    a class="btn #{'active' unless params[:t].present?}" href="#{explore_path}" All
-    - get_popular_tags.each do |tag|
-      a{class="btn #{'active' if params[:t].present? && params[:t] == tag.name}"
-      href="#{explore_path}?t=#{tag.name}" data-type="#{tag.name}"} #{tag.name.capitalize}
+      div#tags.ib.singleday-bgroup.btn-group data-toggle="buttons-radio"
+        a class="btn #{'active' unless params[:t].present?}" href="#{explore_path}" All
+        - get_popular_tags.each do |tag|
+          a{class="btn #{'active' if params[:t].present? && params[:t] == tag.name}"
+          href="#{explore_path}?t=#{tag.name}" data-type="#{tag.name}"} #{tag.name.capitalize}
 
-  div#filter.ib.fr.buttons.btn-group data-toggle="buttons-radio"
-    a{class="btn #{'active' if params[:ft].to_i == StoriesHelper::EXPLORE_FILTER_POPULAR}"
-    data-type="#{StoriesHelper::EXPLORE_FILTER_POPULAR}"} Popular
-    a{class="btn #{'active' if params[:ft].blank? || params[:ft].to_i == StoriesHelper::EXPLORE_FILTER_RECENT}"
-    data-type="#{StoriesHelper::EXPLORE_FILTER_RECENT}"} Recent
+      div#filter.ib.fr.singleday-bgroup.btn-group data-toggle="buttons-radio"
+        a{class="btn #{'active' if params[:ft].to_i == StoriesHelper::EXPLORE_FILTER_POPULAR}"
+        data-type="#{StoriesHelper::EXPLORE_FILTER_POPULAR}"} Popular
+        a{class="btn #{'active' if params[:ft].blank? || params[:ft].to_i == StoriesHelper::EXPLORE_FILTER_RECENT}"
+        data-type="#{StoriesHelper::EXPLORE_FILTER_RECENT}"} Recent
 
-  div.sort.ib.fr
-    h2.caption Sort
+      div.sortheader.ib.fr
+        h2.headerCaption Sort
 
-div#exploreStoriesContainer
-  = render "stories/list_stories", stories: @stories, empty_message: "No stories found."
+div.whiteHeaderContentSmall
+  div#exploreStoriesContainer
+    = render "stories/list_stories", stories: @stories, empty_message: "No stories found."
 
-div style="clear:both"
-= will_paginate @stories
+  div style="clear:both"
+  = will_paginate @stories

@@ -5,7 +5,7 @@
 <% end %>
 
 <% if @stories.next_page %>
-    $('.pagination').replaceWith('<%= j will_paginate(@recent_stories) %>');
+    $('.pagination').replaceWith('<%= j will_paginate(@stories) %>');
 <% else %>
     $('.pagination').html("");
 <% end %>

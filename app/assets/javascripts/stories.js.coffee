@@ -89,6 +89,20 @@ $(->
   $(document).on("click", "#tags .btn, #filter .btn", filterStories)
 )
 
+# Search stories page
+$(->
+  return if not App.util.isPage "stories", "search"
+
+  filterStories = ->
+    url = $("#searchInnerContainer").data("url")
+    query = $("#searchInnerContainer").data("query")
+    filterType = $("#filter .active").data("type")
+
+    $.getScript("#{url}?q=#{query}&ft=#{filterType}")
+
+  $(document).on("click", "#filter .btn", filterStories)
+)
+
 # Edit story page
 $(->
   return if not App.util.isPage "stories", "edit"

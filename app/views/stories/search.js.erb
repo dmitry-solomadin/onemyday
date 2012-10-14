@@ -1,0 +1,13 @@
+<% if params[:page].nil? %>
+    $('#searchStoriesContainer').html('<%= j render "/stories/list_stories", stories: @stories %>');
+<% else %>
+    $('#searchStoriesContainer').append('<%= j render "/stories/list_stories", stories: @stories %>');
+<% end %>
+
+<% if @stories.next_page %>
+    $('.pagination').replaceWith('<%= j will_paginate(@stories) %>');
+<% else %>
+    $('.pagination').html("");
+<% end %>
+
+$('#searchStoriesContainer').masonry({itemSelector: '.smallStory'});

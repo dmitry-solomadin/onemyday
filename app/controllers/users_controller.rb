@@ -23,6 +23,7 @@ class UsersController < ApplicationController
         job_title: params[:user][:job_title],
         company: params[:user][:company]
     )
+    current_user.save
 
     redirect_to edit_current_user_path
   end

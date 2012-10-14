@@ -1,15 +1,15 @@
 - is_current_user = current_user == @user
-div#showUserDiv
+div#showUserDiv.whiteHeader
   div.innerContainer
     div.infoContainer
       = image_tag @user.avatar.url(:small), width: '50', height: '50', class: 'avatar'
       div.userinfo
         div.username = @user.name
-      - if @user.has_facebook?
-        a href="#{@user.facebook.get_object("me")["link"]}"
+      - unless @user.facebook_link.nil?
+        a href="#{@user.facebook_link}"
           img.ml10.social-ntwk src="/assets/facebook-auth.png" width="24"
-      - if @user.has_twitter?
-        a href="http://twitter.com/#{@user.twitter.user.screen_name}"
+      - unless @user.twitter_link.nil?
+        a href="http://twitter.com/#{@user.twitter_link}"
           img.ml5.social-ntwk src="/assets/twitter_auth.png" width="24"
     div.tabsContainer
       ul#userTabs.tabs
@@ -21,5 +21,5 @@ div#showUserDiv
           li#unpublishedTab
             a href="#{unfinished_stories_path(@user.id)}" data-remote="true"
               span Drafts (<span id='unpublishedCount'>#{@user.stories.unpublished.size}</span>)
-div#showUserTabContent
+div#showUserTabContent.whiteHeaderContent
   = render "/stories/list_stories", stories: @stories, own: is_current_user

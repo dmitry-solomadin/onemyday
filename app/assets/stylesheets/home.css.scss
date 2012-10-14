@@ -344,6 +344,37 @@ ul.navigation {
   font-size: 18px;
 }
 
+/* White header */
+
+.whiteHeader {
+  background: white;
+  position: absolute;
+  width: 100%;
+  margin-top: -25px;
+  left: 0;
+  border-bottom: 1px solid #c3c3c3;
+
+  .innerContainer {
+    width: 940px;
+    height: 150px;
+    margin: 0 auto;
+  }
+
+  .smallInnerContainer {
+    width: 940px;
+    height: 90px;
+    margin: 0 auto;
+  }
+}
+
+.whiteHeaderContent {
+  margin-top: 150px;
+}
+
+.whiteHeaderContentSmall {
+  margin-top: 90px;
+}
+
 /* Home page */
 
 .homeHeader {
@@ -353,32 +384,37 @@ ul.navigation {
 }
 
 .homeTags {
-  .btn {
-    font-size: 16px;
-    font-weight: 300;
-  }
-
   padding: 15px 10px;
   margin-top: 10px;
   margin-bottom: 10px;
   border-bottom: 2px ridge white;
   border-top: 2px ridge white;
+}
 
-  .buttons {
-    vertical-align: top;
-    margin-left: 25px;
-    margin-top: 7px;
-  }
+.sortheader {
+  margin-top: 12px;
+}
 
-  .sort {
-    margin-top: 12px;
-  }
+.singleday-bgroup {
+  vertical-align: top;
+  margin-left: 25px !important;
+  margin-top: 7px;
 
-  .caption {
-    margin-bottom: 0;
-    line-height: 22px;
+  .btn {
+    font-size: 16px;
     font-weight: 300;
   }
+}
+
+.headerCaption {
+  margin-bottom: 0;
+  line-height: 22px;
+  font-weight: 300;
+}
+
+.exploreTags {
+  border-bottom: none;
+  border-top: none;
 }
 
 #createDiv {
@@ -395,6 +431,10 @@ ul.navigation {
 #createText {
   font-size: 22px;
   margin-bottom: 10px;
+}
+
+.pagination a {
+  border-color: #bbb;
 }
 
 /* Misc */
