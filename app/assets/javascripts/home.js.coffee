@@ -23,10 +23,6 @@ $(->
   )
 
   # Google analytics.
-  _gaq = _gaq || []
-  _gaq.push(['_setAccount', 'UA-34912967-1'])
-  _gaq.push(['_trackPageview'])
-
   if !$("#ga")[0]
     js = $("<script id='ga' src='http://www.google-analytics.com/ga.js'></script>")
     $("script:first").parent().prepend(js)

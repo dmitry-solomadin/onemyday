@@ -10,6 +10,10 @@ html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb=
     = javascript_include_tag "application"
     = csrf_meta_tags
     = meta_tags yield(:meta_tags)
+    javascript:
+      _gaq = _gaq || []
+      _gaq.push(['_setAccount', 'UA-34912967-1'])
+      _gaq.push(['_trackPageview'])
   body data-controller="#{params[:controller]}" data-action="#{params[:action]}"
     div#fb-root
     input#appHost type="hidden" value="#{ENV['HOST']}"
