@@ -4,7 +4,7 @@
     a href="#{story_path story}"
       div.image
         img src="#{story.story_photos.first.photo.url :thumb}" style="height:#{image_dims[:height]}px; width: #{image_dims[:width]}px;"
-    div.text       s
+    div.text
       a href="#{story_path story}"
         div.title = story.title
       div.social
