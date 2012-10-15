@@ -19,4 +19,5 @@
 //= require jquery.inputmask
 //= require jquery.masonry
 //= require select2
+//= require username_autocomplete
 //= require_tree .

@@ -2,7 +2,7 @@ div.comment class="#{defined?(clazz) ? clazz : ""}" id="comment#{comment.id}" da
   input.edit-comment-action type="hidden" value="#{comment_path comment}"
   div.commentHeader
     = image_tag comment.user.avatar.url :thumb
-    a.author href="#" #{comment.user.name}
+    a.author href="#{user_path comment.user.id}" #{comment.user.name}
     span.time #{comment.created_at_nice}
   p.text
     = comment.text

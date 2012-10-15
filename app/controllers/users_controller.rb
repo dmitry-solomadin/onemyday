@@ -5,6 +5,10 @@ class UsersController < ApplicationController
     @user = User.from_omniauth(session[:omniauth])
   end
 
+  def index
+
+  end
+
   def create
     @user = User.from_omniauth(session[:omniauth])
     @user.email = params[:user][:email]
