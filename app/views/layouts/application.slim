@@ -10,7 +10,7 @@ html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb=
     = javascript_include_tag "application"
     = csrf_meta_tags
     = meta_tags yield(:meta_tags)
-    = render file:"ga.html"
+    = render file:"layouts/ga.html"
   body data-controller="#{params[:controller]}" data-action="#{params[:action]}"
     div#fb-root
     input#appHost type="hidden" value="#{ENV['HOST']}"
