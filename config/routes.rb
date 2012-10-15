@@ -1,40 +1,46 @@
 Onemyday::Application.routes.draw do
 
-  resources :users
-  get '/edit_current_user', to: "users#edit_current"
-  get '/update_avatar_facebook', to: "users#update_avatar_facebook"
-  get '/update_avatar_twitter', to: "users#update_avatar_twitter"
-  post '/upload_user_avatar', to:'users#upload_avatar'
+  scope ":locale", locale: /#{I18n.available_locales.join("|")}/ do
+    root to: 'home#index'
 
-  resources :stories
-  post '/upload_story_photo', to:'stories#upload_photo'
-  post '/publish', to:'stories#publish'
-  get '/search_stories', to: 'stories#search'
-  post '/new_like', to:'stories#like'
-  post '/unlike', to:'stories#unlike'
-  get '/explore', to: 'stories#explore'
+    resources :users
+    get '/edit_current_user', to: "users#edit_current"
+    get '/update_avatar_facebook', to: "users#update_avatar_facebook"
+    get '/update_avatar_twitter', to: "users#update_avatar_twitter"
+    post '/upload_user_avatar', to:'users#upload_avatar'
 
-  get '/tags', to: 'tags#index'
+    resources :stories
+    post '/upload_story_photo', to:'stories#upload_photo'
+    post '/publish', to:'stories#publish'
+    get '/search_stories', to: 'stories#search'
+    post '/new_like', to:'stories#like'
+    post '/unlike', to:'stories#unlike'
+    get '/explore', to: 'stories#explore'
 
-  resources :comments
+    get '/tags', to: 'tags#index'
 
-  resources :story_photos, only: [:destroy]
+    resources :comments
 
-  match 'auth/:provider/callback', to: 'sessions#create'
-  match 'auth/:provider/destroy', to: 'sessions#destroy_auth'
-  match 'auth/failure', to: redirect('/')
-  match 'signout', to: 'sessions#destroy', as: 'signout'
+    resources :story_photos, only: [:destroy]
 
-  get '/moreinfo', to: 'add_more_user_info#show'
-  put '/moreinfo', to: 'add_more_user_info#submit'
+    match 'auth/:provider/callback', to: 'sessions#create'
+    match 'auth/:provider/destroy', to: 'sessions#destroy_auth'
+    match 'auth/failure', to: redirect('/')
+    match 'signout', to: 'sessions#destroy', as: 'signout'
 
-  get '/:user_id/stories/own', to: 'user_stories#own', as: :own_stories
-  get '/:user_id/stories/liked', to: 'user_stories#liked', as: :liked_stories
-  get '/:user_id/stories/unfinished', to: 'user_stories#unfinished', as: :unfinished_stories
+    get '/moreinfo', to: 'add_more_user_info#show'
+    put '/moreinfo', to: 'add_more_user_info#submit'
 
-  get '/channel.html', to: 'static_pages#channel'
+    get '/:user_id/stories/own', to: 'user_stories#own', as: :own_stories
+    get '/:user_id/stories/liked', to: 'user_stories#liked', as: :liked_stories
+    get '/:user_id/stories/unfinished', to: 'user_stories#unfinished', as: :unfinished_stories
 
-  root :to => 'home#index'
+    get '/channel.html', to: 'static_pages#channel'
+  end
+
+  match '*path', to: redirect("/#{I18n.default_locale}/%{path}"),
+        constraints: lambda { |req| !req.path.starts_with? "/#{I18n.default_locale}/" }
+  match '', to: redirect("/#{I18n.default_locale}")
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

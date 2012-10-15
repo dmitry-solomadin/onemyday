@@ -5,6 +5,12 @@ class ApplicationController < ActionController::Base
 
   include ApplicationHelper
 
+  before_filter :set_locale
+
+  def set_locale
+    I18n.locale = params[:locale] if params[:locale].present?
+  end
+
   def signed_in_user_filter
     redirect_to root_url, notice: "Please sign in." unless current_user
   end
@@ -15,6 +21,10 @@ class ApplicationController < ActionController::Base
 
   def meta_tags meta_tags
     !meta_tags.blank? ? meta_tags : ""
+  end
+
+  def default_url_options(options = {})
+    {locale: I18n.locale}
   end
 
   helper_method [:get_title, :meta_tags]
