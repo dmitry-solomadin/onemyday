@@ -23,9 +23,7 @@ class UsersController < ApplicationController
 
   def update
     current_user.update_attributes(
-        name: params[:user][:name],
-        job_title: params[:user][:job_title],
-        company: params[:user][:company]
+        name: params[:user][:name]
     )
     current_user.save
 

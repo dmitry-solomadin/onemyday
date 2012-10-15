@@ -11,14 +11,6 @@ div#editUser
         div.controls
           = f.text_field :name, class: "input-xlarge", id: "name"
       div.control-group
-        label.control-label for="job_title" Job Title
-        div.controls
-          = f.text_field :job_title, class: "input-xlarge", id: "job_title"
-      div.control-group
-        label.control-label for="company" Company
-        div.controls
-          = f.text_field :company, class: "input-xlarge", id: "company"
-      div.control-group
         label.control-label for="avatar" Avatar
         div.controls
           = image_tag current_user.avatar.url :thumb

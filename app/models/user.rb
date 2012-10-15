@@ -1,7 +1,7 @@
 require 'open-uri'
 
 class User < ActiveRecord::Base
-  attr_accessible :avatar, :name, :job_title, :company
+  attr_accessible :avatar, :name
 
   has_many :authentications, dependent: :destroy
   has_many :stories
