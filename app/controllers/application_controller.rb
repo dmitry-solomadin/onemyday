@@ -8,7 +8,12 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale
 
   def set_locale
-    I18n.locale = :ru
+    if current_user && !current_user.locale.blank?
+      I18n.locale = current_user.locale
+    else
+      # todo add locale determination by geo ip.
+      I18n.locale = I18n.default_locale
+    end
   end
 
   def signed_in_user_filter
