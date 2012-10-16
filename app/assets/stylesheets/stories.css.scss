@@ -32,6 +32,34 @@
 #photoUploadDiv {
   margin-top: 10px;
 
+  .delim {
+    margin-top: 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.9);
+    border-top: 1px solid rgba(34, 25, 25, 0.2);
+  }
+
+  label {
+    font-size: 18px;
+    color: #202020;
+    margin-bottom: 5px;
+    width: 70px;
+    text-shadow: white 0 1px 1px;
+    display: inline-block !important;
+    vertical-align: bottom;
+  }
+
+  input {
+    margin: 0;
+  }
+
+  .tagExp {
+    margin-top: 3px;
+    margin-left: 72px;
+    font-size: 12px;
+    vertical-align: bottom;
+    color: #808080;
+  }
+
   #customProgressBar {
     display: none;
     width: 400px;
@@ -43,28 +71,28 @@
 
   .photoUploadAt {
     margin: 0 10px 0 10px;
-    font-size: 22px;
-    color: #808080;
+    font-size: 18px;
+    font-weight: 300;
+    position: relative;
+    top: 3px;
+    color: #404040;
   }
 
   #photoUploadStoryTitle {
-    font-size: 22px;
-    height: 28px;
-    line-height: 30px;
+    font-size: 18px;
+    height: 18px;
+    line-height: 26px;
     width: 300px;
+    font-weight: 300;
   }
 
   #photoUploadStoryDate {
-    font-size: 22px;
-    height: 28px;
-    line-height: 30px;
+    font-size: 18px;
+    height: 18px;
+    line-height: 26px;
     width: 130px;
+    font-weight: 300;
   }
-}
-
-.storyHeader {
-  font-weight: 300;
-  font-size: 32px;
 }
 
 #story .span0 {
@@ -99,9 +127,9 @@
 
   .storyHeader {
     font-size: 32px;
-    text-shadow: #e3e3e3 0 1px 1px;
+    text-shadow: #ffffff 0 1px 1px;
     margin-bottom: 15px;
-    color: #451807;
+    color: #202020;
   }
 
   .storySubHeader {
@@ -146,7 +174,8 @@
     z-index: 3;
     background: url("whitey.png");
     font-size: 28px;
-    color: #451807;
+    text-shadow: #ffffff 0 1px 1px;
+    color: #202020;
     padding-left: 5px;
     padding-right: 5px;
   }
@@ -165,12 +194,6 @@
 
 .uploadButtonDiv {
   margin-top: 10px;
-}
-
-.tagExp {
-  vertical-align: bottom;
-  margin-bottom: 7px;
-  display: inline-block;
 }
 
 #story {
@@ -469,7 +492,14 @@
   margin-top: 9px;
 }
 
+.select2-container {
+  width: 310px !important;
+}
+
 .select2-choices input {
   border: none !important;
+  font-family: "Open Sans" !important;
+  font-size: 14px !important;
 }
+
 

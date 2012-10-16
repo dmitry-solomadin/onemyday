@@ -1,7 +1,6 @@
 = render 'shared/error_messages'
 
-- unless story
-  h2.storyHeader Tell Your Story
+h1.singleday-header #{story ? "Edit Story" : "Tell Your Story"}
 
 / Upload photo form
 div#photoUploadDiv
@@ -10,13 +9,18 @@ div#photoUploadDiv
       input#shouldCreateStory name="create_story" type="hidden" value="true"
     input#storyId name="story_id" type="hidden" value="#{story.id if story}"
 
-    input#photoUploadStoryTitle type="text" name="story[title]" value="#{story.title if story}" placeholder="Enter story title"
-    span.photoUploadAt @
-    input#photoUploadStoryDate type="text" name="story[date]" value="#{story.date_text if story}" placeholder="Story date"
-    br
-    input#photoUploadTags name="story[tag_list]" value="#{story.tag_list if story}" placeholder="Tag it" style="width:200px"
-    span.tagExp.ml10 try "work" or "weekend"
+    div
+      label Title:&nbsp;
+      input#photoUploadStoryTitle type="text" name="story[title]" value="#{story.title if story}"
+      span.photoUploadAt @
+      input#photoUploadStoryDate type="text" name="story[date]" value="#{story.date_text if story}" placeholder="Story date"
+    div style="margin-top:15px"
+      label Tag:&nbsp;
+      input#photoUploadTags name="story[tag_list]" value="#{story.tag_list if story}" style="width:200px"
+      div.tagExp Try "work" or "weekend"
     div style="clear:both"
+
+    div.delim
 
     div.uploadButtonDiv
       div#photoUploadError.uploadError.alert.alert-error.hide
