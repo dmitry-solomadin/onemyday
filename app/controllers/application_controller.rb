@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale
 
   def set_locale
-    I18n.locale = params[:locale] if params[:locale].present?
+    I18n.locale = :ru
   end
 
   def signed_in_user_filter
@@ -21,10 +21,6 @@ class ApplicationController < ActionController::Base
 
   def meta_tags meta_tags
     !meta_tags.blank? ? meta_tags : ""
-  end
-
-  def default_url_options(options = {})
-    {locale: I18n.locale}
   end
 
   helper_method [:get_title, :meta_tags]

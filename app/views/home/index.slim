@@ -1,22 +1,22 @@
 - unless current_user
   div#createDiv
-    div#createText.bw Singleday is a place for sharing your everyday stories.
+    div#createText.bw = t '.singleday_desc'
     a.btn.btn-large.createButton.open-sans data-toggle="modal" href="#signInModal" Sign Up
 
-h2.homeHeader Popular stoires&nbsp;
+h2.homeHeader = t '.pop_stories_html'
 a href="#{explore_path}?ft=#{StoriesHelper::EXPLORE_FILTER_POPULAR}" (view all &rarr;)
 = render "/stories/list_stories", stories: @top_stories
 
 div.homeTags
   div.ib
-    h2.headerCaption Popular
-    h2.headerCaption &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tags
+    h2.headerCaption = t '.pop'
+    h2.headerCaption = t '.tags_html'
 
   div.ib.singleday-bgroup.btn-group
     - get_popular_tags.each do |tag|
       a.btn href="#{explore_path}?t=#{tag.name}" #{tag.name.capitalize}
 
-h2.homeHeader Recent stoires&nbsp;
+h2.homeHeader = t '.recent_stories_html'
 a href="#{explore_path}?ft=#{StoriesHelper::EXPLORE_FILTER_RECENT}" (view all &rarr;)
 div#recentStories
   = render "/stories/list_stories", stories: @recent_stories

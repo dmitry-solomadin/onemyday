@@ -23,7 +23,8 @@ class UsersController < ApplicationController
 
   def update
     current_user.update_attributes(
-        name: params[:user][:name]
+        name: params[:user][:name],
+        locale: params[:user][:locale]
     )
     current_user.save
 

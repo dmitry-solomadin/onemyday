@@ -1,11 +1,11 @@
 # Sample localization file for English. Add more files in this directory for other locales.
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
-en:
+ru:
   home:
     index:
       singleday_desc: Singleday is a place for sharing your everyday stories.
-      pop_stories_html: Popular stoires&nbsp;
-      pop: Popular
-      tags_html: '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tags'
-      recent_stories_html: Recent stories&nbsp;
+      pop_stories_html: Популярные истории&nbsp;
+      pop: Популярные
+      tags_html: '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;тэги'
+      recent_stories_html: Последние истории&nbsp;

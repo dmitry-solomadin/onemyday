@@ -11,6 +11,10 @@ div#editUser
         div.controls
           = f.text_field :name, class: "input-xlarge", id: "name"
       div.control-group
+        label.control-label for="locale" Locale
+        div.controls
+          = f.select :locale, get_available_locales, class: "input-xlarge", id: "locale"
+      div.control-group
         label.control-label for="avatar" Avatar
         div.controls
           = image_tag current_user.avatar.url :thumb

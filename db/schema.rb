@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121012123215) do
+ActiveRecord::Schema.define(:version => 20121015135840) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -108,10 +108,9 @@ ActiveRecord::Schema.define(:version => 20121012123215) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "email"
-    t.string   "job_title"
-    t.string   "company"
     t.string   "facebook_link"
     t.string   "twitter_link"
+    t.string   "locale"
   end
 
   create_table "views", :force => true do |t|
