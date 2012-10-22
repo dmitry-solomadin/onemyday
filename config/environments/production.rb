@@ -71,7 +71,7 @@ Onemyday::Application.configure do
   ENV["FACEBOOK_APP_ID"] = "390488554357191"
   ENV["FACEBOOK_APP_SECRET"] = "b4ebceff89b8486225f5cb298a3da196"
 
-  ENV["HOST"] = "mysingleday.com"
+  ENV["HOST"] = "onemyday.co"
 
   PAPERCLIP_STORAGE_OPTS = {
       :storage        => :s3,

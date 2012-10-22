@@ -1,4 +1,4 @@
-namespace :singleday do
+namespace :onemyday do
 
   desc "Regenerates thumbnails for a given CLASS (and optional ATTACHMENT and STYLES splitted by comma)."
   task :photo_refresh => :environment do

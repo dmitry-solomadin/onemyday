@@ -4,7 +4,7 @@
 ru:
   home:
     index:
-      singleday_desc: Singleday is a place for sharing your everyday stories.
+      onemyday_desc: Onemyday это место где вы можете делится каждым вашим днем.
       pop_stories_html: Популярные истории&nbsp;
       pop: Популярные
       tags_html: '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;тэги'

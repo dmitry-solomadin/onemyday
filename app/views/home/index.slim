@@ -1,6 +1,6 @@
 - unless current_user
   div#createDiv
-    div#createText.bw = t '.singleday_desc'
+    div#createText.bw = t '.onemyday_desc'
     a.btn.btn-large.createButton.open-sans data-toggle="modal" href="#signInModal" Sign Up
 
 h2.homeHeader = t '.pop_stories_html'
@@ -12,7 +12,7 @@ div.homeTags
     h2.headerCaption = t '.pop'
     h2.headerCaption = t '.tags_html'
 
-  div.ib.singleday-bgroup.btn-group
+  div.ib.onemyday-bgroup.btn-group
     - get_popular_tags.each do |tag|
       a.btn href="#{explore_path}?t=#{tag.name}" #{tag.name.capitalize}
 
