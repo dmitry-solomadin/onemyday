@@ -23,6 +23,7 @@ gem 'twitter'
 gem 'acts-as-taggable-on'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
+gem 'geocoder'
 
 # Gems used only for assets and not required
 # in production environments by default.
