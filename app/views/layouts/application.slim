@@ -22,7 +22,7 @@ html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb=
     div#signInModal.modal.hide
       button type="button" class="close" data-dismiss="modal" ×
       div.modal-header.open-sans
-        h3 Sign In with Facebook or Twitter
+        h3 = t '.sign_in_header'
       div.modal-body
         a.social-link.social-facebook href="/auth/facebook"
           div
@@ -35,8 +35,8 @@ html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb=
         h3 Header
       div.modal-body
       div.modal-footer
-        a.modal-okay.btn.btn-foxtrot.open-sans.f18 Okay
-        a.modal-cancel.btn.open-sans.f18 Cancel
+        a.modal-okay.btn.btn-foxtrot.open-sans.f18 = t '.okay'
+        a.modal-cancel.btn.open-sans.f18 = t '.cancel'
 
     div.container
       div.flash_container

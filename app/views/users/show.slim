@@ -14,13 +14,9 @@ div#showUserDiv.whiteHeader
     div.tabsContainer
       ul#userTabs.tabs
         li#ownTab.selected
-          - yours = t '.yours'
-          - his = t '.his'
-          = link_to content_tag(:span, "#{is_current_user ? yours: his}"), own_stories_path(@user.id), remote: true
+          = link_to content_tag(:span, "#{is_current_user ? t('.yours') : get_his_stories_header(@user)}"), own_stories_path(@user.id), remote: true
         li
-          - liked_by_you = t '.liked_by_you'
-          - liked = t '.liked'
-          = link_to content_tag(:span, "#{is_current_user ? liked_by_you : liked }"), liked_stories_path(@user.id), remote: true
+          = link_to content_tag(:span, "#{is_current_user ? t('.liked_by_you') : t('.liked') }"), liked_stories_path(@user.id), remote: true
         - if is_current_user && @user.stories.unpublished.any?
           li#unpublishedTab
             a href="#{unfinished_stories_path(@user.id)}" data-remote="true"

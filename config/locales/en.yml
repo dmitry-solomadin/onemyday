@@ -18,6 +18,9 @@ en:
       sign_out: "Sign out"
       sign_in: "Sign In"
       search_placeholder: "use # to search by tags"
+  shared:
+    error_messages:
+      header: "Please fix following errors:"
   users:
     edit:
       header: "Edit your profile"
@@ -32,12 +35,19 @@ en:
       upload_avatar_header: "Upload avatar from your computer"
       choose: "Choose"
       apply_changes: "Apply changes"
+      disconnect_facebook_header: "Disconnect Facebook"
+      disconnect_facebook_body: "If you disconnect Facebook, you will not be able to login with Facebook."
+      disconnect_twitter_header: "Disconnect Twitter"
+      disconnect_twitter_body: "If you disconnect Twitter, you will not be able to login with Twitter."
+      gender: "Gender"
     show:
       liked_by_you: "Liked by you"
       liked: "Liked"
       yours: "Yours"
       his: "His"
       drafts: "Drafts"
+      stories: "Stories"
+      her: "Her"
     new:
       finish: "Finish registration by entering your email"
   stories:
@@ -50,8 +60,8 @@ en:
       tags_desc: 'Try "work" or "weekend"'
       date_placeholder: "Story date"
       add_photo: "Add photos"
-      no_story_date: "Please, enter story date."
-      no_story_title: "Please, enter story title."
+      no_story_date: "Enter story date"
+      no_story_title: "Enter story title"
       publish: "Publish"
       save: "Save"
       save_as_draft: "Save as Draft"
@@ -73,9 +83,9 @@ en:
       draft: "draft"
       edit: "Edit"
       delete: "Delete"
-      by_html: "&nbsp;by"
+      by_html: "by"
     show:
-      by_html: "&nbsp;by"
+      by_html: "by"
       send: "Send"
       comment_placeholder: "Add a comment..."
       like: "Like"
@@ -99,3 +109,18 @@ en:
       edit: "edit"
       remove: "remove"
       reply: "reply"
+  layouts:
+    application:
+      sign_in_header: "Sign In with Facebook or Twitter"
+      cancel: "Cancel"
+      okay: "Okay"
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: Enter email
+              invalid: Enter valid email
+            name:
+              blank: Enter your name

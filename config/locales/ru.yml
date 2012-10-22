@@ -18,6 +18,9 @@ ru:
       sign_out: "Выйти"
       sign_in: "Войти"
       search_placeholder: "# чтобы искать по тэгам"
+  shared:
+    error_messages:
+      header: "Пожалуйста исправьте следующие ошибки:"
   users:
     edit:
       header: "Редактирование профиля"
@@ -32,12 +35,19 @@ ru:
       upload_avatar_header: "Загрузить аватар с комьютера"
       choose: "Выбрать"
       apply_changes: "Сохранить"
+      disconnect_facebook_header: "Отключить Facebook"
+      disconnect_facebook_body: "Если вы отключите Facebook вы больше не сможете заходить через него."
+      disconnect_twitter_header: "Отключить Twitter"
+      disconnect_twitter_body: "Если вы отключите Twitter вы больше не сможете заходить через него."
+      gender: "Пол"
     show:
       liked_by_you: "Нравится вам"
       liked: "Нравится"
       yours: "Ваше"
       his: "Его"
       drafts: "Черновики"
+      stories: "Истории"
+      her: "Её"
     new:
       finish: "Введите email чтобы закончить регистрацию"
   stories:
@@ -50,8 +60,8 @@ ru:
       tags_desc: 'попробуйте "работа" или "выходные"'
       date_placeholder: "Дата истории"
       add_photo: "Добавить фото"
-      no_story_date: "Пожалуйста введите дату истории."
-      no_story_title: "Пожалуйста введите название истории."
+      no_story_date: "Введите дату истории"
+      no_story_title: "Введите название истории"
       publish: "Опубликовать"
       save: "Сохранить"
       save_as_draft: "В черновики"
@@ -74,9 +84,9 @@ ru:
       draft: "черновик"
       edit: "Редактировать"
       delete: "Удалить"
-      by_html: ",&nbsp;автор:"
+      by_html: "автор"
     show:
-      by_html: ",&nbsp;автор:"
+      by_html: "автор"
       send: "Отправить"
       comment_placeholder: "Добавить комментарий..."
       like: "Нравится"
@@ -154,3 +164,18 @@ ru:
       edit: "редактировать"
       remove: "удалить"
       reply: "ответить"
+  layouts:
+    application:
+      sign_in_header: "Войдите с помощью Facebook или Twitter"
+      cancel: "Отмена"
+      okay: "Хорошо"
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: Введите email
+              invalid: Введите действительный email
+            name:
+              blank: Введите имя

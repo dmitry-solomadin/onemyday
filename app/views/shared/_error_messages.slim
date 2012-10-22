@@ -1,7 +1,7 @@
 div#form_errors_div
   - if defined?(object) && object && object.errors.any?
     div.alert.alert-error
-      ' Please fix following errors:
+      = t '.header'
       ul
         - object.errors.each do |key, msg|
           li.errorLi data-field-id="#{key}"

@@ -1,6 +1,12 @@
+input#disconnectFacebookHeader type="hidden" value="#{t '.disconnect_facebook_header'}"
+input#disconnectFacebookBody type="hidden" value="#{t '.disconnect_facebook_body'}"
+input#disconnectTwitterHeader type="hidden" value="#{t '.disconnect_twitter_header'}"
+input#disconnectTwitterBody type="hidden" value="#{t '.disconnect_twitter_body'}"
+
 div#editUser
   h1.onemyday-header = t '.header'
   = form_for current_user, html: {class: "form-horizontal oneHorizontalForm"} do |f|
+    = render 'shared/error_messages', object: current_user
     fieldset
       div.control-group
         label.control-label for="email" Email
@@ -10,6 +16,19 @@ div#editUser
         label.control-label for="name" = t '.name'
         div.controls
           = f.text_field :name, class: "input-xlarge", id: "name"
+      div.control-group
+        label.control-label for="locale" = t '.gender'
+        div.controls
+          span.btn-group data-toggle="buttons-radio"
+            = f.radio_button :gender, 'undefined', id:"undefinedGender", class: "hide"
+            = f.radio_button :gender, 'male', id:"maleGender", class: "hide"
+            = f.radio_button :gender, 'female', id:"femaleGender", class: "hide"
+            input.btn{type="button" value="Non specified" onclick="$('#undefinedGender').click()"
+            class="#{'active' if current_user.gender.nil? || current_user.gender == "undefined"}"}
+            input.btn{type="button" value="Male" onclick="$('#maleGender').click()"
+            class="#{'active' if current_user.gender == "male"}"}
+            input.btn{type="button" value="Female" onclick="$('#femaleGender').click()"
+            class="#{'active' if current_user.gender == "female"}"}
       div.control-group
         label.control-label for="locale" = t '.lang'
         div.controls

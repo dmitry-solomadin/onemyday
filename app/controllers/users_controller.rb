@@ -22,13 +22,14 @@ class UsersController < ApplicationController
   end
 
   def update
-    current_user.update_attributes(
-        name: params[:user][:name],
-        locale: params[:user][:locale]
-    )
+    current_user.update_attributes params[:user]
     current_user.save
 
-    redirect_to edit_current_user_path
+    if current_user.valid?
+      redirect_to edit_current_user_path
+    else
+      render 'edit'
+    end
   end
 
   def show

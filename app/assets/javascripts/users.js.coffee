@@ -8,8 +8,8 @@ $(->
   $("#facebook").on("toggle-condition", ->
     if $("#facebook").hasClass("active")
       $("#onealert").showModal(
-        header: "Disconnect Facebook"
-        body: "If you disconnect Facebook, you will not be able to login with Facebook."
+        header: $("#disconnectFacebookHeader").val()
+        body: $("#disconnectFacebookBody").val()
         okay: ->
           $("#facebook").trigger("allow")
           window.location = "/auth/facebook/destroy"
@@ -22,8 +22,8 @@ $(->
   $("#twitter").on("toggle-condition", ->
     if $("#twitter").hasClass("active")
       $("#onealert").showModal(
-        header: "Disconnect Twitter"
-        body: "If you disconnect Twitter, you will not be able to login with Twitter."
+        header: $("#disconnectTwitterHeader").val()
+        body: $("#disconnectTwitterBody").val()
         okay: ->
           $("#twitter").trigger("allow")
           window.location = "/auth/twitter/destroy"

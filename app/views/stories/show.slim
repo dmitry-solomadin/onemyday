@@ -3,7 +3,9 @@
 
 div.storyHeaderDiv
   div.storyHeader.lobster #{@story.title}
-  div.storySubHeader #{@story.date_nice_text}#{t '.by_html'} #{@story.user.name}
+  div.storySubHeader
+    ' #{@story.date_nice_text} #{t '.by_html'}
+    a href="#"#{@story.user.name}
   div.storySubHeaderBorder
 
 div#story
