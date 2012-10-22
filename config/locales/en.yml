@@ -10,6 +10,7 @@ en:
       tags_html: '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tags'
       recent_stories_html: Recent stories&nbsp;
       view_all_html: "(view all &rarr;)"
+      sign_up: "Sign up"
     header:
       explore: "Explore"
       tell: "Tell"

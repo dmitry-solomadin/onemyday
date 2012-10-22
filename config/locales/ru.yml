@@ -10,6 +10,7 @@ ru:
       tags_html: '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;тэги'
       recent_stories_html: Последние истории&nbsp;
       view_all_html: "(все &rarr;)"
+      sign_up: "Регистрация"
     header:
       explore: "Истории"
       tell: "Рассказать"

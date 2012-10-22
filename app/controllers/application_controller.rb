@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
       if country_code == "UA" || country_code == "RU"
         I18n.locale = :ru
       else
-        I18n.locale = I18n.default_locale
+        I18n.locale = :ru
       end
     end
   end
