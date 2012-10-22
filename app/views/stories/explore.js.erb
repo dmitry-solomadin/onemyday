@@ -1,7 +1,7 @@
 <% if params[:page].nil? %>
-    $('#exploreStoriesContainer').html('<%= j render "/stories/list_stories", stories: @stories, empty_message: "No stories found." %>');
+    $('#exploreStoriesContainer').html('<%= j render "/stories/list_stories", stories: @stories, empty_message: t('stories.empty_message') %>');
 <% else %>
-    $('#exploreStoriesContainer').append('<%= j render "/stories/list_stories", stories: @stories, empty_message: "No stories found." %>');
+    $('#exploreStoriesContainer').append('<%= j render "/stories/list_stories", stories: @stories, empty_message: t('stories.empty_message') %>');
 <% end %>
 
 <% if @stories.next_page %>

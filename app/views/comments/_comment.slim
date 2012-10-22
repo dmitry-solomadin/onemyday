@@ -8,8 +8,8 @@ div.comment class="#{defined?(clazz) ? clazz : ""}" id="comment#{comment.id}" da
     = comment.text
   div.controls
     - if current_user
-      a href="#" reply
+      a href="#" = t '.reply'
     - if comment_editable? comment
-      a href="#" onclick="App.comments.edit(this); return false;" edit
+      a href="#" onclick="App.comments.edit(this); return false;" = t '.edit'
     - if comment_deletable? comment
-      a data-remote="true" href="#{comment_path comment}" data-method="DELETE" remove
+      a data-remote="true" href="#{comment_path comment}" data-method="DELETE" = t '.remove'

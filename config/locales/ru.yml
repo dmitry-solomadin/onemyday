@@ -37,7 +37,10 @@ ru:
       yours: "Ваше"
       his: "Его"
       drafts: "Черновики"
+    new:
+      finish: "Введите email чтобы закончить регистрацию"
   stories:
+    empty_message: "Не найдено ни одной истории."
     story_edit:
       edit_story: "Редактирование истории"
       tell_story: "Расскажите вашу историю"
@@ -77,6 +80,21 @@ ru:
       comment_placeholder: "Добавить комментарий..."
       like: "Нравится"
       liked: "Вам это нравится"
+      the_end: "КОНЕЦ"
+      like_count_desc_html: "&nbsp;нравится это"
+      person: "человеку"
+      people: "людям"
+      tags: "Тэги:"
+      edit_story: "Редактировать"
+    search:
+      popular: "Популярные"
+      recent: "Последние"
+      found: 'Мы нашли %{stories} %{search_text}: «%{query}»'
+      story: "историю"
+      stories: "истории"
+      with_tag: "с тэгом"
+      matching: "cо словами"
+      not_found: 'Мы не нашли историй %{search_text}: «%{query}»'
   date:
     abbr_day_names:
     - Вс
@@ -130,3 +148,8 @@ ru:
     - :day
     - :month
     - :year
+  comments:
+    comment:
+      edit: "редактировать"
+      remove: "удалить"
+      reply: "ответить"

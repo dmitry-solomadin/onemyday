@@ -19,7 +19,7 @@ div.whiteHeader
 
 div.whiteHeaderContentSmall
   div#exploreStoriesContainer
-    = render "stories/list_stories", stories: @stories, empty_message: "No stories found."
+    = render "stories/list_stories", stories: @stories, empty_message: t('stories.empty_message')
 
   div style="clear:both"
   = will_paginate @stories

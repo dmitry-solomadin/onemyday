@@ -45,18 +45,18 @@ div#story
           div.span0
 
 div.storyEnd
-  div.header.lobster THE END
+  div.header.lobster = t '.the_end'
   div.subHeader
 
 - if @story.tags.any?
   div.storyTags
-    ' Tags:
+    = t '.tags'
     - @story.tags.each do |tag|
-      a.mr5 href="#{explore_path}?t=#{tag}" #{tag}
+      a.ml5 href="#{explore_path}?t=#{tag}" #{tag}
 
 div.bottomShareMenu
   - if is_current_user @story.user
-    a.btn.mr10 href="#{edit_story_path(@story.id)}" Edit story
+    a.btn.mr10 href="#{edit_story_path(@story.id)}" = t '.edit_story'
 
   a.twitter-share-button href="https://twitter.com/share" data-count="none" data-hashtags="onemyday" Tweet
   div.fb-like data-send="false" data-width="450" data-show-faces="false" data-font="verdana" data-layout="button_count"
@@ -71,8 +71,8 @@ div style='clear:both;'
 - if @story.likes.any?
   div.likes
     i.icon-heart
-    a href="#" = pluralize(@story.likes.size, "person")
-    '&nbsp;likes this
+    a href="#" = pluralize(@story.likes.size, t(".person"), t(".people"))
+    = t '.like_count_desc_html'
 
 div style='clear:both;'
 

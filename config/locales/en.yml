@@ -37,7 +37,10 @@ en:
       yours: "Yours"
       his: "His"
       drafts: "Drafts"
+    new:
+      finish: "Finish registration by entering your email"
   stories:
+    empty_message: "No stories to display."
     story_edit:
       edit_story: "Edit story"
       tell_story: "Tell your story"
@@ -76,3 +79,22 @@ en:
       comment_placeholder: "Add a comment..."
       like: "Like"
       liked: "Liked"
+      the_end: "THE END"
+      like_count_desc_html: "&nbsp;likes this"
+      person: "person"
+      tags: "Tags:"
+      edit_story: "Edit story"
+    search:
+      popular: "Popular"
+      recent: "Recent"
+      found: 'Found %{stories} %{search_text}: "%{query}"'
+      story: "story"
+      stories: "stories"
+      with_tag: "with tag"
+      matching: "matching"
+      not_found: 'No stories %{search_text}: "%{query}"'
+  comments:
+    comment:
+      edit: "edit"
+      remove: "remove"
+      reply: "reply"

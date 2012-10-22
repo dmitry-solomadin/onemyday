@@ -1,17 +1,17 @@
 div.whiteHeader
   div.smallInnerContainer
     div#searchInnerContainer data-url="#{search_stories_path}" data-query="#{u @query}"
-      - search_text = @tag ? "with tag" : "matching"
+      - search_text = @tag ? t('.with_tag') : t('.matching')
       - if @stories.any?
-        h3.searchHeader.fl Found #{pluralize(@stories.count, 'story')} #{search_text}: "#{@tag ? @tag : @query}"
+        h3.searchHeader.fl = t('.found', :stories => pluralize(@stories.count, t('.story'), t('.stories')), :search_text => search_text, :query => @tag ? @tag : @query)
       - else
-        h3.searchHeader.fl No stories #{search_text}: "#{@query}"
+        h3.searchHeader.fl = t('.not_found', :search_text => search_text, :query => @tag ? @tag : @query)
 
       div#filter.ib.fr.onemyday-bgroup.btn-group data-toggle="buttons-radio"
         a{class="btn #{'active' if params[:ft].to_i == StoriesHelper::EXPLORE_FILTER_POPULAR}"
-        data-type="#{StoriesHelper::EXPLORE_FILTER_POPULAR}"} Popular
+        data-type="#{StoriesHelper::EXPLORE_FILTER_POPULAR}"} = t '.popular'
         a{class="btn #{'active' if params[:ft].blank? || params[:ft].to_i == StoriesHelper::EXPLORE_FILTER_RECENT}"
-        data-type="#{StoriesHelper::EXPLORE_FILTER_RECENT}"} Recent
+        data-type="#{StoriesHelper::EXPLORE_FILTER_RECENT}"} = t '.recent'
 
 div.whiteHeaderContentSmall
   div#searchStoriesContainer
