@@ -2,23 +2,20 @@ div.whiteHeader
   div.smallInnerContainer
     div#advSearch.homeTags.exploreTags data-url="#{explore_path}"
       div.ib
-        h2.headerCaption Popular
-        h2.headerCaption &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tags
+        h2.headerCaption = t '.pop'
+        h2.headerCaption = t '.tags_html'
 
       div#tags.ib.singleday-bgroup.btn-group data-toggle="buttons-radio"
-        a class="btn #{'active' unless params[:t].present?}" href="#{explore_path}" All
+        a class="btn #{'active' unless params[:t].present?}" href="#{explore_path}" = t '.all'
         - get_popular_tags.each do |tag|
           a{class="btn #{'active' if params[:t].present? && params[:t] == tag.name}"
           href="#{explore_path}?t=#{tag.name}" data-type="#{tag.name}"} #{tag.name.capitalize}
 
       div#filter.ib.fr.singleday-bgroup.btn-group data-toggle="buttons-radio"
         a{class="btn #{'active' if params[:ft].to_i == StoriesHelper::EXPLORE_FILTER_POPULAR}"
-        data-type="#{StoriesHelper::EXPLORE_FILTER_POPULAR}"} Popular
+        data-type="#{StoriesHelper::EXPLORE_FILTER_POPULAR}"} = t '.popular'
         a{class="btn #{'active' if params[:ft].blank? || params[:ft].to_i == StoriesHelper::EXPLORE_FILTER_RECENT}"
-        data-type="#{StoriesHelper::EXPLORE_FILTER_RECENT}"} Recent
-
-      div.sortheader.ib.fr
-        h2.headerCaption Sort
+        data-type="#{StoriesHelper::EXPLORE_FILTER_RECENT}"} = t '.recent'
 
 div.whiteHeaderContentSmall
   div#exploreStoriesContainer

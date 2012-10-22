@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
 
   before_filter :set_locale
 
+  private
+
   def set_locale
     if current_user && !current_user.locale.blank?
       I18n.locale = current_user.locale
@@ -19,15 +21,5 @@ class ApplicationController < ActionController::Base
   def signed_in_user_filter
     redirect_to root_url, notice: "Please sign in." unless current_user
   end
-
-  def get_title(title)
-    !title.blank? ? title : "Singleday"
-  end
-
-  def meta_tags meta_tags
-    !meta_tags.blank? ? meta_tags : ""
-  end
-
-  helper_method [:get_title, :meta_tags]
 
 end

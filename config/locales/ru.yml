@@ -9,3 +9,124 @@ ru:
       pop: Популярные
       tags_html: '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;тэги'
       recent_stories_html: Последние истории&nbsp;
+      view_all_html: "(все &rarr;)"
+    header:
+      explore: "Истории"
+      tell: "Рассказать"
+      edit_profile: "Изменить профиль"
+      sign_out: "Выйти"
+      sign_in: "Войти"
+      search_placeholder: "# чтобы искать по тэгам"
+  users:
+    edit:
+      header: "Редактирование профиля"
+      name: "Имя"
+      lang: "Язык"
+      avatar: "Аватар"
+      upload: "Загрузить"
+      take_from_facebook: "Взять с facebook"
+      take_from_twitter: "Взять с twitter"
+      login_with_fb: "Вход через Facebook"
+      login_with_twi: "Вход через Twitter"
+      upload_avatar_header: "Загрузить аватар с комьютера"
+      choose: "Выбрать"
+      apply_changes: "Сохранить"
+    show:
+      liked_by_you: "Нравится вам"
+      liked: "Нравится"
+      yours: "Ваше"
+      his: "Его"
+      drafts: "Черновики"
+  stories:
+    story_edit:
+      edit_story: "Редактирование истории"
+      tell_story: "Расскажите вашу историю"
+      title: "Название:"
+      tags: "Тэги:"
+      tags_desc: 'попробуйте "работа" или "выходные"'
+      date_placeholder: "Дата истории"
+      add_photo: "Добавить фото"
+      no_story_date: "Пожалуйста введите дату истории."
+      no_story_title: "Пожалуйста введите название истории."
+      publish: "Опубликовать"
+      save: "Сохранить"
+      save_as_draft: "В черновики"
+      move_to_drafts: "В черновики"
+      left: "Лево"
+      center: "Центр"
+      right: "Право"
+      side: "Край"
+      text: "Текст"
+      default_story_text: "Расскажите историю этой фотографии. Кликните на текст для редактирования."
+    explore:
+      pop: Популярные
+      tags_html: '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;тэги'
+
+      all: "Все"
+      sort: "Сортировать"
+      popular: "Популярные"
+      recent: "Последние"
+    story:
+      draft: "черновик"
+      edit: "Редактировать"
+      delete: "Удалить"
+      by_html: ",&nbsp;автор:"
+    show:
+      by_html: ",&nbsp;автор:"
+      send: "Отправить"
+      comment_placeholder: "Добавить комментарий..."
+      like: "Нравится"
+      liked: "Вам это нравится"
+  date:
+    abbr_day_names:
+    - Вс
+    - Пн
+    - Вт
+    - Ср
+    - Чт
+    - Пт
+    - Сб
+    abbr_month_names:
+    -
+    - янв.
+    - февр.
+    - марта
+    - апр.
+    - мая
+    - июня
+    - июля
+    - авг.
+    - сент.
+    - окт.
+    - нояб.
+    - дек.
+    day_names:
+    - воскресенье
+    - понедельник
+    - вторник
+    - среда
+    - четверг
+    - пятница
+    - суббота
+    formats:
+      default: ! '%d.%m.%Y'
+      long: ! '%d %B %Y'
+      short: ! '%d %b'
+    month_names:
+    -
+    - января
+    - февраля
+    - марта
+    - апреля
+    - мая
+    - июня
+    - июля
+    - августа
+    - сентября
+    - октября
+    - ноября
+    - декабря
+    order:
+    - :day
+    - :month
+    - :year

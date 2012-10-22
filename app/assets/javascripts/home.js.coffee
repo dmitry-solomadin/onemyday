@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $(->
-  $('#userDropdown').css("width", $("#userMenu").width())
+  $("#userMenu").on('hover', -> $('#userDropdown').css("width", $("#userMenu").width()))
 
   $('#storiesContainer').masonry
     itemSelector: '.smallStory'
@@ -26,4 +26,10 @@ $(->
   if !$("#ga")[0]
     js = $("<script id='ga' src='http://www.google-analytics.com/ga.js'></script>")
     $("script:first").parent().prepend(js)
+
+  class Home
+    onSearchSubmit: ->
+      $.trim($("#navbarSearch").val()).length > 0
+
+  App.home = new Home()
 )

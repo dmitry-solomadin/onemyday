@@ -188,6 +188,15 @@ ul.navigation {
       a {
         padding: 12px 10px 12px 10px;
         height: auto;
+        min-width: 180px;
+        max-width: 200px;
+        white-space: nowrap;
+
+        span.username {
+          max-width: 170px;
+          display: inline-block;
+          overflow: hidden;
+        }
 
         img {
           margin-right: 5px;
@@ -217,7 +226,8 @@ ul.navigation {
     }
 
     li a {
-      padding: 17px 20px 12px 20px;
+      padding-top: 17px;
+      padding-bottom: 12px ;
       height: 26px;
     }
 
@@ -505,4 +515,8 @@ ul.navigation {
 
 .relative {
   position: relative;
+}
+
+.alert ul {
+  margin-bottom: 0;
 }

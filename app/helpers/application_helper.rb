@@ -19,4 +19,16 @@ module ApplicationHelper
     current_user && user == current_user
   end
 
+  def get_title(title)
+    !title.blank? ? title : "Singleday"
+  end
+
+  def meta_tags(tags)
+    tags.present? ? tags : ""
+  end
+
+  def current_locale
+    I18n.locale
+  end
+
 end

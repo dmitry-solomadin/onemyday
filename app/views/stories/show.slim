@@ -3,7 +3,7 @@
 
 div.storyHeaderDiv
   div.storyHeader.lobster #{@story.title}
-  div.storySubHeader #{@story.date_nice_text} by #{@story.user.name}
+  div.storySubHeader #{@story.date_nice_text}#{t '.by_html'} #{@story.user.name}
   div.storySubHeaderBorder
 
 div#story
@@ -66,8 +66,8 @@ div style='clear:both;'
   - like = @story.likes.find_by_user_id current_user.id
   = form_tag like ? unlike_path : new_like_path, remote:true, class: "likeForm" do
     input type="hidden" name="story_id" value="#{@story.id}"
-    a#storyLike.btn.btnLike data-submitable="true" class="#{like ? "btn-foxtrot" : ""}"
-      span #{like ? "Liked" : "Like"}
+    a#storyLike.btn.btnLike data-submitable="true" data-like="#{t '.like'}" data-liked="#{t '.liked'}" class="#{like ? "btn-foxtrot" : ""}"
+      span #{like ? t('.liked') : t('.like')}
 - if @story.likes.any?
   div.likes
     i.icon-heart
@@ -86,6 +86,6 @@ div#commentsContainer
         div.add
           = image_tag current_user.avatar.url :small
           div.addTextWrapper
-            = f.text_area :text, placeholder: "Add a comment...", class: "addText", id: "addCommentTextarea"
-          = f.submit "Send", class: "btn submit fl", disabled: "disabled", id: "addCommentSubmit"
+            = f.text_area :text, placeholder: t('.comment_placeholder'), class: "addText", id: "addCommentTextarea"
+          = f.submit t('.send'), class: "btn submit fl", disabled: "disabled", id: "addCommentSubmit"
           br clear="both"

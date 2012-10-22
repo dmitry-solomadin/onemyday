@@ -50,11 +50,11 @@ class Story < ActiveRecord::Base
   end
 
   def self.date_to_text time
-    time.try(:strftime, "%d-%m-%Y")
+    I18n.localize time, format: "%d-%m-%Y"
   end
 
   def self.date_to_nice_text time
-    time.try(:strftime, "%b %d, %Y")
+    I18n.localize time, format: "%b %d, %Y"
   end
 
   def self.top(lim=nil, tags=nil)

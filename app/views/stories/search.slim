@@ -1,6 +1,6 @@
 div.whiteHeader
   div.smallInnerContainer
-    div#searchInnerContainer data-url="#{search_stories_path}" data-query="#{ u @query}"
+    div#searchInnerContainer data-url="#{search_stories_path}" data-query="#{u @query}"
       - search_text = @tag ? "with tag" : "matching"
       - if @stories.any?
         h3.searchHeader.fl Found #{pluralize(@stories.count, 'story')} #{search_text}: "#{@tag ? @tag : @query}"
@@ -12,9 +12,6 @@ div.whiteHeader
         data-type="#{StoriesHelper::EXPLORE_FILTER_POPULAR}"} Popular
         a{class="btn #{'active' if params[:ft].blank? || params[:ft].to_i == StoriesHelper::EXPLORE_FILTER_RECENT}"
         data-type="#{StoriesHelper::EXPLORE_FILTER_RECENT}"} Recent
-
-      div.sortheader.ib.fr
-        h2.headerCaption Sort
 
 div.whiteHeaderContentSmall
   div#searchStoriesContainer

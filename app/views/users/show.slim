@@ -9,17 +9,21 @@ div#showUserDiv.whiteHeader
         a href="#{@user.facebook_link}"
           img.ml10.social-ntwk src="/assets/facebook-auth.png" width="24"
       - unless @user.twitter_link.nil?
-        a href="http://twitter.com/#{@user.twitter_link}"
+        a href="#{@user.twitter_link}"
           img.ml5.social-ntwk src="/assets/twitter_auth.png" width="24"
     div.tabsContainer
       ul#userTabs.tabs
         li#ownTab.selected
-          = link_to content_tag(:span, "#{is_current_user ? 'Yours': 'His'}"), own_stories_path(@user.id), remote: true
+          - yours = t '.yours'
+          - his = t '.his'
+          = link_to content_tag(:span, "#{is_current_user ? yours: his}"), own_stories_path(@user.id), remote: true
         li
-          = link_to content_tag(:span, "#{is_current_user ? 'Liked by you': 'Liked'}"), liked_stories_path(@user.id), remote: true
+          - liked_by_you = t '.liked_by_you'
+          - liked = t '.liked'
+          = link_to content_tag(:span, "#{is_current_user ? liked_by_you : liked }"), liked_stories_path(@user.id), remote: true
         - if is_current_user && @user.stories.unpublished.any?
           li#unpublishedTab
             a href="#{unfinished_stories_path(@user.id)}" data-remote="true"
-              span Drafts (<span id='unpublishedCount'>#{@user.stories.unpublished.size}</span>)
+              span #{t '.drafts'} (<span id='unpublishedCount'>#{@user.stories.unpublished.size}</span>)
 div#showUserTabContent.whiteHeaderContent
   = render "/stories/list_stories", stories: @stories, own: is_current_user

@@ -15,10 +15,10 @@
         i.icon-comment
         span = story.comments.count
       div.date
-        '@ #{story.date_nice_text} by #{link_to story.user.name, story.user}
+        '@ #{story.date_nice_text}#{t '.by_html'} #{link_to story.user.name, story.user}
     div.imageHoverMenu.btn-group.hide
-      = link_to "Edit", edit_story_path(story.id), class: "btn"
-      = link_to "Delete", story_path(story.id), method: "delete", confirm: "Are you sure?", class: "btn", remote: true
+      = link_to t('.edit'), edit_story_path(story.id), class: "btn"
+      = link_to t('.delete'), story_path(story.id), method: "delete", confirm: "Are you sure?", class: "btn", remote: true
 - else
   div.smallStory.unpublished.relative id="unpublished#{story.id}" style="width: 300px;"
     - if story.story_photos.any?
@@ -31,7 +31,7 @@
           span No Image
     div.text
       a href="#{story_path story}"
-        div.title #{story.title} (draft)
+        div.title #{story.title} (#{t '.draft'})
     div.imageHoverMenu.btn-group.hide
-      = link_to "Edit", edit_story_path(story.id), class: "btn"
-      = link_to "Delete", story_path(story.id), method: "delete", confirm: "Are you sure?", class: "btn", remote: true
+      = link_to t('.edit'), edit_story_path(story.id), class: "btn"
+      = link_to t('.delete'), story_path(story.id), method: "delete", confirm: "Are you sure?", class: "btn", remote: true

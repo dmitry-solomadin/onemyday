@@ -9,9 +9,9 @@ $(->
 
   $("#storyLike").click ->
     if $(@).hasClass("btn-foxtrot")
-      $(@).removeClass("btn-foxtrot").find("span").html("Like")
+      $(@).removeClass("btn-foxtrot").find("span").html($(@).data("like"))
     else
-      $(@).addClass("btn-foxtrot").find("span").html("Liked!")
+      $(@).addClass("btn-foxtrot").find("span").html($(@).data("liked"))
 
   $(".storyGroup").each(->
     storyHelper.initializeGroup $(@)
@@ -136,11 +136,11 @@ class Story
 
     if $("#photoUploadStoryTitle").val().length == 0
       valid = false
-      App.formErrors.add "photoUploadStoryTitle", "Please, enter story title."
+      App.formErrors.add "photoUploadStoryTitle", $("#noStoryTitle").val()
 
     if $("#photoUploadStoryDate").val().length == 0
       valid = false
-      App.formErrors.add "photoUploadStoryDate","Please, enter story date."
+      App.formErrors.add "photoUploadStoryDate", $("#noStoryDate").val()
 
     callback() if valid
 
@@ -212,7 +212,7 @@ class Story
         App.util.post postUrl, postParams
 
   createGroup: (type, photoData) ->
-    text = if photoData.data("text") and photoData.data("text") != "" then photoData.data("text") else "Tell the story of this photo. Click to edit."
+    text = if photoData.data("text") and photoData.data("text") != "" then photoData.data("text") else $("#defaultStoryText").val()
     time = if photoData.data("date") and photoData.data("date") != "" then photoData.data("date") else "08:10 am"
 
     newGroup = $(type.blockId).clone()
@@ -381,7 +381,7 @@ class Story
     group.find(".textPlace").hide()
     group.find(".span0").css(border: "none", marginLeft: "10px", marginRight: "10px")
     group.find(".rightOrientation").hide()
-    group.find(".leftOrientation").html("Side")
+    group.find(".leftOrientation").html(group.find(".leftOrientation").data("side"))
     group.find(".hasText").removeClass("active")
 
   showText: (group) ->
@@ -390,7 +390,7 @@ class Story
     group.find(".textPlace").show()
     group.find(".span0").css(border: "1px dotted gray", marginLeft: "20px", marginRight: "20px")
     group.find(".rightOrientation").show()
-    group.find(".leftOrientation").html("Left")
+    group.find(".leftOrientation").html(group.find(".leftOrientation").data("left"))
     group.find(".hasText").addClass("active")
 
   refreshFlowControl: ->

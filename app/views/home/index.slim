@@ -4,7 +4,7 @@
     a.btn.btn-large.createButton.open-sans data-toggle="modal" href="#signInModal" Sign Up
 
 h2.homeHeader = t '.pop_stories_html'
-a href="#{explore_path}?ft=#{StoriesHelper::EXPLORE_FILTER_POPULAR}" (view all &rarr;)
+a href="#{explore_path}?ft=#{StoriesHelper::EXPLORE_FILTER_POPULAR}" = t '.view_all_html'
 = render "/stories/list_stories", stories: @top_stories
 
 div.homeTags
@@ -17,7 +17,7 @@ div.homeTags
       a.btn href="#{explore_path}?t=#{tag.name}" #{tag.name.capitalize}
 
 h2.homeHeader = t '.recent_stories_html'
-a href="#{explore_path}?ft=#{StoriesHelper::EXPLORE_FILTER_RECENT}" (view all &rarr;)
+a href="#{explore_path}?ft=#{StoriesHelper::EXPLORE_FILTER_RECENT}" = t '.view_all_html'
 div#recentStories
   = render "/stories/list_stories", stories: @recent_stories
 

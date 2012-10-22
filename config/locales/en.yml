@@ -9,3 +9,70 @@ en:
       pop: Popular
       tags_html: '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tags'
       recent_stories_html: Recent stories&nbsp;
+      view_all_html: "(view all &rarr;)"
+    header:
+      explore: "Explore"
+      tell: "Tell"
+      edit_profile: "Edit Profile"
+      sign_out: "Sign out"
+      sign_in: "Sign In"
+      search_placeholder: "use # to search by tags"
+  users:
+    edit:
+      header: "Edit your profile"
+      name: "Name"
+      lang: "Language"
+      avatar: "Avatar"
+      upload: "Upload"
+      take_from_facebook: "Take from facebook"
+      take_from_twitter: "Take from twitter"
+      login_with_fb: "Login with Facebook"
+      login_with_twi: "Login with Twitter"
+      upload_avatar_header: "Upload avatar from your computer"
+      choose: "Choose"
+      apply_changes: "Apply changes"
+    show:
+      liked_by_you: "Liked by you"
+      liked: "Liked"
+      yours: "Yours"
+      his: "His"
+      drafts: "Drafts"
+  stories:
+    story_edit:
+      edit_story: "Edit story"
+      tell_story: "Tell your story"
+      title: "Title:"
+      tags: "Tags:"
+      tags_desc: 'Try "work" or "weekend"'
+      date_placeholder: "Story date"
+      add_photo: "Add photos"
+      no_story_date: "Please, enter story date."
+      no_story_title: "Please, enter story title."
+      publish: "Publish"
+      save: "Save"
+      save_as_draft: "Save as Draft"
+      move_to_drafts: "Move to Drafts"
+      left: "Left"
+      center: "Center"
+      right: "Right"
+      side: "Side"
+      text: "Text"
+      default_story_text: "Tell the story of this photo. Click to edit."
+    explore:
+      pop: Popular
+      tags_html: '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tags'
+      all: "All"
+      sort: "Sort"
+      popular: "Popular"
+      recent: "Recent"
+    story:
+      draft: "draft"
+      edit: "Edit"
+      delete: "Delete"
+      by_html: "&nbsp;by"
+    show:
+      by_html: "&nbsp;by"
+      send: "Send"
+      comment_placeholder: "Add a comment..."
+      like: "Like"
+      liked: "Liked"

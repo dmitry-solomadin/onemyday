@@ -1,6 +1,10 @@
 = render 'shared/error_messages'
 
-h1.singleday-header #{story ? "Edit Story" : "Tell Your Story"}
+input#noStoryTitle type="hidden" value="#{t '.no_story_title'}"
+input#noStoryDate type="hidden" value="#{t '.no_story_date'}"
+input#defaultStoryText type="hidden" value="#{t '.default_story_text'}"
+
+h1.singleday-header #{story ? "#{t '.edit_story'}" : "#{t '.tell_story'}"}
 
 / Upload photo form
 div#photoUploadDiv
@@ -10,14 +14,14 @@ div#photoUploadDiv
     input#storyId name="story_id" type="hidden" value="#{story.id if story}"
 
     div
-      label Title:&nbsp;
+      label = t '.title'
       input#photoUploadStoryTitle type="text" name="story[title]" value="#{story.title if story}"
       span.photoUploadAt @
-      input#photoUploadStoryDate type="text" name="story[date]" value="#{story.date_text if story}" placeholder="Story date"
+      input#photoUploadStoryDate type="text" name="story[date]" value="#{story.date_text if story}" placeholder="#{t '.date_placeholder'}"
     div style="margin-top:15px"
-      label Tag:&nbsp;
+      label = t '.tags'
       input#photoUploadTags name="story[tag_list]" value="#{story.tag_list if story}" style="width:200px"
-      div.tagExp Try "work" or "weekend"
+      div.tagExp = t '.tags_desc'
     div style="clear:both"
 
     div.delim
@@ -27,7 +31,7 @@ div#photoUploadDiv
       div#customProgressBar.progress.progress-striped.active
         div.bar style="width: 0"
       input#photoUploadButton.hide type="file" name="file_bean[]" multiple="multiple"
-      input#photoUploadStyledButton.btn.btn-large.btn-foxtrot.f18 type='button' class='' value='Add photos'
+      input#photoUploadStyledButton.btn.btn-large.btn-foxtrot.f18 type='button' class='' value='#{t '.add_photo'}'
 
 / Story
 div#story.edit
@@ -59,11 +63,11 @@ div#story.edit
       div.span0
   div#imageHoverMenuPlaceholder.imageHoverMenu.hide
     span.btn-group data-toggle="buttons-radio"
-      button.leftOrientation.btn Left
-      button.centerOrientation.btn Center
-      button.rightOrientation.btn Right
+      button.leftOrientation.btn data-left="#{t '.left'}" data-side="#{t '.side'}" = t '.left'
+      button.centerOrientation.btn = t '.center'
+      button.rightOrientation.btn = t '.right'
     span.textControl.btn-group
-      button.hasText.active.btn Text
+      button.hasText.active.btn = t '.text'
     span.flowControl.btn-group
       button.moveUp.btn &uarr;
       button.moveDown.btn &darr;
@@ -75,5 +79,9 @@ div#storyPublish class="#{"hide" unless story}"
     - @story_photos = story.story_photos
     = render file: "stories/uploaded_photos"
   div style="clear:both"
-  input#storyPublishButton.btn.fl.btn-large.btn-foxtrot.f18 type="button" data-publish-path="#{publish_path}" value="#{story ? (story.published? ? 'Save' : 'Publish') : 'Publish'}"
-  input#storyDraftButton.btn.fl.ml10.btn-large.btn-foxtrot.f18 type="button" data-publish-path="#{publish_path}"  value="#{story ? (story.published? ? 'Move to Drafts' : 'Save') : 'Save as Draft'}"
+  - publish = t '.publish'
+  - save = t '.save'
+  - save_as_draft = t '.save_as_draft'
+  - move_to_drafts = t '.move_to_drafts'
+  input#storyPublishButton.btn.fl.btn-large.btn-foxtrot.f18 type="button" data-publish-path="#{publish_path}" value="#{story ? (story.published? ? save : publish) : publish}"
+  input#storyDraftButton.btn.fl.ml10.btn-large.btn-foxtrot.f18 type="button" data-publish-path="#{publish_path}"  value="#{story ? (story.published? ? move_to_drafts : save) : save_as_draft}"

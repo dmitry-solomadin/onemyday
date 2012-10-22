@@ -1,5 +1,5 @@
 div#editUser
-  h1.singleday-header Edit your profile
+  h1.singleday-header = t '.header'
   = form_for current_user, html: {class: "form-horizontal oneHorizontalForm"} do |f|
     fieldset
       div.control-group
@@ -7,46 +7,46 @@ div#editUser
         div.controls
           = f.text_field :email, class: "input-xlarge", id: "email"
       div.control-group
-        label.control-label for="name" Name
+        label.control-label for="name" = t '.name'
         div.controls
           = f.text_field :name, class: "input-xlarge", id: "name"
       div.control-group
-        label.control-label for="locale" Locale
+        label.control-label for="locale" = t '.lang'
         div.controls
           = f.select :locale, get_available_locales, class: "input-xlarge", id: "locale"
       div.control-group
-        label.control-label for="avatar" Avatar
+        label.control-label for="avatar" = t '.avatar'
         div.controls
           = image_tag current_user.avatar.url :thumb
-          a.btn.ml10 href="#uploadAvatarModal" data-toggle="modal" Upload
+          a.btn.ml10 href="#uploadAvatarModal" data-toggle="modal" = t '.upload'
           - if current_user.has_facebook?
-            = link_to "Take from facebook", update_avatar_facebook_path, class: "btn ml10"
+            = link_to "#{t '.take_from_facebook'}", update_avatar_facebook_path, class: "btn ml10"
           - if current_user.has_twitter?
-            = link_to "Take from twitter", update_avatar_twitter_path, class: "btn ml10"
+            = link_to "#{t '.take_from_twitter'}", update_avatar_twitter_path, class: "btn ml10"
 
       div.control-group
         label.facebookAuth.control-label for="facebook"
         div.controls
           div#facebook.switch.switch-danger{class="#{'active' if current_user.has_facebook?}"
           data-toggle="switch" data-on="ON" data-off="OFF" data-checkbox="danger"}
-          span.info Login with Facebook
+          span.info = t '.login_with_fb'
       div.control-group.last-child
         label.twitterAuth.control-label for="twitter"
         div.controls
           div#twitter.switch.switch-danger{class="#{'active' if current_user.has_twitter?}"
           data-toggle="switch" data-on="ON" data-off="OFF" data-checkbox="danger"}
-          span.info Login with Twitter
+          span.info = t '.login_with_twi'
       div.form-actions
-        = f.submit "Apply changes", class: "btn btn-large btn-foxtrot open-sans f18"
+        = f.submit "#{t '.apply_changes'}", class: "btn btn-large btn-foxtrot open-sans f18"
 
 div#uploadAvatarModal.modal.hide
   button type="button" class="close" data-dismiss="modal" ×
   div.modal-header.open-sans
-    h3 Upload avatar from your computer
+    h3 = t '.upload_avatar_header'
   div.modal-body
     = form_tag upload_user_avatar_path do
       div.uploadError.alert.alert-error.hide
         div.progress.progress-striped.active.hide
           div.bar style="width: 0"
       input#avatarUploadButton.hide type="file" name="file_bean" multiple="multiple"
-      input#avatarUploadStyledButton.btn.btn-large.f18.btn-foxtrot.ml10 type='button' class='' value='Choose'
+      input#avatarUploadStyledButton.btn.btn-large.f18.btn-foxtrot.ml10 type='button' class='' value='#{t '.choose'}'

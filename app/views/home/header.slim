@@ -1,0 +1,31 @@
+header.navbar.navbar-fixed-top
+  div.navbar-inner
+    div.container
+      a.logo href="/"
+
+      ul.navigation.ib.exploreNav
+        li.tellNav
+          = link_to "#{t '.explore'}", explore_path, class: "navLink"
+
+      div.navbarInner
+        = form_tag search_stories_path, method: "GET", onsubmit:"return App.home.onSearchSubmit()" do
+          input#navbarSearch.imLookingFor name="q" type="text" placeholder="#{t '.search_placeholder'}"
+          a.magnifier href="#" data-submitable="true": img src="/assets/magnifier.gif" alt=""
+
+      ul.navigation.fr
+        - if current_user
+          li.tellNav
+            = link_to "#{t '.tell'}", new_story_path, class: "navLink"
+          li#userMenu.btn-group.userNav
+            a.navLink.dropdown-toggle data-toggle="dropdown" href="#{user_path current_user}"
+              = image_tag current_user.avatar.url, width: '32', class: 'navbarAvatar'
+              span.username = current_user.name
+              span.caret
+            ul#userDropdown.dropdown-menu
+              li
+                = link_to "#{t '.edit_profile'}", edit_current_user_path
+              li
+                = link_to "#{t '.sign_out'}", signout_path
+        - else
+          li
+            a.navLink data-toggle="modal" href="#signInModal" = t '.sign_in'
