@@ -14,12 +14,17 @@ div#showUserDiv.whiteHeader
     div.tabsContainer
       ul#userTabs.tabs
         li#ownTab.selected
-          = link_to content_tag(:span, "#{is_current_user ? t('.yours') : get_his_stories_header(@user)}"), own_stories_path(@user.id), remote: true
+          a href="#{own_stories_path @user.id}" data-remote="true"
+            span.count #{@user.stories.size}
+            span = is_current_user ? t('.yours') : get_his_stories_header(@user)
         li
-          = link_to content_tag(:span, "#{is_current_user ? t('.liked_by_you') : t('.liked') }"), liked_stories_path(@user.id), remote: true
+          a href="#{liked_stories_path @user.id}" data-remote="true"
+            span.count #{@user.likes.size}
+            span = is_current_user ? t('.liked_by_you') : t('.liked')
         - if is_current_user && @user.stories.unpublished.any?
           li#unpublishedTab
             a href="#{unfinished_stories_path(@user.id)}" data-remote="true"
-              span #{t '.drafts'} (<span id='unpublishedCount'>#{@user.stories.unpublished.size}</span>)
+              span#unpublishedCount.count = @user.stories.unpublished.size
+              span #{t '.drafts'}
 div#showUserTabContent.whiteHeaderContent
   = render "/stories/list_stories", stories: @stories, own: is_current_user
