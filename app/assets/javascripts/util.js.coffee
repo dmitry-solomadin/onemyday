@@ -32,3 +32,31 @@ $.fn.showModal = (settings) ->
     settings.cancel() if settings.cancel
     this.modal("hide")
   this.modal()
+
+$.fn.combinedHover = (settings) ->
+  trigger = @;
+  additionalTriggers = settings.additionalTriggers
+
+  updateHoverCount = (toAdd) -> trigger[0].hovercount = trigger[0].hovercount + toAdd
+  addHoverCount = -> updateHoverCount(1)
+  removeHoverCount = ->
+    updateHoverCount(-1)
+    window.setTimeout(->
+      settings.offTrigger() if trigger[0].hovercount == 0
+    , 100)
+
+  trigger[0].hovercount = 0;
+
+  if settings.live
+    $(document).on('mouseenter', additionalTriggers, -> addHoverCount())
+      .on('mouseleave', additionalTriggers, -> removeHoverCount())
+  else
+    $(additionalTriggers).on('mouseenter', -> addHoverCount()).on('mouseleave', -> removeHoverCount())
+
+  trigger.on('mouseenter', ->
+    addHoverCount()
+    settings.onTrigger()
+  ).on('mouseleave', -> removeHoverCount())
+  trigger
+
+

@@ -7,6 +7,16 @@ $(->
 $(->
   return if not App.util.isPage "stories", "show"
 
+  $("#likeWrapper").combinedHover
+    additionalTriggers: "#likeBox"
+    onTrigger: ->
+      $("#likeBox").css(zIndex: 1, display:"block")
+      $("#likeBox").animate({opacity: 1, top: -50}, "fast")
+    offTrigger: -> $("#likeBox").animate({opacity: 0, top: -65}, "fast", -> $(@).css(zIndex: -1, display:"none"))
+
+  $("#likeBox img").tooltip
+    placement: "bottom"
+
   $("#storyLike").click ->
     if $(@).hasClass("btn-foxtrot")
       $(@).removeClass("btn-foxtrot").find("span").html($(@).data("like"))
@@ -43,9 +53,9 @@ $(->
   $("#photoUploadTags").select2
     multiple: true
     initSelection : (element, callback) ->
-      data = [];
+      data = []
       $(element.val().split(",")).each ->
-        data.push({id: @, text: @});
+        data.push({id: @, text: @})
       callback(data)
     tokenSeparators:[',', ' ']
     ajax:
@@ -145,7 +155,8 @@ class Story
     callback() if valid
 
   onPhotoUploadSuccess: (data) =>
-    $("#shouldCreateStory").remove();
+    $("#shouldCreateStory").remove()
+    ;
     $("#storyId").val($("#createdStoryId").val())
 
     $("#story").show()

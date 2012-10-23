@@ -95,6 +95,7 @@ en:
       person: "person"
       tags: "Tags:"
       edit_story: "Edit story"
+      likes_header: "Pleople who like it"
     search:
       popular: "Popular"
       recent: "Recent"

@@ -64,6 +64,7 @@ div.bottomShareMenu
   div.fb-like data-send="false" data-width="450" data-show-faces="false" data-font="verdana" data-layout="button_count"
 
 div style='clear:both;'
+
 - if current_user
   - like = @story.likes.find_by_user_id current_user.id
   = form_tag like ? unlike_path : new_like_path, remote:true, class: "likeForm" do
@@ -71,10 +72,30 @@ div style='clear:both;'
     a#storyLike.btn.btnLike data-submitable="true" data-like="#{t '.like'}" data-liked="#{t '.liked'}" class="#{like ? "btn-foxtrot" : ""}"
       span #{like ? t('.liked') : t('.like')}
 - if @story.likes.any?
-  div.likes
-    i.icon-heart
-    a href="#" = pluralize(@story.likes.size, t(".person"), t(".people"))
-    = t '.like_count_desc_html'
+  div#likeWrapper.likeWrapper
+    div#likeBox.likeBox
+      - (0...6).each do |i|
+        - like = @story.likes[i]
+        - break unless like
+        a href="#{user_path like.user.id}"
+          = image_tag like.user.avatar.url(:thumb), title: like.user.name
+    div.likes
+      i.icon-heart
+      a#likeLink href="#likesModal" data-toggle="modal" = pluralize(@story.likes.size, t(".person"), t(".people"))
+      = t '.like_count_desc_html'
+
+  div#likesModal.modal.hide
+    button type="button" class="close" data-dismiss="modal" ×
+    div.modal-header.open-sans
+      h3 = t '.likes_header'
+    div.modal-body
+      - @story.likes.each do |like|
+        div.likeblock class="#{cycle("odd", "even")}"
+          a.fl href="#{user_path like.user.id}"
+            = image_tag like.user.avatar.url(:small), title: like.user.name
+          a.username href="#{user_path like.user.id}"
+            h3 = like.user.name
+          div style='clear:both;'
 
 div style='clear:both;'
 

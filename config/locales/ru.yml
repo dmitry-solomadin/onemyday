@@ -97,6 +97,7 @@ ru:
       people: "людям"
       tags: "Тэги:"
       edit_story: "Редактировать"
+      likes_header: "Люди которым это нравится"
     search:
       popular: "Популярные"
       recent: "Последние"

@@ -33,7 +33,7 @@
   width: 95px;
 }
 
-.ru #photoUploadDiv .tagExp{
+.ru #photoUploadDiv .tagExp {
   margin-left: 97px;
 }
 
@@ -509,6 +509,49 @@
   border: none !important;
   font-family: "Open Sans" !important;
   font-size: 14px !important;
+}
+
+.likeWrapper {
+  position: relative;
+  float: left
+}
+
+.likeBox {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 7px;
+  padding: 8px 8px 8px 5px;
+  width: 210px;
+  top: -65px;
+  left: -30px;
+  opacity: 0;
+  z-index: -1;
+  display: none;
+
+  img {
+    padding-left: 3px;
+  }
+}
+
+#likesModal {
+  .modal-body {
+    padding: 0;
+  }
+
+  .likeblock {
+    padding: 10px 15px;
+  }
+
+  .likeblock.even {
+    background: #fbfbfb;
+  }
+
+  .username {
+    float: left;
+    margin-left: 10px;
+    margin-top: 10px;
+    vertical-align: top;
+  }
 }
 
 
