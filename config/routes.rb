@@ -20,6 +20,8 @@ Onemyday::Application.routes.draw do
 
   resources :comments
 
+  resources :relationships, only: [:create, :destroy]
+
   resources :story_photos, only: [:destroy]
 
   match 'auth/failure', to: redirect('/')

@@ -1,0 +1,6 @@
+- unless current_user? @user
+  div#follow_form.fr style="margin-right:20px"
+    - if current_user.following?(@user)
+      = render 'unfollow'
+    - else
+      = render 'follow'

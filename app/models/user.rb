@@ -7,6 +7,13 @@ class User < ActiveRecord::Base
   has_many :stories
   has_many :likes, dependent: :destroy
 
+  has_many :relationships, foreign_key: "follower_id", dependent: :destroy
+  has_many :followed_users, through: :relationships, source: :followed
+  has_many :reverse_relationships, foreign_key: "followed_id",
+           class_name:  "Relationship",
+           dependent:   :destroy
+  has_many :followers, through: :reverse_relationships, source: :follower
+
   validates :email, presence: true, uniqueness: true
   validates_presence_of :name
   validates_format_of :email, with: /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/
@@ -18,6 +25,18 @@ class User < ActiveRecord::Base
   has_attached_file :avatar, paperclip_opts
 
   after_save :after_save, if: :authentications_changed?
+
+  def following?(other_user)
+    relationships.find_by_followed_id(other_user.id)
+  end
+
+  def follow!(other_user)
+    relationships.create!(followed_id: other_user.id)
+  end
+
+  def unfollow!(other_user)
+    relationships.find_by_followed_id(other_user.id).destroy
+  end
 
   def male?
     self.gender == "male"

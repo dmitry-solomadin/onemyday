@@ -1,3 +1,2 @@
-<% is_current_user = current_user == @user%>
-$("#showUserTabContent").html("<%= escape_javascript(render "/stories/list_stories", stories: @stories, own: is_current_user, empty_message: t('stories.empty_message')) %>");
+$("#showUserTabContent").html("<%= escape_javascript(render "/stories/list_stories", stories: @stories, own: current_user?(@user), empty_message: t('stories.empty_message')) %>");
 $('#storiesContainer').masonry({itemSelector: '.smallStory'});

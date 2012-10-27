@@ -102,7 +102,7 @@ class StoriesController < ApplicationController
   def destroy
     @story = Story.unscoped.find(params[:id])
 
-    raise AccessDenied unless is_current_user @story.user
+    raise AccessDenied unless current_user? @story.user
 
     @story.destroy
 
@@ -115,7 +115,7 @@ class StoriesController < ApplicationController
   def edit
     @story = Story.unscoped.find(params[:id])
 
-    raise AccessDenied unless is_current_user @story.user
+    raise AccessDenied unless current_user? @story.user
   end
 
 end

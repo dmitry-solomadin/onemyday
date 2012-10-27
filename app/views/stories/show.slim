@@ -57,7 +57,7 @@ div.storyEnd
       a.ml5 href="#{explore_path}?t=#{tag}" #{tag}
 
 div.bottomShareMenu
-  - if is_current_user @story.user
+  - if current_user? @story.user
     a.btn.mr10 href="#{edit_story_path(@story.id)}" = t '.edit_story'
 
   a.twitter-share-button href="https://twitter.com/share" data-count="none" data-hashtags="onemyday" Tweet

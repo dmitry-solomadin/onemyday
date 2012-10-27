@@ -1,4 +1,3 @@
-- is_current_user = current_user == @user
 div#showUserDiv.whiteHeader
   div.innerContainer
     div.infoContainer
@@ -11,20 +10,22 @@ div#showUserDiv.whiteHeader
       - unless @user.twitter_link.nil?
         a href="#{@user.twitter_link}"
           img.ml5.social-ntwk src="/assets/twitter_auth.png" width="24"
+
+      = render 'follow_form'
     div.tabsContainer
       ul#userTabs.tabs
         li#ownTab.selected
           a href="#{own_stories_path @user.id}" data-remote="true"
             span.count #{@user.stories.size}
-            span = is_current_user ? t('.yours') : get_his_stories_header(@user)
+            span = current_user?(@user) ? t('.yours') : get_his_stories_header(@user)
         li
           a href="#{liked_stories_path @user.id}" data-remote="true"
             span.count #{@user.likes.size}
-            span = is_current_user ? t('.liked_by_you') : t('.liked')
-        - if is_current_user && @user.stories.unpublished.any?
+            span = current_user?(@user) ? t('.liked_by_you') : t('.liked')
+        - if current_user?(@user) && @user.stories.unpublished.any?
           li#unpublishedTab
             a href="#{unfinished_stories_path(@user.id)}" data-remote="true"
               span#unpublishedCount.count = @user.stories.unpublished.size
               span #{t '.drafts'}
 div#showUserTabContent.whiteHeaderContent
-  = render "/stories/list_stories", stories: @stories, own: is_current_user
+  = render "/stories/list_stories", stories: @stories, own: current_user?(@user)
