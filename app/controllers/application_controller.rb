@@ -13,11 +13,16 @@ class ApplicationController < ActionController::Base
     if current_user && !current_user.locale.blank?
       I18n.locale = current_user.locale
     else
-      country_code = request.location.country_code
-      if country_code == "UA" || country_code == "RU"
-        I18n.locale = :ru
+      location = request.location
+      if location
+        country_code = location.country_code
+        if country_code == "UA" || country_code == "RU"
+          I18n.locale = :ru
+        else
+          I18n.locale = I18n.default_locale
+        end
       else
-        I18n.locale = :ru
+        I18n.locale = I18n.default_locale
       end
     end
   end

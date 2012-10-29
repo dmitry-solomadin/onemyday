@@ -43,5 +43,7 @@ Onemyday::Application.configure do
 
   ENV["HOST"] = "localhost:3000"
 
+  I18n.default_locale = :en
+
   PAPERCLIP_STORAGE_OPTS = {}
 end
