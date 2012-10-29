@@ -39,7 +39,10 @@ ru:
       disconnect_facebook_body: "Если вы отключите Facebook вы больше не сможете заходить через него."
       disconnect_twitter_header: "Отключить Twitter"
       disconnect_twitter_body: "Если вы отключите Twitter вы больше не сможете заходить через него."
-      gender: "Пол"
+      password: "Пароль"
+      set_password_desc: "Если вы установите пароль вы сможете заходить используя комбинацию email и пароль"
+      set_password: "Установить пароль"
+      change_password: "Изменить пароль"
     show:
       liked_by_you: "Нравится вам"
       liked: "Нравится"
@@ -50,6 +53,13 @@ ru:
       her: "Её"
     new:
       finish: "Введите email чтобы закончить регистрацию"
+      create: "Создать аккаунт"
+      finish_existing: "Заполните форму чтобы завершить реистрацию"
+    gender_field:
+      gender: "Пол"
+      male: "Мужской"
+      female: "Женский"
+      non_specified: "Не указано"
   stories:
     empty_message: "Не найдено ни одной истории."
     story_edit:
@@ -167,9 +177,12 @@ ru:
       reply: "ответить"
   layouts:
     application:
-      sign_in_header: "Войдите с помощью Facebook или Twitter"
+      sign_in_header: "Войдите или зарегестрируйтесь"
       cancel: "Отмена"
       okay: "Хорошо"
+      or: "Или"
+      password: "Пароль"
+      email: "Email"
   activerecord:
     errors:
       models:
@@ -177,6 +190,20 @@ ru:
           attributes:
             email:
               blank: Введите email
-              invalid: Введите действительный email
+              invalid: Неверный формат email
+              taken: Такой email уже зарегестрирован
+            password:
+              too_short: Пароль должен соджержать 6 или больше символов
             name:
               blank: Введите имя
+  sessions:
+    destroy_auth:
+      set_password_message: "Вы должны установить пароль чтобы иметь возможность заходить"
+    create:
+      connected_social_accounts: "Этот email имеет связанные %{account_s} %{providers}. Используйте %{them_s} чтобы войти."
+      account: "аккаунт"
+      accounts: "аккаунты"
+      it: "его"
+      them: "их"
+      wrong_password: "Неправильный пароль"
+      existing_user: "Этот пользователь уже существует"

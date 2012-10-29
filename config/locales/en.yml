@@ -39,7 +39,10 @@ en:
       disconnect_facebook_body: "If you disconnect Facebook, you will not be able to login with Facebook."
       disconnect_twitter_header: "Disconnect Twitter"
       disconnect_twitter_body: "If you disconnect Twitter, you will not be able to login with Twitter."
-      gender: "Gender"
+      password: "Password"
+      set_password_desc: "If you set your password you would be able to login with email&password combination"
+      set_password: "Set password"
+      change_password: "Change password"
     show:
       liked_by_you: "Liked by you"
       liked: "Liked"
@@ -50,6 +53,13 @@ en:
       her: "Her"
     new:
       finish: "Finish registration by entering your email"
+      create: "Create my account"
+      finish_existing: "Fill in details to finish registration"
+    gender_field:
+      gender: "Gender"
+      male: "Male"
+      female: "Female"
+      non_specified: "Not specified"
   stories:
     empty_message: "No stories to display."
     story_edit:
@@ -112,9 +122,12 @@ en:
       reply: "reply"
   layouts:
     application:
-      sign_in_header: "Sign In with Facebook or Twitter"
+      sign_in_header: "Sign In or Sign Up"
       cancel: "Cancel"
       okay: "Okay"
+      or: "Or"
+      password: "Password"
+      email: "Email"
   activerecord:
     errors:
       models:
@@ -123,5 +136,19 @@ en:
             email:
               blank: Enter email
               invalid: Enter valid email
+              taken: This email is already taken
+            password:
+              too_short: Password lenght should be more than 6 symbols.
             name:
               blank: Enter your name
+  sessions:
+    destroy_auth:
+      set_password_message: "You need to set password to be able to sign in."
+    create:
+      connected_social_accounts: "This email has connected %{providers} %{account_s}. Please use %{them_s} to sign in."
+      account: "account"
+      accounts: "accounts"
+      it: "it"
+      them: "them"
+      wrong_password: "Wrong password"
+      existing_user: "This user is already registered"

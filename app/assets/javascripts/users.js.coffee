@@ -5,44 +5,41 @@ $(->
   return if not App.util.isPage "users", "edit_current"
 
   $("#facebook").off("toggle-condition")
-  $("#facebook").on("toggle-condition", ->
+  $("#facebook").on "toggle-condition", ->
     if $("#facebook").hasClass("active")
-      $("#onealert").showModal(
+      $("#onealert").showModal
         header: $("#disconnectFacebookHeader").val()
         body: $("#disconnectFacebookBody").val()
         okay: ->
           $("#facebook").trigger("allow")
-          window.location = "/auth/facebook/destroy"
-      )
+          $("#facebook_link").click()
     else
       $("#facebook").trigger("allow")
-  )
 
-  $("#twitter").off("toggle-condition")
-  $("#twitter").on("toggle-condition", ->
+  $("#twitter").off "toggle-condition"
+  $("#twitter").on "toggle-condition", ->
     if $("#twitter").hasClass("active")
-      $("#onealert").showModal(
+      $("#onealert").showModal
         header: $("#disconnectTwitterHeader").val()
         body: $("#disconnectTwitterBody").val()
         okay: ->
           $("#twitter").trigger("allow")
-          window.location = "/auth/twitter/destroy"
-      )
+          $("#twitter_link").click()
     else
       $("#twitter").trigger("allow")
-  )
 
-  $("#facebook").on("after-toggle", ->
-    if $("#facebook").hasClass("active")
-      window.location = "/auth/facebook"
-  )
+  $("#facebook").on "after-toggle", -> window.location = "/auth/facebook" if $("#facebook").hasClass("active")
 
-  $("#twitter").on("after-toggle", ->
+  $("#twitter").on "after-toggle", ->
     if $("#twitter").hasClass("active")
       window.location = "/auth/twitter"
     else
       $("#onealert").modal()
-  )
+
+  $("#setPassword").on "click", ->
+    $("#password").show()
+    $("#setPassword").hide()
+    return false
 
   new App.PhotoUploader
     onSuccess: -> window.location.reload()

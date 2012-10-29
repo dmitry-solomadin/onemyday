@@ -1,8 +1,30 @@
-div#registrationDiv
-  h2.open-sans = t ".finish"
-  = form_for @user do |f|
-    = f.text_field :email, placeholder: "example@email.com"
-    = f.submit "Create my account", class: "btn btn-large open-sans f18"
+- if session[:user_to_create]
+  h2.open-sans = t ".finish_existing"
+  = form_for @user, html: {class: "form-horizontal oneHorizontalForm"} do |f|
+    = render "shared/error_messages", object: @user
+    fieldset
+      div.control-group
+        label.control-label for="email" Email
+        div.controls
+          = f.text_field :email, class: "input-xlarge", id: "email"
+      div.control-group
+        label.control-label for="password" Password
+        div.controls
+          = f.password_field :password, class: "input-xlarge", id: "password", value: @user.password
+      div.control-group
+        label.control-label for="name" Name
+        div.controls
+          = f.text_field :name, class: "input-xlarge", id: "name"
+      = render 'gender_field', f:f, user: @user
+      div.form-actions
+        = f.submit "#{t '.create'}", class: "btn btn-foxtrot btn-large open-sans f18"
+- else
+  div#registrationDiv
+    h2.open-sans = t ".finish"
+    = form_for @user do |f|
+      = render "shared/error_messages", object: @user
+      = f.text_field :email, placeholder: "example@email.com"
+      = f.submit "#{t '.create'}", class: "btn btn-foxtrot btn-large open-sans f18"
 
 
 

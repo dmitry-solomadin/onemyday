@@ -17,18 +17,12 @@ div#editUser
         div.controls
           = f.text_field :name, class: "input-xlarge", id: "name"
       div.control-group
-        label.control-label for="locale" = t '.gender'
+        label.control-label for="password" = t '.password'
         div.controls
-          span.btn-group data-toggle="buttons-radio"
-            = f.radio_button :gender, 'undefined', id:"undefinedGender", class: "hide"
-            = f.radio_button :gender, 'male', id:"maleGender", class: "hide"
-            = f.radio_button :gender, 'female', id:"femaleGender", class: "hide"
-            input.btn{type="button" value="Non specified" onclick="$('#undefinedGender').click()"
-            class="#{'active' if current_user.gender.nil? || current_user.gender == "undefined"}"}
-            input.btn{type="button" value="Male" onclick="$('#maleGender').click()"
-            class="#{'active' if current_user.gender == "male"}"}
-            input.btn{type="button" value="Female" onclick="$('#femaleGender').click()"
-            class="#{'active' if current_user.gender == "female"}"}
+          - has_password = current_user.password_digest.present?
+          a#setPassword.btn{href="#" class="#{'hide' if has_password}" title="#{t '.set_password_desc'}"} = t '.set_password'
+          = f.password_field :password, class: "input-xlarge #{'hide' unless has_password}", id: "password", placeholder: "#{t '.change_password' if has_password}"
+      = render "gender_field", f:f, user: current_user
       div.control-group
         label.control-label for="locale" = t '.lang'
         div.controls
@@ -48,12 +42,14 @@ div#editUser
         div.controls
           div#facebook.switch.switch-danger{class="#{'active' if current_user.has_facebook?}"
           data-toggle="switch" data-on="ON" data-off="OFF" data-checkbox="danger"}
+          a#facebook_link.hide href="#{auth_destroy_path(:facebook)}" data-remote="true" data-method="post"
           span.info = t '.login_with_fb'
       div.control-group.last-child
         label.twitterAuth.control-label for="twitter"
         div.controls
           div#twitter.switch.switch-danger{class="#{'active' if current_user.has_twitter?}"
           data-toggle="switch" data-on="ON" data-off="OFF" data-checkbox="danger"}
+          a#twitter_link.hide href="#{auth_destroy_path(:twitter)}" data-remote="true" data-method="post"
           span.info = t '.login_with_twi'
       div.form-actions
         = f.submit "#{t '.apply_changes'}", class: "btn btn-large btn-foxtrot open-sans f18"

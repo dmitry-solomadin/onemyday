@@ -2,6 +2,8 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $(->
+  $.rails.requiredInputSelector = 'input[name][required]:not([disabled]),textarea[name][required]:not([disabled]),input[name][req]:not([disabled])'
+
   $("#userMenu").on('hover', -> $('#userDropdown').css("width", $("#userMenu").width()))
 
   $('#storiesContainer').masonry
@@ -30,6 +32,18 @@ $(->
   class Home
     onSearchSubmit: ->
       $.trim($("#navbarSearch").val()).length > 0
+
+    onLoginSubmit: ->
+      $("#loginPassword, #loginEmail").removeClass("error_field").removeAttr("placeholder")
+      hasError = false
+      if $.trim($("#loginEmail").val()).length == 0
+        $("#loginEmail").addClass("error_field").attr("placeholder", "Enter email")
+        hasError = true
+      if $.trim($("#loginPassword").val()).length == 0
+        $("#loginPassword").addClass("error_field").attr("placeholder", "Enter password")
+        hasError = true
+      return not hasError
+
 
   App.home = new Home()
 )

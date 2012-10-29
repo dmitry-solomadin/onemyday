@@ -1,7 +1,10 @@
 require 'open-uri'
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :avatar, :name, :locale, :gender
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
+  attr_accessible :email, :avatar, :name, :locale, :gender, :password
+  has_secure_password
 
   has_many :authentications, dependent: :destroy
   has_many :stories
@@ -10,13 +13,20 @@ class User < ActiveRecord::Base
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :followed_users, through: :relationships, source: :followed
   has_many :reverse_relationships, foreign_key: "followed_id",
-           class_name:  "Relationship",
-           dependent:   :destroy
+           class_name: "Relationship",
+           dependent: :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
 
-  validates :email, presence: true, uniqueness: true
-  validates_presence_of :name
-  validates_format_of :email, with: /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/
+  validates :name, presence: true, length: {maximum: 50}
+  validates :email, presence: true,
+            uniqueness: {case_sensitive: false}
+  validates :email, format: {with: VALID_EMAIL_REGEX}, if: ->{ self.email.present? }
+  validates :password, length: {minimum: 6}, if: :password_required?
+
+  # remove password_digest error if authentications present.
+  validate do
+    errors.each { |attribute| errors.delete(attribute) if attribute == :password_digest } unless password_required?
+  end
 
   paperclip_opts = {
       styles: {small: "50x50", thumb: "32x32"}
@@ -24,7 +34,17 @@ class User < ActiveRecord::Base
   paperclip_opts.merge! PAPERCLIP_STORAGE_OPTS
   has_attached_file :avatar, paperclip_opts
 
+  before_post_process :skip_for_invalid
+  def skip_for_invalid
+    self.errors.any?
+  end
+
+  before_save { |user| user.email = email.downcase }
   after_save :after_save, if: :authentications_changed?
+
+  def password_required?
+    self.authentications.empty?
+  end
 
   def following?(other_user)
     relationships.find_by_followed_id(other_user.id)
@@ -46,7 +66,6 @@ class User < ActiveRecord::Base
     @auth_changed
   end
 
-  # todo do this only if associations is changed
   def after_save
     update_social_links
     update_social_gender
@@ -77,6 +96,10 @@ class User < ActiveRecord::Base
 
   def picture_from_url(url)
     self.avatar = open(url)
+  end
+
+  def auth_providers
+    authentications.collect { |auth| auth.provider }
   end
 
   def has_facebook?

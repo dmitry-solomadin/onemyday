@@ -28,6 +28,21 @@ html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb=
           div
         a.social-link.social-twitter href="/auth/twitter"
           div
+        div style="clear:both;"
+        div.signInHeader
+          div.text = t '.or'
+          div.border
+        = form_tag regular_sign_in_path, class:"signInForm", remote:true, onsubmit:"return App.home.onLoginSubmit();" do
+          div#loginError.loginError
+          div.mb10
+            label = t '.email'
+            input#loginEmail.long name="email" req="req" type="text"
+          div.mb10
+            label = t '.password'
+            input#loginPassword.long name="password" req="req" type="password"
+          div
+            label
+            input.fr.smb.btn.btn-large.btn-foxtrot data-loading-text="Signing in..." data-complete-text="Submit" type="submit" value="Submit"
 
     div#onealert.modal.hide
       button type="button" class="close" data-dismiss="modal" ×

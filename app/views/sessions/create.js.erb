@@ -1,0 +1,10 @@
+<% if session[:user_to_create] %>
+    window.location = "<%= new_user_path %>";
+<% else %>
+    <% if @error_message %>
+        $("#loginError").html("<%= @error_message %>");
+    <% else %>
+        $("#loginError").html("");
+        window.location = "/";
+    <% end %>
+<% end %>

@@ -1,0 +1,13 @@
+div.control-group
+  label.control-label for="locale" = t '.gender'
+  div.controls
+    span.btn-group data-toggle="buttons-radio"
+      = f.radio_button :gender, 'undefined', id:"undefinedGender", class: "hide"
+      = f.radio_button :gender, 'male', id:"maleGender", class: "hide"
+      = f.radio_button :gender, 'female', id:"femaleGender", class: "hide"
+      input.btn{type="button" value="#{t '.non_specified'}" onclick="$('#undefinedGender').click()"
+      class="#{'active' if user.gender.nil? || user.gender == "undefined"}"}
+      input.btn{type="button" value="#{t '.male'}" onclick="$('#maleGender').click()"
+      class="#{'active' if user.gender == "male"}"}
+      input.btn{type="button" value="#{t '.female'}" onclick="$('#femaleGender').click()"
+      class="#{'active' if user.gender == "female"}"}

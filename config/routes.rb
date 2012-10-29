@@ -33,8 +33,9 @@ Onemyday::Application.routes.draw do
 
   get '/channel.html', to: 'static_pages#channel'
 
+  post 'auth/regular', to: "sessions#create", as: :regular_sign_in
   match 'auth/:provider/callback', to: 'sessions#create'
-  match 'auth/:provider/destroy', to: 'sessions#destroy_auth'
+  post 'auth/:provider/destroy', to: 'sessions#destroy_auth', as: :auth_destroy
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

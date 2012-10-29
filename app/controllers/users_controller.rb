@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_filter :signed_in_user_filter, except: [:new, :create, :show]
 
   def new
-    @user = User.from_omniauth(session[:omniauth])
+    @user = session[:user_to_create] ? session[:user_to_create] : User.new
   end
 
   def index
@@ -10,8 +10,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.from_omniauth(session[:omniauth])
-    @user.email = params[:user][:email]
+    if session[:omniauth]
+      @user = User.from_omniauth(session[:omniauth])
+      @user.email = params[:user][:email]
+    else
+      @user = User.new(params[:user])
+    end
 
     if @user.save
       session[:user_id] = @user.id

@@ -13,6 +13,15 @@ body {
   padding-bottom: 20px;
 }
 
+h1, h2, h3, h4, h5 {
+  margin: 0;
+}
+
+h2 {
+  font-size: 24px;
+  line-height: 36px;
+}
+
 /* Forms */
 
 form {
@@ -222,7 +231,7 @@ ul.navigation {
   ul.dropdown-menu {
     background: url("white_texture.png") !important;
     border-radius: 0;
-    margin-top: 0;
+    margin-top: -1px;
     border: none;
     padding-top: 0;
     padding-bottom: 0;
@@ -237,7 +246,7 @@ ul.navigation {
 
     li a {
       padding-top: 17px;
-      padding-bottom: 12px ;
+      padding-bottom: 12px;
       height: 26px;
     }
 
@@ -247,7 +256,7 @@ ul.navigation {
 
     a:hover {
       color: #CB2027;
-      background-color: rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.7);
     }
   }
 }
@@ -343,7 +352,7 @@ ul.navigation {
 .magnifier {
   float: left;
   margin-left: -1px;
-  padding: 4px 7px 7px 7px;
+  padding: 4px 7px 5px 7px;
   min-height: 17px;
   border: 1px solid;
   border-color: #C2C0C0 #CCCACA #D1CFCF;
@@ -458,6 +467,62 @@ ul.navigation {
   border-color: #bbb;
 }
 
+.signInHeader {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+
+  .text {
+    font-size: 24px;
+    font-family: "Lobster";
+    color: #202020;
+    position: relative;
+    z-index: 3;
+    background: url("white_texture.png");
+    display: inline-block;
+    padding-left: 8px;
+    padding-right: 8px;
+    top: 4px;
+  }
+
+  .border {
+    border-bottom: 2px dotted #808080;
+    position: relative;
+    top: -9px;
+    z-index: 1;
+  }
+}
+
+.signInForm {
+  label {
+    font-size: 18px;
+    color: #202020;
+    margin-bottom: 5px;
+    width: 90px;
+    text-shadow: white 0 1px 1px;
+    display: inline-block !important;
+    vertical-align: bottom;
+  }
+
+  input.long {
+    margin: 0;
+    width: 355px;
+    font-size: 18px;
+    font-weight: 300;
+    height: 22px;
+    line-height: 26px;
+  }
+
+  .smb {
+    font-size: 18px;
+  }
+
+  .loginError {
+    color: red;
+    margin-bottom: 5px;
+  }
+}
+
 /* Misc */
 
 .onemyday-header {
@@ -485,6 +550,10 @@ ul.navigation {
 
 .ml10 {
   margin-left: 10px;
+}
+
+.mb10 {
+  margin-bottom: 10px;
 }
 
 .bw {
@@ -526,7 +595,7 @@ ul.navigation {
   color: #fff !important;
 }
 
-.btn:hover{
+.btn:hover {
   background-position: 0;
 }
 
@@ -548,4 +617,16 @@ ul.navigation {
 
 .alert ul {
   margin-bottom: 0;
+}
+
+#form_errors_div {
+  text-align: left;
+}
+
+.error_field {
+  border: 1px solid red !important;
+}
+
+.field_with_errors input {
+  border: 1px solid red !important;
 }

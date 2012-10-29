@@ -1,0 +1,4 @@
+<% unless @auth_destroyed %>
+    App.formErrors.add("password_needed", "<%= t '.set_password_message' %>");
+    window.scroll(0, 0);
+<% end %>
