@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   end
 
   paperclip_opts = {
-      styles: {small: "50x50", thumb: "32x32"}
+      styles: {small: "50x50", thumb: "32x32"}, default_url: "/assets/no-avatar.png"
   }
   paperclip_opts.merge! PAPERCLIP_STORAGE_OPTS
   has_attached_file :avatar, paperclip_opts
