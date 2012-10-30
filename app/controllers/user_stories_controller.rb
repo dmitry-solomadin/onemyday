@@ -19,4 +19,10 @@ class UserStoriesController < ApplicationController
     respond_to { |t| t.js }
   end
 
+  def feed
+    @stories = User.find(params[:user_id]).feed
+
+    respond_to { |t| t.js }
+  end
+
 end

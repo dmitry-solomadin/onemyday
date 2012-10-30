@@ -38,7 +38,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @stories = @user.stories
+    @stories = @user.feed
   end
 
   def update_avatar_facebook

@@ -7,12 +7,13 @@ $(->
 $(->
   return if not App.util.isPage "stories", "show"
 
-  $("#likeWrapper").combinedHover
-    additionalTriggers: "#likeBox"
-    onTrigger: ->
-      $("#likeBox").css(zIndex: 1, display:"block")
-      $("#likeBox").animate({opacity: 1, top: -50}, "fast")
-    offTrigger: -> $("#likeBox").animate({opacity: 0, top: -65}, "fast", -> $(@).css(zIndex: -1, display:"none"))
+  if $("#likeWrapper")[0]
+    $("#likeWrapper").combinedHover
+      additionalTriggers: "#likeBox"
+      onTrigger: ->
+        $("#likeBox").css(zIndex: 1, display:"block")
+        $("#likeBox").animate({opacity: 1, top: -50}, "fast")
+      offTrigger: -> $("#likeBox").animate({opacity: 0, top: -65}, "fast", -> $(@).css(zIndex: -1, display:"none"))
 
   $("#likeBox img").tooltip
     placement: "bottom"

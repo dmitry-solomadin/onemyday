@@ -21,11 +21,11 @@ class User < ActiveRecord::Base
   validates :email, presence: true,
             uniqueness: {case_sensitive: false}
   validates :email, format: {with: VALID_EMAIL_REGEX}, if: ->{ self.email.present? }
-  validates :password, length: {minimum: 6}, if: :password_required?
+  validates :password, length: {minimum: 6}, if: :validate_password?
 
   # remove password_digest error if authentications present.
   validate do
-    errors.each { |attribute| errors.delete(attribute) if attribute == :password_digest } unless password_required?
+    errors.each { |attribute| errors.delete(attribute) if attribute == :password_digest } if self.authentications.any?
   end
 
   paperclip_opts = {
@@ -42,8 +42,8 @@ class User < ActiveRecord::Base
   before_save { |user| user.email = email.downcase }
   after_save :after_save, if: :authentications_changed?
 
-  def password_required?
-    self.authentications.empty?
+  def feed
+    Story.from_users_followed_by self
   end
 
   def following?(other_user)
@@ -146,6 +146,12 @@ class User < ActiveRecord::Base
     logger.info e.to_s
   rescue Faraday::Error::ConnectionFailed => e
     logger.info e.to_s
+  end
+
+  private
+
+  def validate_password?
+    !((self.password_digest.present? && self.password.blank?) || self.password_digest.blank?)
   end
 
 end

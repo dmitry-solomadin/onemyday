@@ -1,0 +1,8 @@
+div.likeblock class="#{cycle("odd", "even")}"
+  a.fl href="#{user_path user.id}"
+    = image_tag user.avatar.url(:small), title: user.name
+  a.username href="#{user_path user.id}"
+    h3 = user.name
+  div.fr
+    = render "users/follow_form", user: user
+  div style='clear:both;'

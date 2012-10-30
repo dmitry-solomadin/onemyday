@@ -51,6 +51,7 @@ en:
       drafts: "Drafts"
       stories: "Stories"
       her: "Her"
+      feed: "Feed"
     new:
       finish: "Finish registration by entering your email"
       create: "Create my account"
@@ -60,6 +61,14 @@ en:
       male: "Male"
       female: "Female"
       non_specified: "Not specified"
+    follow_div:
+      following: "following"
+      followers: "followers"
+      follower: "follower"
+      followers_header: "Followers"
+      your_followers_header: "Your followers"
+      followed_users_header: "Following"
+      your_followed_users_header: "You follow"
   stories:
     empty_message: "No stories to display."
     story_edit:
@@ -138,7 +147,7 @@ en:
               invalid: Enter valid email
               taken: This email is already taken
             password:
-              too_short: Password lenght should be more than 6 symbols.
+              too_short: Password length should be more than 6 symbols.
             name:
               blank: Enter your name
   sessions:

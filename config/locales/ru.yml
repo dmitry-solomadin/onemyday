@@ -51,6 +51,7 @@ ru:
       drafts: "Черновики"
       stories: "Истории"
       her: "Её"
+      feed: "Лента"
     new:
       finish: "Введите email чтобы закончить регистрацию"
       create: "Создать аккаунт"
@@ -60,6 +61,14 @@ ru:
       male: "Мужской"
       female: "Женский"
       non_specified: "Не указано"
+    follow_div:
+      following: "читает"
+      followers: "читают"
+      follower: "читают"
+      followers_header: "Читают"
+      your_followers_header: "Ваши читатели"
+      followed_users_header: "Читает"
+      your_followed_users_header: "Вы читаете"
   stories:
     empty_message: "Не найдено ни одной истории."
     story_edit:

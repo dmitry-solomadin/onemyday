@@ -84,18 +84,13 @@ div style='clear:both;'
       a#likeLink href="#likesModal" data-toggle="modal" = pluralize(@story.likes.size, t(".person"), t(".people"))
       = t '.like_count_desc_html'
 
-  div#likesModal.modal.hide
+  div#likesModal.show_user_small.modal.hide
     button type="button" class="close" data-dismiss="modal" ×
     div.modal-header.open-sans
       h3 = t '.likes_header'
     div.modal-body
       - @story.likes.each do |like|
-        div.likeblock class="#{cycle("odd", "even")}"
-          a.fl href="#{user_path like.user.id}"
-            = image_tag like.user.avatar.url(:small), title: like.user.name
-          a.username href="#{user_path like.user.id}"
-            h3 = like.user.name
-          div style='clear:both;'
+        = render 'shared/show_user_small', user: like.user
 
 div style='clear:both;'
 

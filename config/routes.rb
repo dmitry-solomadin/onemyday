@@ -27,6 +27,7 @@ Onemyday::Application.routes.draw do
   match 'auth/failure', to: redirect('/')
   match 'signout', to: 'sessions#destroy', as: 'signout'
 
+  get '/:user_id/stories/feed', to: 'user_stories#feed', as: :feed
   get '/:user_id/stories/own', to: 'user_stories#own', as: :own_stories
   get '/:user_id/stories/liked', to: 'user_stories#liked', as: :liked_stories
   get '/:user_id/stories/unfinished', to: 'user_stories#unfinished', as: :unfinished_stories

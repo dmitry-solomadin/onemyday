@@ -523,6 +523,26 @@ ul.navigation {
   }
 }
 
+.show_user_small {
+  .modal-body {
+    padding: 0;
+  }
+
+  .likeblock {
+    padding: 10px 15px;
+  }
+
+  .likeblock.even {
+    background: #fbfbfb;
+  }
+
+  .username {
+    float: left;
+    margin-left: 10px;
+    vertical-align: top;
+  }
+}
+
 /* Misc */
 
 .onemyday-header {
@@ -629,4 +649,8 @@ ul.navigation {
 
 .field_with_errors input {
   border: 1px solid red !important;
+}
+
+.follow_form {
+  display: inline-block;
 }

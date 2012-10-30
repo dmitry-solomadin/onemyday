@@ -23,6 +23,7 @@ class Story < ActiveRecord::Base
     stories = tagged_with(tags) if tags
     stories.order("created_at DESC")
   }
+  scope :from_users_followed_by, lambda { |user| followed_by(user) }
 
   def initialize(attributes = nil, options = {})
     super attributes, options
@@ -67,6 +68,17 @@ class Story < ActiveRecord::Base
     else
       Story.select("*, (likes_count * 10) + views_count as count").order("count DESC").limit(lim)
     end
+  end
+
+  private
+
+  # Returns an SQL condition for users followed by the given user.
+  # We include the user's own id as well.
+  def self.followed_by(user)
+    followed_user_ids = %(SELECT followed_id FROM relationships
+                            WHERE follower_id = :user_id)
+    where("user_id IN (#{followed_user_ids}) OR user_id = :user_id",
+          {user_id: user})
   end
 
 end

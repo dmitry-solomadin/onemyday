@@ -11,10 +11,15 @@ div#showUserDiv.whiteHeader
         a href="#{@user.twitter_link}"
           img.ml5.social-ntwk src="/assets/twitter_auth.png" width="24"
 
-      = render 'follow_form'
+      = render "follow_div"
     div.tabsContainer
       ul#userTabs.tabs
-        li#ownTab.selected
+        - if current_user? @user
+          li#feedTab.selected
+            a href="#{feed_path @user.id}" data-remote="true"
+              span.count #{@user.feed.size}
+              span = t ".feed"
+        li#ownTab class="#{'selected' unless current_user?(@user)}"
           a href="#{own_stories_path @user.id}" data-remote="true"
             span.count #{@user.stories.size}
             span = current_user?(@user) ? t('.yours') : get_his_stories_header(@user)
@@ -28,4 +33,4 @@ div#showUserDiv.whiteHeader
               span#unpublishedCount.count = @user.stories.unpublished.size
               span #{t '.drafts'}
 div#showUserTabContent.whiteHeaderContent
-  = render "/stories/list_stories", stories: @stories, own: current_user?(@user)
+  = render "/stories/list_stories", stories: @stories

@@ -1,2 +1,2 @@
-$("#showUserTabContent").html("<%= escape_javascript(render "/stories/list_stories", stories: @stories, own: current_user?(@user), empty_message: t('stories.empty_message')) %>");
+$("#showUserTabContent").html("<%= j (render "/stories/list_stories", stories: @stories, editor: @user, empty_message: t('stories.empty_message')) %>");
 $('#storiesContainer').masonry({itemSelector: '.smallStory'});
