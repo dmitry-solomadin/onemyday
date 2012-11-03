@@ -34,6 +34,7 @@ App.PhotoUploader = class PhotoUploader
 
     return if error
 
+    @settings.progressBar.find(".bar").html("")
     @settings.progressBar.show()
 
     self = @
@@ -44,7 +45,7 @@ App.PhotoUploader = class PhotoUploader
         percentComplete = Math.round(evt.loaded * 100 / evt.total)
 
         if percentComplete == 100
-          self.settings.progressBar.find(".bar").html("Processing images...")
+          self.settings.progressBar.find(".bar").html($("#processingImages").val())
 
         self.settings.progressBar.find(".bar").css("width", percentComplete.toString() + '%')
     , false)

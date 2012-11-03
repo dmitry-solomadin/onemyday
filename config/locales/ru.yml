@@ -18,6 +18,7 @@ ru:
       sign_out: "Выйти"
       sign_in: "Войти"
       search_placeholder: "# чтобы искать по тэгам"
+      processing_images: "Обработка изображений..."
   shared:
     error_messages:
       header: "Пожалуйста исправьте следующие ошибки:"

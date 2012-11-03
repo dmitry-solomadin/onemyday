@@ -18,6 +18,7 @@ en:
       sign_out: "Sign out"
       sign_in: "Sign In"
       search_placeholder: "use # to search by tags"
+      processing_images: "Processing images..."
   shared:
     error_messages:
       header: "Please fix following errors:"
