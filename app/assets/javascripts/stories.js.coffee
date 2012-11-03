@@ -78,9 +78,10 @@ $(->
 
   $("#photoUploadStoryDate").datepicker dateFormat: "dd-mm-yy"
 
-  new App.PhotoUploader
+  App.photoUploader = new App.PhotoUploader
     onSuccess: storyHelper.onPhotoUploadSuccess
     validate: storyHelper.validate
+    preUploadRequest: storyHelper.preUploadRequest
     button: $("#photoUploadButton")
     styledButton: $("#photoUploadStyledButton")
 )
@@ -121,14 +122,14 @@ $(->
   $("#photoUploadStoryDate").datepicker
     dateFormat: "dd-mm-yy"
 
-  new App.PhotoUploader
+  App.photoUploader = new App.PhotoUploader
     onSuccess: storyHelper.onPhotoUploadSuccess
     validate: storyHelper.validate
+    preUploadRequest: storyHelper.preUploadRequest
     button: $("#photoUploadButton")
     styledButton: $("#photoUploadStyledButton")
 
   storyHelper.appendPhotos()
-
   storyHelper.showPublish()
 )
 
@@ -155,9 +156,12 @@ class Story
 
     callback() if valid
 
-  onPhotoUploadSuccess: (data) =>
-    $("#shouldCreateStory").remove()
+  preUploadRequest: (callback) =>
+    return callback() if $("#storyId").val().length > 0
 
+    $("#storyForm").submit()
+
+  onPhotoUploadSuccess: (data) =>
     $("#story").show()
     @showPublish()
     $("#photoDiv").html(data)

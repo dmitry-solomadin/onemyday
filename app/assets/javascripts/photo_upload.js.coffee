@@ -13,44 +13,59 @@ App.PhotoUploader = class PhotoUploader
         if @settings.validate? then @settings.validate(=> @settings.button.click()) else @settings.button.click()
 
   doUpload: ->
-    xhr = new XMLHttpRequest()
-    fd = new FormData(@settings.form[0])
+    @settings.filesInQueue = 0
 
     @settings.errors.hide()
     @settings.progressBar.hide()
 
-    files = @settings.button[0].files
+    @settings.files = @settings.button[0].files
+    return if @settings.files.length == 0
 
-    return if files.length == 0
-
-    error = false
-    $(files).each(->
-      fileSize = (Math.round(this.size * 100 / (1024 * 1024)) / 100).toString()
+    for file in @settings.files
+      fileSize = (Math.round(file.size * 100 / (1024 * 1024)) / 100).toString()
       if fileSize > 10
         @settings.errors.html("Uploaded file should be not bigger than 10 MBs.").show()
-        error = true
-        return false
-    )
+        return
 
-    return if error
 
-    @settings.progressBar.find(".bar").html("")
-    @settings.progressBar.show()
+    if @settings.preUploadRequest?
+      @settings.progressBar.find(".bar").html($("#preparingImages").val())
+      @settings.preUploadRequest =>
+        @sendRequest($("#storyId").val())
+    else
+      @sendRequest($("#storyId").val())
 
-    self = @
+  sendRequest: (storyId) ->
+    for file, i in @settings.files
+      xhr = new XMLHttpRequest()
 
-    # event listners
+      formData = new FormData()
+      formData.append("file_bean", file)
+      formData.append("story_id", storyId) if storyId
+
+      @settings.progressBar.find(".bar").html("")
+      @settings.progressBar.show()
+
+      @assignEventListeners(xhr)
+
+      xhr.open("POST", @settings.form.attr("action"))
+      xhr.setRequestHeader("X-CSRF-Token", $('meta[name="csrf-token"]').attr('content'))
+      xhr.send(formData)
+
+  assignEventListeners: (xhr) ->
+    settings  = @settings
     xhr.upload.addEventListener("progress", (evt) ->
-      if evt.lengthComputable && self.settings.progressBar[0]?
+      console.log(evt)
+      if evt.lengthComputable && settings.progressBar[0]?
         percentComplete = Math.round(evt.loaded * 100 / evt.total)
 
         if percentComplete == 100
-          self.settings.progressBar.find(".bar").html($("#processingImages").val())
+          settings.progressBar.find(".bar").html($("#processingImages").val())
 
-        self.settings.progressBar.find(".bar").css("width", percentComplete.toString() + '%')
+        settings.progressBar.find(".bar").css("width", percentComplete.toString() + '%')
     , false)
     xhr.addEventListener("load", (evt) ->
-      self.settings.onSuccess(evt.target.responseText) if self.settings.onSuccess?
+      settings.onSuccess(evt.target.responseText) if settings.onSuccess?
     , false)
     xhr.addEventListener("error", ->
       alert("error!")
@@ -58,8 +73,3 @@ App.PhotoUploader = class PhotoUploader
     xhr.addEventListener("abort", ->
       alert("abort!")
     , false)
-
-    xhr.open("POST", @settings.form.attr("action"))
-    header = $('meta[name="csrf-token"]').attr('content')
-    xhr.setRequestHeader("X-CSRF-Token", header)
-    xhr.send(fd)

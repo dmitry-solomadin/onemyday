@@ -8,11 +8,7 @@ h1.onemyday-header #{story ? "#{t '.edit_story'}" : "#{t '.tell_story'}"}
 
 / Upload photo form
 div#photoUploadDiv
-  = form_tag upload_story_photo_path, id: "photoUploadForm" do
-    - unless story
-      input#shouldCreateStory name="create_story" type="hidden" value="true"
-    input#storyId name="story_id" type="hidden" value="#{story.id if story}"
-
+  = form_tag stories_path, id: "storyForm", remote: true do
     div
       label = t '.title'
       input#photoUploadStoryTitle type="text" name="story[title]" value="#{story.title if story}"
@@ -26,6 +22,8 @@ div#photoUploadDiv
 
     div.delim
 
+  = form_tag upload_story_photo_path, id: "photoUploadForm" do
+    input#storyId name="story_id" type="hidden" value="#{story.id if story}"
     div.uploadButtonDiv
       div#photoUploadError.uploadError.alert.alert-error.hide
       div#customProgressBar.progress.progress-striped.active

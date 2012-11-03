@@ -63,15 +63,9 @@ class StoriesController < ApplicationController
   end
 
   def upload_photo
-    if params[:create_story]
-      @story = @current_user.stories.build(params[:story])
-    else
-      @story = @current_user.stories.unscoped.find(params[:story_id])
-    end
+    @story = @current_user.stories.unscoped.find(params[:story_id])
 
-    params[:file_bean].each do |file_bean|
-      @story.story_photos.build photo: file_bean
-    end
+    @story.story_photos.build photo: params[:file_bean]
     @story.save!
 
     @story_photos = @story.story_photos

@@ -19,6 +19,7 @@ en:
       sign_in: "Sign In"
       search_placeholder: "use # to search by tags"
       processing_images: "Processing images..."
+      preparing_images: "Preparing to send..."
   shared:
     error_messages:
       header: "Please fix following errors:"

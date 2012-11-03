@@ -19,6 +19,7 @@ ru:
       sign_in: "Войти"
       search_placeholder: "# чтобы искать по тэгам"
       processing_images: "Обработка изображений..."
+      preparing_images: "Подготовка отправки..."
   shared:
     error_messages:
       header: "Пожалуйста исправьте следующие ошибки:"
