@@ -157,12 +157,12 @@ class Story
 
   onPhotoUploadSuccess: (data) =>
     $("#shouldCreateStory").remove()
-    ;
-    $("#storyId").val($("#createdStoryId").val())
 
     $("#story").show()
     @showPublish()
     $("#photoDiv").html(data)
+
+    $("#storyId").val($("#createdStoryId").val())
 
     dataValid = $("#photoDiv > #uploadedPhotoData").find(".photo").length > 0
     if dataValid

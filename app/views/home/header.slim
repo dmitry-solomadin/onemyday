@@ -18,7 +18,7 @@ header.navbar.navbar-fixed-top
             = link_to "#{t '.tell'}", new_story_path, class: "navLink"
           li#userMenu.btn-group.userNav
             a.navLink.dropdown-toggle data-toggle="dropdown" href="#{user_path current_user}"
-              = image_tag current_user.avatar.url, width: '32', class: 'navbarAvatar'
+              = image_tag current_user.avatar.url :thumb, class: 'navbarAvatar'
               span.username = current_user.name
               span.caret
             ul#userDropdown.dropdown-menu
