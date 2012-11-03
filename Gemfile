@@ -25,6 +25,7 @@ gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'geocoder'
 gem 'bcrypt-ruby'
+gem 'cocaine', '0.3.2' # new cocaine gem breaks paperclip upload
 
 # Gems used only for assets and not required
 # in production environments by default.

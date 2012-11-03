@@ -194,6 +194,8 @@ ru:
       email: "Email"
   activerecord:
     errors:
+      messages:
+        record_invalid: Что-то пошло не так.
       models:
         user:
           attributes:
