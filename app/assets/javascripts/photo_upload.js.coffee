@@ -16,6 +16,7 @@ App.PhotoUploader = class PhotoUploader
   doUpload: ->
     @settings.errors.hide()
     @settings.progressBar.hide()
+    @settings.uploadSegments = []
 
     @settings.files = @settings.button[0].files
     return if @settings.files.length == 0
@@ -52,20 +53,40 @@ App.PhotoUploader = class PhotoUploader
       xhr.send(formData)
 
   assignEventListeners: (xhr) ->
+    self = this
     settings  = @settings
     bar = settings.progressBar.find(".bar")
+    percentPart = 100 / settings.files.length
 
     xhr.upload.addEventListener("progress", (evt) ->
-      percentPerFile = 100 / settings.files.length
-      if evt.lengthComputable && settings.progressBar[0]?
-        percentComplete = Math.round(evt.loaded * percentPerFile / evt.total)
+      return unless evt.lengthComputable and settings.progressBar[0]?
 
-      currentPercent = Math.round(100 * bar.width() / bar.offsetParent().width())
-      settings.barText.html($("#processingImages").val()) if currentPercent == 100
+      percentComplete = Math.round(evt.loaded * percentPart / evt.total)
 
-      bar.css("width", "#{currentPercent + percentComplete}%")
+      console.log("percentComplete", percentComplete);
+
+      if settings.uploadSegments.length < settings.files.length
+        settings.uploadSegments.push(percentComplete)
+      else
+        minIndex = self.findMinSegment().index
+        console.log("minIndex", minIndex)
+        settings.uploadSegments[minIndex] = percentComplete
+
+      overallPercent = 0
+      overallPercent += segment for segment in settings.uploadSegments
+
+      # correct percents in case of 33.33 percent part.
+      overallPercent = 100 if overallPercent == Math.round(percentPart) * settings.files.length
+
+      console.log(settings.uploadSegments);
+      console.log("overallPercent", overallPercent);
+
+      settings.barText.html($("#processingImages").val()) if overallPercent == 100
+
+      bar.css("width", "#{overallPercent}%")
     , false)
     xhr.addEventListener("load", (evt) ->
+      settings.filesLoaded = settings.filesLoaded + 1
       settings.onSuccess(evt.target.responseText) if settings.onSuccess?
     , false)
     xhr.addEventListener("error", ->
@@ -74,3 +95,13 @@ App.PhotoUploader = class PhotoUploader
     xhr.addEventListener("abort", ->
       alert("abort!")
     , false)
+
+  findMinSegment: ->
+    minSegment = null
+    minSegmentIndex = -1
+    for segment, index in @settings.uploadSegments
+      if segment < minSegment or not minSegment
+        minSegment = segment
+        minSegmentIndex = index
+
+    {min:minSegment, index:minSegmentIndex}
