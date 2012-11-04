@@ -75,9 +75,11 @@
     text-align: center;
 
     .barText {
+      width: 100%;
       position: absolute;
       top: 0;
       z-index: 999;
+      text-shadow: white 1px 1px 1px;
     }
 
     .bar {
