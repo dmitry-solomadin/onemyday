@@ -63,6 +63,7 @@ class StoriesController < ApplicationController
   end
 
   def upload_photo
+    sleep 50
     @story = @current_user.stories.unscoped.find(params[:story_id])
 
     @story.story_photos.build photo: params[:file_bean]

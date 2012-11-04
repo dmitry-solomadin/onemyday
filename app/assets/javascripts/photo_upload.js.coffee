@@ -6,6 +6,7 @@ App.PhotoUploader = class PhotoUploader
 
     @settings.form = @settings.button.closest("form")
     @settings.progressBar = @settings.form.find(".progress")
+    @settings.barText = @settings.progressBar.find(".barText")
     @settings.errors = @settings.form.find(".uploadError")
     @settings.button.change(=> @doUpload())
     if @settings.styledButton[0]?
@@ -13,8 +14,6 @@ App.PhotoUploader = class PhotoUploader
         if @settings.validate? then @settings.validate(=> @settings.button.click()) else @settings.button.click()
 
   doUpload: ->
-    @settings.filesInQueue = 0
-
     @settings.errors.hide()
     @settings.progressBar.hide()
 
@@ -29,7 +28,7 @@ App.PhotoUploader = class PhotoUploader
 
 
     if @settings.preUploadRequest?
-      @settings.progressBar.find(".bar").html($("#preparingImages").val())
+      @settings.barText.html($("#preparingImages").val())
       @settings.preUploadRequest =>
         @sendRequest($("#storyId").val())
     else
@@ -43,7 +42,7 @@ App.PhotoUploader = class PhotoUploader
       formData.append("file_bean", file)
       formData.append("story_id", storyId) if storyId
 
-      @settings.progressBar.find(".bar").html("")
+      @settings.barText.html("")
       @settings.progressBar.show()
 
       @assignEventListeners(xhr)
@@ -54,15 +53,17 @@ App.PhotoUploader = class PhotoUploader
 
   assignEventListeners: (xhr) ->
     settings  = @settings
+    bar = settings.progressBar.find(".bar")
+
     xhr.upload.addEventListener("progress", (evt) ->
-      console.log(evt)
+      percentPerFile = 100 / settings.files.length
       if evt.lengthComputable && settings.progressBar[0]?
-        percentComplete = Math.round(evt.loaded * 100 / evt.total)
+        percentComplete = Math.round(evt.loaded * percentPerFile / evt.total)
 
-        if percentComplete == 100
-          settings.progressBar.find(".bar").html($("#processingImages").val())
+      currentPercent = Math.round(100 * bar.width() / bar.offsetParent().width())
+      settings.barText.html($("#processingImages").val()) if currentPercent == 100
 
-        settings.progressBar.find(".bar").css("width", percentComplete.toString() + '%')
+      bar.css("width", "#{currentPercent + percentComplete}%")
     , false)
     xhr.addEventListener("load", (evt) ->
       settings.onSuccess(evt.target.responseText) if settings.onSuccess?

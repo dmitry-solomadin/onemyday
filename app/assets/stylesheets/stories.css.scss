@@ -71,8 +71,17 @@
   #customProgressBar {
     display: none;
     width: 400px;
+    position: relative;
+    text-align: center;
+
+    .barText {
+      position: absolute;
+      top: 0;
+      z-index: 999;
+    }
 
     .bar {
+      border-radius: 4px;
       color: black;
     }
   }
