@@ -170,8 +170,6 @@ class Story
 
     dataValid = $("#photoDiv > #uploadedPhotoData").find(".photo").length > 0
     if dataValid
-      $("#customProgressBar").hide()
-
       @appendPhotos()
 
   appendPhotos: ->

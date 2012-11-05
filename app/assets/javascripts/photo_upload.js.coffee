@@ -58,14 +58,10 @@ App.PhotoUploader = class PhotoUploader
     bar = settings.progressBar.find(".bar")
     percentPart = 100 / settings.files.length
 
-    overallUpdateEvents = 0
-    strange = 0
     xhr.upload.addEventListener("progress", (evt) ->
       return unless evt.lengthComputable and settings.progressBar[0]?
 
       percentComplete = Math.round(evt.loaded * percentPart / evt.total)
-
-      overallUpdateEvents++
 
       if settings.uploadSegments.length < settings.files.length
         settings.uploadSegments.push(percentComplete)
@@ -74,10 +70,7 @@ App.PhotoUploader = class PhotoUploader
         minIndex = minSegmentObj.index
         minSegment = minSegmentObj.min
 
-        if percentComplete > minSegment
-          settings.uploadSegments[minIndex] = percentComplete
-        else
-          strange++
+        settings.uploadSegments[minIndex] = percentComplete if percentComplete > minSegment
 
       overallPercent = 0
       overallPercent += segment for segment in settings.uploadSegments
@@ -91,8 +84,7 @@ App.PhotoUploader = class PhotoUploader
     , false)
     xhr.addEventListener("load", (evt) ->
       settings.filesLoaded = settings.filesLoaded + 1
-      console.log("overallUpdateEvents",overallUpdateEvents)
-      console.log("strange",strange)
+      @settings.progressBar.hide() if settings.files.length == settings.filesLoaded.length
       settings.onSuccess(evt.target.responseText) if settings.onSuccess?
     , false)
     xhr.addEventListener("error", ->
