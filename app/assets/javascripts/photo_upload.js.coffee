@@ -84,7 +84,7 @@ App.PhotoUploader = class PhotoUploader
     , false)
     xhr.addEventListener("load", (evt) ->
       settings.filesLoaded = settings.filesLoaded + 1
-      @settings.progressBar.hide() if settings.files.length == settings.filesLoaded.length
+      settings.progressBar.hide() if settings.files.length == settings.filesLoaded.length
       settings.onSuccess(evt.target.responseText) if settings.onSuccess?
     , false)
     xhr.addEventListener("error", ->
