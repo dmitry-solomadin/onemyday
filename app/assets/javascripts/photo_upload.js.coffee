@@ -17,6 +17,7 @@ App.PhotoUploader = class PhotoUploader
     @settings.errors.hide()
     @settings.progressBar.hide()
     @settings.uploadSegments = []
+    @settings.filesLoaded = 0
 
     @settings.files = @settings.button[0].files
     return if @settings.files.length == 0
@@ -84,7 +85,7 @@ App.PhotoUploader = class PhotoUploader
     , false)
     xhr.addEventListener("load", (evt) ->
       settings.filesLoaded = settings.filesLoaded + 1
-      settings.progressBar.hide() if settings.files.length == settings.filesLoaded.length
+      settings.progressBar.hide() if settings.files.length == settings.filesLoaded
       settings.onSuccess(evt.target.responseText) if settings.onSuccess?
     , false)
     xhr.addEventListener("error", ->
