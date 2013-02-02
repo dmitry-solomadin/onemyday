@@ -27,6 +27,16 @@ gem 'geocoder'
 gem 'bcrypt-ruby'
 gem 'cocaine', '0.3.2' # new cocaine gem breaks paperclip upload
 
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'capistrano'
+end
+
+group :production do
+  gem 'unicorn'
+end
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
