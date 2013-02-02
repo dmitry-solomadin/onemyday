@@ -26,8 +26,8 @@ test:
 production:
   adapter: postgresql
   host: 0.0.0.0
-  username: apple
-  password:
+  username: postgres
+  password: thequaker1
   database: onemyday
   schema_search_path: public
   encoding: utf8
