@@ -23,7 +23,7 @@ set :ssh_options, { :forward_agent => true }
 namespace :starter do
   desc "Own deploy folder"
   task :prepare, :roles => :app do
-    run "cd #{current_path} && cd .. && chown -R root:root ."
+    #run "cd #{release_path} && cd .. && chown -R root:root ."
     run "cd #{current_path}/config && chmod +x onemyday-starter"
   end
 
@@ -46,7 +46,7 @@ end
 namespace :deploy do
   desc "Compile assets"
   task :precompile_assets, :roles => :app do
-    run "cd #{release_path} && bundle exec rake assets:precompile --trace"
+    run "cd #{current_path} && bundle exec rake assets:precompile --trace"
   end
 
   desc "Migrate db"
@@ -55,8 +55,10 @@ namespace :deploy do
   end
 end
 
-after 'deploy:update_code', 'deploy:precompile_assets'
+after 'deploy:create_symlink', 'deploy:precompile_assets'
 after 'deploy:precompile_assets', 'deploy:migrate_db'
+after 'deploy:update', 'starter:prepare'
+after 'deploy:update', 'starter:restart'
 
 require './config/boot'
 
