@@ -56,7 +56,7 @@ namespace :deploy do
 end
 
 after 'deploy:create_symlink', 'deploy:precompile_assets'
-after 'deploy:precompile_assets', 'deploy:migrate_db'
+after 'deploy:precompile_assets', 'deploy:migrate'
 after 'deploy:update', 'starter:prepare'
 after 'deploy:update', 'starter:restart'
 
