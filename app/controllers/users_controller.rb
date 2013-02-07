@@ -19,9 +19,15 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_url
+      respond_to do |f|
+        f.html { redirect_to root_url }
+        f.json { render :json => {user_id: @user.id, status: "ok"}.to_json }
+      end
     else
-      render "users/new"
+      respond_to do |f|
+        f.html { render "users/new" }
+        f.json { render :json => {errors: @user.errors, status: "bad_request"}.to_json }
+      end
     end
   end
 
@@ -39,6 +45,10 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @stories = @user.feed
+    respond_to do |f|
+      f.html
+      f.json { render :json => @user.to_json }
+    end
   end
 
   def update_avatar_facebook

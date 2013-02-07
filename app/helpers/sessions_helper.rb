@@ -7,4 +7,8 @@ module SessionsHelper
                        providers: providers.join(", "), account_s: account_s, them_s: them_s)
   end
 
+  def generate_existing_auth_status(providers)
+    "user_already_registered_by_#{providers.join("_")}"
+  end
+
 end

@@ -1,11 +1,13 @@
 class StoriesController < ApplicationController
 
-  before_filter :signed_in_user_filter, except: [:show, :search, :explore]
+  before_filter :signed_in_user_filter, except: [:show, :search, :explore, :index]
 
   def index
     @stories = Story.all
 
-    render "list_stories", stories: @stories
+    respond_to do |f|
+      f.json { render :json => StoryFormat.to_json(@stories, params) }
+    end
   end
 
   def search
@@ -24,9 +26,10 @@ class StoriesController < ApplicationController
     @stories = @stories.where("title like '%#@query%'") unless @tag
     @stories = @stories.paginate(page: params[:page])
 
-    respond_to do |format|
-      format.js
-      format.html
+    respond_to do |f|
+      f.js
+      f.html
+      f.json { render :json => StoryFormat.to_json(@stories, params) }
     end
   end
 
@@ -39,9 +42,10 @@ class StoriesController < ApplicationController
       @stories = Story.recent(params[:t]).paginate(page: params[:page])
     end
 
-    respond_to do |format|
-      format.js
-      format.html { render file: 'stories/explore' }
+    respond_to do |f|
+      f.js
+      f.html { render file: 'stories/explore' }
+      f.json { render :json => StoryFormat.to_json(@stories, params) }
     end
   end
 
@@ -53,6 +57,13 @@ class StoriesController < ApplicationController
     @story = Story.unscoped.find(params[:id])
 
     @story.views.build(date: DateTime.now).save!
+
+    respond_to do |f|
+      f.html
+      f.json {
+        render :json => StoryFormat.to_json(@story, params)
+      }
+    end
   end
 
   def create
