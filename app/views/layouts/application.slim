@@ -11,7 +11,7 @@ html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb=
     = javascript_include_tag "application"
     = csrf_meta_tags
     = meta_tags yield(:meta_tags)
-    = render file:"layouts/ga.html"
+    = render file:"shared/ga.html"
   body data-controller="#{params[:controller]}" data-action="#{params[:action]}" class="#{current_locale}"
     div#fb-root
     input#appHost type="hidden" value="#{ENV['HOST']}"
@@ -19,30 +19,7 @@ html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb=
 
     = render file: 'home/header'
 
-    div#signInModal.modal.hide
-      button type="button" class="close" data-dismiss="modal" ×
-      div.modal-header.open-sans
-        h3 = t '.sign_in_header'
-      div.modal-body
-        a.social-link.social-facebook href="/auth/facebook"
-          div
-        a.social-link.social-twitter href="/auth/twitter"
-          div
-        div style="clear:both;"
-        div.signInHeader
-          div.text = t '.or'
-          div.border
-        = form_tag regular_sign_in_path, class:"signInForm", remote:true, onsubmit:"return App.home.onLoginSubmit();" do
-          div#loginError.loginError
-          div.mb10
-            label = t '.email'
-            input#loginEmail.long name="email" req="req" type="text"
-          div.mb10
-            label = t '.password'
-            input#loginPassword.long name="password" req="req" type="password"
-          div
-            label
-            input.fr.smb.btn.btn-large.btn-foxtrot data-loading-text="Signing in..." data-complete-text="Submit" type="submit" value="Submit"
+    = render "shared/sign_in"
 
     div#onealert.modal.hide
       button type="button" class="close" data-dismiss="modal" ×

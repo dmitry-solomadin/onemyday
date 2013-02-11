@@ -4,7 +4,7 @@
 ru:
   home:
     index:
-      onemyday_desc: Onemyday это место где вы можете делится каждым вашим днем.
+      onemyday_desc: Onemyday — расскажи свою историю.
       pop_stories_html: Популярные истории&nbsp;
       pop: Популярные
       tags_html: '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;тэги'
@@ -23,6 +23,14 @@ ru:
   shared:
     error_messages:
       header: "Пожалуйста исправьте следующие ошибки:"
+    sign_in:
+      sign_in_header: "Войдите или зарегестрируйтесь"
+      cancel: "Отмена"
+      okay: "Хорошо"
+      or: "Или"
+      password: "Пароль"
+      email: "Email"
+      exp: "* Введите ваш email и пароль чтобы зарегестрироваться или войти."
   users:
     edit:
       header: "Редактирование профиля"
@@ -186,14 +194,6 @@ ru:
       edit: "редактировать"
       remove: "удалить"
       reply: "ответить"
-  layouts:
-    application:
-      sign_in_header: "Войдите или зарегестрируйтесь"
-      cancel: "Отмена"
-      okay: "Хорошо"
-      or: "Или"
-      password: "Пароль"
-      email: "Email"
   activerecord:
     errors:
       messages:

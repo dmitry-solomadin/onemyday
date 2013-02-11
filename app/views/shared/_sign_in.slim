@@ -1,0 +1,25 @@
+div#signInModal.modal.hide
+  button type="button" class="close" data-dismiss="modal" ×
+  div.modal-header.open-sans
+    h3 = t '.sign_in_header'
+  div.modal-body
+    a.social-link.social-facebook href="/auth/facebook"
+      div
+    a.social-link.social-twitter href="/auth/twitter"
+      div
+    div style="clear:both;"
+    div.signInHeader
+      div.text = t '.or'
+      div.border
+    div.signInExp = t ".exp"
+    = form_tag regular_sign_in_path, class:"signInForm", remote:true, onsubmit:"return App.home.onLoginSubmit();" do
+      div#loginError.loginError
+      div.mb10
+        label = t '.email'
+        input#loginEmail.long name="email" req="req" type="text"
+      div.mb10
+        label = t '.password'
+        input#loginPassword.long name="password" req="req" type="password"
+      div
+        label
+        input.fr.smb.btn.btn-large.btn-foxtrot data-loading-text="Signing in..." data-complete-text="Submit" type="submit" value="Submit"
