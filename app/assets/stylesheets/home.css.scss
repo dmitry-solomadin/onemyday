@@ -401,6 +401,35 @@ ul.navigation {
   }
 }
 
+.photoHeader {
+  background: url('photo_bg.jpg') 50%;
+  position: absolute;
+  width: 100%;
+  margin-top: -25px;
+  left: 0;
+  box-shadow: inset #404040 0 -2px 5px;
+
+  .createButton {
+    margin-top: 20px;
+  }
+
+  .innerContainer {
+    width: 940px;
+    height: 250px;
+    margin: 0 auto;
+    color: white;
+    top: 90px;
+    position: relative;
+    text-align: center;
+    font-size: 26px;
+    text-shadow: black 1px 1px 3px
+  }
+}
+
+.photoHeaderContent {
+  margin-top: 250px;
+}
+
 .whiteHeaderContent {
   margin-top: 150px;
 }
@@ -461,11 +490,11 @@ ul.navigation {
   text-align: center;
   border: 1px solid rgb(251, 238, 213);
   line-height: 25px;
-}
 
-#createText {
-  font-size: 22px;
-  margin-bottom: 10px;
+  #createText {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
 }
 
 .pagination a {

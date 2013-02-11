@@ -10,9 +10,6 @@ class ApplicationController < ActionController::Base
   private
 
   def set_locale
-    I18n.locale = :ru
-    return
-
     if current_user && !current_user.locale.blank?
       I18n.locale = current_user.locale
     else

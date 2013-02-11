@@ -1,25 +1,28 @@
 - unless current_user
-  div#createDiv
-    div#createText.bw = t '.onemyday_desc'
-    a.btn.btn-large.createButton.open-sans data-toggle="modal" href="#signInModal" = t '.sign_up'
+  div.photoHeader
+    div.innerContainer
+      = t '.onemyday_desc'
+      br
+      a.btn.btn-large.createButton.open-sans data-toggle="modal" href="#signInModal" = t '.sign_up'
 
-h2.homeHeader = t '.pop_stories_html'
-a href="#{explore_path}?ft=#{StoriesHelper::EXPLORE_FILTER_POPULAR}" = t '.view_all_html'
-= render "/stories/list_stories", stories: @top_stories
+div class="#{"photoHeaderContent" unless current_user}"
+  h2.homeHeader = t '.pop_stories_html'
+  a href="#{explore_path}?ft=#{StoriesHelper::EXPLORE_FILTER_POPULAR}" = t '.view_all_html'
+  = render "/stories/list_stories", stories: @top_stories
 
-div.homeTags
-  div.ib
-    h2.headerCaption = t '.pop'
-    h2.headerCaption = t '.tags_html'
+  div.homeTags
+    div.ib
+      h2.headerCaption = t '.pop'
+      h2.headerCaption = t '.tags_html'
 
-  div.ib.onemyday-bgroup.btn-group
-    - get_popular_tags.each do |tag|
-      a.btn href="#{explore_path}?t=#{tag.name}" #{tag.name.capitalize}
+    div.ib.onemyday-bgroup.btn-group
+      - get_popular_tags.each do |tag|
+        a.btn href="#{explore_path}?t=#{tag.name}" #{tag.name.capitalize}
 
-h2.homeHeader = t '.recent_stories_html'
-a href="#{explore_path}?ft=#{StoriesHelper::EXPLORE_FILTER_RECENT}" = t '.view_all_html'
-div#recentStories
-  = render "/stories/list_stories", stories: @recent_stories
+  h2.homeHeader = t '.recent_stories_html'
+  a href="#{explore_path}?ft=#{StoriesHelper::EXPLORE_FILTER_RECENT}" = t '.view_all_html'
+  div#recentStories
+    = render "/stories/list_stories", stories: @recent_stories
 
-div style="clear:both;"
-= will_paginate @recent_stories
+  div style="clear:both;"
+  = will_paginate @recent_stories
