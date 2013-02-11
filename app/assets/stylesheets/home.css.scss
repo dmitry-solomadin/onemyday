@@ -418,11 +418,14 @@ ul.navigation {
     height: 250px;
     margin: 0 auto;
     color: white;
-    top: 90px;
     position: relative;
     text-align: center;
     font-size: 26px;
-    text-shadow: black 1px 1px 3px
+    text-shadow: black 1px 1px 3px;
+
+    .cont {
+      padding-top: 90px
+    }
   }
 }
 
