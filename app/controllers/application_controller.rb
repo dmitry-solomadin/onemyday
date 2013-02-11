@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
       I18n.locale = current_user.locale
     else
       location = request.location
+      logger.info "User location #{location.inspect}"
       if location
         country_code = location.country_code
         if country_code == "UA" || country_code == "RU"
