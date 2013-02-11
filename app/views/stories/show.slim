@@ -84,7 +84,7 @@ div style='clear:both;'
       a#likeLink href="#likesModal" data-toggle="modal" = pluralize(@story.likes.size, t(".person"), t(".people"))
       = t '.like_count_desc_html'
 
-  div#likesModal.show_user_small.modal.hide
+  div#likesModal.fade.show_user_small.modal.hide
     button type="button" class="close" data-dismiss="modal" ×
     div.modal-header.open-sans
       h3 = t '.likes_header'

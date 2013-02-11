@@ -3,7 +3,7 @@ div.fr.mr10
   a.mr10 href="#followed_users" data-toggle="modal" = pluralize(@user.followed_users.size, t(".following"), t(".following"))
   = render 'follow_form', user: @user
 
-div#followers.show_user_small.modal.hide
+div#followers.show_user_small.modal.fade.hide
   button type="button" class="close" data-dismiss="modal" ×
   div.modal-header.open-sans
     h3 = current_user?(@user) ? t('.your_followers_header') : t('.followers_header')
@@ -11,7 +11,7 @@ div#followers.show_user_small.modal.hide
     - @user.followers.each do |user|
       = render 'shared/show_user_small', user: user
 
-div#followed_users.show_user_small.modal.hide
+div#followed_users.show_user_small.modal.fade.hide
   button type="button" class="close" data-dismiss="modal" ×
   div.modal-header.open-sans
     h3 = current_user?(@user) ? t('.your_followed_users_header') : t('.followed_users_header')
