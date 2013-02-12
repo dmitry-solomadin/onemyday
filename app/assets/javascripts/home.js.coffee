@@ -37,10 +37,10 @@ $(->
       $("#loginPassword, #loginEmail").removeClass("error_field").removeAttr("placeholder")
       hasError = false
       if $.trim($("#loginEmail").val()).length == 0
-        $("#loginEmail").addClass("error_field").attr("placeholder", "Enter email")
+        $("#loginEmail").addClass("error_field").attr("placeholder", $("#loginEmail").data("err-text"))
         hasError = true
       if $.trim($("#loginPassword").val()).length == 0
-        $("#loginPassword").addClass("error_field").attr("placeholder", "Enter password")
+        $("#loginPassword").addClass("error_field").attr("placeholder", $("#loginPassword").data("err-text"))
         hasError = true
       return not hasError
 

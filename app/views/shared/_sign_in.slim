@@ -16,10 +16,10 @@ div#signInModal.fade.modal.hide
       div#loginError.loginError
       div.mb10
         label = t '.email'
-        input#loginEmail.long name="email" req="req" type="text"
+        input#loginEmail.long name="email" req="req" type="text" data-err-text="#{t '.email_err'}"
       div.mb10
         label = t '.password'
-        input#loginPassword.long name="password" req="req" type="password"
+        input#loginPassword.long name="password" req="req" type="password" data-err-text="#{t '.password_err'}"
       div
         label
         input.fr.smb.btn.btn-large.btn-foxtrot data-loading-text="Signing in..." data-complete-text="Submit" type="submit" value="#{t ".submit"}"

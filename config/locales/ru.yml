@@ -32,6 +32,8 @@ ru:
       email: "Email"
       exp: "* Введите ваш email и пароль чтобы зарегестрироваться или войти."
       submit: "Отправить"
+      email_err: "Введите email"
+      password_err: "Введите пароль"
   users:
     edit:
       header: "Редактирование профиля"

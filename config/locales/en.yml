@@ -30,6 +30,8 @@ en:
       or: "Or"
       password: "Password"
       email: "Email"
+      email_err: "Enter email"
+      password_err: "Enter password"
       exp: "* Enter your email address and password to sign up or sign in."
       submit: "Submit"
   users:
