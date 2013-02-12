@@ -1,3 +1,4 @@
 $("#group<%= @story_photo.id %>").slideUp(function () {
     $(this).remove()
+    $("#<%= @story_photo.id %>").remove()
 });
