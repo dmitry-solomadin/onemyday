@@ -102,6 +102,7 @@ ru:
       side: "Край"
       text: "Текст"
       default_story_text: "Расскажите историю этой фотографии. Кликните на текст для редактирования."
+      story_saved_in_drafts: "* Мы сохранили историю в ваших Черновиках, на всякий случай."
     explore:
       pop: Популярные
       tags_html: '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;тэги'

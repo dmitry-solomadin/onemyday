@@ -22,6 +22,8 @@ div#photoUploadDiv
 
     div.delim
 
+  span#storySaveExp.hide.explanation = t ".story_saved_in_drafts"
+
   div.uploadButtonDiv
     input#storyId name="story_id" type="hidden" value="#{story.id if story}"
     div#photoUploadError.uploadError.alert.alert-error.hide

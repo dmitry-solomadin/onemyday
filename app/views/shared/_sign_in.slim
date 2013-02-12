@@ -11,7 +11,7 @@ div#signInModal.fade.modal.hide
     div.signInHeader
       div.text = t '.or'
       div.border
-    div.signInExp = t ".exp"
+    div.explanation = t ".exp"
     = form_tag regular_sign_in_path, class:"signInForm", remote:true, onsubmit:"return App.home.onLoginSubmit();" do
       div#loginError.loginError
       div.mb10

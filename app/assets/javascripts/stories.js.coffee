@@ -91,7 +91,9 @@ $ ->
         data.formData =
           "story_id": storyId
         uploader.fileupload('send', data)
-    onDone: (result) -> storyHelper.onPhotoUploadSuccess(result)
+    onDone: (result) ->
+      storyHelper.onPhotoUploadSuccess(result)
+      $("#storySaveExp").show()
 
 # Explore stories page
 $(->

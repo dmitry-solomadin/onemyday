@@ -7,8 +7,6 @@ div.comment class="#{defined?(clazz) ? clazz : ""}" id="comment#{comment.id}" da
   p.text
     = comment.text
   div.controls
-    - if current_user
-      a href="#" = t '.reply'
     - if comment_editable? comment
       a href="#" onclick="App.comments.edit(this); return false;" = t '.edit'
     - if comment_deletable? comment

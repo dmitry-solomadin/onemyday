@@ -102,6 +102,7 @@ en:
       side: "Side"
       text: "Text"
       default_story_text: "Tell the story of this photo. Click to edit."
+      story_saved_in_drafts: "* We saved the story in your Drafts, just in case."
     explore:
       pop: Popular
       tags_html: '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tags'
