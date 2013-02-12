@@ -70,13 +70,15 @@ class StoriesController < ApplicationController
     @story = @current_user.stories.build(params[:story])
     @story.save
 
-    respond_to { |t| t.js }
+    respond_to do |t|
+      t.js { render json: @story.id }
+    end
   end
 
   def upload_photo
     @story = @current_user.stories.unscoped.find(params[:story_id])
 
-    @story.story_photos.build photo: params[:file_bean]
+    @story.story_photos.build photo: params[:story_photo][:photo]
     @story.save!
 
     @story_photos = @story.story_photos

@@ -215,6 +215,27 @@
   margin-top: 10px;
 }
 
+.fileinput-button {
+  position: relative;
+  cursor: pointer;
+  border-radius: 0;
+  margin-bottom: 20px;
+
+  input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    opacity: 0;
+    width: 100%;
+    filter: alpha(opacity = 0);
+    font-size: 23px;
+    height: 40px;
+    direction: ltr;
+    cursor: pointer;
+  }
+}
+
 #story {
   img {
     box-shadow: #404040 0 0 5px;

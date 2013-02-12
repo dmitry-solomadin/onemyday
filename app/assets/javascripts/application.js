@@ -14,10 +14,12 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require ioswitch
-//= require jquery-ui-datepicker.min
+//= require jquery-ui
 //= require general
 //= require jquery.inputmask
 //= require jquery.masonry
 //= require select2
 //= require username_autocomplete
+//= require jquery.iframe-transport
+//= require jquery.fileuploader
 //= require_tree .

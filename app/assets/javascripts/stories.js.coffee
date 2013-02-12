@@ -73,18 +73,25 @@ $(->
 )
 
 # New story page
-$(->
-  return if not App.util.isPage "stories", "new"
+$ ->
+  return unless App.util.isPage "stories", "new"
 
   $("#photoUploadStoryDate").datepicker dateFormat: "dd-mm-yy"
 
+  $('#photoUploadButton').on "click", -> return false unless storyHelper.validate()
+
   App.photoUploader = new App.PhotoUploader
-    onSuccess: storyHelper.onPhotoUploadSuccess
-    validate: storyHelper.validate
-    preUploadRequest: storyHelper.preUploadRequest
-    button: $("#photoUploadButton")
-    styledButton: $("#photoUploadStyledButton")
-)
+    btnSelector: "#photoUploadButton"
+    onSubmit: (uploader, data) ->
+      storyData =
+        "story[title]": $("#photoUploadStoryTitle").val()
+        "story[date]": $("#photoUploadStoryDate").val()
+        "story[tag_list]": $("#photoUploadTags").val()
+      $.post $("#storyForm").attr("action"), storyData, (storyId) ->
+        data.formData =
+          "story_id": storyId
+        uploader.fileupload('send', data)
+    onDone: (result) -> storyHelper.onPhotoUploadSuccess(result)
 
 # Explore stories page
 $(->
@@ -123,11 +130,10 @@ $(->
     dateFormat: "dd-mm-yy"
 
   App.photoUploader = new App.PhotoUploader
-    onSuccess: storyHelper.onPhotoUploadSuccess
-    validate: storyHelper.validate
-    preUploadRequest: storyHelper.preUploadRequest
-    button: $("#photoUploadButton")
-    styledButton: $("#photoUploadStyledButton")
+    btnSelector: "#photoUploadButton"
+    formData:
+      "story_id": $("#storyId").val()
+    onDone: (result) -> storyHelper.onPhotoUploadSuccess(result)
 
   storyHelper.appendPhotos()
   storyHelper.showPublish()
@@ -142,7 +148,7 @@ class Story
     center:
       {name: "center", blockId: "#centerGroup", orientationToggleId: ".centerOrientation"}
 
-  validate: (callback) =>
+  validate: ->
     App.formErrors.clear()
     valid = true
 
@@ -154,12 +160,7 @@ class Story
       valid = false
       App.formErrors.add "photoUploadStoryDate", $("#noStoryDate").val()
 
-    callback() if valid
-
-  preUploadRequest: (callback) =>
-    return callback() if $("#storyId").val().length > 0
-
-    $("#storyForm").submit()
+    return valid
 
   onPhotoUploadSuccess: (data) =>
     $("#story").show()

@@ -22,15 +22,15 @@ div#photoUploadDiv
 
     div.delim
 
-  = form_tag upload_story_photo_path, id: "photoUploadForm" do
+  div.uploadButtonDiv
     input#storyId name="story_id" type="hidden" value="#{story.id if story}"
-    div.uploadButtonDiv
-      div#photoUploadError.uploadError.alert.alert-error.hide
-      div#customProgressBar.progress.progress-striped.active
-        div.bar style="width: 0"
-        div.barText
-      input#photoUploadButton.hide type="file" name="file_bean[]" multiple="multiple"
-      input#photoUploadStyledButton.btn.btn-large.btn-foxtrot.f18 type='button' class='' value='#{t '.add_photo'}'
+    div#photoUploadError.uploadError.alert.alert-error.hide
+    div#customProgressBar.progress.progress-striped.active
+      div.bar style="width: 0"
+      div.barText
+    span#photoUploadDecorator.btn.btn-large.btn-foxtrot.f18.fileinput-button
+      = t '.add_photo'
+      input#photoUploadButton type="file" name="story_photo[photo]" multiple="multiple" data-url="#{upload_story_photo_path}"
 
 / Story
 div#story.edit
