@@ -111,6 +111,10 @@ en:
       text: "Text"
       default_story_text: "Tell the story of this photo. Click to edit."
       story_saved_in_drafts: "* We saved the story in your Drafts, just in case."
+      crosspost: "Crosspost:"
+      facebook_share: "Story will be shared on facebook"
+      twitter_share: "Story will be shared on twitter"
+      crosspost_exp: "Click on social network icon to enable or disable story share on this network"
     explore:
       pop: Popular
       tags_html: '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tags'
@@ -136,6 +140,8 @@ en:
       edit_story: "Edit story"
       likes_header: "Pleople who like it"
       share_story_text: "This story deserves to be shared:"
+      no_facebook_right_1: "We were unable to share story in your facebook. Probably it was due to insufficient rights."
+      no_facebook_right_2: "In order to this not happen again, you need to reconnect your facebook account in profile."
     search:
       popular: "Popular"
       recent: "Recent"

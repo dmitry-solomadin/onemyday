@@ -40,6 +40,23 @@
 #photoUploadDiv {
   margin-top: 10px;
 
+  .crosspost {
+    margin-top: 15px;
+    height: 50px;
+
+    label {
+      width: 95px;
+      vertical-align: top;
+      margin-top: 13px;
+    }
+
+    span {
+      vertical-align: top;
+      cursor: pointer;
+      display: inline-block;
+    }
+  }
+
   .delim {
     margin-top: 5px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.9);

@@ -7,6 +7,10 @@ $(->
 $(->
   return if not App.util.isPage "stories", "show"
 
+  if window.location.hash
+    showFacebookNoRights = window.location.hash.match(/showFacebookNoRights/)
+    $("#showFacebookNoRights").show() if showFacebookNoRights
+
   if $("#likeWrapper")[0]
     $("#likeWrapper").combinedHover
       additionalTriggers: "#likeBox"
@@ -51,6 +55,13 @@ $(->
 $(->
   return if not App.util.isPage("stories", "new") and not App.util.isPage("stories", "edit")
 
+  $(".crosspost > input").on "click", ->
+    $(@).toggleClass("disabled")
+    if $(@).hasClass("disabled")
+      $(@).tooltip('disable').tooltip('hide')
+    else
+      $(@).tooltip('enable').tooltip('show')
+
   $("#photoUploadTags").select2
     multiple: true
     initSelection : (element, callback) ->
@@ -82,15 +93,16 @@ $ ->
 
   App.photoUploader = new App.PhotoUploader
     btnSelector: "#photoUploadButton"
-    onSubmit: (uploader, data) ->
+    onSubmit: (uploader, datas) ->
       storyData =
         "story[title]": $("#photoUploadStoryTitle").val()
         "story[date]": $("#photoUploadStoryDate").val()
         "story[tag_list]": $("#photoUploadTags").val()
       $.post $("#storyForm").attr("action"), storyData, (storyId) ->
-        data.formData =
-          "story_id": storyId
-        uploader.fileupload('send', data)
+        for data in datas
+          data.formData =
+            "story_id": storyId
+          uploader.fileupload('send', data)
     onDone: (result) ->
       storyHelper.onPhotoUploadSuccess(result)
       $("#storySaveExp").show()
@@ -202,6 +214,8 @@ class Story
         "story[date]": $("#photoUploadStoryDate").val()
         "story[tag_list]": $("#photoUploadTags").val()
         "story[published]": "t"
+        "crosspost_facebook": not $("#crosspostFacebook").hasClass("disabled")
+        "crosspost_twitter": not $("#crosspostTwitter").hasClass("disabled")
 
       $(".storyGroup").each (index) ->
         postParams["story[story_photos_attributes][#{index}][id]"] = $(this).data('id')
@@ -214,19 +228,17 @@ class Story
       postParams
 
     $("#storyPublishButton").click ->
-      storyHelper.validate =>
-        postParams = collectPostParams()
-        postUrl = $(@).data("publish-path")
-
-        App.util.post postUrl, postParams
+      return unless storyHelper.validate()
+      postParams = collectPostParams()
+      postUrl = $(@).data("publish-path")
+      App.util.post postUrl, postParams
 
     $("#storyDraftButton").click ->
-      storyHelper.validate =>
-        postParams = collectPostParams()
-        postParams["story[published]"] = "f"
-        postUrl = $(@).data("publish-path")
-
-        App.util.post postUrl, postParams
+      return unless storyHelper.validate()
+      postParams = collectPostParams()
+      postParams["story[published]"] = "f"
+      postUrl = $(@).data("publish-path")
+      App.util.post postUrl, postParams
 
   createGroup: (type, photoData) ->
     text = if photoData.data("text") and photoData.data("text") != "" then photoData.data("text") else $("#defaultStoryText").val()

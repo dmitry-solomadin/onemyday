@@ -30,6 +30,9 @@ $ ->
     $("script:first").parent().prepend(js)
 
   class Home
+    constructor: ->
+      $(".tooltipize").tooltip()
+
     onSearchSubmit: ->
       $.trim($("#navbarSearch").val()).length > 0
 

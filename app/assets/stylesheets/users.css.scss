@@ -66,15 +66,25 @@
     vertical-align: top;
     margin-top: 5px;
   }
+}
 
-  .facebookAuth {
-    background: url("facebook-auth.png");
-    padding: 24px;
+.facebookAuth {
+  background: url("facebook-auth.png");
+  padding: 24px !important;
+  font-size: 0;
+
+  &.disabled {
+    background: url("facebook-auth_disabled.png");
   }
+}
 
-  .twitterAuth {
-    background: url("twitter_auth.png");
-    padding: 24px;
+.twitterAuth {
+  background: url("twitter_auth.png");
+  padding: 24px !important;
+  font-size: 0;
+
+  &.disabled {
+    background: url("twitter_auth_disabled.png");
   }
 }
 

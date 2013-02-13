@@ -20,6 +20,14 @@ div#photoUploadDiv
       div.tagExp = t '.tags_desc'
     div style="clear:both"
 
+    - if !story || !story.published && (current_user.has_facebook? || current_user.has_twitter?)
+      div.crosspost
+        label.mr10.tooltipize title='#{t '.crosspost_exp'}' data-placement='left' = t '.crosspost'
+        - if current_user.has_facebook?
+          input#crosspostFacebook.facebookAuth.tooltipize type="button" title='#{t '.facebook_share'}' data-placement='bottom' style="margin-right:10px;"
+        - if current_user.has_twitter?
+          input#crosspostTwitter.twitterAuth.tooltipize type="button" title='#{t '.twitter_share'}' data-placement='bottom'
+
     div.delim
 
   span#storySaveExp.hide.explanation = t ".story_saved_in_drafts"

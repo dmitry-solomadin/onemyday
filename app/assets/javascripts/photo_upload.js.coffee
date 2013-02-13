@@ -5,6 +5,7 @@ App.PhotoUploader = class PhotoUploader
     btn = $(settings.btnSelector)
     totalFiles = 0
     uploadedFiles = 0
+    datas = []
 
     btn.fileupload
       dataType: 'html'
@@ -13,7 +14,9 @@ App.PhotoUploader = class PhotoUploader
         totalFiles++
         uploader = $(@)
         if settings.onSubmit
-          settings.onSubmit(uploader, data)
+          datas.push data
+          if data.originalFiles.length is totalFiles
+            settings.onSubmit(uploader, datas)
         else
           uploader.fileupload('send', data)
         return false

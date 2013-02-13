@@ -89,11 +89,18 @@ class StoriesController < ApplicationController
   def publish
     @story = @current_user.stories.unscoped.find(params[:story][:id])
 
+    raise
     if @story.has_photos && @story.update_attributes(params[:story])
+      if params[:crosspost_facebook] && @current_user.has_facebook?
+        pic = "#{request.protocol}#{request.host_with_port}#{@story.story_photos.first.photo.url(:thumbnail)}"
+        @current_user.facebook.put_wall_post(@story.title, {name: "onemyday.co", link: story_url(@story), picture: pic})
+      end
       redirect_to @story
     else
       render "new"
     end
+  rescue Koala::Facebook::APIError
+    redirect_to story_url(@story) + "#showFacebookNoRights"
   end
 
   def like

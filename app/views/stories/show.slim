@@ -1,6 +1,12 @@
 - provide(:title, @story.title)
 - provide(:meta_tags, facebook_like_meta(@story.title, story_url(@story.id), @story.story_photos.first.photo.url(:side))) if @story.story_photos.any?
 
+div#showFacebookNoRights.hide.alert
+  = t ".no_facebook_right_1"
+  br
+  br
+  = t ".no_facebook_right_2"
+
 div.storyHeaderDiv
   div.storyHeader.lobster #{@story.title}
   div.storySubHeader
@@ -55,9 +61,10 @@ div.storyEnd
   div.header.lobster = t '.the_end'
   div.subHeader
 
-div.grayBottomer
+- has_tags = @story.tags.any?
+div class="grayBottomer #{'no_tags' unless has_tags}"
   div.innerContainer
-    - if @story.tags.any?
+    - if has_tags
       div.storyTags
         = t '.tags'
         - @story.tags.each do |tag|
@@ -94,7 +101,7 @@ div.grayBottomer
 
     div style='clear:both;'
 
-div.grayBottomerSpan
+div  class="grayBottomerSpan #{'no_tags' unless has_tags}"
 
 div.bottomShareMenu
   span.helpText = t ".share_story_text"
