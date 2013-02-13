@@ -6,7 +6,7 @@ $ ->
 
   $("#userMenu").on('hover', -> $('#userDropdown').css("width", $("#userMenu").width()))
 
-  $('#storiesContainer').masonry
+  $('.storiesContainer').masonry
     itemSelector: '.smallStory'
 
   if $('.pagination')[0]
