@@ -91,8 +91,7 @@ class StoriesController < ApplicationController
 
     if @story.has_photos && @story.update_attributes(params[:story])
       if params[:crosspost_facebook] && @current_user.has_facebook?
-        pic = "#{request.protocol}#{request.host_with_port}#{@story.story_photos.first.photo.url(:thumbnail)}"
-        logger.info pic
+        pic = @story.story_photos.first.photo.url(:side) # paperclip with s3 will return full url here.
         @current_user.facebook.put_wall_post(@story.title, {name: "onemyday.co", link: story_url(@story), picture: pic})
       end
       redirect_to @story
