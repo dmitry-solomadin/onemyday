@@ -89,7 +89,6 @@ class StoriesController < ApplicationController
   def publish
     @story = @current_user.stories.unscoped.find(params[:story][:id])
 
-    raise
     if @story.has_photos && @story.update_attributes(params[:story])
       if params[:crosspost_facebook] && @current_user.has_facebook?
         pic = "#{request.protocol}#{request.host_with_port}#{@story.story_photos.first.photo.url(:thumbnail)}"
