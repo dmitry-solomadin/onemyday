@@ -1,3 +1,16 @@
+- if current_user && current_user.stories.length == 0 && !cookies[:hide_story_message]
+  div.photoHeader.photoHeader2
+    div.innerContainer
+      div.cont
+        = t '.tell_story_header'
+        br
+        a.btn.btn-large.createButton.open-sans href="#{new_story_path}" = t '.tell_story'
+        span.hideMessage
+          = t '.or_html'
+          a href="#" onclick="App.home.hideStoryMessage();return false;" = t '.hide_message'
+
+  div.photoHeaderSpan
+
 - unless current_user
   div.photoHeader
     div.innerContainer
@@ -5,8 +18,9 @@
         = t '.onemyday_desc'
         br
         a.btn.btn-large.createButton.open-sans data-toggle="modal" href="#signInModal" = t '.sign_up'
+  div.photoHeaderSpan
 
-div class="#{"photoHeaderContent" unless current_user}"
+div
   h2.homeHeader = t '.pop_stories_html'
   a href="#{explore_path}?ft=#{StoriesHelper::EXPLORE_FILTER_POPULAR}" = t '.view_all_html'
   = render "/stories/list_stories", stories: @top_stories

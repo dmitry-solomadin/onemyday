@@ -28,6 +28,8 @@ header.navbar.navbar-fixed-top
               li
                 = link_to "#{t '.edit_profile'}", edit_current_user_path
               li
+                = link_to "#{t '.invite_friends'}", invite_friends_path
+              li
                 = link_to "#{t '.sign_out'}", signout_path
         - else
           li

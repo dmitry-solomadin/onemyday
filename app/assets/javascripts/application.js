@@ -22,4 +22,5 @@
 //= require username_autocomplete
 //= require jquery.iframe-transport
 //= require jquery.fileuploader
+//= require jquery.cookie
 //= require_tree .

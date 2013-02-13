@@ -1,7 +1,7 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
-$(->
+$ ->
   $.rails.requiredInputSelector = 'input[name][required]:not([disabled]),textarea[name][required]:not([disabled]),input[name][req]:not([disabled])'
 
   $("#userMenu").on('hover', -> $('#userDropdown').css("width", $("#userMenu").width()))
@@ -44,6 +44,8 @@ $(->
         hasError = true
       return not hasError
 
+    hideStoryMessage: ->
+      $(".photoHeader, .photoHeaderSpan").slideUp("normal")
+      $.cookie('hide_story_message', 'true');
 
   App.home = new Home()
-)

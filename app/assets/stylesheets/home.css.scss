@@ -460,12 +460,35 @@ ul.navigation {
     text-shadow: black 1px 1px 3px;
 
     .cont {
-      padding-top: 90px
+      padding-top: 90px;
+    }
+
+    .friendsCont {
+      padding-top: 95px;
+      line-height: 30px;
+    }
+
+    .hideMessage {
+      font-size: 13px;
+      vertical-align: top;
+      margin-left: 12px;
+      display: inline-block;
+      padding-top: 32px;
+
+      a, a:hover {
+        vertical-align: top;
+        color: white;
+        text-decoration: underline;
+      }
     }
   }
 }
 
-.photoHeaderContent {
+.photoHeader2 {
+  background: url('photo_bg_2.jpg') 50%;
+}
+
+.photoHeaderSpan {
   margin-top: 250px;
 }
 

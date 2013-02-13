@@ -11,6 +11,10 @@ en:
       recent_stories_html: Recent stories&nbsp;
       view_all_html: "(view all &rarr;)"
       sign_up: "Sign up"
+      tell_story: "Tell story"
+      tell_story_header: "Tell your story to the world."
+      or_html: "or&nbsp;"
+      hide_message: "hide this message"
     header:
       explore: "Explore"
       tell: "Tell"
@@ -20,6 +24,7 @@ en:
       search_placeholder: "use # to search by tags"
       processing_images: "Processing images..."
       preparing_images: "Preparing to send..."
+      invite_friends: "Invite friends"
   shared:
     error_messages:
       header: "Please fix following errors:"
@@ -34,6 +39,7 @@ en:
       password_err: "Enter password"
       exp: "* Enter your email address and password to sign up or sign in."
       submit: "Submit"
+      submiting: "Submitting..."
   users:
     edit:
       header: "Edit your profile"
@@ -168,3 +174,7 @@ en:
       them: "them"
       wrong_password: "Wrong password"
       existing_user: "This user is already registered"
+  invite_friends:
+    index:
+      invite_friends_header: "Invite your friends. The more friends you invite the more comments and views your stories get!"
+      invite_friends_pending: "Invite friends feature will be available just a bit later"

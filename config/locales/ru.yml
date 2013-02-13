@@ -11,6 +11,10 @@ ru:
       recent_stories_html: Последние истории&nbsp;
       view_all_html: "(все &rarr;)"
       sign_up: "Регистрация"
+      tell_story: "Рассказать историю"
+      tell_story_header: "Расскажите вашу историю."
+      or_html: "или&nbsp;"
+      hide_message: "спрятать это сообщение"
     header:
       explore: "Истории"
       tell: "Рассказать"
@@ -20,6 +24,7 @@ ru:
       search_placeholder: "# чтобы искать по тэгам"
       processing_images: "Обработка изображений..."
       preparing_images: "Подготовка отправки..."
+      invite_friends: "Пригласить друзей"
   shared:
     error_messages:
       header: "Пожалуйста исправьте следующие ошибки:"
@@ -34,6 +39,7 @@ ru:
       submit: "Отправить"
       email_err: "Введите email"
       password_err: "Введите пароль"
+      submiting: "Отправляем..."
   users:
     edit:
       header: "Редактирование профиля"
@@ -57,9 +63,9 @@ ru:
       set_password: "Установить пароль"
       change_password: "Изменить пароль"
     show:
-      liked_by_you: "Нравится вам"
+      liked_by_you: "Нравится тебе"
       liked: "Нравится"
-      yours: "Ваше"
+      yours: "Твое"
       his: "Его"
       drafts: "Черновики"
       stories: "Истории"
@@ -123,7 +129,7 @@ ru:
       send: "Отправить"
       comment_placeholder: "Добавить комментарий..."
       like: "Нравится"
-      liked: "Вам это нравится"
+      liked: "Тебе это нравится"
       the_end: "КОНЕЦ"
       like_count_desc_html: "&nbsp;нравится это"
       person: "человеку"
@@ -225,3 +231,7 @@ ru:
       them: "их"
       wrong_password: "Неправильный пароль"
       existing_user: "Этот пользователь уже существует"
+  invite_friends:
+    index:
+      invite_friends_header: "Пригласи друзей! Чем больше друзей ты пригласишь тем больше комментариев и просмотров получат твои истории."
+      invite_friends_pending: "Возможность приглашать друзей появиться чуть позже"

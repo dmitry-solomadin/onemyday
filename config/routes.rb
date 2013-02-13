@@ -38,6 +38,8 @@ Onemyday::Application.routes.draw do
   match 'auth/:provider/callback', to: 'sessions#create'
   post 'auth/:provider/destroy', to: 'sessions#destroy_auth', as: :auth_destroy
 
+  get '/invite_friends', to: "invite_friends#index", as: :invite_friends
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
