@@ -142,6 +142,7 @@ en:
       share_story_text: "This story deserves to be shared:"
       no_facebook_right_1: "We were unable to share story in your facebook. Probably it was due to insufficient rights."
       no_facebook_right_2: "In order to this not happen again, you need to reconnect your facebook account in profile."
+      draft: "draft"
     search:
       popular: "Popular"
       recent: "Recent"

@@ -8,7 +8,9 @@ div#showFacebookNoRights.hide.alert
   = t ".no_facebook_right_2"
 
 div.storyHeaderDiv
-  div.storyHeader.lobster #{@story.title}
+  - draftText = "<span class='storyHeaderDraft'>(#{t('.draft')})</span>"
+  div.storyHeader.lobster #{@story.title} #{ raw(draftText) unless @story.published}
+
   div.storySubHeader
     ' #{@story.date_nice_text} #{t '.by_html'}
     a href="#{user_path @story.user.id}" = @story.user.name

@@ -94,7 +94,8 @@ class StoriesController < ApplicationController
     @story = @current_user.stories.unscoped.find(params[:story][:id])
 
     if @story.has_photos && @story.update_attributes(params[:story])
-      if params[:crosspost_facebook] && @current_user.has_facebook?
+      if params[:crosspost_facebook].present? && params[:crosspost_facebook].to_bool &&
+          params[:story][:published].to_bool && @current_user.has_facebook?
         pic = @story.story_photos.first.photo.url(:side) # paperclip with s3 will return full url here.
         @current_user.facebook.put_wall_post(@story.title, {name: "onemyday.co", link: story_url(@story), picture: pic})
       end
