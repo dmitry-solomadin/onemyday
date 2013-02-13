@@ -1,6 +1,6 @@
 - if stories && stories.any?
   div#storiesContainer
     - stories && stories.each do |story|
-      = render "stories/story", story: story, own: defined?(editor) ? editor.id == story.id : nil
+      = render "stories/story", story: story
 - elsif defined?(empty_message) && empty_message
   span.noStoriesMessage = empty_message

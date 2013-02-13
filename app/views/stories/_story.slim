@@ -1,6 +1,7 @@
 - if story.published?
   - image_dims = story.story_photos.first.photo_dimensions[:thumb]
-  div class="smallStory relative #{'own' if defined?(own) && own}" id="story#{story.id}" style="width: #{image_dims[:width]}px;"
+  - own = current_user && story.user.id == current_user.id
+  div class="smallStory relative #{'own' if own}" id="story#{story.id}" style="width: #{image_dims[:width]}px;"
     a href="#{story_path story}"
       div.image
         img src="#{story.story_photos.first.photo.url :thumb}" style="height:#{image_dims[:height]}px; width: #{image_dims[:width]}px;"
