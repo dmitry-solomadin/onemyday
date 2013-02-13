@@ -395,6 +395,27 @@ ul.navigation {
 
 /* White header */
 
+.grayBottomer {
+  background: rgba(100, 100, 100, 0.1);
+  position: absolute;
+  width: 100%;
+  margin-top: 15px;
+  left: 0;
+  border-bottom: 1px solid #C3C3C3;
+  padding-top: 10px;
+  border-top: 1px solid #C3C3C3;
+
+  .innerContainer {
+    width: 940px;
+    height: 80px;
+    margin: 0 auto;
+  }
+}
+
+.grayBottomerSpan {
+  margin-top: 130px;
+}
+
 .whiteHeader {
   background: white;
   position: absolute;
@@ -642,6 +663,14 @@ ul.navigation {
 
 .btn {
   line-height: 24px !important;
+}
+
+.btn-super-small {
+  padding: 0 5px;
+  height: 20px;
+  line-height: 18px !important;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
 }
 
 .btn-foxtrot {

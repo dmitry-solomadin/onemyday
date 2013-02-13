@@ -6,6 +6,11 @@ div.storyHeaderDiv
   div.storySubHeader
     ' #{@story.date_nice_text} #{t '.by_html'}
     a href="#{user_path @story.user.id}" = @story.user.name
+
+  - if current_user? @story.user
+    div.storyMenu
+      a.btn.btn-super-small href="#{edit_story_path(@story.id)}" = t '.edit_story'
+
   div.storySubHeaderBorder
 
 div#story
@@ -50,49 +55,51 @@ div.storyEnd
   div.header.lobster = t '.the_end'
   div.subHeader
 
-- if @story.tags.any?
-  div.storyTags
-    = t '.tags'
-    - @story.tags.each do |tag|
-      a.ml5 href="#{explore_path}?t=#{tag}" #{tag}
+div.grayBottomer
+  div.innerContainer
+    - if @story.tags.any?
+      div.storyTags
+        = t '.tags'
+        - @story.tags.each do |tag|
+          a.ml5 href="#{explore_path}?t=#{tag}" #{tag}
+
+    div style='clear:both;'
+
+    - if current_user
+      - like = @story.likes.find_by_user_id current_user.id
+      = form_tag like ? unlike_path : new_like_path, remote:true, class: "likeForm" do
+        input type="hidden" name="story_id" value="#{@story.id}"
+        a#storyLike.btn.btnLike data-submitable="true" data-like="#{t '.like'}" data-liked="#{t '.liked'}" class="#{like ? "btn-foxtrot" : ""}"
+          span #{like ? t('.liked') : t('.like')}
+    - if @story.likes.any?
+      div#likeWrapper.likeWrapper
+        div#likeBox.likeBox
+          - (0...6).each do |i|
+            - like = @story.likes[i]
+            - break unless like
+            a href="#{user_path like.user.id}"
+              = image_tag like.user.avatar.url(:thumb), title: like.user.name
+        div.likes
+          i.icon-heart
+          a#likeLink href="#likesModal" data-toggle="modal" = pluralize(@story.likes.size, t(".person"), t(".people"))
+          = t '.like_count_desc_html'
+
+      div#likesModal.fade.show_user_small.modal.hide
+        button type="button" class="close" data-dismiss="modal" ×
+        div.modal-header.open-sans
+          h3 = t '.likes_header'
+        div.modal-body
+          - @story.likes.each do |like|
+            = render 'shared/show_user_small', user: like.user
+
+    div style='clear:both;'
+
+div.grayBottomerSpan
 
 div.bottomShareMenu
-  - if current_user? @story.user
-    a.btn.mr10 href="#{edit_story_path(@story.id)}" = t '.edit_story'
-
-  a.twitter-share-button href="https://twitter.com/share" data-count="none" data-hashtags="onemyday" Tweet
+  span.helpText = t ".share_story_text"
   div.fb-like data-send="false" data-width="450" data-show-faces="false" data-font="verdana" data-layout="button_count"
-
-div style='clear:both;'
-
-- if current_user
-  - like = @story.likes.find_by_user_id current_user.id
-  = form_tag like ? unlike_path : new_like_path, remote:true, class: "likeForm" do
-    input type="hidden" name="story_id" value="#{@story.id}"
-    a#storyLike.btn.btnLike data-submitable="true" data-like="#{t '.like'}" data-liked="#{t '.liked'}" class="#{like ? "btn-foxtrot" : ""}"
-      span #{like ? t('.liked') : t('.like')}
-- if @story.likes.any?
-  div#likeWrapper.likeWrapper
-    div#likeBox.likeBox
-      - (0...6).each do |i|
-        - like = @story.likes[i]
-        - break unless like
-        a href="#{user_path like.user.id}"
-          = image_tag like.user.avatar.url(:thumb), title: like.user.name
-    div.likes
-      i.icon-heart
-      a#likeLink href="#likesModal" data-toggle="modal" = pluralize(@story.likes.size, t(".person"), t(".people"))
-      = t '.like_count_desc_html'
-
-  div#likesModal.fade.show_user_small.modal.hide
-    button type="button" class="close" data-dismiss="modal" ×
-    div.modal-header.open-sans
-      h3 = t '.likes_header'
-    div.modal-body
-      - @story.likes.each do |like|
-        = render 'shared/show_user_small', user: like.user
-
-div style='clear:both;'
+  a.twitter-share-button href="https://twitter.com/share" data-hashtags="onemyday" Tweet
 
 div#commentsContainer
   - @story.comments.each do |comment|

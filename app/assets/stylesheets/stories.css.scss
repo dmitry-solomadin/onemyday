@@ -141,8 +141,19 @@
 }
 
 .storyHeaderDiv {
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   text-align: center;
+
+  .storyMenu {
+    text-align: left;
+    background: url("whitey.png");
+    display: inline-block;
+    position: relative;
+    z-index: 3;
+    top: 0;
+    padding: 0 8px;
+    margin-left: 12px;
+  }
 
   .storyHeader {
     font-size: 32px;
@@ -167,15 +178,32 @@
   .storySubHeaderBorder {
     border-bottom: 2px dotted #b2b2b2;
     position: relative;
-    top: -9px;
+    top: -10px;
     z-index: 1;
   }
 }
 
 .bottomShareMenu {
-  height: 34px;
+  height: 40px;
+  line-height: 20px;
+  vertical-align: top;
   width: 100%;
   margin-bottom: 10px;
+  padding: 10px 10px 10px 10px;
+  background: rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  margin-top: 5px;
+
+  .fb-like {
+    margin-right: 5px;
+  }
+
+  .helpText {
+    vertical-align: top;
+    text-shadow: #606060 1px 1px 0;
+    margin-right: 10px;
+    color: white;
+  }
 }
 
 .storyTags {
@@ -360,7 +388,7 @@
 
 .fb-like {
   vertical-align: top;
-  margin-left: 10px;
+  display: inline;
 }
 
 .btnLike {
