@@ -102,7 +102,7 @@ div#commentsContainer
       input type="hidden" name="story_id" value="#{@story.id}"
       div.addWrapper
         div.add
-          = image_tag current_user.avatar.url :small
+          = image_tag current_user.avatar.url(:small), class: "avatar-small"
           div.addTextWrapper
             = f.text_area :text, placeholder: t('.comment_placeholder'), class: "addText", id: "addCommentTextarea"
           = f.submit t('.send'), class: "btn submit fl", disabled: "disabled", id: "addCommentSubmit"
