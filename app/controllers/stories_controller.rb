@@ -56,6 +56,10 @@ class StoriesController < ApplicationController
   def show
     @story = Story.unscoped.find(params[:id])
 
+    unless @story.published
+      raise AccessDenied unless current_user? @story.user
+    end
+
     @story.views.build(date: DateTime.now).save!
 
     respond_to do |f|

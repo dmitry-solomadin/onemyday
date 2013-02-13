@@ -214,8 +214,8 @@ class Story
         "story[date]": $("#photoUploadStoryDate").val()
         "story[tag_list]": $("#photoUploadTags").val()
         "story[published]": "t"
-        "crosspost_facebook": not $("#crosspostFacebook").hasClass("disabled")
-        "crosspost_twitter": not $("#crosspostTwitter").hasClass("disabled")
+        "crosspost_facebook": $("#crosspostFacebook")[0] and not $("#crosspostFacebook").hasClass("disabled")
+        "crosspost_twitter": $("#crosspostTwitter")[0] and not $("#crosspostTwitter").hasClass("disabled")
 
       $(".storyGroup").each (index) ->
         postParams["story[story_photos_attributes][#{index}][id]"] = $(this).data('id')
