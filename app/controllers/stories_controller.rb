@@ -92,6 +92,7 @@ class StoriesController < ApplicationController
     if @story.has_photos && @story.update_attributes(params[:story])
       if params[:crosspost_facebook] && @current_user.has_facebook?
         pic = "#{request.protocol}#{request.host_with_port}#{@story.story_photos.first.photo.url(:thumbnail)}"
+        logger.info pic
         @current_user.facebook.put_wall_post(@story.title, {name: "onemyday.co", link: story_url(@story), picture: pic})
       end
       redirect_to @story
@@ -100,7 +101,6 @@ class StoriesController < ApplicationController
     end
   rescue Koala::Facebook::APIError => e
     logger.info e.message
-    logger.info e.backtrace.inspect
     redirect_to story_url(@story) + "#showFacebookNoRights"
   end
 
