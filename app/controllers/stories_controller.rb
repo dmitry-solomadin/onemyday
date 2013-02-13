@@ -98,7 +98,9 @@ class StoriesController < ApplicationController
     else
       render "new"
     end
-  rescue Koala::Facebook::APIError
+  rescue Koala::Facebook::APIError => e
+    logger.info e.message
+    logger.info e.backtrace.inspect
     redirect_to story_url(@story) + "#showFacebookNoRights"
   end
 
