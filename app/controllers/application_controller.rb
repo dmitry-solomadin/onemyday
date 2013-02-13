@@ -1,4 +1,7 @@
 class ApplicationController < ActionController::Base
+  class Onemyday::AccessDenied < StandardError
+  end
+
   protect_from_forgery
 
   layout ->(c) { c.request.xhr? ? false : "application" }
@@ -6,6 +9,8 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
 
   before_filter :set_locale
+
+  rescue_from Onemyday::AccessDenied, :with => :access_denied
 
   private
 
@@ -30,6 +35,10 @@ class ApplicationController < ActionController::Base
 
   def signed_in_user_filter
     redirect_to root_url, notice: "Please sign in." unless current_user
+  end
+
+  def access_denied
+    redirect_to root_url, notice: "You are unauthorized to view this content."
   end
 
 end

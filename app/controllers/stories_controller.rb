@@ -57,7 +57,7 @@ class StoriesController < ApplicationController
     @story = Story.unscoped.find(params[:id])
 
     unless @story.published
-      raise AccessDenied unless current_user? @story.user
+      raise Onemyday::AccessDenied unless current_user? @story.user
     end
 
     @story.views.build(date: DateTime.now).save!
@@ -120,7 +120,7 @@ class StoriesController < ApplicationController
   def destroy
     @story = Story.unscoped.find(params[:id])
 
-    raise AccessDenied unless current_user? @story.user
+    raise Onemyday::AccessDenied unless current_user? @story.user
 
     @story.destroy
 
@@ -133,7 +133,7 @@ class StoriesController < ApplicationController
   def edit
     @story = Story.unscoped.find(params[:id])
 
-    raise AccessDenied unless current_user? @story.user
+    raise Onemyday::AccessDenied unless current_user? @story.user
   end
 
 end

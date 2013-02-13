@@ -4,7 +4,7 @@ class StoryPhotosController < ApplicationController
     @story_photo = StoryPhoto.find(params[:id])
 
     Story.unscoped do
-      raise AccessDenied unless current_user? @story_photo.story.user
+      raise Onemyday::AccessDenied unless current_user? @story_photo.story.user
     end
 
     @story_photo.destroy
