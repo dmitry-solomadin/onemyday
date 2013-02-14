@@ -71,4 +71,10 @@ class StoryPhoto < ActiveRecord::Base
     time.try(:strftime, "%I:%M %P")
   end
 
+  def photo_urls
+    r = {}
+    self.photo_dimensions.each_key { |key| r["#{key}_url"] = self.photo.url(key) }
+    r
+  end
+
 end
