@@ -80,6 +80,8 @@ div class="grayBottomer #{'no_tags' unless has_tags}"
         input type="hidden" name="story_id" value="#{@story.id}"
         a#storyLike.btn.btnLike data-submitable="true" data-like="#{t '.like'}" data-liked="#{t '.liked'}" class="#{like ? "btn-foxtrot" : ""}"
           span #{like ? t('.liked') : t('.like')}
+    - else
+      a#noUserLike.btn.btnLike href="#signInModal" data-toggle="modal" : span #{t('.like')}
     - if @story.likes.any?
       div#likeWrapper.likeWrapper
         div#likeBox.likeBox
@@ -123,3 +125,6 @@ div#commentsContainer
             = f.text_area :text, placeholder: t('.comment_placeholder'), class: "addText", id: "addCommentTextarea"
           = f.submit t('.send'), class: "btn submit fl", disabled: "disabled", id: "addCommentSubmit"
           br clear="both"
+
+- unless current_user
+  a#registerComments.btn href="#signInModal" data-toggle="modal" = t '.register_comments'
