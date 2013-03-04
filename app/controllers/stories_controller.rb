@@ -82,7 +82,7 @@ class StoriesController < ApplicationController
   def upload_photo
     @story = @current_user.stories.unscoped.find(params[:story_id])
 
-    @story.story_photos.build photo: params[:story_photo][:photo]
+    @story.story_photos.build photo: params[:story_photo][:photo], orientation: :center
     @story.save!
 
     @story_photos = @story.story_photos
