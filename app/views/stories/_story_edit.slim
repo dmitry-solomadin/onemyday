@@ -12,8 +12,6 @@ div#photoUploadDiv
     div
       label = t '.title'
       input#photoUploadStoryTitle type="text" name="story[title]" value="#{story.title if story}"
-      span.photoUploadAt @
-      input#photoUploadStoryDate type="text" name="story[date]" value="#{story.date_text if story}" placeholder="#{t '.date_placeholder'}"
     div style="margin-top:15px"
       label = t '.tags'
       input#photoUploadTags name="story[tag_list]" value="#{story.tag_list if story}" style="width:200px"

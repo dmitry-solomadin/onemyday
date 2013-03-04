@@ -87,8 +87,6 @@ $(->
 $ ->
   return unless App.util.isPage "stories", "new"
 
-  $("#photoUploadStoryDate").datepicker dateFormat: "dd-mm-yy"
-
   $('#photoUploadButton').on "click", -> return false unless storyHelper.validate()
 
   App.photoUploader = new App.PhotoUploader
@@ -96,7 +94,6 @@ $ ->
     onSubmit: (uploader, datas) ->
       storyData =
         "story[title]": $("#photoUploadStoryTitle").val()
-        "story[date]": $("#photoUploadStoryDate").val()
         "story[tag_list]": $("#photoUploadTags").val()
       $.post $("#storyForm").attr("action"), storyData, (storyId) ->
         for data in datas
@@ -140,9 +137,6 @@ $(->
 $(->
   return if not App.util.isPage "stories", "edit"
 
-  $("#photoUploadStoryDate").datepicker
-    dateFormat: "dd-mm-yy"
-
   App.photoUploader = new App.PhotoUploader
     btnSelector: "#photoUploadButton"
     formData:
@@ -169,10 +163,6 @@ class Story
     if $("#photoUploadStoryTitle").val().length == 0
       valid = false
       App.formErrors.add "photoUploadStoryTitle", $("#noStoryTitle").val()
-
-    if $("#photoUploadStoryDate").val().length == 0
-      valid = false
-      App.formErrors.add "photoUploadStoryDate", $("#noStoryDate").val()
 
     return valid
 
@@ -211,7 +201,6 @@ class Story
         "authenticity_token": $('meta[name="csrf-token"]').attr('content')
         "story[id]": $("#createdStoryId").val()
         "story[title]": $("#photoUploadStoryTitle").val()
-        "story[date]": $("#photoUploadStoryDate").val()
         "story[tag_list]": $("#photoUploadTags").val()
         "story[published]": "t"
       postParams.crosspost_facebook = not $("#crosspostFacebook").hasClass("disabled") if $("#crosspostFacebook")[0]
