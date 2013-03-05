@@ -26,7 +26,7 @@ start() {
 }
 
 stop() {
-  PIDS=`ps aux | grep 'onemyday' | grep -v 'grep' | awk '{print $2}'`
+  PIDS=`ps aux | grep -E 'unicorn.*onemyday' | grep -v 'grep' | awk '{print $2}'`
   for PID in $PIDS
   do
     kill -9 $PID
