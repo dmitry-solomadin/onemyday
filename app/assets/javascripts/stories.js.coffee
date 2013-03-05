@@ -89,23 +89,32 @@ $ ->
 
   $('#photoUploadButton').on "click", -> return false unless storyHelper.validate()
 
+  regularOnSubmit = (uploader, datas, storyId)->
+    for data in datas
+      data.formData =
+        "story_id": storyId
+      uploader.fileupload('send', data)
+
   App.photoUploader = new App.PhotoUploader
     btnSelector: "#photoUploadButton"
     onSubmit: (uploader, datas) ->
       storyData =
         "story[title]": $("#photoUploadStoryTitle").val()
         "story[tag_list]": $("#photoUploadTags").val()
-      $.post $("#storyForm").attr("action"), storyData, (storyId) ->
-        for data in datas
-          data.formData =
-            "story_id": storyId
-          uploader.fileupload('send', data)
+      if $("#photoUploadButton").data("story-created")
+        regularOnSubmit uploader, datas, $("#storyId").val()
+      else
+        $.post $("#storyForm").attr("action"), storyData, (storyId) ->
+          regularOnSubmit uploader, datas, storyId
+          $("#photoUploadButton").data("story-created", "true")
+          if window.history
+            window.history.pushState({foo: 'bar'}, 'Title', "/stories/#{storyId}/edit")
     onDone: (result) ->
       storyHelper.onPhotoUploadSuccess(result)
       $("#storySaveExp").show()
 
 # Explore stories page
-$(->
+$ ->
   return if not App.util.isPage "stories", "explore"
 
   filterStories = ->
@@ -117,10 +126,9 @@ $(->
     if tag? then $.getScript("#{url}?t=#{tag}&ft=#{filterType}") else $.getScript("#{url}?ft=#{filterType}")
 
   $(document).on("click", "#tags .btn, #filter .btn", filterStories)
-)
 
 # Search stories page
-$(->
+$ ->
   return if not App.util.isPage "stories", "search"
 
   filterStories = ->
@@ -131,10 +139,9 @@ $(->
     $.getScript("#{url}?q=#{query}&ft=#{filterType}")
 
   $(document).on("click", "#filter .btn", filterStories)
-)
 
 # Edit story page
-$(->
+$ ->
   return if not App.util.isPage "stories", "edit"
 
   App.photoUploader = new App.PhotoUploader
@@ -145,7 +152,6 @@ $(->
 
   storyHelper.appendPhotos()
   storyHelper.showPublish()
-)
 
 class Story
   groupTypes:

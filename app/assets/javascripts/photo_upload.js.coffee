@@ -24,10 +24,13 @@ App.PhotoUploader = class PhotoUploader
         $("#customProgressBar").show()
       progressall: (e, data) ->
         progress = parseInt(data.loaded / data.total * 100, 10)
-        console.log "progress", progress
         $('#customProgressBar .bar').css 'width', "#{progress}%"
         $('#customProgressBar .barText').html($("#processingImages").val()) if progress is 100
       done: (e, data) ->
         uploadedFiles++
-        $("#customProgressBar").hide() if uploadedFiles is totalFiles
+        if uploadedFiles is totalFiles
+          $("#customProgressBar").hide()
+          totalFiles = 0
+          uploadedFiles = 0
+          datas = []
         settings.onDone(data.result)
