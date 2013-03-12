@@ -1,10 +1,13 @@
-div#signInModal.fade.modal.hide
+div#signInModal.fade.modal.hide class="#{@locale}"
   button type="button" class="close" data-dismiss="modal" ×
   div.modal-header.open-sans
     h3 = t '.sign_in_header'
   div.modal-body
     a.social-link.social-facebook href="/auth/facebook"
       div
+    - if @locale == "ru"
+      a.social-link.social-vkontakte href="/auth/vkontakte"
+        div
     a.social-link.social-twitter href="/auth/twitter"
       div
     div style="clear:both;"

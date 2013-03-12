@@ -73,6 +73,7 @@ en:
       feed: "Feed"
     new:
       finish: "Finish registration by entering your email"
+      finish_exp: "* We won't send spam to you."
       create: "Create my account"
       finish_existing: "Fill in details to finish registration"
     gender_field:

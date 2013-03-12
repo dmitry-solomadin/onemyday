@@ -24,7 +24,7 @@ h2 {
 
 /* AVATARS */
 
-.avatar-small{
+.avatar-small {
   max-height: 50px;
   max-width: 50px;
 }
@@ -77,6 +77,23 @@ input:-moz-placeholder {
 }
 
 /* Modal windows */
+
+.modal.ru {
+  width: 650px !important;
+
+  .social-link {
+    width: 180px;
+    margin-left: 5px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+
+  .signInForm input.long {
+    width: 445px;
+  }
+}
 
 .modal-backdrop {
   background: url("white_texture.png");
@@ -147,8 +164,23 @@ input:-moz-placeholder {
   }
 }
 
+.social-vkontakte {
+  float: left;
+  background-color: #4f749e;
+
+  div {
+    background: url("vkontakte.png") no-repeat;
+    width: 141px !important;
+  }
+
+  &:hover {
+    background: #3d5a7a;
+  }
+}
+
 .social-twitter {
-  float: right;
+  float: left;
+  margin-left: 15px;
   background-color: #2AC8FF;
 
   div {

@@ -74,9 +74,18 @@ class User < ActiveRecord::Base
   def self.create_from_omniauth(auth)
     create do |user|
       user.build_auth auth
-      user.name = auth["info"]["nickname"]
+      user.name = User.get_omniauth_name(auth)
+      user.email = auth["info"]["email"] if auth["info"]["email"].present?
       user.picture_from_url auth["info"]["image"]
       @auth_changed = true
+    end
+  end
+
+  def self.get_omniauth_name(auth)
+    if auth["info"]["first_name"].present? && auth["info"]["last_name"].present?
+      return "#{auth['info']['first_name']} #{auth['info']['last_name']}"
+    elsif auth["info"]["nickname"].present?
+      return auth["info"]["nickname"]
     end
   end
 

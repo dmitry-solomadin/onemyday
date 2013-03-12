@@ -72,6 +72,9 @@ Onemyday::Application.configure do
   ENV["FACEBOOK_APP_ID"] = "390488554357191"
   ENV["FACEBOOK_APP_SECRET"] = "b4ebceff89b8486225f5cb298a3da196"
 
+  ENV["VKONTAKTE_API_KEY"] = "3486182"
+  ENV["VKONTAKTE_API_SECRET"] = "dJLk9Y8Xh3jmF4Qqjowm"
+
   ENV["HOST"] = "onemyday.co"
 
   PAPERCLIP_STORAGE_OPTS = {

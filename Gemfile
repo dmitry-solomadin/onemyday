@@ -12,6 +12,7 @@ gem 'heroku'
 
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
+gem 'omniauth-vkontakte'
 
 gem 'paperclip', "~> 3.1.4"
 gem 'aws-sdk', '~> 1.3.4'

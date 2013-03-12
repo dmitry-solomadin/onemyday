@@ -41,6 +41,9 @@ Onemyday::Application.configure do
   ENV["FACEBOOK_APP_ID"] = "272763286172620"
   ENV["FACEBOOK_APP_SECRET"] = "e347de77c945e9a8ea95e9548e8a9a31"
 
+  ENV["VKONTAKTE_API_KEY"] = "3486198"
+  ENV["VKONTAKTE_API_SECRET"] = "qthRv5xv3SNvo8ANh41r"
+
   ENV["HOST"] = "localhost:3000"
 
   I18n.default_locale = :en

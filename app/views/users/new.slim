@@ -21,6 +21,7 @@
 - else
   div#registrationDiv
     h2.open-sans = t ".finish"
+    span.explanation.open-sans = t ".finish_exp"
     = form_for @user do |f|
       = render "shared/error_messages", object: @user
       = f.text_field :email, placeholder: "example@email.com"
