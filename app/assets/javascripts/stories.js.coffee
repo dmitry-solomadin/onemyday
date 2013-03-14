@@ -203,6 +203,9 @@ class Story
     $("#storyPublish").show()
 
     collectPostParams = ->
+      # before collecting post params, let's close all editing textareas if user has forgot to do this.
+      $(document).trigger("click.documentEditText")
+
       postParams =
         "authenticity_token": $('meta[name="csrf-token"]').attr('content')
         "story[id]": $("#createdStoryId").val()
