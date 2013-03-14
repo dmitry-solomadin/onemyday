@@ -22,7 +22,7 @@ Onemyday::Application.routes.draw do
 
   resources :relationships, only: [:create, :destroy]
 
-  resources :story_photos, only: [:destroy]
+  resources :story_photos, only: [:destroy, :update]
 
   match 'auth/failure', to: redirect('/')
   match 'signout', to: 'sessions#destroy', as: 'signout'

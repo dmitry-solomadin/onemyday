@@ -352,7 +352,17 @@ class Story
       if event and ($.contains(textDiv, event.target) or $(event.target).hasClass("text"))
         return
 
-      $textDiv.text($textDiv.find("textarea").val())
+      newCaption = $textDiv.find("textarea").val()
+      $textDiv.text newCaption
+      $.ajax
+        type: "POST"
+        cache: false
+        url: $("#storyPhotoPath").val().replace(-1, $textDiv.closest(".storyGroup").data("id"))
+        dataType: "script"
+        data:
+          "_method": "PUT"
+          "story_photo[caption]": newCaption
+
       $(document).off("click.documentEditText")
       $textDiv.on("click.editText", => storyHelper.editCaption(textDiv))
 
