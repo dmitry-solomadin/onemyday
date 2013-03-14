@@ -269,7 +269,7 @@ class Story
     )
 
     newGroup.find(".textPlace > .time").on("click.editTime",-> storyHelper.editTime(@)).html(time)
-    newGroup.find(".textPlace > .text").on("click.editText",-> storyHelper.editCaption(@)).html(text)
+    newGroup.find(".textPlace > .text").on("click.editText",-> storyHelper.editCaption(@)).text(text)
 
     if photoData.data("has-text") == true then @showText newGroup else @hideText newGroup
 
@@ -315,10 +315,9 @@ class Story
 
       dottedMarginLeft = group.find(".span0").parent().width() / 2
 
-      group.find(".span0").css(
+      group.find(".span0").css
         "height": 40
         "margin-left": dottedMarginLeft - 20
-      )
 
       group.find(".text").css(width: group.find(".imagePlace img").width())
     else
@@ -349,14 +348,13 @@ class Story
     $textDiv.off("click.editText")
     $textDiv.addClass("onceEdited")
 
-    $(document).on("click.documentEditText", (event) =>
+    $(document).on "click.documentEditText", (event) =>
       if event and ($.contains(textDiv, event.target) or $(event.target).hasClass("text"))
         return
 
-      $textDiv.html($textDiv.find("textarea").val())
+      $textDiv.text($textDiv.find("textarea").val())
       $(document).off("click.documentEditText")
       $textDiv.on("click.editText", => storyHelper.editCaption(textDiv))
-    )
 
   editTime: (timeDiv) ->
     $timeDiv = $(timeDiv)
