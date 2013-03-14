@@ -34,8 +34,11 @@ class User < ActiveRecord::Base
   paperclip_opts.merge! PAPERCLIP_STORAGE_OPTS
   has_attached_file :avatar, paperclip_opts
 
-  before_save { |user| user.email = email.downcase }
-  after_save :after_save, if: :authentications_changed?
+  before_save :before_save
+  def before_save
+    self.email = email.downcase
+    update_social_info
+  end
 
   def feed
     Story.from_users_followed_by self
@@ -58,13 +61,14 @@ class User < ActiveRecord::Base
   end
 
   def authentications_changed?
-    @auth_changed
+    # compare authentications size in db and in memory
+    authentications.length != authentications.count
   end
 
-  def after_save
+  def update_social_info
+    return unless authentications_changed?
     update_social_links
     update_social_gender
-    @auth_changed = false
   end
 
   def self.from_omniauth(auth)
@@ -77,7 +81,6 @@ class User < ActiveRecord::Base
       user.name = User.get_omniauth_name(auth)
       user.email = auth["info"]["email"] if auth["info"]["email"].present?
       user.picture_from_url auth["info"]["image"]
-      @auth_changed = true
     end
   end
 
@@ -94,7 +97,6 @@ class User < ActiveRecord::Base
                                oauth_token: auth['credentials']['token'],
                                oauth_secret: auth['credentials']['secret'],
                                oauth_expires_at: auth['credentials']['expires_at'] ? Time.at(auth['credentials']['expires_at']) : nil)
-    @auth_changed = true
     self
   end
 
@@ -117,14 +119,14 @@ class User < ActiveRecord::Base
   def facebook
     auth = self.authentications.find_by_provider("facebook")
     if auth
-      @facebook ||= Koala::Facebook::API.new(auth.oauth_token)
+      @facebook ||= init_auth(auth)
     end
   end
 
   def twitter
     auth = self.authentications.find_by_provider("twitter")
     if auth
-      @twitter ||= Twitter::Client.new(oauth_token: auth.oauth_token, oauth_token_secret: auth.oauth_secret)
+      @twitter ||= init_auth(auth)
     end
   end
 
@@ -134,7 +136,7 @@ class User < ActiveRecord::Base
 
   def update_social_gender
     if has_facebook?
-      fb_gender = self.facebook.get_object("me")["gender"]
+      fb_gender = find_auth("facebook").get_object("me")["gender"]
       self.gender = fb_gender if fb_gender.length > 0
     end
   rescue Koala::Facebook::APIError => e
@@ -144,8 +146,8 @@ class User < ActiveRecord::Base
   end
 
   def update_social_links
-    self.facebook_link = self.facebook.get_object("me")["link"] if has_facebook?
-    self.twitter_link = "http://twitter.com/#{self.twitter.user.screen_name}" if has_twitter?
+    self.facebook_link = find_auth("facebook").get_object("me")["link"] if has_facebook?
+    self.twitter_link = "http://twitter.com/#{find_auth("twitter").user.screen_name}" if has_twitter?
   rescue Koala::Facebook::APIError => e
     logger.info e.to_s
   rescue Faraday::Error::ConnectionFailed => e
@@ -156,6 +158,19 @@ class User < ActiveRecord::Base
 
   def validate_password?
     !((self.password_digest.present? && self.password.blank?) || self.password_digest.blank?)
+  end
+
+  def find_auth(auth_name)
+    auth = authentications.find { |auth| auth.provider == auth_name }
+    init_auth auth
+  end
+
+  def init_auth(auth)
+    if auth.provider == "facebook"
+      Koala::Facebook::API.new(auth.oauth_token)
+    elsif auth.provider == "twitter"
+      Twitter::Client.new(oauth_token: auth.oauth_token, oauth_token_secret: auth.oauth_secret)
+    end
   end
 
 end
