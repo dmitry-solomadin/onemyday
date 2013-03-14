@@ -13,7 +13,7 @@ $ ->
     $(window).scroll ->
       url = $('.pagination .next_page a').attr('href')
       if url && $(window).scrollTop() > $(document).height() - $(window).height() - 50
-        $('.pagination').text("Fetching more stories...")
+        $('.pagination').text("Loading more stories...")
         $.getScript(url)
 
     $(window).scroll()

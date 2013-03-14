@@ -1,4 +1,7 @@
-$('#recentStories').append('<%= j render "/stories/list_stories", stories: @recent_stories %>');
+$("body").append("<div id='tempStories' class='hide'>#{<%= j render "/stories/list_stories_inner", stories: @recent_stories %>}</div>");
+var newItems = $("#tempStories > .smallStory");
+$('#recentStories .storiesContainer').append(newItems).masonry('appended', newItems, true);
+$("#tempStories").remove();
 <% if @recent_stories.next_page %>
     $('.pagination').replaceWith('<%= j will_paginate(@recent_stories) %>');
 <% else %>

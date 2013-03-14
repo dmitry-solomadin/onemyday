@@ -1,20 +1,19 @@
 <% if !@story.published %>
 $("#unpublished<%= @story.id %>").fadeOut(function () {
-    $(this).remove();
-    $('#storiesContainer').masonry("option", {isAnimated: true})
-            .masonry("reload")
-            .masonry("option", {isAnimated: false});
+  $(this).remove();
+  $('#storiesContainer').masonry("option", {isAnimated: true}).masonry("reload")
+          .masonry("option", {isAnimated: false});
 });
 
 if ($("#unpublishedCount")[0]) {
-    var oldCount = parseInt($("#unpublishedCount").html());
-    var newCount = oldCount - 1;
-    if (newCount <= 0 && $("#unpublishedTab")[0]) {
-        $("#unpublishedTab").remove();
-        $("#ownTab a").click();
-    } else {
-        $("#unpublishedCount").html(newCount);
-    }
+  var oldCount = parseInt($("#unpublishedCount").html());
+  var newCount = oldCount - 1;
+  if (newCount <= 0 && $("#unpublishedTab")[0]) {
+    $("#unpublishedTab").remove();
+    $("#ownTab a").click();
+  } else {
+    $("#unpublishedCount").html(newCount);
+  }
 }
 <% else %>
 $("#story<%= @story.id %>").fadeOut();

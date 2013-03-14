@@ -19,7 +19,7 @@ div#photoUploadDiv
       div.tagExp = t '.tags_desc'
     div style="clear:both"
 
-    - if !story || !story.published && (current_user.has_facebook? || current_user.has_twitter?)
+    - if (!story || !story.published) && (current_user.has_facebook? || current_user.has_twitter?)
       div.crosspost
         label.mr10.tooltipize title='#{t '.crosspost_exp'}' data-placement='left' = t '.crosspost'
         - if current_user.has_facebook?
