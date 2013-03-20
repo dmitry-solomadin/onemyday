@@ -1,10 +1,9 @@
-$(->
+$ ->
   # defining global namespace for stories
   App.Stories = {}
-)
 
 # Show story page
-$(->
+$ ->
   return if not App.util.isPage "stories", "show"
 
   if window.location.hash
@@ -28,9 +27,7 @@ $(->
     else
       $(@).addClass("btn-foxtrot").find("span").html($(@).data("liked"))
 
-  $(".storyGroup").each(->
-    storyHelper.initializeGroup $(@)
-  )
+  $(".storyGroup").each -> storyHelper.initializeGroup $(@)
 
   # Initialize twitter button.
   if !$("#twitter-wjs")[0]
@@ -49,10 +46,9 @@ $(->
       status: false # check login status
       cookie: true # enable cookies to allow the server to access the session
       xfbml: true  # parse XFBML
-)
 
 # New or Edit page
-$(->
+$ ->
   return if not App.util.isPage("stories", "new") and not App.util.isPage("stories", "edit")
 
   $(".crosspost > input").on "click", ->
@@ -67,7 +63,7 @@ $(->
     initSelection : (element, callback) ->
       data = []
       $(element.val().split(",")).each ->
-        data.push({id: @, text: @})
+        data.push id: @, text: @
       callback(data)
     tokenSeparators:[',', ' ']
     ajax:
@@ -78,10 +74,8 @@ $(->
       results: (data, page) ->
         res = {}
         res.results = []
-        $(data).each(-> res.results.push({id:@, text:@}))
-
+        $(data).each -> res.results.push id:@, text:@
         res
-)
 
 # New story page
 $ ->
@@ -89,7 +83,7 @@ $ ->
 
   $('#photoUploadButton').on "click", -> return false unless storyHelper.validate()
 
-  regularOnSubmit = (uploader, datas, storyId)->
+  regularOnSubmit = (uploader, datas, storyId) ->
     for data in datas
       data.formData =
         "story_id": storyId
@@ -180,8 +174,7 @@ class Story
     $("#storyId").val($("#createdStoryId").val())
 
     dataValid = $("#photoDiv > #uploadedPhotoData").find(".photo").length > 0
-    if dataValid
-      @appendPhotos()
+    @appendPhotos() if dataValid
 
   appendPhotos: ->
     storyHelper.eachPhoto (index) ->
@@ -272,7 +265,7 @@ class Story
     )
 
     newGroup.find(".textPlace > .time").on("click.editTime",-> storyHelper.editTime(@)).html(time)
-    newGroup.find(".textPlace > .text").on("click.editText",-> storyHelper.editCaption(@)).text(text)
+    newGroup.find(".textPlace > .text").on("click.editText",-> storyHelper.editCaption(@)).html(text)
 
     if photoData.data("has-text") == true then @showText newGroup else @hideText newGroup
 
@@ -280,8 +273,7 @@ class Story
 
   changeGroup: (type, photoData) ->
     oldGroup = $("#group#{photoData[0].id}")
-    unless oldGroup[0]?
-      return
+    return unless oldGroup[0]?
 
     group = @createGroup(type, photoData)
 
@@ -298,8 +290,7 @@ class Story
     @refreshFlowControl()
 
   addGroup: (type, photoData) ->
-    if $("#group#{photoData[0].id}")[0]?
-      return
+    return if $("#group#{photoData[0].id}")[0]?
 
     group = @createGroup(type, photoData)
 
@@ -352,8 +343,7 @@ class Story
     $textDiv.addClass("onceEdited")
 
     $(document).on "click.documentEditText", (event) =>
-      if event and ($.contains(textDiv, event.target) or $(event.target).hasClass("text"))
-        return
+      return if event and ($.contains(textDiv, event.target) or $(event.target).hasClass("text"))
 
       newCaption = $textDiv.find("textarea").val()
       $textDiv.text newCaption
@@ -374,20 +364,16 @@ class Story
     time = $.trim($timeDiv.html()).replace(/\s(am|pm)/, "")
     ampm = @extractAmPmSwitch $.trim($timeDiv.html())
 
-    $timeDiv.html(
-      "<input class='timeEdit' value='#{time}'/>#{ampm}"
-    )
+    $timeDiv.html "<input class='timeEdit' value='#{time}'/>#{ampm}"
     $timeDiv.find(".timeEdit").inputmask({ "mask": "h:s"})[0].focus()
 
     $timeDiv.off("click.editTime")
-    $(document).on("click.documentEditTime", (event) =>
-      if event and ($.contains(timeDiv, event.target) or $(event.target).hasClass("time"))
-        return
+    $(document).on "click.documentEditTime", (event) =>
+      return if event and ($.contains(timeDiv, event.target) or $(event.target).hasClass("time"))
 
       $timeDiv.html($timeDiv.find(".timeEdit").val().replace(/_/, "") + @extractAmPm($timeDiv.find(".timeEditAmPm")[0]))
       $(document).off("click.documentEditTime")
       $timeDiv.on("click.editTime", => storyHelper.editTime(timeDiv))
-    )
 
   extractAmPm: (timeEditAmPm) ->
     if timeEditAmPm? then " " + $(timeEditAmPm).find("option:selected").val() else ""

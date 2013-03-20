@@ -33,14 +33,14 @@ div#story
         div class="textPlace span55 #{'hide' unless story_photo.has_text}"
           div.time
             = story_photo.date_text
-          div.text
+          pre.text
             = story_photo.caption
     - if story_photo.right?
       div#rightLeftGroup class="row storyGroup #{'noText' unless story_photo.has_text}"
         div class="textPlace span55 #{'hide' unless story_photo.has_text}"
           div.time
             = story_photo.date_text
-          div.text
+          pre.text
             = story_photo.caption
         div class="span0 #{'span0_hidden' unless story_photo.has_text}"
         div.imagePlace.span55
@@ -54,7 +54,7 @@ div#story
           div class="textPlace span12 #{'hide' unless story_photo.has_text}"
             div.time
               = story_photo.date_text
-            div.text
+            pre.text
               = story_photo.caption
         div.row.mt10
           div.span0

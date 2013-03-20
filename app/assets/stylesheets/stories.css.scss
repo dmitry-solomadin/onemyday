@@ -123,6 +123,26 @@
   }
 }
 
+pre {
+  font-family: "Open Sans", sans-serif;
+  word-break: normal;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  font-size: 13px;
+
+  textarea {
+    width: 100% !important;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+  }
+}
+
+pre.black {
+  color: rgba(255,255,255,0.85);
+  background: rgba(0,0,0,0.75);
+  border-color: #404040;
+}
+
 #story .span0 {
   margin-left: 20px;
   margin-right: 20px;
