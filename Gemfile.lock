@@ -61,6 +61,12 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.4.0)
+    daemons (1.1.9)
+    delayed_job (3.0.5)
+      activesupport (~> 3.0)
+    delayed_job_active_record (0.4.1)
+      activerecord (>= 2.1.0, < 4)
+      delayed_job (~> 3.0)
     erubis (2.7.0)
     excon (0.16.7)
     execjs (1.4.0)
@@ -237,6 +243,8 @@ DEPENDENCIES
   capistrano
   cocaine (= 0.3.2)
   coffee-rails (~> 3.2.1)
+  daemons
+  delayed_job_active_record
   faker
   font-awesome-rails
   geocoder

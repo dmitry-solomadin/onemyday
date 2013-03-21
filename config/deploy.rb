@@ -1,5 +1,7 @@
 require "bundler/capistrano"
+require "delayed/recipes"
 
+set :rails_env, "production" #added for delayed job
 set :application, "onemyday"
 set :repository,  "git@github.com:znvPredatoR/onemyday"
 set :scm, "git"
@@ -59,6 +61,10 @@ after 'deploy:create_symlink', 'deploy:precompile_assets'
 after 'deploy:precompile_assets', 'deploy:migrate'
 after 'deploy:update', 'starter:prepare'
 after 'deploy:update', 'starter:restart'
+
+after "deploy:stop", "delayed_job:stop"
+after "deploy:start", "delayed_job:restart"
+after "deploy:restart", "delayed_job:restart"
 
 require './config/boot'
 

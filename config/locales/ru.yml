@@ -261,3 +261,28 @@ ru:
       new_follower_html: "Теперь тебя читает "
     activities_list:
       no_activities: "Здесь пока ничего нет."
+  activity_mailer:
+    comment_mail:
+      subject: "%{username} добавил комментарий к твоей истории"
+      subject_discussion: "%{username} добавил комментарий к истории которую ты комментировал"
+      added_comment_text: "%{username} добавил комментарий к истории %{story_name}."
+      added_comment_html: "<a href='%{user_url}'>%{username}</a> добавил комментарий к твоей истории <a href='%{story_url}'>%{story_name}</a>."
+      added_comment_discussion_html: "<a href='%{user_url}'>%{username}</a> добавил комментарий к истории которую ты комментировал <a href='%{story_url}'>%{story_name}</a>."
+      comment_text: "Он написал: %{comment_text}"
+      show_comment: Показать комментарий
+    like_mail:
+      subject: "%{username} понравилась твоя история"
+      liked_text: "%{username} понравилась история %{story_name}."
+      liked_html: "<a href='%{user_url}'>%{username}</a> понравилась история <a href='%{story_url}'>%{story_name}</a>."
+    story_mail:
+      subject: "%{username} поделился новой историей с тобой"
+      new_story_text: "%{username} поделился новой историей %{story_name}."
+      view_story_text: "Посмотреть: %{story_url}"
+      new_story_html: "<a href='%{user_url}'>%{username}</a> поделился новой историей <a href='%{story_url}'>%{story_name}</a>."
+      all_his_stories_html: "<a href='%{user_url}'>Посмотреть все его истории</a>"
+    user_mail:
+      subject: "У тебя новый читатель!"
+      follower_text: "%{username} теперь читает тебя."
+      follower_profile_text: "Посмотреть его профиль: %{user_url}"
+      follower_html: "<a href='%{user_url}'>%{username}</a> теперь читает тебя."
+      follower_profile_html: "<a href='%{user_url}'>Посмотреть его профиль</a>"

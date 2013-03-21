@@ -11,6 +11,8 @@ gem "font-awesome-rails"
 gem 'slim'
 gem 'heroku'
 
+gem 'delayed_job_active_record'
+
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-vkontakte'
@@ -38,6 +40,7 @@ end
 group :production do
   gem 'unicorn'
   gem 'therubyracer'
+  gem "daemons" # required for delayed_job
 end
 
 # Gems used only for assets and not required

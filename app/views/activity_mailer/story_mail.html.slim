@@ -1,0 +1,4 @@
+= t('.new_story_html', username: @story.user.name, story_name: @story.title, user_url: user_url(@story.user), story_url: story_url(@story))
+br
+br
+= t('.all_his_stories_html', user_url: user_url(@story.user))

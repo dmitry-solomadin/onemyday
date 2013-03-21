@@ -1,0 +1,11 @@
+- if @activity.reason == "discussion_member"
+  = t('.added_comment_discussion_html', username: @comment.user.name, story_name: @comment.story.title, user_url: user_url(@comment.user), story_url: story_url(@comment.story))
+- else
+  = t('.added_comment_html', username: @comment.user.name, story_name: @comment.story.title, user_url: user_url(@comment.user), story_url: story_url(@comment.story))
+br
+br
+' #{t('.comment_text', comment_text: truncate(@comment.text, length: 200, omission: ''))}...
+br
+br
+a href="#{story_url(@comment.story)}"
+  = t '.show_comment'

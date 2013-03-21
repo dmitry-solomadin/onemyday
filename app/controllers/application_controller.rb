@@ -45,7 +45,8 @@ class ApplicationController < ActionController::Base
   end
 
   def track_activity(trackable, user, reason = "regular")
-    user.activities.create! reason: reason, trackable: trackable
+    activity = user.activities.create! reason: reason, trackable: trackable
+    ActivityMailer.delay.activity_mail(activity)
   end
 
 end
