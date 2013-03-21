@@ -92,7 +92,7 @@ div class="grayBottomer #{'no_tags' unless has_tags}"
             - like = @story.likes[i]
             - break unless like
             a href="#{user_path like.user.id}"
-              = image_tag like.user.avatar.url(:thumb), title: like.user.name
+              = image_tag like.user.avatar.url(:thumb), title: like.user.name, width: "32"
         div.likes
           i.icon-heart
           a#likeLink href="#likesModal" data-toggle="modal" = pluralize(@story.likes.size, t(".person"), t(".people"))

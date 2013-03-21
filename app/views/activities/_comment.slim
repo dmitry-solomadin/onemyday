@@ -1,13 +1,20 @@
-div.activity : pre
-  - if comment
+- if comment
+  div.activity : pre
     div.activity-head
       i.icon-large.icon-comments-alt
-      a href="#{user_path comment.user}"
-        = comment.user.name
-      '&nbsp;has added a comment to your
-      a href="#{story_path comment.story}"
-        = comment.story.title
-      '&nbsp;story
+      - if activity.reason == "discussion_member"
+        a href="#{user_path comment.user}"
+          = comment.user.name
+        '&nbsp;has left a comment on a story you commented on
+        a href="#{story_path comment.story}"
+          = comment.story.title
+      - else
+        a href="#{user_path comment.user}"
+          = comment.user.name
+        '&nbsp;has added a comment to your
+        a href="#{story_path comment.story}"
+          = comment.story.title
+        '&nbsp;story
     div.activity-more
       'That's what he wrote: #{truncate comment.text, length: 80, omission: ''}...
       a href="#{story_path comment.story}"
