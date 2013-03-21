@@ -203,3 +203,5 @@ en:
       show_html: "show &rarr;"
     user:
       new_follower_html: "You have a new follower &mdash;"
+    activities_list:
+      no_activities: "There is no activities yet."

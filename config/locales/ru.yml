@@ -259,3 +259,5 @@ ru:
       show_html: "показать &rarr;"
     user:
       new_follower_html: "Теперь тебя читает "
+    activities_list:
+      no_activities: "Здесь пока ничего нет."
