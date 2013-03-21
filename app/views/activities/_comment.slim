@@ -1,0 +1,17 @@
+div.activity : pre
+  - if comment
+    div.activity-head
+      i.icon-large.icon-comments-alt
+      a href="#{user_path comment.user}"
+        = comment.user.name
+      '&nbsp;has added a comment to your
+      a href="#{story_path comment.story}"
+        = comment.story.title
+      '&nbsp;story
+    div.activity-more
+      'That's what he wrote: #{truncate comment.text, length: 80, omission: ''}...
+      a href="#{story_path comment.story}"
+        ' show &rarr;
+
+    div.activity-created
+      = activity.created_at.strftime("%d, %b %Y  %H:%M")

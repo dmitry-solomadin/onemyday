@@ -19,6 +19,10 @@ div#showUserDiv.whiteHeader
             a href="#{feed_path @user.id}" data-remote="true"
               span.count #{@user.feed.size}
               span = t ".feed"
+          li#activitiesTab
+            a href="#{user_activities_path @user.id}" data-remote="true"
+              span.count class="#{'gray' if @user.activities.unseen.empty?}": span.text #{@user.activities.unseen.size}
+              span = t ".activities"
         li#ownTab class="#{'selected' unless current_user?(@user)}"
           a href="#{own_stories_path @user.id}" data-remote="true"
             span.count #{@user.stories.size}

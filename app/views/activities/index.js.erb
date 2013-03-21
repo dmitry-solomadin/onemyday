@@ -1,0 +1,9 @@
+$("#showUserTabContent").html("<%= j (render "activities/activities_list", activities: @activities) %>");
+$("#activitiesTab span.count").addClass("gray");
+var activitiesCount = parseInt($.trim($("#activitiesTab span.count .text").text()));
+if (activitiesCount) {
+  $("#activitiesTab span.count .text").slideUp(120, function () {
+    $(this).text(0).slideDown(120);
+  });
+  $(".user-activity-count").fadeOut(200);
+}

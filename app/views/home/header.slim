@@ -22,6 +22,8 @@ header.navbar.navbar-fixed-top
           li#userMenu.btn-group.userNav
             a.navLink.dropdown-toggle data-toggle="dropdown" href="#{user_path current_user}"
               = image_tag current_user.avatar.url :thumb, class: 'navbarAvatar'
+              - if current_user.activities.unseen.present?
+                span.user-activity-count #{current_user.activities.unseen.size}
               span.username = current_user.name
               span.caret
             ul#userDropdown.dropdown-menu

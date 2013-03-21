@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
            class_name: "Relationship",
            dependent: :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
+  has_many :activities
 
   validates :name, presence: true, length: {maximum: 50}
   validates :email, presence: true,

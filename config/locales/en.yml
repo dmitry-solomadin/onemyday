@@ -71,6 +71,7 @@ en:
       stories: "Stories"
       her: "Her"
       feed: "Feed"
+      activities: "Activities"
     new:
       finish: "Finish registration by entering your email"
       finish_exp: "* We won't send spam to you."
@@ -137,6 +138,7 @@ en:
       the_end: "THE END"
       like_count_desc_html: "&nbsp;likes this"
       person: "person"
+      people: "people"
       tags: "Tags:"
       edit_story: "Edit story"
       likes_header: "Pleople who like it"

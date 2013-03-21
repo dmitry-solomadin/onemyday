@@ -93,6 +93,10 @@ class StoriesController < ApplicationController
   def publish
     @story = @current_user.stories.unscoped.find(params[:story][:id])
 
+    @current_user.followers.each do |follower|
+      track_activity @story, follower
+    end
+
     if @story.has_photos && @story.update_attributes(params[:story])
       if params[:crosspost_facebook].present? && params[:crosspost_facebook].to_bool &&
           params[:story][:published].to_bool && @current_user.has_facebook?
@@ -109,7 +113,10 @@ class StoriesController < ApplicationController
   end
 
   def like
-    Story.find(params[:story_id]).likes.build(user_id: current_user.id).save!
+    story = Story.find(params[:story_id])
+    like = story.likes.build(user_id: current_user.id)
+    like.save!
+    track_activity like, story.user
     render nothing: true
   end
 

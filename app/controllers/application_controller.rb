@@ -44,4 +44,8 @@ class ApplicationController < ActionController::Base
     redirect_to root_url, notice: "You are unauthorized to view this content."
   end
 
+  def track_activity(trackable, user, reason = "regular")
+    user.activities.create! reason: reason, trackable: trackable
+  end
+
 end

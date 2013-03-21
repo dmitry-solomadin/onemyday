@@ -1,0 +1,4 @@
+- activities.each do |activity|
+  - locals = { activity: activity }
+  - locals[activity.trackable_type.underscore.to_sym] = activity.trackable
+  = render partial: "activities/#{activity.trackable_type.underscore}", locals: locals

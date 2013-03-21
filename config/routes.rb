@@ -2,7 +2,10 @@ Onemyday::Application.routes.draw do
 
   root to: 'home#index'
 
-  resources :users
+  resources :users do
+    resources :activities, only: [:index]
+  end
+
   get '/edit_current_user', to: "users#edit_current"
   get '/update_avatar_facebook', to: "users#update_avatar_facebook"
   get '/update_avatar_twitter', to: "users#update_avatar_twitter"

@@ -11,7 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121028100621) do
+ActiveRecord::Schema.define(:version => 20130320192431) do
+
+  create_table "activities", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "reason"
+    t.integer  "trackable_id"
+    t.string   "trackable_type"
+    t.boolean  "viewed",         :default => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+  end
+
+  add_index "activities", ["trackable_id"], :name => "index_activities_on_trackable_id"
+  add_index "activities", ["user_id"], :name => "index_activities_on_user_id"
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"

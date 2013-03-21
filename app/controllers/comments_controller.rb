@@ -10,6 +10,7 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     @comment.save!
+    track_activity @comment, story.user
 
     respond_to { |t| t.js }
   end

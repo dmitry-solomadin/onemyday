@@ -1,0 +1,13 @@
+- if like
+  div.activity : pre
+    div.activity-head
+      i.icon-large.icon-thumbs-up
+      a href="#{user_path like.user}"
+        = like.user.name
+      '&nbsp;has liked your
+      a href="#{story_path like.story}"
+        = like.story.title
+      '&nbsp;story
+
+    div.activity-created
+      = activity.created_at.strftime("%d, %b %Y  %H:%M")
