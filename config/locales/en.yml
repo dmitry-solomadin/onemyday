@@ -201,3 +201,5 @@ en:
       story: " story "
       what_he_wrote: "That's what he wrote: "
       show_html: "show &rarr;"
+    user:
+      new_follower_html: "You have a new follower &mdash;"

@@ -1,0 +1,10 @@
+- if user
+  div.activity : pre
+    div.activity-head
+      i.icon-large.icon-user
+      = t '.new_follower_html'
+      a href="#{user_path user}"
+        = user.name
+
+    div.activity-created
+      = activity.created_at.strftime("%d, %b %Y  %H:%M")

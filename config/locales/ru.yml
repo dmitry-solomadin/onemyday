@@ -257,3 +257,5 @@ ru:
       story: ""
       what_he_wrote: "Вот что он написал: "
       show_html: "показать &rarr;"
+    user:
+      new_follower_html: "Теперь тебя читает "
