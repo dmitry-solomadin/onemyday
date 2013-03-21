@@ -1,24 +1,25 @@
 - if comment
   div.activity : pre
     div.activity-head
-      i.icon-large.icon-comments-alt
+      i.icon-large class="#{activity.reason == "discussion_member" ? 'icon-comments-alt' : 'icon-comment-alt'}"
       - if activity.reason == "discussion_member"
         a href="#{user_path comment.user}"
           = comment.user.name
-        '&nbsp;has left a comment on a story you commented on
+        = t '.left_comment_discussion'
         a href="#{story_path comment.story}"
           = comment.story.title
       - else
         a href="#{user_path comment.user}"
           = comment.user.name
-        '&nbsp;has added a comment to your
+        = t '.left_comment'
         a href="#{story_path comment.story}"
           = comment.story.title
-        '&nbsp;story
+        = t '.story'
     div.activity-more
-      'That's what he wrote: #{truncate comment.text, length: 80, omission: ''}...
+      = t '.what_he_wrote'
+      ' #{truncate comment.text, length: 80, omission: ''}...
       a href="#{story_path comment.story}"
-        ' show &rarr;
+        = t '.show_html'
 
     div.activity-created
       = activity.created_at.strftime("%d, %b %Y  %H:%M")

@@ -189,3 +189,15 @@ en:
     index:
       invite_friends_header: "Invite your friends. The more friends you invite the more comments and views your stories get!"
       invite_friends_pending: "Invite friends feature will be available just a bit later"
+  activities:
+    like:
+      has_liked: " has liked your "
+      story: " story "
+    story:
+      new_story: " added a new story "
+    comment:
+      left_comment_discussion: " has left a comment on a story you commented on "
+      left_comment: " has added a comment to your "
+      story: " story "
+      what_he_wrote: "That's what he wrote: "
+      show_html: "show &rarr;"

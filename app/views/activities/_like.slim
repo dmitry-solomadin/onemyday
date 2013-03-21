@@ -4,10 +4,10 @@
       i.icon-large.icon-thumbs-up
       a href="#{user_path like.user}"
         = like.user.name
-      '&nbsp;has liked your
+      = t '.has_liked'
       a href="#{story_path like.story}"
         = like.story.title
-      '&nbsp;story
+      = t '.story'
 
     div.activity-created
       = activity.created_at.strftime("%d, %b %Y  %H:%M")

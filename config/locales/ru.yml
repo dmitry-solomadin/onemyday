@@ -245,3 +245,15 @@ ru:
     index:
       invite_friends_header: "Пригласи друзей! Чем больше друзей ты пригласишь тем больше комментариев и просмотров получат твои истории."
       invite_friends_pending: "Возможность приглашать друзей появиться чуть позже"
+  activities:
+    like:
+      has_liked: " понравилась твоя история "
+      story: ""
+    story:
+      new_story: " добавил новую историю "
+    comment:
+      left_comment_discussion: " прокомментировал историю которую комментировал ты "
+      left_comment: " проккоментировал твою историю "
+      story: ""
+      what_he_wrote: "Вот что он написал: "
+      show_html: "показать &rarr;"
