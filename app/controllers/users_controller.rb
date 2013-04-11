@@ -47,7 +47,7 @@ class UsersController < ApplicationController
     @stories = @user.feed
     respond_to do |f|
       f.html
-      f.json { render :json => @user.to_json(include: :avatar) }
+      f.json { render :json => @user.to_json({:methods => :avatar_urls}) }
     end
   end
 

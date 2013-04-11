@@ -29,11 +29,12 @@ class User < ActiveRecord::Base
     errors.each { |attribute| errors.delete(attribute) if attribute == :password_digest } if self.authentications.any?
   end
 
-  paperclip_opts = {
+  @paperclip_opts = {
       styles: {small: "50x50", thumb: "32x32"}, default_url: "/assets/no-avatar.png"
   }
-  paperclip_opts.merge! PAPERCLIP_STORAGE_OPTS
-  has_attached_file :avatar, paperclip_opts
+  @paperclip_opts.merge! PAPERCLIP_STORAGE_OPTS
+  has_attached_file :avatar, @paperclip_opts
+  class << self; attr_accessor :paperclip_opts end
 
   before_save :before_save
   def before_save
@@ -153,6 +154,12 @@ class User < ActiveRecord::Base
     logger.info e.to_s
   rescue Faraday::Error::ConnectionFailed => e
     logger.info e.to_s
+  end
+
+  def avatar_urls
+    urls = {}
+    User.paperclip_opts[:styles].each_key { |photo_style| urls["#{photo_style}_url"] = self.avatar.url(photo_style.to_sym) }
+    urls
   end
 
   private
