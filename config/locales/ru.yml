@@ -286,3 +286,7 @@ ru:
       follower_profile_text: "Посмотреть его профиль: %{user_url}"
       follower_html: "<a href='%{user_url}'>%{username}</a> теперь читает тебя."
       follower_profile_html: "<a href='%{user_url}'>Посмотреть его профиль</a>"
+  static_pages:
+    landing:
+      tell_story_header: "Расскажи свою историю"
+      free: "Бecплатно"

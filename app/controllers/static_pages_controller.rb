@@ -6,4 +6,8 @@ class StaticPagesController < ApplicationController
 
   end
 
+  def landing
+    render layout: "application"
+  end
+
 end

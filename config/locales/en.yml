@@ -230,3 +230,7 @@ en:
       follower_profile_text: "View his profile: %{user_url}"
       follower_html: "<a href='%{user_url}'>%{username}</a> started to follow you."
       follower_profile_html: "<a href='%{user_url}'>View his profile</a>"
+  static_pages:
+    landing:
+      tell_story_header: "Tell & discover wonderful stories"
+      free: "It's Free"

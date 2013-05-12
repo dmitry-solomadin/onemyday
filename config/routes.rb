@@ -36,6 +36,7 @@ Onemyday::Application.routes.draw do
   get '/:user_id/stories/unfinished', to: 'user_stories#unfinished', as: :unfinished_stories
 
   get '/channel.html', to: 'static_pages#channel'
+  get '/landing', to: 'static_pages#landing'
 
   post 'auth/regular', to: "sessions#create", as: :regular_sign_in
   match 'auth/:provider/callback', to: 'sessions#create'
