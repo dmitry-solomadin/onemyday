@@ -28,6 +28,10 @@ class StoriesController < ApplicationController
       @stories = @stories.paginate(page: params[:page])
     end
 
+    @stories = @stories.where("id > #{params[:higher_than_id]}") if params[:higher_than_id]
+    @stories = @stories.where("id > #{params[:lower_that_id]}") if params[:lower_that_id]
+    @stories = @stories.limit(params[:limit]) if params[:limit]
+
     respond_to do |f|
       f.js
       f.html
