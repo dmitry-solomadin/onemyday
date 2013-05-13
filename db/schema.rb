@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130321213003) do
+ActiveRecord::Schema.define(:version => 20130513102440) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -115,7 +115,7 @@ ActiveRecord::Schema.define(:version => 20130321213003) do
     t.text     "caption"
     t.datetime "date"
     t.integer  "orientation_cd"
-    t.string   "photo_dimensions"
+    t.text     "photo_dimensions"
     t.string   "time_taken"
     t.boolean  "has_text",           :default => true
   end
