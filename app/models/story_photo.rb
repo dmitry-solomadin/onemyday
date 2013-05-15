@@ -7,8 +7,7 @@ class StoryPhoto < ActiveRecord::Base
 
   @paperclip_opts = {
       styles: {center: "x550", side: "420x550>", thumb: "300x",
-               iphone_thumb: "300x300", iphone2x_thumb: "600x600",
-               iphone: "300x", iphone2x: "600x"}
+               iphone2x_thumb: "600x600", iphone2x: "600x"}
   }
   @paperclip_opts.merge! PAPERCLIP_STORAGE_OPTS
 
