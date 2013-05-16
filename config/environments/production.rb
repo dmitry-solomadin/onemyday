@@ -90,6 +90,8 @@ Onemyday::Application.configure do
   ENV["VKONTAKTE_API_KEY"] = "3486182"
   ENV["VKONTAKTE_API_SECRET"] = "dJLk9Y8Xh3jmF4Qqjowm"
 
+  ENV["ONEMYDAY_API_KEY"] = "75c5e6875c4e6931943b88fe5941470b"
+
   ENV["HOST"] = "onemyday.co"
 
   PAPERCLIP_STORAGE_OPTS = {

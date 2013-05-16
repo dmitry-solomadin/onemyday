@@ -58,6 +58,8 @@ Onemyday::Application.configure do
   ENV["VKONTAKTE_API_KEY"] = "3486198"
   ENV["VKONTAKTE_API_SECRET"] = "qthRv5xv3SNvo8ANh41r"
 
+  ENV["ONEMYDAY_API_KEY"] = "75c5e6875c4e6931943b88fe5941470b"
+
   ENV["HOST"] = "localhost:3000"
 
   I18n.default_locale = :en
