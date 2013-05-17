@@ -13,7 +13,7 @@ html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb=
     = meta_tags yield(:meta_tags)
     = render file:"shared/ga.html"
     = render file:"shared/ya_metrika.html"
-    meta name="description" content="#{t '.meta_desc'}">
+    meta name="description" content="#{t '.meta_desc'}"
   body data-controller="#{params[:controller]}" data-action="#{params[:action]}" class="#{current_locale}"
     div#fb-root
     input#appHost type="hidden" value="#{ENV['HOST']}"
