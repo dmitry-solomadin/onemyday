@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
 
-  before_filter :signed_in_user_filter, except: [:show, :search, :explore, :index]
+  before_filter :signed_in_user_filter, except: [:show, :search, :explore, :index, :comments, :likes]
 
   def index
     @stories = Story.all
@@ -148,6 +148,20 @@ class StoriesController < ApplicationController
     @story = Story.unscoped.find(params[:id])
 
     raise Onemyday::AccessDenied unless current_user? @story.user
+  end
+
+  def comments
+    comments = Story.find(params[:id]).comments
+    respond_to do |f|
+      f.json { render json: comments.to_json }
+    end
+  end
+
+  def likes
+    likes = Story.find(params[:id]).likes
+    respond_to do |f|
+      f.json { render json: likes.to_json }
+    end
   end
 
 end

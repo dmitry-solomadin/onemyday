@@ -11,7 +11,10 @@ Onemyday::Application.routes.draw do
   get '/update_avatar_twitter', to: "users#update_avatar_twitter"
   post '/upload_user_avatar', to: 'users#upload_avatar'
 
-  resources :stories
+  resources :stories do
+    get 'comments', on: :member
+    get 'likes', on: :member
+  end
   post '/upload_story_photo', to: 'stories#upload_photo'
   post '/publish', to: 'stories#publish'
   get '/search_stories', to: 'stories#search'
