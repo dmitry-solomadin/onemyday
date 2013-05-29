@@ -1,6 +1,8 @@
 class Story < ActiveRecord::Base
   attr_accessible :title, :published, :story_photos_attributes, :tag_list
 
+  attr_accessor :current_user
+
   acts_as_taggable
 
   belongs_to :user
@@ -60,6 +62,12 @@ class Story < ActiveRecord::Base
     else
       Story.select("*, (likes_count * 10) + views_count as count").order("count DESC").limit(lim)
     end
+  end
+
+  def is_liked_by_user(user=nil)
+    user ||= current_user
+    return unless user
+    self.likes.pluck(:user_id).include?(user.id)
   end
 
   private
