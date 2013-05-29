@@ -100,7 +100,7 @@ class StoriesController < ApplicationController
     @story = @current_user.stories.unscoped.find(params[:story][:id])
 
     @current_user.followers.each do |follower|
-      track_activity @story, follower
+      ActivityTracking.track @story, follower
     end
 
     if @story.has_photos && @story.update_attributes(params[:story])
@@ -122,7 +122,7 @@ class StoriesController < ApplicationController
     story = Story.find(params[:story_id])
     like = story.likes.build(user_id: current_user.id)
     like.save!
-    track_activity like, story.user
+    ActivityTracking.track like, story.user
     render nothing: true
   end
 

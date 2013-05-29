@@ -50,5 +50,8 @@ Onemyday::Application.routes.draw do
   scope module: "api" do
     post '/api/stories/:id/like', to: 'stories#like'
     post '/api/stories/:id/unlike', to: 'stories#unlike'
+
+    post '/api/comments/create', to: 'comments#create'
+    post '/api/comments/:id/destroy', to: 'comments#destroy'
   end
 end

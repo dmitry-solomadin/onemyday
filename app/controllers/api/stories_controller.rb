@@ -4,7 +4,7 @@ class Api::StoriesController < Api::ApiController
       story = Story.find(params[:id])
       like = story.likes.build(user_id: params[:user_id])
       like.save!
-      track_activity like, story.user
+      ActivityTracking.track like, story.user
       render json: {success: true}
     rescue => e
       render json: {message: e.message, backtrace: e.backtrace}

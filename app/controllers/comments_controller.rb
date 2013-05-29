@@ -1,24 +1,11 @@
-class CommentsController < ApplicationController
+class CommentsController < CommonCommentsController
 
   include CommentsHelper
 
   before_filter :signed_in_user_filter
 
   def create
-    story = Story.find(params[:story_id])
-    @comment = story.comments.build(params[:comment])
-    @comment.user = current_user
-
-    discussion_members = []
-    story.comments.each { |comment| discussion_members<<comment.user }
-    discussion_members.uniq_by{|member| member.id}.each do |member|
-      next if member.id == story.user.id || member.id == @comment.user.id
-      track_activity @comment, member, "discussion_member"
-    end
-
-    @comment.save!
-    track_activity @comment, story.user unless story.user.id == @comment.user.id
-
+    @comment = CommentsService.create(params, current_user)
     respond_to { |t| t.js }
   end
 
