@@ -9,7 +9,7 @@ class StoryFormat
     # add requesting user to each story model so it can say whether it was liked by him.
     if params[:requesting_user_id]
       u = User.find(params[:requesting_user_id])
-      if story.kind_of?(Array)
+      if story.kind_of?(Array) or story.kind_of?(ActiveRecord::Relation)
         story.each { |s| s.current_user = u }
       else
         story.current_user = u
