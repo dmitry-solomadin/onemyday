@@ -1,4 +1,4 @@
-class CommentsController < CommonCommentsController
+class CommentsController < ApplicationController
 
   include CommentsHelper
 
