@@ -14,7 +14,7 @@
         i.icon-heart
         span = story.likes.size.to_s
         i.icon-comment
-        span = story.comments.count
+        span = story.comments.size
       div.date
         '@ #{story.date_nice_text} #{t '.by_html'} #{link_to story.user.name, story.user}
     div.imageHoverMenu.btn-group.hide

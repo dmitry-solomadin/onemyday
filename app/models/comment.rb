@@ -1,7 +1,7 @@
 class Comment < ActiveRecord::Base
   attr_accessible :text
 
-  belongs_to :story
+  belongs_to :story, counter_cache: true
   belongs_to :comment
   belongs_to :user
 

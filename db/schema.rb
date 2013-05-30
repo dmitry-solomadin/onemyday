@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130513102440) do
+ActiveRecord::Schema.define(:version => 20130530100308) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -90,15 +90,16 @@ ActiveRecord::Schema.define(:version => 20130513102440) do
   add_index "relationships", ["follower_id"], :name => "index_relationships_on_follower_id"
 
   create_table "stories", :force => true do |t|
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.string   "title"
     t.string   "type"
     t.datetime "date"
     t.integer  "user_id"
-    t.boolean  "published",   :default => false
-    t.integer  "likes_count", :default => 0
-    t.integer  "views_count", :default => 0
+    t.boolean  "published",      :default => false
+    t.integer  "likes_count",    :default => 0
+    t.integer  "views_count",    :default => 0
+    t.integer  "comments_count", :default => 0
   end
 
   add_index "stories", ["user_id"], :name => "index_stories_on_user_id"
