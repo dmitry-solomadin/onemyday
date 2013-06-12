@@ -3,8 +3,8 @@ class Api::CommentsController < Api::ApiController
   def create
     begin
       creator = User.find(params[:creator_id])
-      CommentsService.create(params, creator)
-      render json: {success: true}
+      comment = CommentsService.create(params, creator)
+      render json: comment
     rescue => e
       render json: {message: e.message, backtrace: e.backtrace}
     end
