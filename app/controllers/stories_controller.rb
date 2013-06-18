@@ -28,6 +28,8 @@ class StoriesController < ApplicationController
       @stories = @stories.paginate(page: params[:page])
     end
 
+    @stories = @stories.where("user_id = #{params[:author_id]}") if params[:author_id]
+
     @stories = @stories.where("id > #{params[:higher_than_id]}") if params[:higher_than_id]
     @stories = @stories.where("id < #{params[:lower_than_id]}") if params[:lower_than_id]
     @stories = @stories.limit(params[:limit]) if params[:limit]
