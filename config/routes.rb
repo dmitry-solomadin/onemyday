@@ -3,7 +3,7 @@ Onemyday::Application.routes.draw do
   root to: 'home#index'
 
   resources :users do
-    resources :activities, only: [:index]
+    get 'activities', to: "activities#index", on: :member
   end
 
   get '/edit_current_user', to: "users#edit_current"
