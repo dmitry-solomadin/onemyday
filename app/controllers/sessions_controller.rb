@@ -29,10 +29,17 @@ class SessionsController < ApplicationController
         status = "wrong_password"
       end
 
-      respond_to { |f|
-        f.js
-        f.json { render :json => {user_id: existing_user.id, status: status}.to_json }
-      }
+      if status == "ok"
+        respond_to { |f|
+          f.js
+          f.json { render :json => {status: status}.merge(UserFormat.get_hash(existing_user)) }
+        }
+      else
+        respond_to { |f|
+          f.js
+          f.json { render :json => {user_id: existing_user.id, status: status}.to_json }
+        }
+      end
     else
       omniauth = env["omniauth.auth"].present? ? env["omniauth.auth"] : params[:omniauth]
       authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
@@ -41,13 +48,13 @@ class SessionsController < ApplicationController
         session[:user_id] = authentication.user.id
         respond_to { |f|
           f.html { redirect_to root_url }
-          f.json { render :json => {user_id: authentication.user.id, status: status}.to_json }
+          f.json { render :json => {status: status}.merge(UserFormat.get_hash(authentication.user)) }
         }
       elsif current_user
         current_user.build_auth(omniauth).save!
         respond_to { |f|
           f.html { redirect_to edit_current_user_url }
-          f.json { render :json => {user_id: current_user.id, status: status}.to_json }
+          f.json { render :json => {status: status}.merge(UserFormat.get_hash(current_user)) }
         }
       else
         user = User.from_omniauth(omniauth)
@@ -55,7 +62,7 @@ class SessionsController < ApplicationController
           session[:user_id] = user.id
           respond_to { |f|
             f.html { redirect_to root_url }
-            f.json { render :json => {user_id: user.id, status: status}.to_json }
+            f.json { render :json => {status: status}.merge(UserFormat.get_hash(user)) }
           }
         else
           session[:omniauth] = omniauth.except('extra')

@@ -1,6 +1,6 @@
 div.fr.mr10
-  a.mr10 href="#followers" data-toggle="modal" = pluralize(@user.followers.size, t(".follower"), t(".followers"))
-  a.mr10 href="#followed_users" data-toggle="modal" = pluralize(@user.followed_users.size, t(".following"), t(".following"))
+  a.mr10 href="#followers" data-toggle="modal" = pluralize(@user.followers_size, t(".follower"), t(".followers"))
+  a.mr10 href="#followed_users" data-toggle="modal" = pluralize(@user.followed_by_size, t(".following"), t(".following"))
   = render 'follow_form', user: @user
 
 div#followers.show_user_small.modal.fade.hide

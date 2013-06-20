@@ -25,7 +25,7 @@ div#showUserDiv.whiteHeader
               span = t ".activities"
         li#ownTab class="#{'selected' unless current_user?(@user)}"
           a href="#{own_stories_path @user.id}" data-remote="true"
-            span.count #{@user.stories.size}
+            span.count #{@user.stories_size}
             span = current_user?(@user) ? t('.yours') : get_his_stories_header(@user)
         li
           a href="#{liked_stories_path @user.id}" data-remote="true"

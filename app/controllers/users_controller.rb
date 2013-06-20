@@ -21,7 +21,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       respond_to do |f|
         f.html { redirect_to root_url }
-        f.json { render :json => {user_id: @user.id, status: "ok"}.to_json }
+        f.json { render :json => {status: "ok"}.merge(UserFormat.get_hash(@user)) }
       end
     else
       respond_to do |f|

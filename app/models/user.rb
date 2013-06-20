@@ -162,6 +162,18 @@ class User < ActiveRecord::Base
     urls
   end
 
+  def followers_size
+    self.followers.size
+  end
+
+  def followed_by_size
+    self.followed_users.size
+  end
+
+  def stories_size
+    self.stories.size
+  end
+
   private
 
   def validate_password?
