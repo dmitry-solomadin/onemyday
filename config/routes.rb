@@ -53,5 +53,7 @@ Onemyday::Application.routes.draw do
 
     post '/api/comments/create', to: 'comments#create'
     post '/api/comments/:id/destroy', to: 'comments#destroy'
+
+    post '/api/users/:id/update', to: 'users#update'
   end
 end

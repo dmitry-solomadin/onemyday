@@ -32,10 +32,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    current_user.update_attributes params[:user]
-    current_user.save
-
-    if current_user.valid?
+    if current_user.update_attributes(params[:user])
       redirect_to edit_current_user_path
     else
       render 'edit'

@@ -15,7 +15,9 @@ class ApplicationController < ActionController::Base
   private
 
   def set_locale
-    if current_user && !current_user.locale.blank?
+    if params[:custom_locale]
+      I18n.locale = params[:custom_locale]
+    elsif current_user && !current_user.locale.blank?
       I18n.locale = current_user.locale
     else
       location = request.location
