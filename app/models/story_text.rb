@@ -4,4 +4,9 @@ class StoryText < ActiveRecord::Base
 
   has_one :story_element, :as => :element
   has_one :story, :through => :story_element
+
+  def element_order=(order)
+    story_element.element_order = order
+    story_element.save!
+  end
 end
