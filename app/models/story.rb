@@ -7,7 +7,12 @@ class Story < ActiveRecord::Base
 
   belongs_to :user
 
-  has_many :story_photos, dependent: :destroy
+  has_many :story_elements, dependent: :destroy
+  has_many :story_photos, :through => :story_elements, :source => :element, :source_type => 'StoryPhoto',
+           dependent: :destroy
+  has_many :story_texts, :through => :story_elements, :source => :element, :source_type => 'StoryText',
+           dependent: :destroy
+
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :views, dependent: :destroy

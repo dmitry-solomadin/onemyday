@@ -22,45 +22,51 @@ div.storyHeaderDiv
   div.storySubHeaderBorder
 
 div#story
-  - @story.story_photos.each do |story_photo|
-    - side_image_dims = story_photo.photo_dimensions[:side]
-    - center_image_dims = story_photo.photo_dimensions[:center]
-    - if story_photo.left?
-      div#leftRightGroup class="row storyGroup #{'noText' unless story_photo.has_text}"
-        div.imagePlace.span55
-          img src="#{story_photo.photo.url(:side)}" style="height: #{side_image_dims[:height]}px"
-        div class="span0 #{'span0_hidden' unless story_photo.has_text}"
-        div class="textPlace span55 #{'hide' unless story_photo.has_text}"
-          div.time
-            = story_photo.date_text
-          - if story_photo.caption.present?
-            pre.text
-              = story_photo.caption
-    - if story_photo.right?
-      div#rightLeftGroup class="row storyGroup #{'noText' unless story_photo.has_text}"
-        div class="textPlace span55 #{'hide' unless story_photo.has_text}"
-          div.time
-            = story_photo.date_text
-          - if story_photo.caption.present?
-            pre.text
-              = story_photo.caption
-        div class="span0 #{'span0_hidden' unless story_photo.has_text}"
-        div.imagePlace.span55
-          img src="#{story_photo.photo.url(:side)}" style="height: #{side_image_dims[:height]}px"
-    - if story_photo.center?
-      div#centerGroup class="row storyGroup #{'noText' unless story_photo.has_text}" data-orientation="center"
-        div.row
-          div.imagePlace.span12
-            img src="#{story_photo.photo.url(:center)}" style="width: #{center_image_dims[:width]}px"
-        div.row.mt10
-          div class="textPlace span12 #{'hide' unless story_photo.has_text}"
+  - @story.story_elements.each do |story_element|
+    - if story_element.element_type == "StoryPhoto"
+      - story_photo = story_element.element
+      - side_image_dims = story_photo.photo_dimensions[:side]
+      - center_image_dims = story_photo.photo_dimensions[:center]
+      - if story_photo.left?
+        div#leftRightGroup class="row storyGroup #{'noText' unless story_photo.has_text}"
+          div.imagePlace.span55
+            img src="#{story_photo.photo.url(:side)}" style="height: #{side_image_dims[:height]}px"
+          div class="span0 #{'span0_hidden' unless story_photo.has_text}"
+          div class="textPlace span55 #{'hide' unless story_photo.has_text}"
             div.time
               = story_photo.date_text
             - if story_photo.caption.present?
               pre.text
                 = story_photo.caption
-        div.row.mt10
-          div.span0
+      - if story_photo.right?
+        div#rightLeftGroup class="row storyGroup #{'noText' unless story_photo.has_text}"
+          div class="textPlace span55 #{'hide' unless story_photo.has_text}"
+            div.time
+              = story_photo.date_text
+            - if story_photo.caption.present?
+              pre.text
+                = story_photo.caption
+          div class="span0 #{'span0_hidden' unless story_photo.has_text}"
+          div.imagePlace.span55
+            img src="#{story_photo.photo.url(:side)}" style="height: #{side_image_dims[:height]}px"
+      - if story_photo.center?
+        div#centerGroup class="row storyGroup #{'noText' unless story_photo.has_text}" data-orientation="center"
+          div.row
+            div.imagePlace.span12
+              img src="#{story_photo.photo.url(:center)}" style="width: #{center_image_dims[:width]}px"
+          div.row.mt10
+            div class="textPlace span12 #{'hide' unless story_photo.has_text}"
+              div.time
+                = story_photo.date_text
+              - if story_photo.caption.present?
+                pre.text
+                  = story_photo.caption
+          div.row.mt10
+            div.span0
+    - elsif story_element.element_type == "StoryText"
+      - story_text = story_element.element
+      pre.text
+        = story_text.text
 
 div.storyEnd
   div.header.lobster = t '.the_end'

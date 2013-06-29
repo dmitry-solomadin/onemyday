@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130530100308) do
+ActiveRecord::Schema.define(:version => 20130628184828) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -78,6 +78,12 @@ ActiveRecord::Schema.define(:version => 20130530100308) do
   add_index "likes", ["story_id"], :name => "index_likes_on_story_id"
   add_index "likes", ["user_id"], :name => "index_likes_on_user_id"
 
+  create_table "pictures", :force => true do |t|
+    t.text     "text"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "relationships", :force => true do |t|
     t.integer  "follower_id"
     t.integer  "followed_id"
@@ -104,6 +110,15 @@ ActiveRecord::Schema.define(:version => 20130530100308) do
 
   add_index "stories", ["user_id"], :name => "index_stories_on_user_id"
 
+  create_table "story_elements", :force => true do |t|
+    t.integer  "element_order"
+    t.integer  "story_id"
+    t.integer  "element_id"
+    t.string   "element_type"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "story_photos", :force => true do |t|
     t.integer  "photo_order"
     t.integer  "story_id"
@@ -122,6 +137,12 @@ ActiveRecord::Schema.define(:version => 20130530100308) do
   end
 
   add_index "story_photos", ["story_id"], :name => "index_story_photos_on_story_id"
+
+  create_table "story_texts", :force => true do |t|
+    t.text     "text"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"

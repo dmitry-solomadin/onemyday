@@ -213,7 +213,7 @@ class Story
         postParams["story[story_photos_attributes][#{index}][caption]"] = $(this).find('.text').html()
         postParams["story[story_photos_attributes][#{index}][date_text]"] = $(this).find('.time').html()
         postParams["story[story_photos_attributes][#{index}][orientation]"] = $(this).data("orientation")
-        postParams["story[story_photos_attributes][#{index}][photo_order]"] = index
+        postParams["story[story_photos_attributes][#{index}][element_order]"] = index
         postParams["story[story_photos_attributes][#{index}][has_text]"] = if $(this).data("hideText") == "true" then false else true
 
       postParams

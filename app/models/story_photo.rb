@@ -1,9 +1,10 @@
 class StoryPhoto < ActiveRecord::Base
-  attr_accessible :photo_order, :caption, :date, :date_text, :photo, :orientation, :photo_dimensions, :time_taken, :has_text
+  attr_accessible :photo_order, :caption, :date, :date_text, :photo, :orientation, :photo_dimensions, :time_taken, :has_text, :element_order
 
   as_enum :orientation, left: 0, center: 1, right: 2
 
-  belongs_to :story
+  has_one :story_element, :as => :element
+  has_one :story, :through => :story_element
 
   @paperclip_opts = {
       styles: {center: "x550", side: "420x550>", thumb: "300x",
@@ -17,7 +18,10 @@ class StoryPhoto < ActiveRecord::Base
   serialize :photo_dimensions
   after_initialize :init_defaults
 
-  default_scope :order => 'photo_order ASC'
+  def element_order=(order)
+    story_element.element_order = order
+    story_element.save!
+  end
 
   def init_defaults
     self.orientation ||= :left
