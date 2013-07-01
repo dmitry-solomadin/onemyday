@@ -50,11 +50,12 @@ class SessionsController < ApplicationController
           f.html { redirect_to root_url }
           f.json { render :json => {status: status}.merge(UserFormat.get_hash(authentication.user)) }
         }
-      elsif current_user
-        current_user.build_auth(omniauth).save!
+      elsif current_user or params[:existing_user_id]
+        add_auth_to_user = params[:existing_user_id] ? User.find(params[:existing_user_id]) : current_user
+        add_auth_to_user.build_auth(omniauth).save!
         respond_to { |f|
           f.html { redirect_to edit_current_user_url }
-          f.json { render :json => {status: status}.merge(UserFormat.get_hash(current_user)) }
+          f.json { render :json => {status: status}.merge(UserFormat.get_hash(add_auth_to_user)) }
         }
       else
         user = User.from_omniauth(omniauth)
