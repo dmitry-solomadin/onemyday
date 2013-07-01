@@ -69,7 +69,7 @@ class SessionsController < ApplicationController
           status = "no_email_error"
           respond_to { |f|
             f.html { redirect_to new_user_url }
-            f.json { render :json => {user_id: user.id, status: status}.to_json }
+            f.json { render :json => {status: status}.to_json }
           }
         end
       end
