@@ -19,8 +19,15 @@ class StoryPhoto < ActiveRecord::Base
   after_initialize :init_defaults
 
   def element_order=(order)
-    story_element.element_order = order
-    story_element.save!
+    @element_order = order
+    if story_element
+      story_element.element_order = order
+      story_element.save!
+    end
+  end
+
+  def element_order
+    @element_order
   end
 
   def init_defaults

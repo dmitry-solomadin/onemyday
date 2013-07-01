@@ -48,6 +48,7 @@ Onemyday::Application.routes.draw do
   get '/invite_friends', to: "invite_friends#index", as: :invite_friends
 
   scope module: "api" do
+    post '/api/stories/create_and_publish', to: 'stories#create_and_publish'
     post '/api/stories/:id/like', to: 'stories#like'
     post '/api/stories/:id/unlike', to: 'stories#unlike'
 
