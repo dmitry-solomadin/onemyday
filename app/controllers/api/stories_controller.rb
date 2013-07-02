@@ -29,8 +29,8 @@ class Api::StoriesController < Api::ApiController
         story_photo[:orientation] = 1 unless story_photo[:orientation]
         story.story_photos.build story_photo
       end
-      params[:story_texts].each do |story_text|
-        story.story_texts.build story_text
+      params[:story_texts] && params[:story_texts].each do |story_text|
+          story.story_texts.build story_text
       end
       story.save
 
