@@ -6,28 +6,27 @@ class Api::SessionsController < Api::ApiController
       authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
 
       if authentication
-        render :json => {status: status}.merge(UserFormat.get_hash(authentication.user))
+        render :json => {status: "ok"}.merge(UserFormat.get_hash(authentication.user))
       elsif params[:existing_user_id]
         user = User.find(params[:existing_user_id])
         add_auth_to_user user, omniauth
-        render :json => {status: status}.merge(UserFormat.get_hash(user))
+        render :json => {status: "ok"}.merge(UserFormat.get_hash(user))
       else
         if omniauth["info"]["email"].present?
           existing_user = User.find_by_email(omniauth["info"]["email"])
           if existing_user
             add_auth_to_user existing_user, omniauth
-            render :json => {status: status}.merge(UserFormat.get_hash(existing_user))
+            render :json => {status: "ok"}.merge(UserFormat.get_hash(existing_user))
             return
           end
         end
 
         user = User.from_omniauth(omniauth)
         if user.valid?
-          render :json => {status: status}.merge(UserFormat.get_hash(user))
+          render :json => {status: "ok"}.merge(UserFormat.get_hash(user))
         else
           session[:omniauth] = omniauth.except('extra')
-          status = "no_email_error"
-          render :json => {status: status}.to_json
+          render :json => {status: "user_is_invalid_cant_save"}.to_json
         end
       end
     rescue => e
