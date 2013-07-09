@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
   has_many :followers, through: :reverse_relationships, source: :follower
   has_many :activities
 
+  has_many :activities, as: :trackable, dependent: :destroy
+
   validates :name, presence: true, length: {maximum: 50}
   validates :email, presence: true,
             uniqueness: {case_sensitive: false}

@@ -18,6 +18,8 @@ class Story < ActiveRecord::Base
   has_many :views, dependent: :destroy
   accepts_nested_attributes_for :story_photos
 
+  has_many :activities, as: :trackable, dependent: :destroy
+
   validates_presence_of :title
   validates :user, presence: true
 
