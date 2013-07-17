@@ -7,6 +7,7 @@ class StoryElement < ActiveRecord::Base
   default_scope :order => 'element_order ASC'
 
   before_save :before_save
+  validates_presence_of :element
 
   def before_save
     if not self.element_order and element.element_order
