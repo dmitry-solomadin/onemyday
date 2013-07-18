@@ -3,7 +3,7 @@ class StoryPhotosController < ApplicationController
   before_filter :load_story_photo
 
   def destroy
-    @story_photo.destroy
+    @story_photo.story_element.destroy
 
     respond_to do |format|
       format.js
