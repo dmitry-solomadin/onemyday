@@ -209,12 +209,13 @@ class Story
       postParams.crosspost_twitter = not $("#crosspostTwitter").hasClass("disabled") if $("#crosspostTwitter")[0]
 
       $(".storyGroup").each (index) ->
+        shouldHideText = $(this).data("hideText") == "true" or storyHelper.isTextDefault($(this).find('.text').html())
         postParams["story[story_photos_attributes][#{index}][id]"] = $(this).data('id')
         postParams["story[story_photos_attributes][#{index}][caption]"] = $(this).find('.text').html()
         postParams["story[story_photos_attributes][#{index}][date_text]"] = $(this).find('.time').html()
         postParams["story[story_photos_attributes][#{index}][orientation]"] = $(this).data("orientation")
         postParams["story[story_photos_attributes][#{index}][element_order]"] = index
-        postParams["story[story_photos_attributes][#{index}][has_text]"] = if $(this).data("hideText") == "true" then "false" else "true"
+        postParams["story[story_photos_attributes][#{index}][has_text]"] = if shouldHideText then "false" else "true"
 
       postParams
 
@@ -250,22 +251,22 @@ class Story
       clickFunc = (groupProps) => => @changeGroup(groupProps, photoData)
       hoverMenu.find(groupProps.orientationToggleId).click(clickFunc(groupProps))
 
-    hoverMenu.find(".moveUp").click(=> @moveUp newGroup)
-    hoverMenu.find(".moveDown").click(=> @moveDown newGroup)
+    hoverMenu.find(".moveUp").click => @moveUp newGroup
+    hoverMenu.find(".moveDown").click => @moveDown newGroup
 
-    hoverMenu.find(".hasText").click(=> @hideTextClick newGroup)
+    hoverMenu.find(".hasText").click => @hideTextClick newGroup
 
     removePhotoLink = hoverMenu.find(".removePhoto")
     removePhotoLink.attr("href", removePhotoLink.data("href").replace("-1", photoData[0].id))
 
-    newGroup.find(".imagePlace").append(@grabImage(type, photoData)).mouseenter(->
+    newGroup.find(".imagePlace").append(@grabImage(type, photoData)).mouseenter( ->
       $(@).find(".imageHoverMenu").fadeIn("fast")
-    ).mouseleave(->
+    ).mouseleave( ->
       $(@).find(".imageHoverMenu").fadeOut("fast")
     )
 
-    newGroup.find(".textPlace > .time").on("click.editTime",-> storyHelper.editTime(@)).html(time)
-    newGroup.find(".textPlace > .text").on("click.editText",-> storyHelper.editCaption(@)).html(text)
+    newGroup.find(".textPlace > .time").on("click.editTime", -> storyHelper.editTime(@)).html(time)
+    newGroup.find(".textPlace > .text").on("click.editText", -> storyHelper.editCaption(@)).html(text)
 
     if photoData.data("has-text") == true then @showText newGroup else @hideText newGroup
 
@@ -395,6 +396,8 @@ class Story
 
   hideTextClick: (group) ->
     if group.find(".hasText").hasClass("active") then @hideText(group) else @showText(group)
+
+  isTextDefault: (text) -> $.trim(text) == $("#defaultStoryText").val().trim()
 
   hideText: (group) ->
     group.data("hideText", "true")
