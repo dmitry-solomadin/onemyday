@@ -13,7 +13,7 @@
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 SERVER_HOME=/data/onemyday/current
 DAEMON="bundle exec unicorn_rails -c /data/onemyday/shared/cached-copy/config/unicorn.rb -E production -D"
-RAPNS="rapns production"
+RAPNS="bundle exec rapns production"
 NAME=onemyday
 DESC=onemyday
 
