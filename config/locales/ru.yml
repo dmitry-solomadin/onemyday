@@ -261,6 +261,11 @@ ru:
       new_follower_html: "Теперь тебя читает "
     activities_list:
       no_activities: "Здесь пока ничего нет."
+    new_comment_text: "%{username} добавил комментарий к твоей истории"
+    new_commented_on_text: "%{username} добавил комментарий к истории которую ты комментировал"
+    new_like_text: "%{username} понравилась твоя история"
+    new_story_text: "%{username} поделился новой историей с тобой"
+    new_user_text: "%{username} теперь читает тебя"
   activity_mailer:
     comment_mail:
       subject: "%{username} добавил комментарий к твоей истории"

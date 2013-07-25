@@ -5,3 +5,19 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Rapns::Apns::App.create({name: "onemyday_development",
+                         certificate: File.read("./config/certs/apn_development.pem"),
+                         environment: "development",
+                         password: "",
+                         connections: 1
+                        })
+
+=begin
+Rapns::Apns::App.create({name: "onemyday_production",
+                         certificate: File.read("/config/certs/apn_production.pem"),
+                         environment: "production",
+                         password: "",
+                         connections: 1
+                        })
+=end

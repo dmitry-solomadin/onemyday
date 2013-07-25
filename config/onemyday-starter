@@ -13,6 +13,7 @@
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 SERVER_HOME=/data/onemyday/current
 DAEMON="bundle exec unicorn_rails -c /data/onemyday/shared/cached-copy/config/unicorn.rb -E production -D"
+RAPNS="rapns production"
 NAME=onemyday
 DESC=onemyday
 
@@ -23,10 +24,17 @@ set -e
 start() {
   cd $SERVER_HOME
   $DAEMON
+  $RAPNS
 }
 
 stop() {
   PIDS=`ps aux | grep -E 'unicorn.*onemyday' | grep -v 'grep' | awk '{print $2}'`
+  for PID in $PIDS
+  do
+    kill -9 $PID
+  done
+
+  PIDS=`ps aux | grep -E 'rapns' | grep -v 'grep' | awk '{print $2}'`
   for PID in $PIDS
   do
     kill -9 $PID

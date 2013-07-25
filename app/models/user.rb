@@ -3,7 +3,7 @@ require 'open-uri'
 class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
-  attr_accessible :email, :avatar, :name, :locale, :gender, :password
+  attr_accessible :email, :avatar, :name, :locale, :gender, :ios_device_token, :password
   has_secure_password
 
   has_many :authentications, dependent: :destroy

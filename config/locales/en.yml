@@ -205,6 +205,11 @@ en:
       new_follower_html: "You have a new follower &mdash;"
     activities_list:
       no_activities: "There is no activities yet."
+    new_comment_text: "%{username} has added a comment to your story"
+    new_commented_on_text: "%{username} has added a comment to a story you commented on"
+    new_like_text: "%{username} has liked your story"
+    new_story_text: "%{username} shared a new story with you"
+    new_user_text: "%{username} started to follow you"
   activity_mailer:
     comment_mail:
       subject: "%{username} has added a comment to your story"
