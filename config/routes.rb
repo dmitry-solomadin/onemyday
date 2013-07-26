@@ -4,6 +4,7 @@ Onemyday::Application.routes.draw do
 
   resources :users do
     get 'activities', to: "activities#index", on: :member
+    get 'unseen_activities_count', to: "activities#unseen_activities_count", on: :member
   end
 
   get '/edit_current_user', to: "users#edit_current"

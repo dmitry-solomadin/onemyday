@@ -14,4 +14,11 @@ class ActivitiesController < ApplicationController
     end
   end
 
+  def unseen_activities_count
+    count = User.find(params[:id]).activities.unseen.count
+    respond_to do |f|
+      f.json { render :json => {count: count} }
+    end
+  end
+
 end

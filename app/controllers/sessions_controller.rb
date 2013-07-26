@@ -30,6 +30,11 @@ class SessionsController < ApplicationController
       end
 
       if status == "ok"
+        # update user ios_device_token if provided
+        if params[:ios_device_token]
+          existing_user.ios_device_token = params[:ios_device_token]
+          existing_user.save
+        end
         respond_to { |f|
           f.js
           f.json { render :json => {status: status}.merge(UserFormat.get_hash(existing_user)) }
