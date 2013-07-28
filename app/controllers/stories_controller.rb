@@ -101,7 +101,7 @@ class StoriesController < ApplicationController
   def publish
     @story = @current_user.stories.unscoped.find(params[:story][:id])
 
-    @current_user.followers.each do |follower|
+    !@story.published && @current_user.followers.each do |follower|
       ActivityTracking.track @story, follower
     end
 
