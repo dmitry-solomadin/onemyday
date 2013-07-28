@@ -16,5 +16,5 @@ div#followed_users.show_user_small.modal.fade.hide
   div.modal-header.open-sans
     h3 = current_user?(@user) ? t('.your_followed_users_header') : t('.followed_users_header')
   div.modal-body
-    - @user.followers.each do |user|
+    - @user.followed_users.each do |user|
       = render 'shared/show_user_small', user: user

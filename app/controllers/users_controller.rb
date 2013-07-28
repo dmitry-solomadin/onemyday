@@ -41,7 +41,11 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @stories = @user.feed
+    if current_user == @user
+      @stories = @user.feed
+    else
+      @stories = @user.stories
+    end
     respond_to do |f|
       f.html
       f.json { render :json => UserFormat.get_hash(@user) }
