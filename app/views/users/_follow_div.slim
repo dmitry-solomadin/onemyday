@@ -8,13 +8,19 @@ div#followers.show_user_small.modal.fade.hide
   div.modal-header.open-sans
     h3 = current_user?(@user) ? t('.your_followers_header') : t('.followers_header')
   div.modal-body
-    - @user.followers.each do |user|
-      = render 'shared/show_user_small', user: user
+    - if @user.followers.empty?
+      div.likeblock = t('.no_followers')
+    - else
+      - @user.followers.each do |user|
+        = render 'shared/show_user_small', user: user
 
 div#followed_users.show_user_small.modal.fade.hide
   button type="button" class="close" data-dismiss="modal" ×
   div.modal-header.open-sans
     h3 = current_user?(@user) ? t('.your_followed_users_header') : t('.followed_users_header')
   div.modal-body
-    - @user.followed_users.each do |user|
-      = render 'shared/show_user_small', user: user
+    - if @user.followed_users.empty?
+      div.likeblock = t('.no_followed_users')
+    - else
+      - @user.followed_users.each do |user|
+        = render 'shared/show_user_small', user: user

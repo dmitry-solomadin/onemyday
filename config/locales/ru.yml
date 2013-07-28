@@ -90,6 +90,8 @@ ru:
       your_followers_header: "Ваши читатели"
       followed_users_header: "Читает"
       your_followed_users_header: "Вы читаете"
+      no_followers: "У тебя пока нет читателей"
+      no_followed_users: "Ты пока никого не читаешь"
   stories:
     empty_message: "Не найдено ни одной истории."
     story_edit:

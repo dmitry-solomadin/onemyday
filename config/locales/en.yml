@@ -90,6 +90,8 @@ en:
       your_followers_header: "Your followers"
       followed_users_header: "Following"
       your_followed_users_header: "You follow"
+      no_followers: "You don't have any followers yet"
+      no_followed_users: "You don't follow anybody yet"
   stories:
     empty_message: "No stories to display."
     story_edit:
