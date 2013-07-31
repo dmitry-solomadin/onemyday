@@ -65,4 +65,6 @@ Onemyday::Application.configure do
   I18n.default_locale = :en
 
   PAPERCLIP_STORAGE_OPTS = {}
+
+  config.log_level = :debug
 end

@@ -33,6 +33,7 @@ class ActivityTracking
     notification.alert = opts[:alert] if opts[:alert]
     notification.badge = opts[:badge] if opts[:badge]
     notification.sound = opts[:sound] if opts[:sound]
+    Rails.logger.info "notification_fuck: #{notification.inspect}"
     notification.save!
   end
 
