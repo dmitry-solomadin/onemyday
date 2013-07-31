@@ -27,6 +27,7 @@ class ActivityTracking
   end
 
   def self.apn_notify(env, token, opts)
+    puts "token is #{token}"
     notification = Rapns::Apns::Notification.new
     notification.app = Rapns::Apns::App.find_by_name("onemyday_#{env}")
     notification.device_token = token
