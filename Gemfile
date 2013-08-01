@@ -31,6 +31,7 @@ gem 'geocoder'
 gem 'bcrypt-ruby'
 gem 'cocaine', '0.3.2' # new cocaine gem breaks paperclip upload
 gem 'rapns'
+gem 'oj'
 
 group :development do
   gem 'better_errors'

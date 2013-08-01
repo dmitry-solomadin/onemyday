@@ -12,6 +12,7 @@ class ActivityTracking
   end
 
   def self.get_text(activity)
+    # todo get locale from user
     case activity.trackable_type.underscore.to_sym
       when :comment
         I18n.t("activities.new_comment_text", username: activity.trackable.user.name)
@@ -34,8 +35,7 @@ class ActivityTracking
     notification.badge = opts[:badge] if opts[:badge]
     notification.sound = opts[:sound] if opts[:sound]
     notification.save
-    Rails.logger.warn "notification_fuck: #{notification.errors.inspect}"
-    raise "fuck!"
+    #Rails.logger.warn "notification_fuck: #{notification.errors.inspect}"
   end
 
 end
