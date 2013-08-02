@@ -32,7 +32,10 @@ header.navbar.navbar-fixed-top
               li
                 = link_to "#{t '.invite_friends'}", invite_friends_path
               li
+                = link_to "#{t '.contacts'}", contacts_path
+              li
                 = link_to "#{t '.sign_out'}", signout_path
         - else
           li
+            a.navLink href="#{contacts_path}" = t '.contacts'
             a.navLink data-toggle="modal" href="#signInModal" = t '.sign_in'

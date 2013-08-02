@@ -25,6 +25,7 @@ en:
       processing_images: "Processing images..."
       preparing_images: "Preparing to send..."
       invite_friends: "Invite friends"
+      contacts: "Contacts"
   shared:
     error_messages:
       header: "Please fix following errors:"
@@ -244,6 +245,10 @@ en:
       upload: "Upload photos and create beautiful stories"
       share: "Share stories in your social networks"
       explore: "Discover great stories from people all over the world"
+    contacts:
+      contacts_head_html: "We are a small team of enthusiasts that want to make a great service for you to share your stories.<br><br>
+                           If you have any questions or feedback, please, don't hesitate to drop us a line: <a href='mailto:onemyday.co@gmail.com'>onemyday.co@gmail.com</a>.<br><br>
+                           We would love to help or to just have a friendly conversation."
   layouts:
     application:
       meta_desc: "Onemyday — is a free online service for photo stories. Tell your story!"

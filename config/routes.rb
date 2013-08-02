@@ -41,6 +41,7 @@ Onemyday::Application.routes.draw do
 
   get '/channel.html', to: 'static_pages#channel'
   get '/landing', to: 'static_pages#landing'
+  get '/contacts', to: 'static_pages#contacts'
 
   post 'auth/regular', to: "sessions#create", as: :regular_sign_in
   match 'auth/:provider/callback', to: 'sessions#create'

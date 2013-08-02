@@ -10,4 +10,8 @@ class StaticPagesController < ApplicationController
     render layout: "application"
   end
 
+  def contacts
+    render layout: "application"
+  end
+
 end
