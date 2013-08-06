@@ -20,4 +20,11 @@ class Comment < ActiveRecord::Base
     date.try(:strftime, "%b %d %Y at %M:%S")
   end
 
+  # Override getter method for document association
+  def story_with_unscoped
+    # Fetch document with default scope disabled
+    Story.unscoped { story_without_unscoped }
+  end
+  alias_method_chain :story, :unscoped
+
 end
