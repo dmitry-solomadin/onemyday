@@ -103,6 +103,7 @@ class StoriesController < ApplicationController
 
     !@story.published && @current_user.followers.each do |follower|
       ActivityTracking.track @story, follower
+      @story.created_at = DateTime.now
     end
 
     if @story.has_photos && @story.update_attributes(params[:story])
