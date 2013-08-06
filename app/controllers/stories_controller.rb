@@ -104,7 +104,7 @@ class StoriesController < ApplicationController
     # do only when story goes from draft to published state
     unless @story.published
       @story.created_at = DateTime.now
-      if @current_user.followers.each do |follower|
+      @current_user.followers.each do |follower|
         ActivityTracking.track @story, follower
       end
     end
