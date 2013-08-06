@@ -101,9 +101,12 @@ class StoriesController < ApplicationController
   def publish
     @story = @current_user.stories.unscoped.find(params[:story][:id])
 
-    !@story.published && @current_user.followers.each do |follower|
-      ActivityTracking.track @story, follower
+    # do only when story goes from draft to published state
+    unless @story.published
       @story.created_at = DateTime.now
+      if @current_user.followers.each do |follower|
+        ActivityTracking.track @story, follower
+      end
     end
 
     if @story.has_photos && @story.update_attributes(params[:story])
