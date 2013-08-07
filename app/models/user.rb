@@ -44,6 +44,10 @@ class User < ActiveRecord::Base
     update_social_info
   end
 
+  def self.by_email(email)
+    User.find_by_email(email.downcase)
+  end
+
   def feed
     Story.from_users_followed_by self
   end

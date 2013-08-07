@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     session[:omniauth] = nil
     status = "ok"
     if params[:password] && params[:email]
-      existing_user = User.find_by_email(params[:email])
+      existing_user = User.by_email(params[:email])
       unless existing_user
         session[:user_to_create] = User.new(email: params[:email], password: params[:password])
         status = "no_such_user"

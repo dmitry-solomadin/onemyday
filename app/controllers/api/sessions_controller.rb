@@ -15,7 +15,7 @@ class Api::SessionsController < Api::ApiController
         render :json => {status: "ok"}.merge(UserFormat.get_hash(user))
       else
         if omniauth["info"]["email"].present?
-          existing_user = User.find_by_email(omniauth["info"]["email"])
+          existing_user = User.by_email(omniauth["info"]["email"])
           if existing_user
             add_auth_to_user existing_user, omniauth
             update_ios_device_token existing_user
