@@ -95,6 +95,8 @@ en:
       no_followed_users: "You don't follow anybody yet"
   stories:
     empty_message: "No stories to display."
+    photo_upload_div:
+      add_photo: "Add photos"
     story_edit:
       edit_story: "Edit story"
       tell_story: "Tell your story"
@@ -102,7 +104,6 @@ en:
       tags: "Tags:"
       tags_desc: 'Try "work" or "weekend"'
       date_placeholder: "Story date"
-      add_photo: "Add photos"
       no_story_date: "Enter story date"
       no_story_title: "Enter story title"
       publish: "Publish"

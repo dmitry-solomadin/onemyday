@@ -31,15 +31,7 @@ div#photoUploadDiv
 
   span#storySaveExp.hide.explanation = t ".story_saved_in_drafts"
 
-  div.uploadButtonDiv
-    input#storyId name="story_id" type="hidden" value="#{story.id if story}"
-    div#photoUploadError.uploadError.alert.alert-error.hide
-    div#customProgressBar.progress.progress-striped.active
-      div.bar style="width: 0"
-      div.barText
-    span#photoUploadDecorator.btn.btn-large.btn-foxtrot.f18.fileinput-button
-      = t '.add_photo'
-      input#photoUploadButton type="file" name="story_photo[photo]" multiple="multiple" data-url="#{upload_story_photo_path}"
+  = render 'photo_upload_div', story_id: (story.id if story)
 
 / Story
 div#story.edit
@@ -87,6 +79,7 @@ div#storyPublish class="#{"hide" unless story}"
     - @story_photos = story.story_photos
     = render file: "stories/uploaded_photos"
   div style="clear:both"
+  = render 'photo_upload_div', story_id: (story.id if story)
   - publish = t '.publish'
   - save = t '.save'
   - save_as_draft = t '.save_as_draft'

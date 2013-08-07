@@ -81,7 +81,7 @@ $ ->
 $ ->
   return unless App.util.isPage "stories", "new"
 
-  $('#photoUploadButton').on "click", -> return false unless storyHelper.validate()
+  $('.photoUploadButton').on "click", -> return false unless storyHelper.validate()
 
   regularOnSubmit = (uploader, datas, storyId) ->
     for data in datas
@@ -90,17 +90,17 @@ $ ->
       uploader.fileupload('send', data)
 
   App.photoUploader = new App.PhotoUploader
-    btnSelector: "#photoUploadButton"
+    btnSelector: ".photoUploadButton"
     onSubmit: (uploader, datas) ->
       storyData =
         "story[title]": $("#photoUploadStoryTitle").val()
         "story[tag_list]": $("#photoUploadTags").val()
-      if $("#photoUploadButton").data("story-created")
+      if $(".photoUploadButton").data("story-created")
         regularOnSubmit uploader, datas, $("#storyId").val()
       else
         $.post $("#storyForm").attr("action"), storyData, (storyId) ->
           regularOnSubmit uploader, datas, storyId
-          $("#photoUploadButton").data("story-created", "true")
+          $(".photoUploadButton").data("story-created", "true")
           if window.history
             window.history.pushState({foo: 'bar'}, 'Title', "/stories/#{storyId}/edit")
     onDone: (result) ->
@@ -139,7 +139,7 @@ $ ->
   return if not App.util.isPage "stories", "edit"
 
   App.photoUploader = new App.PhotoUploader
-    btnSelector: "#photoUploadButton"
+    btnSelector: ".photoUploadButton"
     formData:
       "story_id": $("#storyId").val()
     onDone: (result) -> storyHelper.onPhotoUploadSuccess(result)
@@ -171,7 +171,7 @@ class Story
     @showPublish()
     $("#photoDiv").html(data)
 
-    $("#storyId").val($("#createdStoryId").val())
+    $(".storyId").val($("#createdStoryId").val())
 
     dataValid = $("#photoDiv > #uploadedPhotoData").find(".photo").length > 0
     @appendPhotos() if dataValid

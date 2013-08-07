@@ -95,6 +95,8 @@ ru:
       no_followed_users: "Ты пока никого не читаешь"
   stories:
     empty_message: "Не найдено ни одной истории."
+    photo_upload_div:
+      add_photo: "Добавить фото"
     story_edit:
       edit_story: "Редактирование истории"
       tell_story: "Расскажите вашу историю"
@@ -102,7 +104,6 @@ ru:
       tags: "Тэги:"
       tags_desc: 'попробуйте "работа" или "выходные"'
       date_placeholder: "Дата истории"
-      add_photo: "Добавить фото"
       no_story_date: "Введите дату истории"
       no_story_title: "Введите название истории"
       publish: "Опубликовать"

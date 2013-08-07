@@ -85,26 +85,6 @@
     color: #808080;
   }
 
-  #customProgressBar {
-    display: none;
-    width: 400px;
-    position: relative;
-    text-align: center;
-
-    .barText {
-      width: 100%;
-      position: absolute;
-      top: 0;
-      z-index: 999;
-      text-shadow: white 1px 1px 1px;
-    }
-
-    .bar {
-      border-radius: 4px;
-      color: black;
-    }
-  }
-
   .photoUploadAt {
     margin: 0 10px 0 10px;
     font-size: 18px;
@@ -120,6 +100,26 @@
     line-height: 26px;
     width: 300px;
     font-weight: 300;
+  }
+}
+
+#customProgressBar {
+  display: none;
+  width: 400px;
+  position: relative;
+  text-align: center;
+
+  .barText {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 999;
+    text-shadow: white 1px 1px 1px;
+  }
+
+  .bar {
+    border-radius: 4px;
+    color: black;
   }
 }
 
