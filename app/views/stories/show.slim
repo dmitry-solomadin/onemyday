@@ -1,5 +1,7 @@
-- provide(:title, @story.title)
+- provide(:title, @story.meta_description)
 - provide(:meta_tags, facebook_like_meta(@story.title, story_url(@story.id), @story.story_photos.first.photo.url(:side))) if @story.story_photos.any?
+- provide(:meta_description, @story.meta_description)
+- provide(:meta_keywords, @story.meta_tags)
 
 div#showFacebookNoRights.hide.alert
   = t ".no_facebook_right_1"
@@ -30,7 +32,7 @@ div#story
       - if story_photo.left?
         div#leftRightGroup class="row storyGroup #{'noText' unless story_photo.has_text}"
           div.imagePlace.span55
-            img src="#{story_photo.photo.url(:side)}" style="height: #{side_image_dims[:height]}px"
+            img src="#{story_photo.photo.url(:side)}" style="height: #{side_image_dims[:height]}px" alt="#{story_photo.caption_for_alt}"
           div class="span0 #{'span0_hidden' unless story_photo.has_text}"
           div class="textPlace span55 #{'hide' unless story_photo.has_text}"
             div.time
@@ -48,12 +50,12 @@ div#story
                 = story_photo.caption
           div class="span0 #{'span0_hidden' unless story_photo.has_text}"
           div.imagePlace.span55
-            img src="#{story_photo.photo.url(:side)}" style="height: #{side_image_dims[:height]}px"
+            img src="#{story_photo.photo.url(:side)}" style="height: #{side_image_dims[:height]}px" alt="#{story_photo.caption_for_alt}"
       - if story_photo.center?
         div#centerGroup class="row storyGroup #{'noText' unless story_photo.has_text}" data-orientation="center"
           div.row
             div.imagePlace.span12
-              img src="#{story_photo.photo.url(:center)}" style="width: #{center_image_dims[:width]}px"
+              img src="#{story_photo.photo.url(:center)}" style="width: #{center_image_dims[:width]}px" alt="#{story_photo.caption_for_alt}"
           div.row.mt10
             div class="textPlace span12 #{'hide' unless story_photo.has_text}"
               div.time
@@ -114,7 +116,7 @@ div class="grayBottomer #{'no_tags' unless has_tags}"
 
     div style='clear:both;'
 
-div  class="grayBottomerSpan #{'no_tags' unless has_tags}"
+div class="grayBottomerSpan #{'no_tags' unless has_tags}"
 
 div.bottomShareMenu
   span.helpText = t ".share_story_text"

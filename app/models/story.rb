@@ -83,6 +83,14 @@ class Story < ActiveRecord::Base
     self.likes.pluck(:user_id).include?(user.id)
   end
 
+  def meta_tags
+    tags.join ", "
+  end
+
+  def meta_description
+    "#{title}. Onemyday"
+  end
+
   private
 
   def self.get_top_for_home(lim, time_ago)

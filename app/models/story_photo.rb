@@ -89,4 +89,8 @@ class StoryPhoto < ActiveRecord::Base
     r
   end
 
+  def caption_for_alt
+    has_text ? caption[0...200] : ""
+  end
+
 end

@@ -10,10 +10,16 @@ html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb=
     link rel="shortcut icon" href="/assets/favicon.ico"
     = javascript_include_tag "application"
     = csrf_meta_tags
-    = meta_tags yield(:meta_tags)
+    - if content_for?(:meta_tags)
+      = yield(:meta_tags)
     = render file:"shared/ga.html"
     = render file:"shared/ya_metrika.html"
-    meta name="description" content="#{t '.meta_desc'}"
+    - if content_for?(:meta_description)
+      = tag('meta', name: 'description', content: yield(:meta_description))
+    - else
+      meta name="description" content="#{t '.meta_desc'}"
+    - if content_for?(:meta_keywords)
+      = tag('meta', name: 'keywords', content: yield(:meta_keywords))
   body data-controller="#{params[:controller]}" data-action="#{params[:action]}" class="#{current_locale}"
     div#fb-root
     input#appHost type="hidden" value="#{ENV['HOST']}"
