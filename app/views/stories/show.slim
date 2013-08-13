@@ -124,7 +124,7 @@ div.bottomShareMenu
   a.twitter-share-button href="https://twitter.com/share" data-hashtags="onemyday" Tweet
 
 div#commentsContainer
-  - @story.comments.each do |comment|
+  - @story.comments.by_date.each do |comment|
     = render "/comments/comment", comment: comment, clazz: cycle("odd", "even")
   - if current_user
     = form_for Comment.new, remote:true, html:{id:"addCommentForm"} do |f|

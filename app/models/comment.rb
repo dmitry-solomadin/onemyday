@@ -12,12 +12,14 @@ class Comment < ActiveRecord::Base
   validates :user, presence: true
   validates :story, presence: true
 
+  scope :by_date, -> { order("created_at") }
+
   def created_at_nice
     Comment.created_at_nice created_at
   end
 
   def self.created_at_nice date
-    date.try(:strftime, "%b %d %Y at %M:%S")
+    date.try(:strftime, "%b %d %Y at %H:%M")
   end
 
   # Override getter method for document association
