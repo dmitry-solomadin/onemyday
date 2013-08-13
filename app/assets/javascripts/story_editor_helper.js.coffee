@@ -90,6 +90,7 @@ $ ->
       newGroup[0].id = "group#{photoData[0].id}"
       newGroup.addClass("storyGroup").addClass(type.name).data("orientation", type.name)
       newGroup.data("id", photoData[0].id)
+      newGroup.data("order", photoData.data("order"))
 
       #init hover menu
       hoverMenu = $("#imageHoverMenuPlaceholder").clone()
@@ -152,7 +153,19 @@ $ ->
       unless $("#story .storyGroup")[0]
         $("#story").append group
         return
-      $("#story .storyGroup:eq(#{parseInt(position) - 1})").after group
+      pos = @getRightPosition(parseInt(position)) - 1
+      console.log "position: #{position} pos: #{pos}"
+      if pos < 0
+        $("#story").prepend group
+      else
+        $("#story .storyGroup:eq(#{pos})").after group
+
+    getRightPosition: (position) ->
+      positions = []
+      positions.push $(storyGroup).data("order") for storyGroup in $("#story .storyGroup")
+      positions.push position
+      positions.sort()
+      positions.indexOf position
 
     initializeGroup: (group) ->
       group.show()
