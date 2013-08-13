@@ -1,7 +1,11 @@
 <% if params[:page].nil? %>
     $('#exploreStoriesContainer').html('<%= j render "/stories/list_stories", stories: @stories, empty_message: t('stories.empty_message') %>');
+    $('#storiesContainer').masonry({itemSelector: '.smallStory'});
 <% else %>
-    $('#exploreStoriesContainer').append('<%= j render "/stories/list_stories", stories: @stories, empty_message: t('stories.empty_message') %>');
+    $("body").append("<div id='hiddenStories' class='hide'><%= j render "/stories/list_stories_inner", stories: @stories %></div>");
+    var newItems = $('#hiddenStories > .smallStory');
+    $("#storiesContainer").append(newItems).masonry("appended", newItems, true);
+    $("#hiddenStories").remove();
 <% end %>
 
 <% if @stories.next_page %>
@@ -9,5 +13,3 @@
 <% else %>
     $('.pagination').html("");
 <% end %>
-
-$('#exploreStoriesContainer').masonry({itemSelector: '.smallStory'});

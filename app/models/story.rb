@@ -63,18 +63,22 @@ class Story < ActiveRecord::Base
     if tags
       # I had to use two selects because for some reason JOINING tags doesn't work with additional agg_count column.
       stories = Story.scoped.tagged_with(tags)
-      Story.select("*, (comments_count * 15) + (likes_count * 10) + views_count as agg_count").
+      Story.select("*, (likes_count * 10) + views_count as agg_count").
           where("stories.id in (#{stories.collect { |story| story.id }.join(",")})",).
           order("agg_count DESC").limit(lim) if stories.any?
     else
-      stories = []
-      (1..5).each do |i|
-        t = (2 * i).weeks.ago
-        stories = get_top_for_home(lim, t)
-        break if stories.count > 0
-      end
-      stories
+      Story.select("*, (likes_count * 10) + views_count as count").order("count DESC").limit(lim)
     end
+  end
+
+  def self.top_for_home(lim)
+    stories = []
+    (1..5).each do |i|
+      t = (2 * i).weeks.ago
+      stories = top_with_time(lim, t)
+      break if stories.count > 0
+    end
+    stories
   end
 
   def is_liked_by_user(user=nil)
@@ -93,9 +97,9 @@ class Story < ActiveRecord::Base
 
   private
 
-  def self.get_top_for_home(lim, time_ago)
+  def self.top_with_time(lim, time_ago)
     Story.select("*, (comments_count * 15) + (likes_count * 10) + views_count as count")
-    .where("created_at > ?", time_ago).order("count DESC").limit(lim)
+         .where("created_at > ?", time_ago).order("count DESC").limit(lim)
   end
 
   # Returns an SQL condition for users followed by the given user.
