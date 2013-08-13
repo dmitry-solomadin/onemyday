@@ -94,7 +94,7 @@ class StoryPhoto < ActiveRecord::Base
   end
 
   def caption_for_alt
-    has_text ? caption[0...200] : ""
+    has_text && caption.present? ? caption[0...200] : ""
   end
 
 end
