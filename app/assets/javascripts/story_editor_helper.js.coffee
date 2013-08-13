@@ -164,7 +164,7 @@ $ ->
       positions = []
       positions.push $(storyGroup).data("order") for storyGroup in $("#story .storyGroup")
       positions.push position
-      positions.sort()
+      positions.sort (a, b) -> a - b
       positions.indexOf position
 
     initializeGroup: (group) ->
