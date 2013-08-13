@@ -55,7 +55,7 @@ div#story
         div#centerGroup class="row storyGroup #{'noText' unless story_photo.has_text}" data-orientation="center"
           div.row
             div.imagePlace.span12
-              img src="#{story_photo.photo.url(:center)}" style="width: #{center_image_dims[:width]}px height:#{center_image_dims[:height]}px" alt="#{story_photo.caption_for_alt}"
+              img src="#{story_photo.photo.url(:center)}" style="width: #{center_image_dims[:width]}px; height:#{center_image_dims[:height]}px" alt="#{story_photo.caption_for_alt}"
           div.row.mt10
             div class="textPlace span12 #{'hide' unless story_photo.has_text}"
               div.time
