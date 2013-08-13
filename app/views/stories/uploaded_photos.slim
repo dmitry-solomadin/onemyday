@@ -11,5 +11,6 @@ div#uploadedPhotoData
     data-medium-width="#{story_photo.photo_dimensions[:side][:width]}"
     data-large-width="#{story_photo.photo_dimensions[:center][:width]}"
     data-has-text="#{story_photo.has_text}"
+    data-order="#{story_photo.story_element.element_order}"
     data-date="#{story_photo.date_text.present? ? story_photo.date_text : story_photo.time_taken}" }
 

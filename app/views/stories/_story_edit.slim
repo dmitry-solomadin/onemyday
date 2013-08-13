@@ -31,7 +31,8 @@ div#photoUploadDiv
 
   span#storySaveExp.hide.explanation = t ".story_saved_in_drafts"
 
-  = render 'photo_upload_div', story_id: (story.id if story)
+  div.uploadButtonDiv
+    = render 'photo_upload_button', story_id: (story.id if story)
 
 / Story
 div#story.edit
@@ -79,10 +80,11 @@ div#storyPublish class="#{"hide" unless story}"
     - @story_photos = story.story_photos
     = render file: "stories/uploaded_photos"
   div style="clear:both"
-  = render 'photo_upload_div', story_id: (story.id if story)
   - publish = t '.publish'
   - save = t '.save'
   - save_as_draft = t '.save_as_draft'
   - move_to_drafts = t '.move_to_drafts'
+  div.uploadButtonDiv
+    = render 'photo_upload_button', story_id: (story.id if story)
+    input#storyDraftButton.btn.ml10.btn-large.f18 type="button" data-publish-path="#{publish_path}"  value="#{story ? (story.published? ? move_to_drafts : save) : save_as_draft}"
   input#storyPublishButton.btn.fl.btn-large.btn-foxtrot.f18 type="button" data-publish-path="#{publish_path}" value="#{story ? (story.published? ? save : publish) : publish}"
-  input#storyDraftButton.btn.fl.ml10.btn-large.btn-foxtrot.f18 type="button" data-publish-path="#{publish_path}"  value="#{story ? (story.published? ? move_to_drafts : save) : save_as_draft}"

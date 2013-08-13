@@ -280,13 +280,17 @@ pre.black {
 
 .uploadButtonDiv {
   margin-top: 10px;
+  margin-bottom: 10px;
+
+  &:first-of-type {
+    margin-bottom: 20px;
+  }
 }
 
 .fileinput-button {
   position: relative;
   cursor: pointer;
-  border-radius: 0;
-  margin-bottom: 20px;
+  border-radius: 6px;
 
   input {
     position: absolute;

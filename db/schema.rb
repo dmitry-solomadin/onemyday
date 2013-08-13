@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130725105520) do
+ActiveRecord::Schema.define(:version => 20130811095257) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -183,6 +183,7 @@ ActiveRecord::Schema.define(:version => 20130725105520) do
     t.text     "photo_dimensions"
     t.string   "time_taken"
     t.boolean  "has_text",           :default => true
+    t.string   "filename"
   end
 
   add_index "story_photos", ["story_id"], :name => "index_story_photos_on_story_id"

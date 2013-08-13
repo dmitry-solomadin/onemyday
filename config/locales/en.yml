@@ -95,7 +95,7 @@ en:
       no_followed_users: "You don't follow anybody yet"
   stories:
     empty_message: "No stories to display."
-    photo_upload_div:
+    photo_upload_button:
       add_photo: "Add photos"
     story_edit:
       edit_story: "Edit story"

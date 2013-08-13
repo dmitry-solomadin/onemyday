@@ -2,7 +2,6 @@ App.PhotoUploader = class PhotoUploader
   # todo we still need to implement 10Mb restriction
   constructor: (settings) ->
     settings.formData = {} unless settings.formData
-    console.log $(settings.btnSelector)
     $(settings.btnSelector).each ->
       btn = $(@)
       totalFiles = 0

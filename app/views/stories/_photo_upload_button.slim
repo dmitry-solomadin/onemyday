@@ -1,0 +1,8 @@
+input#storyId.storyId name="story_id" type="hidden" value="#{story_id}"
+div.uploadError.alert.alert-error.hide
+div#customProgressBar.progress.progress-striped.active
+  div.bar style="width: 0"
+  div.barText
+span.btn.btn-large.f18.fileinput-button
+  = t '.add_photo'
+  input.photoUploadButton type="file" name="story_photo[photo]" multiple="multiple" data-url="#{upload_story_photo_path}"

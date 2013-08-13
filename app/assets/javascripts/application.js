@@ -23,4 +23,18 @@
 //= require jquery.iframe-transport
 //= require jquery.fileuploader
 //= require jquery.cookie
-//= require_tree .
+
+//= require util
+//= require form_errors
+//= require general
+//= require photo_upload
+//= require username_autocomplete
+
+//= require comments
+//= require home
+//= require users
+
+//= require story_editor_helper
+//= require story_editor
+//= require stories
+

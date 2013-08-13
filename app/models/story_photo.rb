@@ -1,5 +1,6 @@
 class StoryPhoto < ActiveRecord::Base
-  attr_accessible :photo_order, :caption, :date, :date_text, :photo, :orientation, :photo_dimensions, :time_taken, :has_text, :element_order
+  attr_accessible :photo_order, :caption, :date, :date_text, :photo, :orientation, :filename,
+                  :photo_dimensions, :time_taken, :has_text, :element_order, :story, :story_id
 
   as_enum :orientation, left: 0, center: 1, right: 2
 
@@ -56,6 +57,9 @@ class StoryPhoto < ActiveRecord::Base
 
   def save_time_taken
     file = photo.queued_for_write[:original]
+
+    filename = file.original_filename
+
     file_path = file.respond_to?(:path) ? file.path : file
     image = MiniMagick::Image.open(file_path)
 

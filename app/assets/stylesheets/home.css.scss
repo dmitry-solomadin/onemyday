@@ -47,7 +47,7 @@ form {
 }
 
 input {
-  border-radius: 0 !important;
+
   border: 1px solid #b1b1b1 !important;
   font-size: 14px;
   height: 24px;
@@ -55,8 +55,12 @@ input {
   font-weight: 400;
 }
 
-a.btn {
+input[type="text"] {
   border-radius: 0 !important;
+}
+
+a.btn {
+  border-radius: 6px !important;
   border: 1px solid #b1b1b1 !important;
 }
 
@@ -65,7 +69,7 @@ a.btn.btn-foxtrot {
 }
 
 button.btn {
-  border-radius: 0 !important;
+  border-radius: 6px !important;
   border: 1px solid #b1b1b1 !important;
 }
 
@@ -319,10 +323,6 @@ ul.navigation {
 }
 
 .btn {
-  height: auto;
-}
-
-.btn-large {
   height: auto;
 }
 
@@ -708,8 +708,37 @@ ul.navigation {
   margin-top: 7px;
 
   .btn {
+    border-radius: 0 !important;
     font-size: 16px;
     font-weight: 300;
+
+    &:first-child {
+      border-top-left-radius: 6px !important;
+      border-bottom-left-radius: 6px !important;
+    }
+
+    &:last-child {
+      border-top-right-radius: 6px !important;
+      border-bottom-right-radius: 6px !important;
+    }
+  }
+}
+
+.btn-group {
+  .btn {
+    border-radius: 0 !important;
+  }
+
+  .btn {
+    &:first-child {
+      border-top-left-radius: 6px !important;
+      border-bottom-left-radius: 6px !important;
+    }
+
+    &:last-child {
+      border-top-right-radius: 6px !important;
+      border-bottom-right-radius: 6px !important;
+    }
   }
 }
 
@@ -868,6 +897,16 @@ ul.navigation {
 
 .btn {
   line-height: 24px !important;
+  border: 1px solid #B1B1B1 !important;
+}
+
+.btn-large {
+  height: auto;
+  padding: 6px 12px;
+  line-height: 20px !important;
+  height: 22px;
+  box-sizing: content-box;
+  -moz-box-sizing: content-box;
 }
 
 .btn-super-small {

@@ -30,13 +30,13 @@ ru:
     error_messages:
       header: "Пожалуйста исправьте следующие ошибки:"
     sign_in:
-      sign_in_header: "Войдите или зарегестрируйтесь"
+      sign_in_header: "Войдите или зарегистрируйтесь"
       cancel: "Отмена"
       okay: "Хорошо"
       or: "Или"
       password: "Пароль"
       email: "Email"
-      exp: "* Введите ваш email и пароль чтобы зарегестрироваться или войти."
+      exp: "* Введите ваш email и пароль чтобы зарегистрироваться или войти."
       submit: "Отправить"
       email_err: "Введите email"
       password_err: "Введите пароль"
@@ -95,7 +95,7 @@ ru:
       no_followed_users: "Ты пока никого не читаешь"
   stories:
     empty_message: "Не найдено ни одной истории."
-    photo_upload_div:
+    photo_upload_button:
       add_photo: "Добавить фото"
     story_edit:
       edit_story: "Редактирование истории"
@@ -124,7 +124,6 @@ ru:
     explore:
       pop: Популярные
       tags_html: '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;тэги'
-
       all: "Все"
       sort: "Сортировать"
       popular: "Популярные"
@@ -229,7 +228,7 @@ ru:
             email:
               blank: Введите email
               invalid: Неверный формат email
-              taken: Такой email уже зарегестрирован
+              taken: Такой email уже зарегистрирован
             password:
               too_short: Пароль должен соджержать 6 или больше символов
             name:
