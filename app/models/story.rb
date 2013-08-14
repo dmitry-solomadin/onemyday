@@ -1,5 +1,5 @@
 class Story < ActiveRecord::Base
-  attr_accessible :title, :published, :story_photos_attributes, :tag_list
+  attr_accessible :title, :published, :story_photos_attributes, :tag_list, :reported_for
 
   attr_accessor :current_user
 
