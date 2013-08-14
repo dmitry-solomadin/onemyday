@@ -55,6 +55,7 @@ Onemyday::Application.routes.draw do
     post '/api/stories/create_and_publish', to: 'stories#create_and_publish'
     post '/api/stories/:id/like', to: 'stories#like'
     post '/api/stories/:id/unlike', to: 'stories#unlike'
+    post '/api/stories/:id/update', to: 'stories#update'
 
     post '/api/comments/create', to: 'comments#create'
     post '/api/comments/:id/destroy', to: 'comments#destroy'

@@ -20,6 +20,15 @@ class Api::StoriesController < Api::ApiController
     end
   end
 
+  def update
+    begin
+      Story.find(params[:id]).update_attributes(params[:story])
+      render json: {success: true}
+    rescue => e
+      render json: {message: e.message, backtrace: e.backtrace}
+    end
+  end
+
   def create_and_publish
     begin
       user = User.find(params[:author_id])

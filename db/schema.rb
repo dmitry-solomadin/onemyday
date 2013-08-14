@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130811095257) do
+ActiveRecord::Schema.define(:version => 20130814174242) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -155,6 +155,7 @@ ActiveRecord::Schema.define(:version => 20130811095257) do
     t.integer  "likes_count",    :default => 0
     t.integer  "views_count",    :default => 0
     t.integer  "comments_count", :default => 0
+    t.string   "reported_for"
   end
 
   add_index "stories", ["user_id"], :name => "index_stories_on_user_id"

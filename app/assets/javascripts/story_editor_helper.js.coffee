@@ -154,7 +154,6 @@ $ ->
         $("#story").append group
         return
       pos = @getRightPosition(parseInt(position)) - 1
-      console.log "position: #{position} pos: #{pos}"
       if pos < 0
         $("#story").prepend group
       else
